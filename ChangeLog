@@ -1,3 +1,15 @@
+2007-10-17  Murray Cumming  <murrayc@murrayc.com>
+
+	* configure.in:
+	* examples/Makefile.am:
+	* examples/text/window.cc:
+	* examples/text/window.h: A new example to show 
+	the behaviour of text items.
+	* goocanvas/src/itemsimple.hg: Added some properties.
+	* goocanvas/src/text.hg: Removed the font and 
+	font-desc properties that are in ItemSimple instead.
+	Added the wrap property.
+
 0.2.0:
 
 2007-10-16  Murray Cumming  <murrayc@murrayc.com>

@@ -40,16 +40,13 @@ public:
   _WRAP_PROPERTY("alignment", Pango::Alignment)
   _WRAP_PROPERTY("anchor", Gtk::AnchorType)
   _WRAP_PROPERTY("ellipsize",Pango::EllipsizeMode)
-  _WRAP_PROPERTY("font", Glib::ustring)
-  _WRAP_PROPERTY("font-desc", Pango::FontDescription)
   _WRAP_PROPERTY("text", Glib::ustring)
   _WRAP_PROPERTY("use-markup", bool)
   _WRAP_PROPERTY("width", double)
   _WRAP_PROPERTY("x", double)
   _WRAP_PROPERTY("y", double)
+  _WRAP_PROPERTY("wrap", Pango::WrapMode)
 };
 
-
-}
-
+} //namespace Goocanvas
 

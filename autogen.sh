@@ -18,8 +18,8 @@ test -z "$srcdir" && srcdir=.
 PKG_NAME="libgoocanvasmm"
 
 (test -f $srcdir/configure.in \
-  && test -d $srcdir/libgoocanvas/src \
-  && test -d $srcdir/libgoocanvas/libgoocanvasmm) || {
+  && test -d $srcdir/goocanvas/src \
+  && test -d $srcdir/goocanvas/goocanvasmm) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
     echo " top-level $PKG_NAME directory"
     exit 1
