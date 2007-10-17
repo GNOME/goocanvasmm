@@ -1,0 +1,484 @@
+Index: ChangeLog
+===================================================================
+--- ChangeLog	(revision 16)
++++ ChangeLog	(working copy)
+@@ -1,3 +1,29 @@
++2006-09-28  Murray Cumming  <murrayc@murrayc.com>
++
++	* libgoocanvas/src/ellipse.hg:
++	* libgoocanvas/src/ellipseview.hg:
++	* libgoocanvas/src/group.hg:
++	* libgoocanvas/src/groupview.hg:
++	* libgoocanvas/src/image.hg:
++	* libgoocanvas/src/imageview.hg:
++	* libgoocanvas/src/item.hg:
++	* libgoocanvas/src/itemsimple.hg:
++	* libgoocanvas/src/itemview.hg:
++	* libgoocanvas/src/model.hg:
++	* libgoocanvas/src/path.hg:
++	* libgoocanvas/src/pathview.hg:
++	* libgoocanvas/src/polyline.hg:
++	* libgoocanvas/src/polylineview.hg:
++	* libgoocanvas/src/rectview.hg:
++	* libgoocanvas/src/text.ccg:
++	* libgoocanvas/src/text.hg:
++	* libgoocanvas/src/textview.hg:
++	* libgoocanvas/src/view.hg:
++	* tools/m4/convert_libgoocanvasmm.m4: Use Cairo::Context instead of 
++	cairo_t. Pass ustring by const reference. Make const methods return 
++	const objects. Do not refreturn newly-created objects. Use int 
++	instead of gint.
++
+ 2006-09-28  Jonathon Jongsma  <jonathon.jongsma@gmail.com>
+ 
+ 	* Makefile.in:
+Index: tools/m4/convert_libgoocanvasmm.m4
+===================================================================
+--- tools/m4/convert_libgoocanvasmm.m4	(revision 16)
++++ tools/m4/convert_libgoocanvasmm.m4	(working copy)
+@@ -27,3 +27,6 @@
+ _CONVERSION(`const Glib::RefPtr<Model>&',`GooCanvasModel*',__CONVERT_REFPTR_TO_P)
+ _CONVERSION(`const Glib::RefPtr<ItemView>&',`GooCanvasItemView*',__CONVERT_REFPTR_TO_P)
+ _CONVERSION(`const Glib::RefPtr<ItemViewSimple>&',`GooCanvasItemViewSimple*',__CONVERT_REFPTR_TO_P)
++
++_CONVERSION(`const Cairo::RefPtr<Cairo::Context>&',`cairo_t*',`($3)->cobj()')
++_CONVERSION(`cairo_t*',`Cairo::RefPtr<Cairo::Context>',`Cairo::RefPtr<Cairo::Context>(new Cairo::Context($3))')
+Index: libgoocanvas/src/text.ccg
+===================================================================
+--- libgoocanvas/src/text.ccg	(revision 16)
++++ libgoocanvas/src/text.ccg	(working copy)
+@@ -23,7 +23,7 @@
+ namespace GooCanvas
+ {
+ 
+-Text::Text(const Glib::RefPtr<Item>& parent, Glib::ustring string, gdouble x, gdouble y, gdouble width, GtkAnchorType anchor )
++Text::Text(const Glib::RefPtr<Item>& parent, const Glib::ustring& string, gdouble x, gdouble y, gdouble width, GtkAnchorType anchor )
+ 	:
+ 		ItemSimple( G_OBJECT( goo_canvas_text_new( parent->gobj(), string.c_str(), x, y, width, anchor, NULL ) ) )
+ {
+Index: libgoocanvas/src/pathview.hg
+===================================================================
+--- libgoocanvas/src/pathview.hg	(revision 16)
++++ libgoocanvas/src/pathview.hg	(working copy)
+@@ -32,7 +32,7 @@
+ {
+ 
+ 		_CLASS_GOBJECT(PathView,GooCanvasPathView,GOO_CANVAS_PATH_VIEW,GooCanvas::ItemViewSimple,GooCanvasItemViewSimple)
+-
++	protected:
+ 		explicit PathView( View* canvas_view, const Glib::RefPtr<ItemView>& parent_view, const Glib::RefPtr<Path>& path ) ;
+ 
+ 	public:
+Index: libgoocanvas/src/rectview.hg
+===================================================================
+--- libgoocanvas/src/rectview.hg	(revision 16)
++++ libgoocanvas/src/rectview.hg	(working copy)
+@@ -32,7 +32,7 @@
+ {
+ 
+ 		_CLASS_GOBJECT(RectView,GooCanvasRectView,GOO_CANVAS_RECT_VIEW,GooCanvas::ItemViewSimple,GooCanvasItemViewSimple)
+-
++	protected:
+ 		explicit RectView( View* canvas_view, const Glib::RefPtr<ItemView>& parent_view, const Glib::RefPtr<Rect>& rect ) ;
+ 
+ 	public:
+Index: libgoocanvas/src/itemview.hg
+===================================================================
+--- libgoocanvas/src/itemview.hg	(revision 16)
++++ libgoocanvas/src/itemview.hg	(working copy)
+@@ -38,57 +38,57 @@
+ 			_WRAP_METHOD( View* get_canvas_view(),goo_canvas_item_view_get_canvas_view)
+ 
+ 			_WRAP_METHOD( Glib::RefPtr<ItemView> get_parent_view(),goo_canvas_item_view_get_parent_view,refreturn)
+-			_WRAP_METHOD( Glib::RefPtr<ItemView> get_parent_view() const,goo_canvas_item_view_get_parent_view, refreturn, constversion )
++			_WRAP_METHOD( Glib::RefPtr<const ItemView> get_parent_view() const,goo_canvas_item_view_get_parent_view, refreturn, constversion )
+ 			_WRAP_METHOD( void set_parent_view( const Glib::RefPtr<ItemView>& parent_view ),goo_canvas_item_view_set_parent_view)
+-			_WRAP_METHOD( bool is_container(),goo_canvas_item_view_is_container)
+-			_WRAP_METHOD( gint get_n_children(),goo_canvas_item_view_get_n_children)
+-			_WRAP_METHOD( Glib::RefPtr<ItemView> get_child( gint child_num ),goo_canvas_item_view_get_child,refreturn)
+-			_WRAP_METHOD( Glib::RefPtr<ItemView> get_child( gint child_num ) const,goo_canvas_item_view_get_child,refreturn,constversion)
+-			_WRAP_METHOD( gint find_child( const Glib::RefPtr<ItemView>& child ),goo_canvas_item_view_find_child)
++			_WRAP_METHOD( bool is_container() const,goo_canvas_item_view_is_container)
++			_WRAP_METHOD( int get_n_children() const,goo_canvas_item_view_get_n_children)
++			_WRAP_METHOD( Glib::RefPtr<ItemView> get_child( int child_num ),goo_canvas_item_view_get_child,refreturn)
++			_WRAP_METHOD( Glib::RefPtr<const ItemView> get_child( int child_num ) const,goo_canvas_item_view_get_child,refreturn,constversion)
++			_WRAP_METHOD( int find_child( const Glib::RefPtr<ItemView>& child ),goo_canvas_item_view_find_child)
+ 
+ 			_WRAP_METHOD( void request_update(),goo_canvas_item_view_request_update)
+ 			_WRAP_METHOD( void ensure_updated(),goo_canvas_item_view_ensure_updated)
+ 
+ /*
+-			_WRAP_METHOD( void view_update( boo entire_tree, cairo_t* cr, Bounds* bounds )
++			_WRAP_METHOD( void view_update( bool entire_tree, const Cairo::RefPtr<Cairo::Context>& cr, Bounds* bounds )
+ */
+ 
+ 			_WRAP_METHOD( Glib::RefPtr<Item> get_item(),goo_canvas_item_view_get_item,refreturn)
+-			_WRAP_METHOD( Glib::RefPtr<Item> get_item() const,goo_canvas_item_view_get_item,refreturn,constversion)
++			_WRAP_METHOD( Glib::RefPtr<const Item> get_item() const,goo_canvas_item_view_get_item,refreturn,constversion)
+ 
+-			_WRAP_METHOD( Glib::RefPtr<ItemView> get_item_view_at( gdouble x, gdouble y, cairo_t* cr, bool is_pointer_event, bool parent_is_visible ),goo_canvas_item_view_get_item_view_at,refreturn)
+-			_WRAP_METHOD( Glib::RefPtr<ItemView> get_item_view_at( gdouble x, gdouble y, cairo_t* cr, bool is_pointer_event, bool parent_is_visible ) const,goo_canvas_item_view_get_item_view_at,refreturn,constversion)
++			_WRAP_METHOD( Glib::RefPtr<ItemView> get_item_view_at( gdouble x, gdouble y, const Cairo::RefPtr<Cairo::Context>& cr, bool is_pointer_event, bool parent_is_visible ),goo_canvas_item_view_get_item_view_at,refreturn)
++			_WRAP_METHOD( Glib::RefPtr<const ItemView> get_item_view_at( gdouble x, gdouble y, const Cairo::RefPtr<Cairo::Context>& cr, bool is_pointer_event, bool parent_is_visible ) const,goo_canvas_item_view_get_item_view_at,refreturn,constversion)
+ 
+ /*
+-			_WRAP_METHOD( void get_bounds( Bounds* bounds ),goo_canvas_view_item_get_bounds)
++			_WRAP_METHOD( void get_bounds( Bounds* bounds ) const,goo_canvas_view_item_get_bounds)
+ */
+ 
+-			_WRAP_METHOD( bool is_visible(),goo_canvas_item_view_is_visible)
++			_WRAP_METHOD( bool is_visible() const,goo_canvas_item_view_is_visible)
+ 
+ /*
+-			_WRAP_METHOD( void view_paint( cairo_t* cr, Bounds* bounds, gdouble scale ) )
++			_WRAP_METHOD( void view_paint( const Cairo::RefPtr<Cairo::Context>& cr, Bounds* bounds, gdouble scale ) )
+ */
+ 
+ 			_WRAP_METHOD( cairo_matrix_t* get_transform(),goo_canvas_item_view_get_transform)
+ 			_WRAP_METHOD( void set_transform( cairo_matrix_t* matrix ),goo_canvas_item_view_set_transform)
+ 			_WRAP_METHOD( bool get_combined_transform( cairo_matrix_t* result ),goo_canvas_item_view_get_combined_transform)
+ 
+-			_WRAP_SIGNAL( bool on_button_press_event( const Glib::RefPtr<ItemView>& target_view, GdkEventButton* event ),"button-press-event" )
+-			_WRAP_SIGNAL( bool on_button_release_event( const Glib::RefPtr<ItemView>& target_view, GdkEventButton* event ),"button-release-event")
+-			_WRAP_SIGNAL( bool on_enter_notify_event( const Glib::RefPtr<ItemView>& target_view, GdkEventCrossing* event ),"enter-notify-event")
+-			_WRAP_SIGNAL( bool on_focus_in_event( const Glib::RefPtr<ItemView>& target_view, GdkEventFocus* event ),"focus-in-event")
+-			_WRAP_SIGNAL( bool on_focus_out_event( const Glib::RefPtr<ItemView>& target_view, GdkEventFocus* event ),"focus-out-event")
+-			_WRAP_SIGNAL( bool on_grab_broken_event( const Glib::RefPtr<ItemView>& target_view, GdkEventGrabBroken* event ),"grab-broken-event")
+-			_WRAP_SIGNAL( bool on_key_press_event( const Glib::RefPtr<ItemView>& target_view, GdkEventKey* event ),"key-press-event")
+-			_WRAP_SIGNAL( bool on_key_release_event( const Glib::RefPtr<ItemView>& target_view, GdkEventKey* event ),"key-release-event")
+-			_WRAP_SIGNAL( bool on_leave_notify_event( const Glib::RefPtr<ItemView>& target_view, GdkEventCrossing* event ),"leave-notify-event")
+-			_WRAP_SIGNAL( bool on_motion_notify_event( const Glib::RefPtr<ItemView>& target_view, GdkEventMotion* event ),"motion-notify-event")
++			_WRAP_SIGNAL( bool button_press_event( const Glib::RefPtr<ItemView>& target_view, GdkEventButton* event ),"button-press-event" )
++			_WRAP_SIGNAL( bool button_release_event( const Glib::RefPtr<ItemView>& target_view, GdkEventButton* event ),"button-release-event")
++			_WRAP_SIGNAL( bool enter_notify_event( const Glib::RefPtr<ItemView>& target_view, GdkEventCrossing* event ),"enter-notify-event")
++			_WRAP_SIGNAL( bool focus_in_event( const Glib::RefPtr<ItemView>& target_view, GdkEventFocus* event ),"focus-in-event")
++			_WRAP_SIGNAL( bool focus_out_event( const Glib::RefPtr<ItemView>& target_view, GdkEventFocus* event ),"focus-out-event")
++			_WRAP_SIGNAL( bool grab_broken_event( const Glib::RefPtr<ItemView>& target_view, GdkEventGrabBroken* event ),"grab-broken-event")
++			_WRAP_SIGNAL( bool key_press_event( const Glib::RefPtr<ItemView>& target_view, GdkEventKey* event ),"key-press-event")
++			_WRAP_SIGNAL( bool key_release_event( const Glib::RefPtr<ItemView>& target_view, GdkEventKey* event ),"key-release-event")
++			_WRAP_SIGNAL( bool leave_notify_event( const Glib::RefPtr<ItemView>& target_view, GdkEventCrossing* event ),"leave-notify-event")
++			_WRAP_SIGNAL( bool motion_notify_event( const Glib::RefPtr<ItemView>& target_view, GdkEventMotion* event ),"motion-notify-event")
+ 
+ 		protected:
+ 
+ 			_WRAP_VFUNC( View* get_canvas_view(),get_canvas_view)
+-			_WRAP_VFUNC( gint get_n_children(),get_n_children)
+-			_WRAP_VFUNC( Glib::RefPtr<ItemView> get_child( gint child_num ),get_child,refreturn)
++			_WRAP_VFUNC( int get_n_children(),get_n_children)
++			_WRAP_VFUNC( Glib::RefPtr<ItemView> get_child( int child_num ),get_child,refreturn)
+ 			_WRAP_VFUNC( void request_update(),request_update)
+ 			_WRAP_VFUNC( Glib::RefPtr<ItemView> get_parent_view(),get_parent_view,refreturn)
+ /*
+@@ -100,11 +100,11 @@
+ /*
+ 			_WRAP_VFUNC( void get_bounds( Bounds* bounds ),get_bounds)
+ */
+-			_WRAP_VFUNC( Glib::RefPtr<ItemView> get_item_view_at( gdouble x, gdouble y, cairo_t* cr, bool is_pointer_event, bool parent_is_visible ),get_item_view_at,refreturn)
++			//TODO: _WRAP_VFUNC( Glib::RefPtr<ItemView> get_item_view_at( gdouble x, gdouble y, const Cairo::RefPtr<Cairo::Context>& cr, bool is_pointer_event, bool parent_is_visible ),get_item_view_at,refreturn)
+ 			_WRAP_VFUNC( bool is_visible(),is_visible)
+ /*
+-			_WRAP_VFUNC( void update( bool entire_tree, cairo_t* cr, Bounds* bounds ), update )
+-			_WRAP_VFUNC( void paint( cairo_t* cr, Bounds* bouds, gdouble scale ), paint )
++			_WRAP_VFUNC( void update( bool entire_tree, const Cairo::RefPtr<Cairo::Context>& cr, Bounds* bounds ), update )
++			_WRAP_VFUNC( void paint( const Cairo::RefPtr<Cairo::Context>& cr, Bounds* bouds, gdouble scale ), paint )
+ */
+ 
+ 	} ;
+Index: libgoocanvas/src/path.hg
+===================================================================
+--- libgoocanvas/src/path.hg	(revision 16)
++++ libgoocanvas/src/path.hg	(working copy)
+@@ -31,7 +31,7 @@
+ class Path : public GooCanvas::ItemSimple
+ {
+ 		_CLASS_GOBJECT(Path,GooCanvasPath,GOO_CANVAS_PATH,GooCanvas::ItemSimple,GooCanvasItemSimple)
+-
++	protected:
+ 		//TODO: Figure out why this wants non-const data
+ 
+ 		explicit Path( const Glib::RefPtr<Item>& parent, gchar* data ) ;
+Index: libgoocanvas/src/item.hg
+===================================================================
+--- libgoocanvas/src/item.hg	(revision 16)
++++ libgoocanvas/src/item.hg	(working copy)
+@@ -43,20 +43,20 @@
+ 
+ 	public:
+ 
+-		_WRAP_METHOD(Glib::RefPtr<Model> get_model(),goo_canvas_item_get_model,refreturn)
+-		_WRAP_METHOD(Glib::RefPtr<Model> get_model() const,goo_canvas_item_get_model,refreturn,constversion)
++		_WRAP_METHOD(Glib::RefPtr<Model> get_model(), goo_canvas_item_get_model,refreturn)
++		_WRAP_METHOD(Glib::RefPtr<const Model> get_model() const, goo_canvas_item_get_model,refreturn,constversion)
+ 		_WRAP_METHOD(Glib::RefPtr<Item> get_parent(),goo_canvas_item_get_parent,refreturn)
+-		_WRAP_METHOD(Glib::RefPtr<Item> get_parent() const,goo_canvas_item_get_parent,refreturn,constversion)
++		_WRAP_METHOD(Glib::RefPtr<const Item> get_parent() const, goo_canvas_item_get_parent,refreturn,constversion)
+ 		_WRAP_METHOD(void set_parent( const Glib::RefPtr<Item>& parent ),goo_canvas_item_set_parent)
+ 
+-		_WRAP_METHOD(gboolean is_container(),goo_canvas_item_is_container)
+-		_WRAP_METHOD(gint get_n_children(),goo_canvas_item_get_n_children)
+-		_WRAP_METHOD(Glib::RefPtr<Item> get_child( gint child_num ),goo_canvas_item_get_child,refreturn)
+-		_WRAP_METHOD(Glib::RefPtr<Item> get_child( gint child_num ) const,goo_canvas_item_get_child,refreturn,constversion)
+-		_WRAP_METHOD(gint find_child( const Glib::RefPtr<Item>& child ),goo_canvas_item_find_child)
+-		_WRAP_METHOD(void add_child( const Glib::RefPtr<Item>& child, gint pos),goo_canvas_item_add_child)
+-		_WRAP_METHOD(void move_child( gint old_position, gint new_position ),goo_canvas_item_move_child)
+-		_WRAP_METHOD(void remove_child( gint child_num ),goo_canvas_item_remove_child)
++		_WRAP_METHOD(bool is_container() const,goo_canvas_item_is_container)
++		_WRAP_METHOD(int get_n_children() const,goo_canvas_item_get_n_children)
++		_WRAP_METHOD(Glib::RefPtr<Item> get_child( int child_num ),goo_canvas_item_get_child,refreturn)
++		_WRAP_METHOD(Glib::RefPtr<const Item> get_child( int child_num ) const, goo_canvas_item_get_child,refreturn,constversion)
++		_WRAP_METHOD(int find_child( const Glib::RefPtr<Item>& child ),goo_canvas_item_find_child)
++		_WRAP_METHOD(void add_child( const Glib::RefPtr<Item>& child, int pos),goo_canvas_item_add_child)
++		_WRAP_METHOD(void move_child( int old_position, int new_position ),goo_canvas_item_move_child)
++		_WRAP_METHOD(void remove_child( int child_num ),goo_canvas_item_remove_child)
+ 		_WRAP_METHOD(void raise( const Glib::RefPtr<Item>& above ),goo_canvas_item_raise)
+ 		_WRAP_METHOD(void lower( const Glib::RefPtr<Item>& below ),goo_canvas_item_lower)
+ 
+@@ -69,14 +69,14 @@
+ 		_WRAP_METHOD(void skew_x( double degrees, double cx, double cy ),goo_canvas_item_skew_x)
+ 		_WRAP_METHOD(void skew_y( double degrees, double cx, double cy ),goo_canvas_item_skew_y)
+ 
+-		_WRAP_METHOD(void animate( double x, double y, double scale, double degrees, gint duration, gint step_time, GooCanvasAnimateType type ),goo_canvas_item_animate)
++		_WRAP_METHOD(void animate( double x, double y, double scale, double degrees, int duration, int step_time, GooCanvasAnimateType type ),goo_canvas_item_animate)
+ 		_WRAP_METHOD(void stop_animation(),goo_canvas_item_stop_animation)
+ 
+ 
+ 		_WRAP_SIGNAL( void changed( gboolean recompute_bounds ),"changed")
+-		_WRAP_SIGNAL( void child_added( gint child_num ),"child-added")
+-		_WRAP_SIGNAL( void child_moved( gint old_child_num, gint new_child_num ),"child-moved")
+-		_WRAP_SIGNAL( void child_removed( gint child_num ),"child-removed")
++		_WRAP_SIGNAL( void child_added( int child_num ),"child-added")
++		_WRAP_SIGNAL( void child_moved( int old_child_num, int new_child_num ),"child-moved")
++		_WRAP_SIGNAL( void child_removed( int child_num ),"child-removed")
+ 
+ 
+ 	protected:
+Index: libgoocanvas/src/itemsimple.hg
+===================================================================
+--- libgoocanvas/src/itemsimple.hg	(revision 16)
++++ libgoocanvas/src/itemsimple.hg	(working copy)
+@@ -43,15 +43,15 @@
+ /*
+ 		_WRAP_METHOD(void set_style( Style* style ),goo_canvas_item_simple_set_style)
+ */
+-		_WRAP_METHOD(void set_fill_options( cairo_t* cr ),goo_canvas_item_simple_set_fill_options)
+-		_WRAP_METHOD(void set_stroke_options( cairo_t* cr ),goo_canvas_item_simple_set_stroke_options)
++		_WRAP_METHOD(void set_fill_options( const Cairo::RefPtr<Cairo::Context>& cr ),goo_canvas_item_simple_set_fill_options)
++		_WRAP_METHOD(void set_stroke_options( const Cairo::RefPtr<Cairo::Context>& cr ),goo_canvas_item_simple_set_stroke_options)
+ 
+ /*
+-		_WRAP_METHOD(void get_path_bounds( cairo_t* cr, Bounds* bounds ),goo_canvas_item_simple_get_path_bounds)
+-		_WRAP_METHOD(void user_bounds_to_device( cairo_t* cr, Bounds* bounds ),goo_canvas_item_simple_user_bounds_to_device)
++		_WRAP_METHOD(void get_path_bounds( const Cairo::RefPtr<Cairo::Context>& cr, Bounds* bounds ) const,goo_canvas_item_simple_get_path_bounds)
++		_WRAP_METHOD(void user_bounds_to_device( const Cairo::RefPtr<Cairo::Context>& cr, Bounds* bounds ) const,goo_canvas_item_simple_user_bounds_to_device)
+ */
+-		_WRAP_METHOD(bool check_in_path( gdouble x, gdouble y, cairo_t* cr, PointerEvents pointer_events ),goo_canvas_item_simple_check_in_path)
+-		_WRAP_METHOD(void paint_path( cairo_t* cr ),goo_canvas_item_simple_paint_path)
++		_WRAP_METHOD(bool check_in_path( gdouble x, gdouble y, const Cairo::RefPtr<Cairo::Context>& cr, PointerEvents pointer_events ) const,goo_canvas_item_simple_check_in_path)
++		_WRAP_METHOD(void paint_path( const Cairo::RefPtr<Cairo::Context>& cr ),goo_canvas_item_simple_paint_path)
+ 
+ /*
+ 		_WRAP_PROPERTY("antialias",CairoAntialias)
+Index: libgoocanvas/src/imageview.hg
+===================================================================
+--- libgoocanvas/src/imageview.hg	(revision 16)
++++ libgoocanvas/src/imageview.hg	(working copy)
+@@ -32,7 +32,7 @@
+ {
+ 
+ 		_CLASS_GOBJECT(ImageView,GooCanvasImageView,GOO_CANVAS_IMAGE_VIEW,GooCanvas::ItemViewSimple,GooCanvasItemViewSimple)
+-
++	protected:
+ 		explicit ImageView( View* canvas_view, const Glib::RefPtr<ItemView>& parent_view, const Glib::RefPtr<Image>& image ) ;
+ 
+ 	public:
+Index: libgoocanvas/src/textview.hg
+===================================================================
+--- libgoocanvas/src/textview.hg	(revision 16)
++++ libgoocanvas/src/textview.hg	(working copy)
+@@ -32,7 +32,7 @@
+ {
+ 
+ 		_CLASS_GOBJECT(TextView,GooCanvasTextView,GOO_CANVAS_TEXT_VIEW,GooCanvas::ItemViewSimple,GooCanvasItemViewSimple)
+-
++	protected:
+ 		explicit TextView( View* canvas_view, const Glib::RefPtr<ItemView>& parent_view, const Glib::RefPtr<Text>& text ) ;
+ 
+ 	public:
+Index: libgoocanvas/src/image.hg
+===================================================================
+--- libgoocanvas/src/image.hg	(revision 16)
++++ libgoocanvas/src/image.hg	(working copy)
+@@ -28,7 +28,7 @@
+ class Image : public GooCanvas::ItemSimple
+ {
+ 		_CLASS_GOBJECT(Image,GooCanvasImage,GOO_CANVAS_IMAGE,GooCanvas::ItemSimple,GooCanvasItemSimple)
+-
++	protected:
+ 		explicit Image(	const Glib::RefPtr<Item>& parent,
+ 						const Glib::RefPtr<Gdk::Pixbuf>& pixbuf,
+ 						gdouble x,
+Index: libgoocanvas/src/text.hg
+===================================================================
+--- libgoocanvas/src/text.hg	(revision 16)
++++ libgoocanvas/src/text.hg	(working copy)
+@@ -27,12 +27,12 @@
+ class Text : public GooCanvas::ItemSimple
+ {
+ 		_CLASS_GOBJECT(Text,GooCanvasText,GOO_CANVAS_TEXT,GooCanvas::ItemSimple,GooCanvasItemSimple)
++	protected:
++		explicit Text( const Glib::RefPtr<Item>& parent, const Glib::ustring& string, gdouble x, gdouble y, gdouble width, GtkAnchorType anchor ) ;
+ 
+-		explicit Text( const Glib::RefPtr<Item>& parent, Glib::ustring string, gdouble x, gdouble y, gdouble width, GtkAnchorType anchor ) ;
+-
+ 	public:
+ 
+-		_WRAP_CREATE( const Glib::RefPtr<Item>& parent, Glib::ustring string, gdouble x, gdouble y, gdouble width, GtkAnchorType anchor ) ;
++		_WRAP_CREATE( const Glib::RefPtr<Item>& parent, const Glib::ustring& string, gdouble x, gdouble y, gdouble width, GtkAnchorType anchor ) ;
+ 
+ 		_WRAP_PROPERTY("alignment",PangoAlignment)
+ 		_WRAP_PROPERTY("anchor",GtkAnchorType)
+Index: libgoocanvas/src/polylineview.hg
+===================================================================
+--- libgoocanvas/src/polylineview.hg	(revision 16)
++++ libgoocanvas/src/polylineview.hg	(working copy)
+@@ -32,7 +32,7 @@
+ {
+ 
+ 		_CLASS_GOBJECT(PolylineView,GooCanvasPolylineView,GOO_CANVAS_POLYLINE_VIEW,GooCanvas::ItemViewSimple,GooCanvasItemViewSimple)
+-
++	protected:
+ 		explicit PolylineView( View* canvas_view, const Glib::RefPtr<ItemView>& parent_view, const Glib::RefPtr<Polyline>& polyline ) ;
+ 
+ 	public:
+Index: libgoocanvas/src/groupview.hg
+===================================================================
+--- libgoocanvas/src/groupview.hg	(revision 16)
++++ libgoocanvas/src/groupview.hg	(working copy)
+@@ -31,7 +31,7 @@
+ {
+ 
+ 		_CLASS_GOBJECT(GroupView,GooCanvasGroupView,GOO_CANVAS_Group_VIEW,GooCanvas::ItemViewSimple,GooCanvasItemViewSimple)
+-
++	protected:
+ 		explicit GroupView( View* canvas_view, const Glib::RefPtr<ItemView>& parent_view, const Glib::RefPtr<Item>& group ) ;
+ 
+ 	public:
+Index: libgoocanvas/src/ellipseview.hg
+===================================================================
+--- libgoocanvas/src/ellipseview.hg	(revision 16)
++++ libgoocanvas/src/ellipseview.hg	(working copy)
+@@ -32,7 +32,7 @@
+ {
+ 
+ 		_CLASS_GOBJECT(EllipseView,GooCanvasEllipseView,GOO_CANVAS_ELLIPSE_VIEW,GooCanvas::ItemViewSimple,GooCanvasItemViewSimple)
+-
++	protected:
+ 		explicit EllipseView( View* canvas_view, const Glib::RefPtr<ItemView>& parent_view, const Glib::RefPtr<Ellipse>& ellipse ) ;
+ 
+ 	public:
+Index: libgoocanvas/src/polyline.hg
+===================================================================
+--- libgoocanvas/src/polyline.hg	(revision 16)
++++ libgoocanvas/src/polyline.hg	(working copy)
+@@ -27,7 +27,7 @@
+ class Polyline : public GooCanvas::ItemSimple
+ {
+ 		_CLASS_GOBJECT(Polyline,GooCanvasPolyline,GOO_CANVAS_POLYLINE,GooCanvas::ItemSimple,GooCanvasItemSimple)
+-
++	protected:
+ 		explicit Polyline( const Glib::RefPtr<Item>& parent, gdouble x1, gdouble y1, gdouble x2, gdouble y2 ) ;
+ 
+ 	public:
+Index: libgoocanvas/src/group.hg
+===================================================================
+--- libgoocanvas/src/group.hg	(revision 16)
++++ libgoocanvas/src/group.hg	(working copy)
+@@ -27,7 +27,7 @@
+ class Group : public GooCanvas::ItemSimple
+ {
+ 		_CLASS_GOBJECT(Group,GooCanvasGroup,GOO_CANVAS_GROUP,GooCanvas::ItemSimple,GooCanvasItemSimple)
+-
++	protected:
+ 		explicit Group( const Glib::RefPtr<Item>& parent ) ;
+ 
+ 	public:
+Index: libgoocanvas/src/ellipse.hg
+===================================================================
+--- libgoocanvas/src/ellipse.hg	(revision 16)
++++ libgoocanvas/src/ellipse.hg	(working copy)
+@@ -27,8 +27,8 @@
+ class Ellipse : public GooCanvas::ItemSimple
+ {
+ 		_CLASS_GOBJECT(Ellipse,GooCanvasEllipse,GOO_CANVAS_ELLIPSE,GooCanvas::ItemSimple,GooCanvasItemSimple)
++	protected:
+ 
+-
+ 		explicit Ellipse( const Glib::RefPtr<Item>& parent, gdouble center_x, gdouble center_y, gdouble radius_x, gdouble radius_y ) ;
+ 
+ 	public:
+Index: libgoocanvas/src/model.hg
+===================================================================
+--- libgoocanvas/src/model.hg	(revision 16)
++++ libgoocanvas/src/model.hg	(working copy)
+@@ -33,7 +33,7 @@
+ 
+ 	public:
+ 		_WRAP_METHOD(Glib::RefPtr<Item> get_root_item(),goo_canvas_model_get_root_item,refreturn)
+-		_WRAP_METHOD(Glib::RefPtr<Item> get_root_item() const,goo_canvas_model_get_root_item,refreturn,constversion)
++		_WRAP_METHOD(Glib::RefPtr<const Item> get_root_item() const,goo_canvas_model_get_root_item,refreturn,constversion)
+ 
+ 	protected:
+ 		_WRAP_VFUNC(Glib::RefPtr<Item> get_root_item(),get_root_item,refreturn)
+Index: libgoocanvas/src/view.hg
+===================================================================
+--- libgoocanvas/src/view.hg	(revision 16)
++++ libgoocanvas/src/view.hg	(working copy)
+@@ -39,7 +39,7 @@
+ 		_CTOR_DEFAULT
+ 
+ 		_WRAP_METHOD( Glib::RefPtr<Model> get_model(),goo_canvas_view_get_model, refreturn )
+-		_WRAP_METHOD( Glib::RefPtr<Model> get_model() const,goo_canvas_view_get_model, refreturn, constversion )
++		_WRAP_METHOD( Glib::RefPtr<const Model> get_model() const,goo_canvas_view_get_model, refreturn, constversion )
+ 		_WRAP_METHOD( void set_model( const Glib::RefPtr<Model>& model ),goo_canvas_view_set_model)
+ 		_WRAP_METHOD(void get_bounds( gdouble* left, gdouble* top, gdouble* right, gdouble* bottom ),goo_canvas_view_get_bounds)
+ 		_WRAP_METHOD(void set_bounds( gdouble left, gdouble top, gdouble right, gdouble bottom ),goo_canvas_view_set_bounds)
+@@ -48,19 +48,19 @@
+ 		_WRAP_METHOD(void set_scale( gdouble pixels_per_unit ),goo_canvas_view_set_scale)
+ 
+ 		_WRAP_METHOD( Glib::RefPtr<ItemView> get_root_view(),goo_canvas_view_get_root_view, refreturn)
+-		_WRAP_METHOD( Glib::RefPtr<ItemView> get_root_view() const,goo_canvas_view_get_root_view, refreturn, constversion)
++		_WRAP_METHOD( Glib::RefPtr<const ItemView> get_root_view() const,goo_canvas_view_get_root_view, refreturn, constversion)
+ 		_WRAP_METHOD( Glib::RefPtr<ItemView> get_item_view( const Glib::RefPtr<Item>& item ),goo_canvas_view_get_item_view,refreturn)
+-		_WRAP_METHOD( Glib::RefPtr<ItemView> get_item_view( const Glib::RefPtr<Item>& item ) const,goo_canvas_view_get_item_view,refreturn,constversion)
++		_WRAP_METHOD( Glib::RefPtr<const ItemView> get_item_view( const Glib::RefPtr<Item>& item ) const,goo_canvas_view_get_item_view,refreturn,constversion)
+ 		_WRAP_METHOD( Glib::RefPtr<ItemView> get_item_view_at( gdouble x, gdouble y, bool is_pointe_event ),goo_canvas_view_get_item_view_at,refreturn)
+-		_WRAP_METHOD( Glib::RefPtr<ItemView> get_item_view_at( gdouble x, gdouble y, bool is_pointe_event ) const,goo_canvas_view_get_item_view_at,refreturn,constversion)
++		_WRAP_METHOD( Glib::RefPtr<const ItemView> get_item_view_at( gdouble x, gdouble y, bool is_pointe_event ) const,goo_canvas_view_get_item_view_at,refreturn,constversion)
+ 		_WRAP_METHOD( void scroll_to( gdouble left, gdouble top ),goo_canvas_view_scroll_to)
+ /*
+-		_WRAP_METHOD( void render( cairo_t* cr, Bounds* bounds, gdouble scale ),goo_canvas_view_render)
++		_WRAP_METHOD( void render( const Cairo::RefPtr<Cairo::Context>& cr, Bounds* bounds, gdouble scale ),goo_canvas_view_render)
+ */
+-		_WRAP_METHOD( void conver_to_pixels( gdouble* x, gdouble* y ),goo_canvas_view_convert_to_pixels)
+-		_WRAP_METHOD( void convert_from_pixels( gdouble* x, gdouble* y ),goo_canvas_view_convert_from_pixels)
+-		_WRAP_METHOD( void convert_to_item_space( const Glib::RefPtr<ItemView>& item_view, gdouble* x, gdouble* y ),goo_canvas_view_convert_to_item_space)
+-		_WRAP_METHOD( void convert_from_item_space( const Glib::RefPtr<ItemView>& item_View, gdouble* x, gdouble* y),goo_canvas_view_convert_from_item_space)
++		_WRAP_METHOD( void convert_to_pixels( gdouble* x, gdouble* y ) const,goo_canvas_view_convert_to_pixels)
++		_WRAP_METHOD( void convert_from_pixels( gdouble* x, gdouble* y ) const,goo_canvas_view_convert_from_pixels)
++		_WRAP_METHOD( void convert_to_item_space( const Glib::RefPtr<ItemView>& item_view, gdouble* x, gdouble* y ) const,goo_canvas_view_convert_to_item_space)
++		_WRAP_METHOD( void convert_from_item_space( const Glib::RefPtr<ItemView>& item_View, gdouble* x, gdouble* y) const,goo_canvas_view_convert_from_item_space)
+ 
+ 		_WRAP_METHOD( GdkGrabStatus pointer_grab( const Glib::RefPtr<ItemView>& item_view, GdkEventMask event_mask, GdkCursor* cursor, guint32 time ),goo_canvas_view_pointer_grab)
+ 		_WRAP_METHOD( void pointer_ungrab( const Glib::RefPtr<ItemView>& item_view, guint32 time ),goo_canvas_view_pointer_ungrab)
+@@ -68,8 +68,8 @@
+ 		_WRAP_METHOD( GdkGrabStatus keyboard_grab( const Glib::RefPtr<ItemView>& item_view, gboolean owner_events, guint32 time ),goo_canvas_view_keyboard_grab)
+ 		_WRAP_METHOD( void keyboard_ungrab( const Glib::RefPtr<ItemView>& item_view, guint32 time ),goo_canvas_view_keyboard_ungrab)
+ 
+-		_WRAP_METHOD( Glib::RefPtr<ItemView> create_item_view( const Glib::RefPtr<Item>& item, const Glib::RefPtr<ItemView>& parent_view ),goo_canvas_view_create_item_view,refreturn)
+-		_WRAP_METHOD( Glib::RefPtr<ItemView> create_item_view( const Glib::RefPtr<Item>& item, const Glib::RefPtr<ItemView>& parent_view ) const,goo_canvas_view_create_item_view,refreturn,constversion)
++                //Note: This doesn't need refreturn because it is creating an object, and newly-created objects always have a starting reference:
++		_WRAP_METHOD( Glib::RefPtr<ItemView> create_item_view( const Glib::RefPtr<Item>& item, const Glib::RefPtr<ItemView>& parent_view ),goo_canvas_view_create_item_view)
+ 		_WRAP_METHOD( void unregister_item_view( const Glib::RefPtr<Item>& item ),goo_canvas_view_unregister_item_view)
+ 
+ 		_WRAP_METHOD( void request_update(),goo_canvas_view_request_update)
+

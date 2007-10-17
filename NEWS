@@ -1,0 +1,17 @@
+0.2.0:
+
+* The pkg-config file is now called goocanvas-1.0 instead of libgoocanvas.
+* The files should now be included as, for instance,
+  <libgoocanvas/canvas.h>
+  instead of 
+  <libgoocanvasmm/canvas.h>
+* Several constructors were corrected to properly initialize the underlying 
+  C objects.
+* The parent parameter was removed from all item constructors, 
+  to avoid confusion with the unusual memory management used in the C API.
+  Use add_child() instead.
+* Various methods were added or improved. 
+
+0.1.0
+
+Initial version.

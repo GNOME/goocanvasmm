@@ -1,0 +1,30 @@
+# This file is include by other Makefile.am files, using the new automake include feature.
+# The include happens in Makefile.am, not Makefile.in or Makefile,
+# so it's like copy-and-pasting this into each of those Makefile.am files.
+
+files_hg = \
+canvas.hg \
+bounds.hg \
+ellipse.hg \
+ellipsemodel.hg \
+group.hg \
+groupmodel.hg \
+image.hg \
+imagemodel.hg \
+item.hg \
+itemmodel.hg \
+itemmodelsimple.hg \
+itemsimple.hg \
+linedash.hg \
+points.hg \
+polyline.hg \
+polylinemodel.hg \
+path.hg \
+pathmodel.hg \
+rect.hg \
+rectmodel.hg \
+style.hg \
+text.hg \
+textmodel.hg \
+widget.hg
+

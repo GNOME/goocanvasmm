@@ -1,0 +1,337 @@
+diff -upr ../tarballs/goocanvas-0.4/ChangeLog ./ChangeLog
+--- ../tarballs/goocanvas-0.4/ChangeLog	2006-08-24 02:53:46.000000000 -0500
++++ ./ChangeLog	2006-10-02 18:58:27.000000000 -0500
+@@ -1,3 +1,12 @@
++2006-10-2 Paul Davis <pjdavis@engineering.uiowa.edu>
++
++	* src/Makefile.am
++	* src/goocanvasutils.h
++	* src/goocanvasutils.c
++	* src/goocanvas.h
++	* src/goocanvasitemsimple.h : Added support for glib-mkenums scripted
++	generation of all enum *enum name*_get_type (void) methods.
++
+ 2006-08-24  Damon Chaplin  <damon@gnome.org>
+ 
+ 	* Released GooCanvas 0.4
+diff -upr ../tarballs/goocanvas-0.4/src/goocanvas.h ./src/goocanvas.h
+--- ../tarballs/goocanvas-0.4/src/goocanvas.h	2006-04-12 05:45:52.000000000 -0500
++++ ./src/goocanvas.h	2006-10-02 18:39:31.000000000 -0500
+@@ -9,6 +9,7 @@
+ 
+ #include <goocanvasellipse.h>
+ #include <goocanvasellipseview.h>
++#include <goocanvasenumtypes.h>
+ #include <goocanvasgroup.h>
+ #include <goocanvasgroupview.h>
+ #include <goocanvasimage.h>
+diff -upr ../tarballs/goocanvas-0.4/src/goocanvasitemsimple.h ./src/goocanvasitemsimple.h
+--- ../tarballs/goocanvas-0.4/src/goocanvasitemsimple.h	2006-06-08 03:45:27.000000000 -0500
++++ ./src/goocanvasitemsimple.h	2006-10-02 12:01:13.000000000 -0500
+@@ -13,39 +13,6 @@
+ 
+ G_BEGIN_DECLS
+ 
+-
+-/**
+- * GooCanvasStyleValuesMask
+- * @GOO_CANVAS_STYLE_STROKE_PATTERN: the stroke pattern has been set.
+- * @GOO_CANVAS_STYLE_FILL_PATTERN: the fill pattern has been set.
+- * @GOO_CANVAS_STYLE_FILL_RULE: the fill rule has been set.
+- * @GOO_CANVAS_STYLE_OPERATOR: the operator has been set.
+- * @GOO_CANVAS_STYLE_ANTIALIAS: the antialias setting has been set.
+- * @GOO_CANVAS_STYLE_LINE_WIDTH: the line width has been set.
+- * @GOO_CANVAS_STYLE_LINE_CAP: the line cap style has been set.
+- * @GOO_CANVAS_STYLE_LINE_JOIN: the line join style has been set.
+- * @GOO_CANVAS_STYLE_LINE_JOIN_MITER_LIMIT: the miter limit of line joins has
+- *  been set.
+- * @GOO_CANVAS_STYLE_LINE_DASH: the line dash pattern has been set.
+- *
+- * Specifies which fields of a #GooCanvasStyle object have been set.
+- */
+-typedef enum
+-{
+-  GOO_CANVAS_STYLE_STROKE_PATTERN	 = 1 << 0,
+-  GOO_CANVAS_STYLE_FILL_PATTERN		 = 1 << 1,
+-  GOO_CANVAS_STYLE_FILL_RULE		 = 1 << 2,
+-  GOO_CANVAS_STYLE_OPERATOR		 = 1 << 3,
+-  GOO_CANVAS_STYLE_ANTIALIAS		 = 1 << 4,
+-
+-  GOO_CANVAS_STYLE_LINE_WIDTH		 = 1 << 5,
+-  GOO_CANVAS_STYLE_LINE_CAP		 = 1 << 6,
+-  GOO_CANVAS_STYLE_LINE_JOIN		 = 1 << 7,
+-  GOO_CANVAS_STYLE_LINE_JOIN_MITER_LIMIT = 1 << 8,
+-  GOO_CANVAS_STYLE_LINE_DASH		 = 1 << 9
+-} GooCanvasStyleValuesMask;
+-
+-
+ /* These are the standard cairo drawing attributes. We allow the style to
+    be shared between multiple objects to avoid wasting memory. */
+ /**
+diff -upr ../tarballs/goocanvas-0.4/src/goocanvasutils.c ./src/goocanvasutils.c
+--- ../tarballs/goocanvas-0.4/src/goocanvasutils.c	2006-08-15 05:03:50.000000000 -0500
++++ ./src/goocanvasutils.c	2006-10-02 18:33:34.000000000 -0500
+@@ -86,55 +86,6 @@ goo_canvas_util_ptr_array_find_index (GP
+ 
+ 
+ /*
+- * Enum types.
+- */
+-GType
+-goo_canvas_pointer_events_get_type (void)
+-{
+-  static GType etype = 0;
+-  if (etype == 0) {
+-    static const GFlagsValue values[] = {
+-      { GOO_CANVAS_EVENTS_VISIBLE_MASK, "GOO_CANVAS_EVENTS_VISIBLE_MASK", "visible-mask" },
+-      { GOO_CANVAS_EVENTS_PAINTED_MASK, "GOO_CANVAS_EVENTS_PAINTED_MASK", "painted-mask" },
+-      { GOO_CANVAS_EVENTS_FILL_MASK, "GOO_CANVAS_EVENTS_FILL_MASK", "fill-mask" },
+-      { GOO_CANVAS_EVENTS_STROKE_MASK, "GOO_CANVAS_EVENTS_STROKE_MASK", "stroke-mask" },
+-      { GOO_CANVAS_EVENTS_NONE, "GOO_CANVAS_EVENTS_NONE", "none" },
+-      { GOO_CANVAS_EVENTS_VISIBLE_PAINTED, "GOO_CANVAS_EVENTS_VISIBLE_PAINTED", "visible-painted" },
+-      { GOO_CANVAS_EVENTS_VISIBLE_FILL, "GOO_CANVAS_EVENTS_VISIBLE_FILL", "visible-fill" },
+-      { GOO_CANVAS_EVENTS_VISIBLE_STROKE, "GOO_CANVAS_EVENTS_VISIBLE_STROKE", "visible-stroke" },
+-      { GOO_CANVAS_EVENTS_VISIBLE, "GOO_CANVAS_EVENTS_VISIBLE", "visible" },
+-      { GOO_CANVAS_EVENTS_PAINTED, "GOO_CANVAS_EVENTS_PAINTED", "painted" },
+-      { GOO_CANVAS_EVENTS_FILL, "GOO_CANVAS_EVENTS_FILL", "fill" },
+-      { GOO_CANVAS_EVENTS_STROKE, "GOO_CANVAS_EVENTS_STROKE", "stroke" },
+-      { GOO_CANVAS_EVENTS_ALL, "GOO_CANVAS_EVENTS_ALL", "all" },
+-      { 0, NULL, NULL }
+-    };
+-    etype = g_flags_register_static ("GooCanvasPointerEvents", values);
+-  }
+-  return etype;
+-}
+-
+-
+-GType
+-goo_canvas_item_visibility_get_type (void)
+-{
+-  static GType etype = 0;
+-  if (etype == 0) {
+-    static const GEnumValue values[] = {
+-      { GOO_CANVAS_ITEM_VISIBLE, "GOO_CANVAS_ITEM_VISIBLE", "visible" },
+-      { GOO_CANVAS_ITEM_VISIBLE_ABOVE_THRESHOLD, "GOO_CANVAS_ITEM_VISIBLE_ABOVE_THRESHOLD", "visible-above-threshold" },
+-      { GOO_CANVAS_ITEM_INVISIBLE, "GOO_CANVAS_ITEM_INVISIBLE", "invisible" },
+-      { 0, NULL, NULL }
+-    };
+-    etype = g_enum_register_static ("GooCanvasItemVisibility", values);
+-  }
+-  return etype;
+-}
+-
+-
+-
+-
+-/*
+  * Cairo utilities.
+  */
+ 
+diff -upr ../tarballs/goocanvas-0.4/src/goocanvasutils.h ./src/goocanvasutils.h
+--- ../tarballs/goocanvas-0.4/src/goocanvasutils.h	2006-08-15 04:57:47.000000000 -0500
++++ ./src/goocanvasutils.h	2006-10-02 18:38:04.000000000 -0500
+@@ -9,14 +9,14 @@
+ 
+ #include <gtk/gtk.h>
+ 
++#include <goocanvasenumtypes.h>
++
+ G_BEGIN_DECLS
+ 
+ 
+ /*
+  * Enum types.
+  */
+-#define GOO_TYPE_CANVAS_POINTER_EVENTS   (goo_canvas_pointer_events_get_type ())
+-GType goo_canvas_pointer_events_get_type   (void) G_GNUC_CONST;
+ 
+ /**
+  * GooCanvasPointerEvents
+@@ -62,33 +62,18 @@ typedef enum
+   /* If the stroke should receive events. */
+   GOO_CANVAS_EVENTS_STROKE_MASK		= 1 << 3,
+ 
+-
+   GOO_CANVAS_EVENTS_NONE		= 0,
+ 
+-  GOO_CANVAS_EVENTS_VISIBLE_PAINTED	= GOO_CANVAS_EVENTS_VISIBLE_MASK
+-					  | GOO_CANVAS_EVENTS_PAINTED_MASK
+-					  | GOO_CANVAS_EVENTS_FILL_MASK
+-					  | GOO_CANVAS_EVENTS_STROKE_MASK,
+-  GOO_CANVAS_EVENTS_VISIBLE_FILL	= GOO_CANVAS_EVENTS_VISIBLE_MASK
+-					  | GOO_CANVAS_EVENTS_FILL_MASK,
+-  GOO_CANVAS_EVENTS_VISIBLE_STROKE	= GOO_CANVAS_EVENTS_VISIBLE_MASK
+-					  | GOO_CANVAS_EVENTS_STROKE_MASK,
+-  GOO_CANVAS_EVENTS_VISIBLE		= GOO_CANVAS_EVENTS_VISIBLE_MASK
+-					  | GOO_CANVAS_EVENTS_FILL_MASK
+-					  | GOO_CANVAS_EVENTS_STROKE_MASK,
+-
+-  GOO_CANVAS_EVENTS_PAINTED		= GOO_CANVAS_EVENTS_PAINTED_MASK
+-					  | GOO_CANVAS_EVENTS_FILL_MASK
+-					  | GOO_CANVAS_EVENTS_STROKE_MASK,
+-  GOO_CANVAS_EVENTS_FILL		= GOO_CANVAS_EVENTS_FILL_MASK,
+-  GOO_CANVAS_EVENTS_STROKE		= GOO_CANVAS_EVENTS_STROKE_MASK,
+-  GOO_CANVAS_EVENTS_ALL			= GOO_CANVAS_EVENTS_FILL_MASK
+-					  | GOO_CANVAS_EVENTS_STROKE_MASK
+-} GooCanvasPointerEvents;
+-
++  GOO_CANVAS_EVENTS_VISIBLE_PAINTED	= GOO_CANVAS_EVENTS_VISIBLE_MASK | GOO_CANVAS_EVENTS_PAINTED_MASK | GOO_CANVAS_EVENTS_FILL_MASK | GOO_CANVAS_EVENTS_STROKE_MASK,
++  GOO_CANVAS_EVENTS_VISIBLE_FILL	= GOO_CANVAS_EVENTS_VISIBLE_MASK | GOO_CANVAS_EVENTS_FILL_MASK,
++  GOO_CANVAS_EVENTS_VISIBLE_STROKE	= GOO_CANVAS_EVENTS_VISIBLE_MASK | GOO_CANVAS_EVENTS_STROKE_MASK,
++  GOO_CANVAS_EVENTS_VISIBLE			= GOO_CANVAS_EVENTS_VISIBLE_MASK | GOO_CANVAS_EVENTS_FILL_MASK | GOO_CANVAS_EVENTS_STROKE_MASK,
++  GOO_CANVAS_EVENTS_PAINTED			= GOO_CANVAS_EVENTS_PAINTED_MASK | GOO_CANVAS_EVENTS_FILL_MASK | GOO_CANVAS_EVENTS_STROKE_MASK,
++  GOO_CANVAS_EVENTS_FILL			= GOO_CANVAS_EVENTS_FILL_MASK,
++  GOO_CANVAS_EVENTS_STROKE			= GOO_CANVAS_EVENTS_STROKE_MASK,
++  GOO_CANVAS_EVENTS_ALL				= GOO_CANVAS_EVENTS_FILL_MASK | GOO_CANVAS_EVENTS_STROKE_MASK
+ 
+-#define GOO_TYPE_CANVAS_ITEM_VISIBILITY   (goo_canvas_item_visibility_get_type ())
+-GType goo_canvas_item_visibility_get_type   (void) G_GNUC_CONST;
++} GooCanvasPointerEvents;
+ 
+ /**
+  * GooCanvasItemVisibility
+@@ -108,6 +93,37 @@ typedef enum
+   GOO_CANVAS_ITEM_INVISIBLE
+ } GooCanvasItemVisibility;
+ 
++/**
++ * GooCanvasStyleValuesMask
++ * @GOO_CANVAS_STYLE_STROKE_PATTERN: the stroke pattern has been set.
++ * @GOO_CANVAS_STYLE_FILL_PATTERN: the fill pattern has been set.
++ * @GOO_CANVAS_STYLE_FILL_RULE: the fill rule has been set.
++ * @GOO_CANVAS_STYLE_OPERATOR: the operator has been set.
++ * @GOO_CANVAS_STYLE_ANTIALIAS: the antialias setting has been set.
++ * @GOO_CANVAS_STYLE_LINE_WIDTH: the line width has been set.
++ * @GOO_CANVAS_STYLE_LINE_CAP: the line cap style has been set.
++ * @GOO_CANVAS_STYLE_LINE_JOIN: the line join style has been set.
++ * @GOO_CANVAS_STYLE_LINE_JOIN_MITER_LIMIT: the miter limit of line joins has
++ *  been set.
++ * @GOO_CANVAS_STYLE_LINE_DASH: the line dash pattern has been set.
++ *
++ * Specifies which fields of a #GooCanvasStyle object have been set.
++ */
++typedef enum
++{
++  GOO_CANVAS_STYLE_STROKE_PATTERN	 = 1 << 0,
++  GOO_CANVAS_STYLE_FILL_PATTERN		 = 1 << 1,
++  GOO_CANVAS_STYLE_FILL_RULE		 = 1 << 2,
++  GOO_CANVAS_STYLE_OPERATOR		 = 1 << 3,
++  GOO_CANVAS_STYLE_ANTIALIAS		 = 1 << 4,
++
++  GOO_CANVAS_STYLE_LINE_WIDTH		 = 1 << 5,
++  GOO_CANVAS_STYLE_LINE_CAP		 = 1 << 6,
++  GOO_CANVAS_STYLE_LINE_JOIN		 = 1 << 7,
++  GOO_CANVAS_STYLE_LINE_JOIN_MITER_LIMIT = 1 << 8,
++  GOO_CANVAS_STYLE_LINE_DASH		 = 1 << 9
++} GooCanvasStyleValuesMask;
++
+ 
+ /*
+  * Cairo utilities.
+diff -upr ../tarballs/goocanvas-0.4/src/Makefile.am ./src/Makefile.am
+--- ../tarballs/goocanvas-0.4/src/Makefile.am	2006-04-18 10:43:07.000000000 -0500
++++ ./src/Makefile.am	2006-10-02 18:45:06.000000000 -0500
+@@ -15,28 +15,72 @@ libgoocanvas_la_LIBADD = @PACKAGE_LIBS@ 
+ 
+ libgoocanvasincludedir = $(includedir)/goocanvas-1.0
+ 
++libgoocanvas_headers_with_enums =	\
++	goocanvasitem.h					\
++	goocanvasitemviewsimple.h		\
++	goocanvaspath.h					\
++	goocanvasutils.h
++
++GENMARSHAL_COMMAND = $(GLIB_GENMARSHAL) --prefix=goo_canvas_marshal
++SUFFIXES = .list
++
++libgoocanvas_built_headers = goocanvasenumtypes.h goocanvasmarshal.h
++libgoocanvas_built_sources = goocanvasenumtypes.c
++
++.list.h:
++	$(GENMARSHAL_COMMAND) --header $< >$@
++
++.list.c:
++	(echo '/* This file has been automatically generated.  Do not edit. */' && \
++	echo '#include "$*.h"' && \
++	$(GENMARSHAL_COMMAND) --body $< ) >$@
++
++goocanvasenumtypes.h: $(libgoocanvas_headers_with_enums) Makefile
++	( cd $(srcdir) && glib-mkenums \
++			--fhead "#ifndef __GOOCANVAS_ENUM_TYPES_H__\n#define __GOOCANVAS_ENUM_TYPES_H__\n\n#include <glib-object.h>\n\nG_BEGIN_DECLS\n" \
++			--fprod "/* Enumerations from \"@filename@\" */\n" \
++			--vhead "GType @enum_name@_get_type (void);\n#define GOO_TYPE_@ENUMSHORT@ (@enum_name@_get_type())\n\n\n" \
++			--ftail "G_END_DECLS\n\n#endif /* __GOOCANVAS_ENUM_TYPES_H__ */" \
++		$(libgoocanvas_headers_with_enums)) > $@
++
++goocanvasenumtypes.c: $(libgoocanvas_headers_with_enums) Makefile
++	(cd $(srcdir) && glib-mkenums \
++			--fhead "#include <goocanvas.h>\n" \
++			--fhead "#include <glib-object.h>\n" \
++			--fprod "\n/* Enumerations from \"@filename@\" */" \
++			--vhead "GType\n@enum_name@_get_type (void)\n{\n  static GType etype = 0;\n if( etype == 0 ) \n  {\n    static const G@Type@Value values[] = {" \
++			--vprod "      { @VALUENAME@, \"@VALUENAME@\", \"@valuenick@\" }," \
++			--vtail "      { 0, NULL, NULL }\n    };\n    etype = g_@type@_register_static (\"@EnumName@\", values );\n  }\n  return etype;\n}\n" \
++		$(libgoocanvas_headers_with_enums)) > $@
++
++# A hint is needed to build the header first:
++BUILT_SOURCES = $(libgoocanvas_built_headers) $(libgoocanvas_built_sources)
++
++# Another hint, see bugs #172211 and #172212:
++non-intermediate: $(libgoocanvas_built_sources)
++
++CLEANFILES = $(libgoocanvas_built_headers) $(libgoocanvas_build_sources)
++
+ libgoocanvasinclude_HEADERS =			\
++	$(libgoocanvas_headers_with_enums) \
++	$(libgoocanvas_built_headers) \
+ 	goocanvasellipse.h			\
+ 	goocanvasellipseview.h			\
+ 	goocanvasgroup.h			\
+ 	goocanvasgroupview.h			\
+ 	goocanvasimage.h			\
+ 	goocanvasimageview.h			\
+-	goocanvasitem.h				\
+ 	goocanvasitemsimple.h			\
+ 	goocanvasitemview.h			\
+-	goocanvasitemviewsimple.h		\
+ 	goocanvasmodel.h			\
+ 	goocanvasmodelsimple.h			\
+ 	goocanvaspolyline.h			\
+ 	goocanvaspolylineview.h			\
+-	goocanvaspath.h				\
+ 	goocanvaspathview.h			\
+ 	goocanvasrect.h				\
+ 	goocanvasrectview.h			\
+ 	goocanvastext.h				\
+ 	goocanvastextview.h			\
+-	goocanvasutils.h			\
+ 	goocanvasview.h				\
+ 	goocanvas.h
+ 
+@@ -66,24 +110,5 @@ libgoocanvas_la_SOURCES =			\
+ 	goocanvastext.c				\
+ 	goocanvastextview.c			\
+ 	goocanvasutils.c			\
+-	goocanvasview.c 
+-
+-
+-GENMARSHAL_COMMAND = $(GLIB_GENMARSHAL) --prefix=goo_canvas_marshal
+-SUFFIXES = .list
+-
+-.list.h:
+-	$(GENMARSHAL_COMMAND) --header $< >$@
+-
+-.list.c:
+-	(echo '/* This file has been automatically generated.  Do not edit. */' && \
+-	echo '#include "$*.h"' && \
+-	$(GENMARSHAL_COMMAND) --body $< ) >$@
+-
+-# A hint is needed to build the header first:
+-BUILT_SOURCES = goocanvasmarshal.h
+-
+-# Another hint, see bugs #172211 and #172212:
+-non-intermediate: goocanvasmarshal.c
+-
+-CLEANFILES = goocanvasmarshal.h goocanvasmarshal.c
++	goocanvasview.c				\
++	$(libgoocanvas_built_sources) 

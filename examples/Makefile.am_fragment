@@ -1,0 +1,11 @@
+local_goocanvasmm_lib = $(top_builddir)/goocanvas/goocanvasmm/libgoocanvasmm-0.1.la
+
+LIBS  = $(LIBGOOCANVASMM_LIBS) $(local_goocanvasmm_lib) 
+
+all_includes = -I$(top_builddir)/goocanvas -I$(top_srcdir)/goocanvas \
+               $(LIBGOOCANVASMM_CFLAGS)
+                     
+DEFS = @DEFS@
+DEFAULT_INCLUDES =
+INCLUDES = -I. -I$(srcdir) $(strip $(all_includes))
+

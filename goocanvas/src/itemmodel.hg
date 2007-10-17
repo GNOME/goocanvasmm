@@ -1,0 +1,99 @@
+
+/* Copyright (C) 1998-2006 The gtkmm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <cairomm/cairomm.h>
+#include <goocanvasitemmodel.h>
+#include <goocanvasmm/style.h>
+
+_DEFS(goocanvasmm,libgoocanvas)
+_PINCLUDE(glibmm/private/interface_p.h)
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+extern "C" { typedef union _GooCanvasPathCommand GooCanvasPathCommand; }
+#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+
+namespace Goocanvas
+{
+
+_WRAP_ENUM(AnimateType,GooCanvasAnimateType)
+
+class ItemModel : public Glib::Interface
+{
+  _CLASS_INTERFACE(ItemModel,GooCanvasItemModel,GOO_CANVAS_ITEM_MODEL,GooCanvasItemModelIface)
+
+public:
+
+  _IGNORE(goo_canvas_item_model_get_child_properties)
+  _IGNORE(goo_canvas_item_model_set_child_properties)
+  _IGNORE(goo_canvas_item_model_get_child_properties_valist)
+  _IGNORE(goo_canvas_item_model_set_child_properties_valist)
+
+  _WRAP_METHOD(int get_n_children(), goo_canvas_item_model_get_n_children)
+  _WRAP_METHOD(int get_n_children() const, goo_canvas_item_model_get_n_children, constversion)
+  _WRAP_METHOD(Glib::RefPtr<ItemModel> get_child(int child_num), goo_canvas_item_model_get_child, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const ItemModel> get_child(int child_num) const, goo_canvas_item_model_get_child, refreturn, constversion)
+
+  _WRAP_METHOD(void add_child(const Glib::RefPtr<ItemModel>& child, int position), goo_canvas_item_model_add_child)
+   void add_child(const Glib::RefPtr<ItemModel>& child);
+
+  _WRAP_METHOD(void move_child(int old_position, int new_position), goo_canvas_item_model_move_child)
+  _WRAP_METHOD(void remove_child(int child_num), goo_canvas_item_model_remove_child)
+  _WRAP_METHOD(int find_child(const Glib::RefPtr<ItemModel>& child), goo_canvas_item_model_find_child)
+
+  _WRAP_METHOD(Glib::RefPtr<ItemModel> get_parent(), goo_canvas_item_model_get_parent, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const ItemModel> get_parent() const, goo_canvas_item_model_get_parent, refreturn, constversion)
+  _WRAP_METHOD(void set_parent(const Glib::RefPtr<ItemModel>& parent), goo_canvas_item_model_set_parent)
+
+  _WRAP_METHOD(void remove(), goo_canvas_item_model_remove)
+  _WRAP_METHOD(bool is_container() const, goo_canvas_item_model_is_container)
+
+  _WRAP_METHOD(void raise(const Glib::RefPtr<ItemModel>& above), goo_canvas_item_model_raise)
+
+  /** Raise the item to the top of the stack.
+   */
+  void raise();
+
+  _WRAP_METHOD(void lower(const Glib::RefPtr<ItemModel>& below), goo_canvas_item_model_lower)
+
+  /** Lower the item to the bottom of the stack.
+   */
+  void lower();
+
+  //TODO: Use Cairo::RefPtr?
+  _WRAP_METHOD(bool get_transform(Cairo::Matrix* transform), goo_canvas_item_model_get_transform)
+  _WRAP_METHOD(void set_transform(const Cairo::Matrix* transform), goo_canvas_item_model_set_transform)
+  _WRAP_METHOD(void set_simple_transform(double x, double y, double scale, double rotation), goo_canvas_item_model_set_simple_transform)
+  _WRAP_METHOD(void translate(double tx, double ty), goo_canvas_item_model_translate)
+  _WRAP_METHOD(void scale(double sx, double sy), goo_canvas_item_model_scale)
+  _WRAP_METHOD(void rotate(double degrees, double cx, double cy), goo_canvas_item_model_rotate)
+  _WRAP_METHOD(void skew_x(double degrees, double cx, double cy), goo_canvas_item_model_skew_x)
+  _WRAP_METHOD(void skew_y(double degrees, double cx, double cy), goo_canvas_item_model_skew_y)
+
+  _WRAP_METHOD(Glib::RefPtr<Style> get_style(), goo_canvas_item_model_get_style, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Style> get_style() const, goo_canvas_item_model_get_style, constversion)
+  _WRAP_METHOD(void set_style(const Glib::RefPtr<Style>& style), goo_canvas_item_model_set_style)
+
+  _WRAP_METHOD(void animate(double x, double y, double scale, double degrees, bool absolute, int duration, int step_time, AnimateType animate_type), goo_canvas_item_model_animate)
+  _WRAP_METHOD(void stop_animation(), goo_canvas_item_model_stop_animation)
+
+protected:
+
+};
+
+}
+

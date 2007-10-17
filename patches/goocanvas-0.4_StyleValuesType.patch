@@ -1,0 +1,121 @@
+diff -upr ../tarballs/goocanvas-0.4/src/goocanvasitemsimple.h ./src/goocanvasitemsimple.h
+--- ../tarballs/goocanvas-0.4/src/goocanvasitemsimple.h	2006-06-08 03:45:27.000000000 -0500
++++ ./src/goocanvasitemsimple.h	2006-10-02 12:01:13.000000000 -0500
+@@ -13,39 +13,6 @@
+ 
+ G_BEGIN_DECLS
+ 
+-
+-/**
+- * GooCanvasStyleValuesMask
+- * @GOO_CANVAS_STYLE_STROKE_PATTERN: the stroke pattern has been set.
+- * @GOO_CANVAS_STYLE_FILL_PATTERN: the fill pattern has been set.
+- * @GOO_CANVAS_STYLE_FILL_RULE: the fill rule has been set.
+- * @GOO_CANVAS_STYLE_OPERATOR: the operator has been set.
+- * @GOO_CANVAS_STYLE_ANTIALIAS: the antialias setting has been set.
+- * @GOO_CANVAS_STYLE_LINE_WIDTH: the line width has been set.
+- * @GOO_CANVAS_STYLE_LINE_CAP: the line cap style has been set.
+- * @GOO_CANVAS_STYLE_LINE_JOIN: the line join style has been set.
+- * @GOO_CANVAS_STYLE_LINE_JOIN_MITER_LIMIT: the miter limit of line joins has
+- *  been set.
+- * @GOO_CANVAS_STYLE_LINE_DASH: the line dash pattern has been set.
+- *
+- * Specifies which fields of a #GooCanvasStyle object have been set.
+- */
+-typedef enum
+-{
+-  GOO_CANVAS_STYLE_STROKE_PATTERN	 = 1 << 0,
+-  GOO_CANVAS_STYLE_FILL_PATTERN		 = 1 << 1,
+-  GOO_CANVAS_STYLE_FILL_RULE		 = 1 << 2,
+-  GOO_CANVAS_STYLE_OPERATOR		 = 1 << 3,
+-  GOO_CANVAS_STYLE_ANTIALIAS		 = 1 << 4,
+-
+-  GOO_CANVAS_STYLE_LINE_WIDTH		 = 1 << 5,
+-  GOO_CANVAS_STYLE_LINE_CAP		 = 1 << 6,
+-  GOO_CANVAS_STYLE_LINE_JOIN		 = 1 << 7,
+-  GOO_CANVAS_STYLE_LINE_JOIN_MITER_LIMIT = 1 << 8,
+-  GOO_CANVAS_STYLE_LINE_DASH		 = 1 << 9
+-} GooCanvasStyleValuesMask;
+-
+-
+ /* These are the standard cairo drawing attributes. We allow the style to
+    be shared between multiple objects to avoid wasting memory. */
+ /**
+diff -upr ../tarballs/goocanvas-0.4/src/goocanvasutils.c ./src/goocanvasutils.c
+--- ../tarballs/goocanvas-0.4/src/goocanvasutils.c	2006-08-15 05:03:50.000000000 -0500
++++ ./src/goocanvasutils.c	2006-10-02 11:41:15.000000000 -0500
+@@ -131,7 +131,28 @@ goo_canvas_item_visibility_get_type (voi
+   return etype;
+ }
+ 
+-
++GType
++goo_canvas_style_values_mask_get_type (void)
++{
++  static GType etype = 0 ;
++  if( etype == 0 ) {
++    static const GEnumValue values[] = {
++      { GOO_CANVAS_STYLE_STROKE_PATTERN, "GOO_CANVAS_STYLE_STROKE_PATTERN", "stroke-pattern" },
++      { GOO_CANVAS_STYLE_FILL_PATTERN, "GOO_CANVAS_STYLE_FILL_PATTERN", "fill-pattern" },
++      { GOO_CANVAS_STYLE_FILL_RULE, "GOO_CANVAS_STYLE_FILL_RULE", "fill-rule" },
++      { GOO_CANVAS_STYLE_OPERATOR, "GOO_CANVAS_STYLE_OPERATOR", "operator" },
++      { GOO_CANVAS_STYLE_ANTIALIAS, "GOO_CANVAS_STYLE_ANTIALIAS", "antialias" },
++      { GOO_CANVAS_STYLE_LINE_WIDTH, "GOO_CANVAS_STYLE_LINE_WIDTH", "line-width" },
++      { GOO_CANVAS_STYLE_LINE_CAP, "GOO_CANVAS_STYLE_LINE_CAP", "line-cap" },
++      { GOO_CANVAS_STYLE_LINE_JOIN, "GOO_CANVAS_STYLE_LINE_JOIN", "line-join" },
++      { GOO_CANVAS_STYLE_LINE_JOIN_MITER_LIMIT, "GOO_CANVAS_STYLE_LINE_JOIN_MITER_LIMIT", "line-join-miter-limit" },
++      { GOO_CANVAS_STYLE_LINE_DASH, "GOO_CANVAS_STYLE_LINE_DASH", "line-dash" },
++      { 0, NULL, NULL }
++    } ;
++    etype = g_enum_register_static( "GooCanvasStyleValuesMask", values ) ;
++  }
++  return etype ;
++}
+ 
+ 
+ /*
+diff -upr ../tarballs/goocanvas-0.4/src/goocanvasutils.h ./src/goocanvasutils.h
+--- ../tarballs/goocanvas-0.4/src/goocanvasutils.h	2006-08-15 04:57:47.000000000 -0500
++++ ./src/goocanvasutils.h	2006-10-02 11:45:53.000000000 -0500
+@@ -108,6 +108,40 @@ typedef enum
+   GOO_CANVAS_ITEM_INVISIBLE
+ } GooCanvasItemVisibility;
+ 
++#define GOO_TYPE_CANVAS_STYLE_VALUES_MASK   (goo_canvas_style_values_mask_get_type ())
++GType goo_canvas_style_values_mask_get_type   (void) G_GNUC_CONST;
++
++/**
++ * GooCanvasStyleValuesMask
++ * @GOO_CANVAS_STYLE_STROKE_PATTERN: the stroke pattern has been set.
++ * @GOO_CANVAS_STYLE_FILL_PATTERN: the fill pattern has been set.
++ * @GOO_CANVAS_STYLE_FILL_RULE: the fill rule has been set.
++ * @GOO_CANVAS_STYLE_OPERATOR: the operator has been set.
++ * @GOO_CANVAS_STYLE_ANTIALIAS: the antialias setting has been set.
++ * @GOO_CANVAS_STYLE_LINE_WIDTH: the line width has been set.
++ * @GOO_CANVAS_STYLE_LINE_CAP: the line cap style has been set.
++ * @GOO_CANVAS_STYLE_LINE_JOIN: the line join style has been set.
++ * @GOO_CANVAS_STYLE_LINE_JOIN_MITER_LIMIT: the miter limit of line joins has
++ *  been set.
++ * @GOO_CANVAS_STYLE_LINE_DASH: the line dash pattern has been set.
++ *
++ * Specifies which fields of a #GooCanvasStyle object have been set.
++ */
++typedef enum
++{
++  GOO_CANVAS_STYLE_STROKE_PATTERN	 = 1 << 0,
++  GOO_CANVAS_STYLE_FILL_PATTERN		 = 1 << 1,
++  GOO_CANVAS_STYLE_FILL_RULE		 = 1 << 2,
++  GOO_CANVAS_STYLE_OPERATOR		 = 1 << 3,
++  GOO_CANVAS_STYLE_ANTIALIAS		 = 1 << 4,
++
++  GOO_CANVAS_STYLE_LINE_WIDTH		 = 1 << 5,
++  GOO_CANVAS_STYLE_LINE_CAP		 = 1 << 6,
++  GOO_CANVAS_STYLE_LINE_JOIN		 = 1 << 7,
++  GOO_CANVAS_STYLE_LINE_JOIN_MITER_LIMIT = 1 << 8,
++  GOO_CANVAS_STYLE_LINE_DASH		 = 1 << 9
++} GooCanvasStyleValuesMask;
++
+ 
+ /*
+  * Cairo utilities.
+Only in ./: style_values_type.patch

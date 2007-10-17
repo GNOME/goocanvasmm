@@ -1,0 +1,11 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: goocanvasmm
+Description: C++ wrapper for libgoocanvas
+Requires: gtkmm-2.4 goocanvas
+Version: @VERSION@
+Libs: -L${libdir} -lgoocanvasmm-0.1
+Cflags: -I${includedir}/goocanvasmm-0.1
