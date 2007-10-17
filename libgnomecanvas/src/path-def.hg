@@ -1,0 +1,88 @@
+/* $Id: path-def.hg,v 1.4 2002/04/04 14:04:33 aholzmann Exp $ */
+
+/* path-def.h
+ * 
+ *
+ * Copyright (C) 2002 The libgnomecanvasmm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <libgnomecanvasmm/point.h>
+#include <glibmm/containers.h>
+#include <libgnomecanvas/gnome-canvas-path-def.h>
+#include <libart_lgpl/art_bpath.h>
+#include <libart_lgpl/art_point.h>
+#include <libart_lgpl/art_bpath.h>
+
+_DEFS(libgnomecanvasmm,libgnomecanvas)
+
+namespace Gnome
+{
+
+namespace Canvas
+{
+
+class PathDef
+{
+  _CLASS_OPAQUE_REFCOUNTED(PathDef, GnomeCanvasPathDef, gnome_canvas_path_def_new, gnome_canvas_path_def_duplicate, gnome_canvas_path_def_unref)
+  _IGNORE(gnome_canvas_path_def_ref, gnome_canvas_path_def_unref, gnome_canvas_path_def_copy, gnome_canvas_path_def_duplicate)
+
+public:
+  _WRAP_METHOD(static Glib::RefPtr<PathDef> create(), gnome_canvas_path_def_new)
+  _WRAP_METHOD(static Glib::RefPtr<PathDef> create(int length), gnome_canvas_path_def_new_sized)
+  _WRAP_METHOD(static Glib::RefPtr<PathDef> create(ArtBpath& bpath), gnome_canvas_path_def_new_from_bpath)
+
+  //GnomeCanvasPathDef * gnome_canvas_path_def_new_from_static_bpath (ArtBpath * bpath);
+  //GnomeCanvasPathDef * gnome_canvas_path_def_new_from_foreign_bpath (ArtBpath * bpath);
+
+  //GnomeCanvasPathDef * gnome_canvas_path_def_concat (const GSList * list);
+  //GSList * gnome_canvas_path_def_split (const GnomeCanvasPathDef * path);
+  _WRAP_METHOD(Glib::RefPtr<PathDef> open_parts(), gnome_canvas_path_def_open_parts)
+  _WRAP_METHOD(Glib::RefPtr<PathDef> closed_parts(), gnome_canvas_path_def_closed_parts)
+  _WRAP_METHOD(Glib::RefPtr<PathDef> close_all(), gnome_canvas_path_def_close_all)
+
+  _WRAP_METHOD(void finish(), gnome_canvas_path_def_finish)
+  _WRAP_METHOD(void ensure_space(int space), gnome_canvas_path_def_ensure_space)
+
+  _WRAP_METHOD(void reset(), gnome_canvas_path_def_reset)
+
+  _WRAP_METHOD(void moveto(double x, double y), gnome_canvas_path_def_moveto)
+  _WRAP_METHOD(void lineto(double x, double y), gnome_canvas_path_def_lineto)
+
+  _WRAP_METHOD(void lineto_moving(double x, double y), gnome_canvas_path_def_lineto_moving)
+  _WRAP_METHOD(void curveto(double x1, double y1, double x2, double y2, double x3, double y3), gnome_canvas_path_def_curveto)
+  _WRAP_METHOD(void closepath(), gnome_canvas_path_def_closepath)
+
+  _WRAP_METHOD(void closepath_current(), gnome_canvas_path_def_closepath_current)
+
+  Gnome::Art::Point currentpoint() const;
+
+  _WRAP_METHOD(ArtBpath* get_bpath() const, gnome_canvas_path_def_bpath)
+  _WRAP_METHOD(ArtBpath* first_bpath() const, gnome_canvas_path_def_first_bpath)
+  _WRAP_METHOD(ArtBpath* last_bpath() const, gnome_canvas_path_def_last_bpath)
+
+  _WRAP_METHOD(bool is_empty() const, gnome_canvas_path_def_is_empty)
+  _WRAP_METHOD(int length() const, gnome_canvas_path_def_length)
+  _WRAP_METHOD(bool has_currentpoint() const, gnome_canvas_path_def_has_currentpoint)
+  _WRAP_METHOD(bool any_open() const, gnome_canvas_path_def_any_open)
+  _WRAP_METHOD(bool all_open() const, gnome_canvas_path_def_all_open)
+  _WRAP_METHOD(bool any_closed() const, gnome_canvas_path_def_any_closed)
+  _WRAP_METHOD(bool all_closed() const, gnome_canvas_path_def_all_closed)
+};
+
+} /* namespace Canvas */
+
+} /* namespace Gnome */

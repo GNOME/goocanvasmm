@@ -1,0 +1,2372 @@
+;; From GnomeCanvasBpath
+
+(define-property user-data
+  (of-object "GnomeCanvasBpath")
+  (prop-type "GParamPointer")
+  (docs "Anonymous User Data Pointer")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GnomeCanvasBpath")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color
+  (of-object "GnomeCanvasBpath")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color-gdk
+  (of-object "GnomeCanvasBpath")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color-rgba
+  (of-object "GnomeCanvasBpath")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-color
+  (of-object "GnomeCanvasBpath")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-color-gdk
+  (of-object "GnomeCanvasBpath")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-color-rgba
+  (of-object "GnomeCanvasBpath")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-stipple
+  (of-object "GnomeCanvasBpath")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-stipple
+  (of-object "GnomeCanvasBpath")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width-pixels
+  (of-object "GnomeCanvasBpath")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width-units
+  (of-object "GnomeCanvasBpath")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property cap-style
+  (of-object "GnomeCanvasBpath")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property join-style
+  (of-object "GnomeCanvasBpath")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property wind
+  (of-object "GnomeCanvasBpath")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property miterlimit
+  (of-object "GnomeCanvasBpath")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property dash
+  (of-object "GnomeCanvasBpath")
+  (prop-type "GParamPointer")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property bpath
+  (of-object "GnomeCanvasBpath")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GnomeCanvasLine
+
+(define-property user-data
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamPointer")
+  (docs "Anonymous User Data Pointer")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property points
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color-gdk
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color-rgba
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-stipple
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width-pixels
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width-units
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property cap-style
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property join-style
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property line-style
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property first-arrowhead
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property last-arrowhead
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property smooth
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property spline-steps
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property arrow-shape-a
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property arrow-shape-b
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property arrow-shape-c
+  (of-object "GnomeCanvasLine")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GnomeCanvasPixbuf
+
+(define-property user-data
+  (of-object "GnomeCanvasPixbuf")
+  (prop-type "GParamPointer")
+  (docs "Anonymous User Data Pointer")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GnomeCanvasPixbuf")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pixbuf
+  (of-object "GnomeCanvasPixbuf")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width
+  (of-object "GnomeCanvasPixbuf")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width-set
+  (of-object "GnomeCanvasPixbuf")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width-in-pixels
+  (of-object "GnomeCanvasPixbuf")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height
+  (of-object "GnomeCanvasPixbuf")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height-set
+  (of-object "GnomeCanvasPixbuf")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height-in-pixels
+  (of-object "GnomeCanvasPixbuf")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property x
+  (of-object "GnomeCanvasPixbuf")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property x-in-pixels
+  (of-object "GnomeCanvasPixbuf")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y
+  (of-object "GnomeCanvasPixbuf")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y-in-pixels
+  (of-object "GnomeCanvasPixbuf")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property anchor
+  (of-object "GnomeCanvasPixbuf")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GnomeCanvasPolygon
+
+(define-property user-data
+  (of-object "GnomeCanvasPolygon")
+  (prop-type "GParamPointer")
+  (docs "Anonymous User Data Pointer")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GnomeCanvasPolygon")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color
+  (of-object "GnomeCanvasPolygon")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color-gdk
+  (of-object "GnomeCanvasPolygon")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color-rgba
+  (of-object "GnomeCanvasPolygon")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-color
+  (of-object "GnomeCanvasPolygon")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-color-gdk
+  (of-object "GnomeCanvasPolygon")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-color-rgba
+  (of-object "GnomeCanvasPolygon")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-stipple
+  (of-object "GnomeCanvasPolygon")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-stipple
+  (of-object "GnomeCanvasPolygon")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width-pixels
+  (of-object "GnomeCanvasPolygon")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width-units
+  (of-object "GnomeCanvasPolygon")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property cap-style
+  (of-object "GnomeCanvasPolygon")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property join-style
+  (of-object "GnomeCanvasPolygon")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property wind
+  (of-object "GnomeCanvasPolygon")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property miterlimit
+  (of-object "GnomeCanvasPolygon")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property dash
+  (of-object "GnomeCanvasPolygon")
+  (prop-type "GParamPointer")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property points
+  (of-object "GnomeCanvasPolygon")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GnomeCanvasRE
+
+(define-property user-data
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamPointer")
+  (docs "Anonymous User Data Pointer")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color-gdk
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color-rgba
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-color
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-color-gdk
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-color-rgba
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-stipple
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-stipple
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width-pixels
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width-units
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property cap-style
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property join-style
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property wind
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property miterlimit
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property dash
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamPointer")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property x1
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y1
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property x2
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y2
+  (of-object "GnomeCanvasRE")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GnomeCanvasRect
+
+(define-property user-data
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamPointer")
+  (docs "Anonymous User Data Pointer")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color-gdk
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color-rgba
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-color
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-color-gdk
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-color-rgba
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-stipple
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-stipple
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width-pixels
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width-units
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property cap-style
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property join-style
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property wind
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property miterlimit
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property dash
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamPointer")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property x1
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y1
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property x2
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y2
+  (of-object "GnomeCanvasRect")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GnomeCanvasEllipse
+
+(define-property user-data
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamPointer")
+  (docs "Anonymous User Data Pointer")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color-gdk
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color-rgba
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-color
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-color-gdk
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-color-rgba
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-stipple
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-stipple
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width-pixels
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width-units
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property cap-style
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property join-style
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property wind
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property miterlimit
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property dash
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamPointer")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property x1
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y1
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property x2
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y2
+  (of-object "GnomeCanvasEllipse")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GnomeCanvasRichText
+
+(define-signal tag-changed
+  (of-object "GnomeCanvasRichText")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("GtkTextTag*" "p0")
+  )
+)
+
+(define-property user-data
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamPointer")
+  (docs "Anonymous User Data Pointer")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property text
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamString")
+  (docs "Text to display")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property x
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamDouble")
+  (docs "X position")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamDouble")
+  (docs "Y position")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamDouble")
+  (docs "Width for text box")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamDouble")
+  (docs "Height for text box")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property editable
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamBoolean")
+  (docs "Is this rich text item editable?")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visible
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamBoolean")
+  (docs "Is this rich text item visible?")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property cursor-visible
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamBoolean")
+  (docs "Is the cursor visible in this rich text item?")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property cursor-blink
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamBoolean")
+  (docs "Does the cursor blink in this rich text item?")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property grow-height
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamBoolean")
+  (docs "Should the text box height grow if the text does not fit?")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property wrap-mode
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamEnum")
+  (docs "Wrap mode for multiline text")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property justification
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamEnum")
+  (docs "Justification mode")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property direction
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamEnum")
+  (docs "Text direction")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property anchor
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamEnum")
+  (docs "Anchor point for text")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pixels-above-lines
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamInt")
+  (docs "Number of pixels to put above lines")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pixels-below-lines
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamInt")
+  (docs "Number of pixels to put below lines")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pixels-inside-wrap
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamInt")
+  (docs "Number of pixels to put inside the wrap")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property left-margin
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamInt")
+  (docs "Number of pixels in the left margin")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property right-margin
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamInt")
+  (docs "Number of pixels in the right margin")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property indent
+  (of-object "GnomeCanvasRichText")
+  (prop-type "GParamInt")
+  (docs "Number of pixels for indentation")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GnomeCanvasShape
+
+(define-property user-data
+  (of-object "GnomeCanvasShape")
+  (prop-type "GParamPointer")
+  (docs "Anonymous User Data Pointer")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GnomeCanvasShape")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color
+  (of-object "GnomeCanvasShape")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color-gdk
+  (of-object "GnomeCanvasShape")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color-rgba
+  (of-object "GnomeCanvasShape")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-color
+  (of-object "GnomeCanvasShape")
+  (prop-type "GParamString")
+  (docs "")
+  (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-color-gdk
+  (of-object "GnomeCanvasShape")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-color-rgba
+  (of-object "GnomeCanvasShape")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-stipple
+  (of-object "GnomeCanvasShape")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property outline-stipple
+  (of-object "GnomeCanvasShape")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width-pixels
+  (of-object "GnomeCanvasShape")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width-units
+  (of-object "GnomeCanvasShape")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property cap-style
+  (of-object "GnomeCanvasShape")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property join-style
+  (of-object "GnomeCanvasShape")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property wind
+  (of-object "GnomeCanvasShape")
+  (prop-type "GParamUInt")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property miterlimit
+  (of-object "GnomeCanvasShape")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property dash
+  (of-object "GnomeCanvasShape")
+  (prop-type "GParamPointer")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GnomeCanvasText
+
+(define-property user-data
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamPointer")
+  (docs "Anonymous User Data Pointer")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property text
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamString")
+  (docs "Text to render")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property markup
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamString")
+  (docs "Marked up text to render")
+  (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property x
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property font
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamString")
+  (docs "Font description as a string")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property font-desc
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamBoxed")
+  (docs "Font description as a PangoFontDescription struct")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property family
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamString")
+  (docs "Name of the font family, e.g. Sans, Helvetica, Times, Monospace")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property family-set
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamBoolean")
+  (docs "Whether this tag affects the font family")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property attributes
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamBoxed")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property style
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamEnum")
+  (docs "Font style")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property style-set
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamBoolean")
+  (docs "Whether this tag affects the font style")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property variant
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamEnum")
+  (docs "Font variant")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property variant-set
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamBoolean")
+  (docs "Whether this tag affects the font variant")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property weight
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamInt")
+  (docs "Font weight")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property weight-set
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamBoolean")
+  (docs "Whether this tag affects the font weight")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property stretch
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamEnum")
+  (docs "Font stretch")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property stretch-set
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamBoolean")
+  (docs "Whether this tag affects the font stretch")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property size
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamInt")
+  (docs "Font size")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property size-set
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamBoolean")
+  (docs "Whether this tag affects the font size")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property size-points
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamDouble")
+  (docs "Font size in points")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property strikethrough
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamBoolean")
+  (docs "Whether to strike through the text")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property strikethrough-set
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamBoolean")
+  (docs "Whether this tag affects strikethrough")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property underline
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamEnum")
+  (docs "Style of underline for this text")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property underline-set
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamBoolean")
+  (docs "Whether this tag affects underlining")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rise
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamInt")
+  (docs "Offset of text above the baseline (below the baseline if rise is negative)")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rise-set
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamBoolean")
+  (docs "Whether this tag affects the rise")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamDouble")
+  (docs "Size of font, relative to default size")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-set
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamBoolean")
+  (docs "Whether this tag affects font scaling")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property anchor
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property justification
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property clip-width
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property clip-height
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property clip
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property x-offset
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y-offset
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamString")
+  (docs "Text color, as string")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color-gdk
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamBoxed")
+  (docs "Text color, as a GdkColor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-color-rgba
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamUInt")
+  (docs "Text color, as an R/G/B/A combined integer")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fill-stipple
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property text-width
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamDouble")
+  (docs "Width of the rendered text")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property text-height
+  (of-object "GnomeCanvasText")
+  (prop-type "GParamDouble")
+  (docs "Height of the rendered text")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GnomeCanvasWidget
+
+(define-property user-data
+  (of-object "GnomeCanvasWidget")
+  (prop-type "GParamPointer")
+  (docs "Anonymous User Data Pointer")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GnomeCanvasWidget")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property widget
+  (of-object "GnomeCanvasWidget")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property x
+  (of-object "GnomeCanvasWidget")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y
+  (of-object "GnomeCanvasWidget")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width
+  (of-object "GnomeCanvasWidget")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height
+  (of-object "GnomeCanvasWidget")
+  (prop-type "GParamDouble")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property anchor
+  (of-object "GnomeCanvasWidget")
+  (prop-type "GParamEnum")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property size-pixels
+  (of-object "GnomeCanvasWidget")
+  (prop-type "GParamBoolean")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GnomeCanvasItem
+
+(define-signal event
+  (of-object "GnomeCanvasItem")
+  (return-type "gboolean")
+  (when "last")
+  (parameters
+    '("GdkEvent*" "p0")
+  )
+)
+
+(define-property user-data
+  (of-object "GnomeCanvasItem")
+  (prop-type "GParamPointer")
+  (docs "Anonymous User Data Pointer")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GnomeCanvasItem")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GnomeCanvasGroup
+
+(define-property user-data
+  (of-object "GnomeCanvasGroup")
+  (prop-type "GParamPointer")
+  (docs "Anonymous User Data Pointer")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GnomeCanvasGroup")
+  (prop-type "GParamObject")
+  (docs "")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property x
+  (of-object "GnomeCanvasGroup")
+  (prop-type "GParamDouble")
+  (docs "X")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y
+  (of-object "GnomeCanvasGroup")
+  (prop-type "GParamDouble")
+  (docs "Y")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GnomeCanvas
+
+(define-signal draw-background
+  (of-object "GnomeCanvas")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("GdkDrawable*" "p0")
+    '("gint" "p1")
+    '("gint" "p2")
+    '("gint" "p3")
+    '("gint" "p4")
+  )
+)
+
+(define-signal render-background
+  (of-object "GnomeCanvas")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("GnomeCanvasBuf*" "p0")
+  )
+)
+
+(define-property user-data
+  (of-object "GnomeCanvas")
+  (prop-type "GParamPointer")
+  (docs "Anonymous User Data Pointer")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property name
+  (of-object "GnomeCanvas")
+  (prop-type "GParamString")
+  (docs "The name of the widget")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GnomeCanvas")
+  (prop-type "GParamObject")
+  (docs "The parent widget of this widget. Must be a Container widget")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width-request
+  (of-object "GnomeCanvas")
+  (prop-type "GParamInt")
+  (docs "Override for width request of the widget, or -1 if natural request should be used")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height-request
+  (of-object "GnomeCanvas")
+  (prop-type "GParamInt")
+  (docs "Override for height request of the widget, or -1 if natural request should be used")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visible
+  (of-object "GnomeCanvas")
+  (prop-type "GParamBoolean")
+  (docs "Whether the widget is visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property sensitive
+  (of-object "GnomeCanvas")
+  (prop-type "GParamBoolean")
+  (docs "Whether the widget responds to input")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property app-paintable
+  (of-object "GnomeCanvas")
+  (prop-type "GParamBoolean")
+  (docs "Whether the application will paint directly on the widget")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property can-focus
+  (of-object "GnomeCanvas")
+  (prop-type "GParamBoolean")
+  (docs "Whether the widget can accept the input focus")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property has-focus
+  (of-object "GnomeCanvas")
+  (prop-type "GParamBoolean")
+  (docs "Whether the widget has the input focus")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property is-focus
+  (of-object "GnomeCanvas")
+  (prop-type "GParamBoolean")
+  (docs "Whether the widget is the focus widget within the toplevel")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property can-default
+  (of-object "GnomeCanvas")
+  (prop-type "GParamBoolean")
+  (docs "Whether the widget can be the default widget")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property has-default
+  (of-object "GnomeCanvas")
+  (prop-type "GParamBoolean")
+  (docs "Whether the widget is the default widget")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property receives-default
+  (of-object "GnomeCanvas")
+  (prop-type "GParamBoolean")
+  (docs "If TRUE, the widget will receive the default action when it is focused")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property composite-child
+  (of-object "GnomeCanvas")
+  (prop-type "GParamBoolean")
+  (docs "Whether the widget is part of a composite widget")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property style
+  (of-object "GnomeCanvas")
+  (prop-type "GParamObject")
+  (docs "The style of the widget, which contains information about how it will look (colours etc)")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property events
+  (of-object "GnomeCanvas")
+  (prop-type "GParamFlags")
+  (docs "The event mask that decides what kind of GdkEvents this widget gets")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property extension-events
+  (of-object "GnomeCanvas")
+  (prop-type "GParamEnum")
+  (docs "The mask that decides what kind of extension events this widget gets")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property no-show-all
+  (of-object "GnomeCanvas")
+  (prop-type "GParamBoolean")
+  (docs "Whether gtk_widget_show_all should not affect this widget")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property border-width
+  (of-object "GnomeCanvas")
+  (prop-type "GParamUInt")
+  (docs "The width of the empty border outside the containers children")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property resize-mode
+  (of-object "GnomeCanvas")
+  (prop-type "GParamEnum")
+  (docs "Specify how resize events are handled")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property child
+  (of-object "GnomeCanvas")
+  (prop-type "GParamObject")
+  (docs "Can be used to add a new child to the container")
+  (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property hadjustment
+  (of-object "GnomeCanvas")
+  (prop-type "GParamObject")
+  (docs "The GtkAdjustment for the horizontal position")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property vadjustment
+  (of-object "GnomeCanvas")
+  (prop-type "GParamObject")
+  (docs "The GtkAdjustment for the vertical position")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width
+  (of-object "GnomeCanvas")
+  (prop-type "GParamUInt")
+  (docs "The width of the layout")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height
+  (of-object "GnomeCanvas")
+  (prop-type "GParamUInt")
+  (docs "The height of the layout")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property aa
+  (of-object "GnomeCanvas")
+  (prop-type "GParamBoolean")
+  (docs "The antialiasing mode of the canvas.")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+

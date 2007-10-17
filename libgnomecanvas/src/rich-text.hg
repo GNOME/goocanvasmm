@@ -1,0 +1,81 @@
+// -*- C++ -*-
+/* $Id: rich-text.hg,v 1.10 2002/12/09 16:08:51 aholzmann Exp $ */
+
+/* rich-text.h
+ *
+ *
+ * Copyright (C) 2002 The libgnomecanvasmm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <gtkmm/textbuffer.h>
+#include <libgnomecanvasmm/item.h>
+#include <libgnomecanvas/gnome-canvas-rich-text.h>
+_DEFS(libgnomecanvasmm,libgnomecanvas)
+_PINCLUDE(libgnomecanvasmm/private/item_p.h)
+
+namespace Gnome
+{
+
+namespace Canvas
+{
+
+class RichText : public Item
+{
+  _CLASS_GTKOBJECT(RichText, GnomeCanvasRichText, GNOME_CANVAS_RICH_TEXT, Item, GnomeCanvasItem)
+  _IGNORE(gnome_canvas_rich_text_get_iter_at_location)
+public:
+  typedef Gtk::TextIter iterator;
+
+  RichText(Group& parent, double x, double y, const Glib::ustring& text);
+  explicit RichText(Group& parent);
+
+  _WRAP_METHOD(void cut_clipboard(), gnome_canvas_rich_text_cut_clipboard)
+  _WRAP_METHOD(void copy_clipboard(), gnome_canvas_rich_text_copy_clipboard)
+  _WRAP_METHOD(void paste_clipboard(), gnome_canvas_rich_text_paste_clipboard)
+
+  _WRAP_METHOD(void set_buffer(const Glib::RefPtr<Gtk::TextBuffer>& buffer), gnome_canvas_rich_text_set_buffer)
+  _WRAP_METHOD(Glib::RefPtr<Gtk::TextBuffer> get_buffer() const, gnome_canvas_rich_text_get_buffer)
+
+  _WRAP_METHOD(void get_iter_location(const iterator& iter, Gdk::Rectangle& location) const, gnome_canvas_rich_text_get_iter_location)
+   iterator get_iter_at_location(int x, int y) const;
+
+  _WRAP_SIGNAL(void tag_changed(const Glib::RefPtr<Gtk::TextTag>& tag), "tag_changed")
+
+  _WRAP_PROPERTY("text", Glib::ustring)
+  _WRAP_PROPERTY("x", double)
+  _WRAP_PROPERTY("y", double)
+  _WRAP_PROPERTY("width", double)
+  _WRAP_PROPERTY("height", double)
+  _WRAP_PROPERTY("editable", bool)
+  _WRAP_PROPERTY("visible", bool)
+  _WRAP_PROPERTY("cursor-visible", bool)
+  _WRAP_PROPERTY("cursor-blink", bool)
+  _WRAP_PROPERTY("grow-height", bool)
+  _WRAP_PROPERTY("wrap-mode", Gtk::WrapMode)
+  _WRAP_PROPERTY("justification", Gtk::Justification)
+  _WRAP_PROPERTY("direction", Gtk::DirectionType)
+  _WRAP_PROPERTY("anchor", Gtk::AnchorType)
+  _WRAP_PROPERTY("pixels-above-lines", int)
+  _WRAP_PROPERTY("pixels-below-lines", int)
+  _WRAP_PROPERTY("pixels-inside-wrap", int)
+  _WRAP_PROPERTY("left-margin", int)
+  _WRAP_PROPERTY("right-margin", int)
+  _WRAP_PROPERTY("indent", int)
+};
+
+} /* namespace Canvas */
+} /* namespace Gnome */

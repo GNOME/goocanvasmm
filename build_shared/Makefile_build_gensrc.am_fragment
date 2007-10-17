@@ -1,0 +1,26 @@
+## Copyright (c) 2001
+## The gtkmm development team.
+##
+## **** Common rules for inclusion in Makefile.am ****
+## ## Included from something/somethingmm/Makefile.am
+##
+## Used variable:		Example content:
+##
+## sublib_name			= gtkmm
+## sublib_cflags		= $(GTKMM_CFLAGS)
+## files_extra_cc		= stock_id.cc
+## files_extra_h		= base.h stock_id.h
+##
+## Returned variable:		Usage example:
+##
+## files_all_cc			libgtkmm_la_SOURCES = $(files_all_cc)
+## common_ldflags		libgtkmm_la_LDFLAGS = $(common_ldflags)
+
+
+include $(srcdir)/../src/Makefile_list_of_hg.am_fragment
+
+files_built_cc		= $(files_hg:.hg=.cc) wrap_init.cc
+files_built_h		= $(files_hg:.hg=.h)
+files_extra_h		+= wrap_init.h
+
+include $(top_srcdir)/build_shared/Makefile_build.am_fragment

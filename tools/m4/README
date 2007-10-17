@@ -1,0 +1,4 @@
+This directory contains additional type conversions for libgnomeuimm.
+The convert.m4 file overrides the file of the same name in gtkmm.
+
+Like the gtkmm m4 conversion files, these files are also installed, for use by other libraries.

@@ -1,0 +1,173 @@
+// -*- C++ -*-
+/* $Id: item.hg,v 1.7 2005/06/09 11:26:34 murrayc Exp $ */
+
+/* item.h
+ * 
+ * Copyright (C) 1998 EMC Capital Management Inc.
+ * Developed by Havoc Pennington <hp@pobox.com>
+ *
+ * Copyright (C) 1999 The Gtk-- Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <gtkmm/object.h>
+#include <gdkmm/cursor.h>
+#include <libgnomecanvas/gnome-canvas.h>
+
+#include <libgnomecanvasmm/point.h>
+#include <libgnomecanvasmm/affinetrans.h>
+#include <libgnomecanvasmm/properties.h>
+
+_DEFS(libgnomecanvasmm,libgnomecanvas)
+_PINCLUDE(gtkmm/private/object_p.h)
+
+namespace Gnome
+{
+
+namespace Canvas
+{
+
+class Canvas;
+class Group;
+
+class Item : public Gtk::Object
+{
+  _CLASS_GTKOBJECT(Item, GnomeCanvasItem, GNOME_CANVAS_ITEM, Gtk::Object, GtkObject)
+  _IGNORE(gnome_canvas_item_construct, gnome_canvas_item_set, gnome_canvas_item_set_valist)
+public:
+
+  //:  Move an item by the specified amount
+  _WRAP_METHOD(void move(double dx, double dy), gnome_canvas_item_move)
+
+  //: Raise an item in the z-order of its parent group by the specified
+  //: number of positions.  If the number is zero, then the item will
+  //: be made the topmost of its parent group.
+  _WRAP_METHOD(void raise(int positions), gnome_canvas_item_raise)
+
+  //: Lower an item in the z-order of its parent group by the specified
+  //: number of positions.  If the number is zero, then the item will be
+  //: made the bottommost of its parent group.  */
+  _WRAP_METHOD(void lower(int positions), gnome_canvas_item_lower)
+
+  //: Raise an item to the top of its parent group's z-order.
+  _WRAP_METHOD(void raise_to_top(), gnome_canvas_item_raise_to_top)
+
+  //: Lower an item to the bottom of its parent group's z-order
+  _WRAP_METHOD(void lower_to_bottom(), gnome_canvas_item_lower_to_bottom)
+
+  //: Grab the mouse for the specified item.  Only the events in
+  //: event_mask will be reported.  If cursor is non-NULL, it will be
+  //: used during the duration of the grab.  Time is a proper X event
+  //: time parameter.  Returns the same values as XGrabPointer().
+  int grab(unsigned int event_mask, const Gdk::Cursor& cursor, guint32 etime);
+  int grab(unsigned int event_mask, guint32 etime);
+  _IGNORE(gnome_canvas_item_grab)
+
+  //: Ungrabs the mouse -- the specified item must be the same that was
+  //: passed to gnome_canvas_item_grab().  Time is a proper X event
+  //: time parameter. 
+  _WRAP_METHOD(void ungrab(guint32 etime), gnome_canvas_item_ungrab)
+
+  //: These functions convert from a coordinate system to another.  "w"
+  //: is world coordinates and "i" is item coordinates. 
+  _WRAP_METHOD(void w2i(double& x, double& y), gnome_canvas_item_w2i)
+  _WRAP_METHOD(void i2w(double& x, double& y), gnome_canvas_item_i2w)
+
+  //: Used to send all of the keystroke events to a specific item as well 
+  //: as GDK_FOCUS_CHANGE events.
+  _WRAP_METHOD(void grab_focus(), gnome_canvas_item_grab_focus)
+
+  //: Fetch the bounding box of the item.  The bounding box may not be 
+  //: exactly tight, but the canvas items will do the best they can.
+  _WRAP_METHOD(void get_bounds(double& x1, double& y1, double& x2, double& y2) const, gnome_canvas_item_get_bounds)
+
+  //: Make the item visible
+  _WRAP_METHOD(void show(), gnome_canvas_item_show)
+  
+  //: Hide the item
+  _WRAP_METHOD(void hide(), gnome_canvas_item_hide)
+
+  //: Apply a relative affine transformation to the item 
+  void affine_relative(const Art::AffineTrans &affine);
+  _IGNORE(gnome_canvas_item_affine_relative)
+
+  //: Apply an absolute affine transformation to the item
+  void affine_absolute(const Art::AffineTrans &affine);
+  _IGNORE(gnome_canvas_item_affine_absolute)
+
+  //: Gets the affine transform that converts from item-relative
+  //: coordinates to world coordinates
+  Art::AffineTrans get_i2w_affine() const;
+  _IGNORE(gnome_canvas_item_i2w_affine)
+
+  //: Gets the affine transform that converts from item-relative
+  //: coordinates to canvas pixel coordinates
+  Art::AffineTrans get_i2c_affine() const;
+  _IGNORE(gnome_canvas_item_i2c_affine)
+
+  _WRAP_METHOD(void reparent(Group& new_group), gnome_canvas_item_reparent)
+
+  /// Returns the canvas we're on.
+  _MEMBER_GET(canvas, canvas, Canvas*, GnomeCanvas*)
+
+  _WRAP_VFUNC(void update(double* affine, ArtSVP* clip_path, int flags), update)
+  _WRAP_VFUNC(void realize(), realize)
+  _WRAP_VFUNC(void unrealize(), unrealize)
+  _WRAP_VFUNC(void map(), map)
+  _WRAP_VFUNC(void unmap(), unmap )
+  _WRAP_VFUNC(ArtUta* coverage(),  coverage )
+  _WRAP_VFUNC(void draw(const Glib::RefPtr<Gdk::Drawable>& drawable, int x, int y, int width, int height), draw)
+  _WRAP_VFUNC(void render(GnomeCanvasBuf* buf), render)
+  _WRAP_VFUNC(double point(double x, double y, int cx, int cy,  GnomeCanvasItem** actual_item), point)
+  _WRAP_VFUNC(void bounds(double* x1, double* y1, double* x2, double* y2), bounds)
+
+  //: Signal: an event ocurred for an item of this type.  The(x, y)
+  //: coordinates are in the canvas world coordinate system.
+  _WRAP_SIGNAL(bool event(GdkEvent*), "event")
+
+  Group* get_parent_group();
+  const Group* get_parent_group() const;
+
+  _WRAP_PROPERTY("parent", Group*)
+
+protected:
+
+  //- For class children use only
+  void item_construct(Group& group);
+
+  //- Unsafe version - can't use a _gtk_string here, C++ doesn't like
+  //- classes being passed before ellipses('...') args
+  void item_construct(Group& group, const gchar* first_arg_name,
+                      va_list ap);
+
+  //- Set arguments - For class children use only
+  void set(const gchar* first_arg_name, ...);
+
+  //: Request that the update method eventually get called.  This should be used
+  //: only by item implementations.
+  _WRAP_METHOD(void request_update(), gnome_canvas_item_request_update)
+
+
+  _WRAP_METHOD(void reset_bounds(), gnome_canvas_item_reset_bounds)
+  _WRAP_METHOD(void update_svp(ArtSVP **p_svp, ArtSVP *new_svp), gnome_canvas_item_update_svp)
+  _WRAP_METHOD(void update_svp_clip(ArtSVP **p_svp, ArtSVP *new_svp, ArtSVP *clip_svp), gnome_canvas_item_update_svp_clip)
+  _WRAP_METHOD(void request_redraw_svp(const ArtSVP* svp), gnome_canvas_item_request_redraw_svp)
+  _WRAP_METHOD(void update_bbox(int x1, int y1, int x2, int y2), gnome_canvas_update_bbox)
+  
+};
+
+} /* namespace Canvas */
+} /* namespace Gnome */

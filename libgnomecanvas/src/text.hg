@@ -1,0 +1,91 @@
+/* $Id: text.hg,v 1.8 2004/04/07 19:13:51 murrayc Exp $ */
+
+/* text.h
+ * 
+ * Copyright (C) 1998 EMC Capital Management Inc.
+ * Developed by Havoc Pennington <hp@pobox.com>
+ *
+ * Copyright (C) 1999 The Gtk-- Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <libgnomecanvasmm/item.h>
+#include <pangomm/attrlist.h>
+#include <gtkmm/enums.h>
+#include <libgnomecanvas/gnome-canvas-text.h>
+_DEFS(libgnomecanvasmm,libgnomecanvas)
+_PINCLUDE(libgnomecanvasmm/private/item_p.h)
+
+namespace Gnome
+{
+
+namespace Canvas
+{
+
+class Group;
+
+class Text : public Item
+{
+  _CLASS_GTKOBJECT(Text, GnomeCanvasText, GNOME_CANVAS_TEXT, Item, GnomeCanvasItem)
+public:
+  Text(Group& parent, double x, double y, const Glib::ustring& text);
+  explicit Text(Group& parent);
+
+  _WRAP_PROPERTY("text", Glib::ustring)
+  _WRAP_PROPERTY("markup", Glib::ustring)
+  _WRAP_PROPERTY("x", double)
+  _WRAP_PROPERTY("y", double)
+  _WRAP_PROPERTY("font", Glib::ustring)
+  _WRAP_PROPERTY("font-desc", Pango::FontDescription)
+  _WRAP_PROPERTY("family", Glib::ustring)
+  _WRAP_PROPERTY("family-set", bool)
+  _WRAP_PROPERTY("attributes", Pango::AttrList)
+  _WRAP_PROPERTY("style", Pango::Style)
+  _WRAP_PROPERTY("style-set", bool)
+  _WRAP_PROPERTY("variant", Pango::Variant)
+  _WRAP_PROPERTY("variant-set", bool)
+  _WRAP_PROPERTY("weight", int)
+  _WRAP_PROPERTY("weight-set", bool)
+  _WRAP_PROPERTY("stretch", Pango::Weight)
+  _WRAP_PROPERTY("stretch-set", bool)
+  _WRAP_PROPERTY("size", int)
+  _WRAP_PROPERTY("size-set", bool)
+  _WRAP_PROPERTY("size-points", double)
+  _WRAP_PROPERTY("strikethrough", bool)
+  _WRAP_PROPERTY("strikethrough-set", bool)
+  _WRAP_PROPERTY("underline", Pango::Underline)
+  _WRAP_PROPERTY("underline-set", bool)
+  _WRAP_PROPERTY("rise", int)
+  _WRAP_PROPERTY("rise-set", bool)
+  _WRAP_PROPERTY("scale", double)
+  _WRAP_PROPERTY("scale-set", bool)
+  _WRAP_PROPERTY("anchor", Gtk::AnchorType)
+  _WRAP_PROPERTY("justification", Gtk::Justification)
+  _WRAP_PROPERTY("clip-width", double)
+  _WRAP_PROPERTY("clip-height", double)
+  _WRAP_PROPERTY("clip", bool)
+  _WRAP_PROPERTY("x-offset", double)
+  _WRAP_PROPERTY("y-offset", double)
+  _WRAP_PROPERTY("fill-color", Glib::ustring)
+  _WRAP_PROPERTY("fill-color-gdk", Gdk::Color)
+  _WRAP_PROPERTY("fill-color-rgba", guint)
+  _WRAP_PROPERTY("fill-stipple", Glib::RefPtr<Gdk::Bitmap>)
+  _WRAP_PROPERTY("text-width", double)
+  _WRAP_PROPERTY("text-height", double)
+};
+
+} /* namespace Canvas */
+} /* namespace Gnome */

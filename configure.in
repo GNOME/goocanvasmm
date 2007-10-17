@@ -1,0 +1,205 @@
+# Configure.in
+#
+#  This file tests for various compiler features needed to configure 
+#  the gtkmm package.  Original skeleton was provided by Stephan Kulow.
+#  All tests were written by Tero Pulkkinen, Mirko Streckenbach, and 
+#  Karl Nelson.
+#
+#  NOTE! IF YOU DO CHANGES HERE, CHECK IF YOU NEED TO MODIFY .m4 TOO!!!
+#
+#  Copyright 2001 Free Software Foundation
+#  Copyright 1999 gtkmm Development Team
+#  Copyright 1998 Stephan Kulow 
+#
+AC_INIT(libgnomecanvas/libgnomecanvasmmconfig.h.in)
+
+#########################################################################
+#  Version and initialization
+#########################################################################
+LIBGNOMECANVASMM_MAJOR_VERSION=2
+LIBGNOMECANVASMM_MINOR_VERSION=20
+LIBGNOMECANVASMM_MICRO_VERSION=0
+
+#
+# +1 : ? : +1  == new interface that does not break old one
+# +1 : ? : 0   == new interface that breaks old one
+#  ? : ? : 0   == no new interfaces, but breaks apps
+#  ? :+1 : ?   == just some internal changes, nothing breaks but might work 
+#                 better
+# CURRENT : REVISION : AGE
+LIBGNOMECANVASMM_SO_VERSION=1:6:0
+
+LIBGNOMECANVASMM_VERSION=$LIBGNOMECANVASMM_MAJOR_VERSION.$LIBGNOMECANVASMM_MINOR_VERSION.$LIBGNOMECANVASMM_MICRO_VERSION
+LIBGNOMECANVASMM_RELEASE=$LIBGNOMECANVASMM_MAJOR_VERSION.$LIBGNOMECANVASMM_MINOR_VERSION
+AC_DEFINE_UNQUOTED(LIBGNOMECANVASMM_MAJOR_VERSION, $LIBGNOMECANVASMM_MAJOR_VERSION)
+AC_DEFINE_UNQUOTED(LIBGNOMECANVASMM_MINOR_VERSION, $LIBGNOMECANVASMM_MINOR_VERSION)
+AC_DEFINE_UNQUOTED(LIBGNOMECANVASMM_MICRO_VERSION, $LIBGNOMECANVASMM_MICRO_VERSION)
+AC_SUBST(LIBGNOMECANVASMM_VERSION)
+AC_SUBST(LIBGNOMECANVASMM_RELEASE)
+AC_SUBST(LIBGNOMECANVASMM_SO_VERSION)
+
+AC_CONFIG_AUX_DIR(scripts)
+
+dnl For automake.
+VERSION=$LIBGNOMECANVASMM_VERSION
+PACKAGE=libgnomecanvasmm
+
+dnl Initialize automake stuff
+AM_INIT_AUTOMAKE($PACKAGE, $VERSION)
+
+dnl Specify a configuration file (no autoheader)
+AM_CONFIG_HEADER(libgnomecanvas/libgnomecanvasmmconfig.h)
+AM_MAINTAINER_MODE
+AL_ACLOCAL_INCLUDE(scripts)
+
+
+#########################################################################
+#  Configure arguments 
+#########################################################################
+
+#########################################################################
+#  Environment Checks
+#########################################################################
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_MAKE_SET
+AC_CANONICAL_HOST
+
+dnl Used for enabling the "-no-undefined" flag while generating DLLs
+dnl Copied from the official gtk+-2 configure.in
+AC_MSG_CHECKING([for some Win32 platform])
+case "$host" in
+  *-*-mingw*|*-*-cygwin*)
+    platform_win32=yes
+    ;;
+  *)
+    platform_win32=no
+    ;;
+esac
+AC_MSG_RESULT([$platform_win32])
+AM_CONDITIONAL(PLATFORM_WIN32, test "$platform_win32" = "yes")
+
+AC_MSG_CHECKING([for native Win32])
+case "$host" in
+  *-*-mingw*)
+    os_win32=yes
+    ;;
+  *)
+    os_win32=no
+    ;;
+esac
+AC_MSG_RESULT([$os_win32])
+AM_CONDITIONAL(OS_WIN32, test "$os_win32" = "yes")
+ 
+AM_DISABLE_STATIC
+AC_LIBTOOL_WIN32_DLL 
+AM_PROG_LIBTOOL
+
+AL_PROG_GNU_M4(AC_MSG_ERROR([dnl
+SUN m4 does not work for building gtkmm. 
+Please install GNU m4.]))
+
+AL_PROG_GNU_MAKE(AC_MSG_ERROR([dnl
+SUN make does not work for building gtkmm.
+Please install GNU make.]))
+
+#########################################################################
+#  Dependancy checks
+#########################################################################
+# Make these available to both PKG_CHECK_MODULES and the .pc.in file:
+GTKMM_VERSION_NEEDED=2.4.0
+AC_SUBST(GTKMM_VERSION_NEEDED)
+LIBGNOMECANVAS_VERSION_NEEDED=2.6.0
+AC_SUBST(LIBGNOMECANVAS_VERSION_NEEDED)
+
+PKG_CHECK_MODULES(LIBGNOMECANVASMM, gtkmm-2.4 >= $GTKMM_VERSION_NEEDED libgnomecanvas-2.0 >= $LIBGNOMECANVAS_VERSION_NEEDED)
+AC_SUBST(LIBGNOMECANVASMM_CFLAGS)
+AC_SUBST(LIBGNOMECANVASMM_LIBS)
+
+GLIBMM_LIBDIR=`pkg-config --variable=libdir glibmm-2.4`
+GMM_PROCDIR=$GLIBMM_LIBDIR/glibmm-2.4/proc
+AC_SUBST(GMM_PROCDIR)
+GMM_PROC=$GMM_PROCDIR/gmmproc
+AC_SUBST(GMM_PROC)
+
+#########################################################################
+#  C++ checks
+#########################################################################
+AC_PROG_CXX
+
+# Ensure MSVC-compatible struct packing convention is used when
+# compiling for Win32 with gcc.
+# What flag to depends on gcc version: gcc3 uses "-mms-bitfields", while
+# gcc2 uses "-fnative-struct".
+if test x"$os_win32" = xyes; then
+  if test x"$GCC" = xyes -a x"$GXX" = xyes; then
+    msnative_struct=''
+    AC_MSG_CHECKING([how to get MSVC-compatible struct packing])
+    if test -z "$ac_cv_prog_CC"; then
+      our_gcc="$CC"
+    else
+      our_gcc="$ac_cv_prog_CC"
+    fi
+    case `$our_gcc --version | sed -e 's,\..*,.,' -e q` in
+      2.)
+	if $our_gcc -v --help 2>/dev/null | grep fnative-struct >/dev/null; then
+	  msnative_struct='-fnative-struct'
+	fi
+	;;
+      *)
+	if $our_gcc -v --help 2>/dev/null | grep ms-bitfields >/dev/null; then
+	  msnative_struct='-mms-bitfields'
+	fi
+	;;
+    esac
+    if test x"$msnative_struct" = x ; then
+      AC_MSG_RESULT([no way])
+      AC_MSG_WARN([produced libraries might be incompatible with MSVC-compiled code])
+    else
+      CXXFLAGS="$CXXFLAGS $msnative_struct"
+      AC_MSG_RESULT([${msnative_struct}])
+    fi
+  fi
+fi 
+
+AC_LANG_CPLUSPLUS
+
+
+# Dummy conditional just to make automake-1.4 happy.
+# We need an always-false condition in docs/Makefile.am.
+AM_CONDITIONAL(LIBGNOMECANVASMM_FALSE,[false])
+
+# HACK:  Assign a dummy in order to prevent execution of autoheader by the
+# maintainer-mode rules.  That would fail since we aren't using autoheader.
+AUTOHEADER=':'
+
+
+AC_OUTPUT([
+  Makefile
+  libgnomecanvasmm.spec
+
+  libgnomecanvas/Makefile
+    libgnomecanvas/libgnomecanvasmm-2.6.pc
+    libgnomecanvas/libgnomecanvasmm-2.6-uninstalled.pc
+    libgnomecanvas/src/Makefile
+    libgnomecanvas/libgnomecanvasmm/Makefile
+      libgnomecanvas/libgnomecanvasmm/private/Makefile
+
+  tools/Makefile
+    tools/extra_defs_gen/Makefile
+    tools/m4/Makefile
+
+  demos/Makefile
+
+  scripts/Makefile
+
+  docs/Makefile
+    docs/reference/Makefile
+    docs/reference/Doxyfile
+
+  examples/Makefile
+    examples/canvas/Makefile
+    examples/canvas_affine/Makefile
+    examples/canvas_events/Makefile
+])
+

@@ -1,0 +1,60 @@
+// -*- C++ -*-
+/* $Id: shape.hg,v 1.8 2002/08/08 22:28:16 cactus Exp $ */
+
+/* shape.h
+ *
+ *
+ * Copyright (C) 2002 The libgnomecanvasmm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <libgnomecanvasmm/item.h>
+#include <libgnomecanvas/gnome-canvas-shape.h>
+#include <libart_lgpl/art_vpath_dash.h> //For ArtVpathDash
+_DEFS(libgnomecanvasmm,libgnomecanvas)
+_PINCLUDE(libgnomecanvasmm/private/item_p.h)
+
+namespace Gnome
+{
+
+namespace Canvas
+{
+
+class Shape : public Item
+{
+  _CLASS_GTKOBJECT(Shape, GnomeCanvasShape, GNOME_CANVAS_SHAPE, Item, GnomeCanvasItem)
+  _IGNORE(gnome_canvas_shape_set_path_def, gnome_canvas_shape_get_path_def)
+public:
+
+  _WRAP_PROPERTY("fill-color", Glib::ustring)
+  _WRAP_PROPERTY("fill-color-gdk", Gdk::Color)
+  _WRAP_PROPERTY("fill-color-rgba", guint)
+  _WRAP_PROPERTY("outline-color", Glib::ustring)
+  _WRAP_PROPERTY("outline-color-gdk", Gdk::Color)
+  _WRAP_PROPERTY("outline-color-rgba", guint)
+  _WRAP_PROPERTY("fill-stipple", Glib::RefPtr<Gdk::Bitmap>)
+  _WRAP_PROPERTY("outline-stipple", Glib::RefPtr<Gdk::Bitmap>)
+  _WRAP_PROPERTY("width-pixels", guint)
+  _WRAP_PROPERTY("width-units", double)
+  _WRAP_PROPERTY("cap-style", Gdk::CapStyle)
+  _WRAP_PROPERTY("join-style", Gdk::JoinStyle)
+  _WRAP_PROPERTY("wind", guint)
+  _WRAP_PROPERTY("miterlimit", double)
+  _WRAP_PROPERTY("dash", ArtVpathDash*) //TODO: Look at ArtVpathDash to see if it should be wrapped.
+};
+
+} /* namespace Canvas */
+} /* namespace Gnome */

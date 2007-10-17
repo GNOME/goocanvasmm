@@ -1,0 +1,2250 @@
+<root>
+<function name="gnome_canvas_item_affine_relative">
+<description>
+Combines the specified affine transformation matrix with the item&apos;s current
+transformation. NULL affine is not allowed.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+<parameter name="affine">
+<parameter_description> An affine transformation matrix.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_close_all">
+<description>
+This function closes all of the open segments in the passed path
+and returns a new GnomeCanvasPathDef.
+
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return> a GnomeCanvasPathDef that contains the contents of @path
+but has modified the path is fully closed
+</return>
+</function>
+
+<function name="gnome_canvas_request_redraw">
+<description>
+Convenience function that informs a canvas that the specified rectangle needs
+to be repainted.  This function converts the rectangle to a microtile array
+and feeds it to gnome_canvas_request_redraw_uta().  The rectangle includes
+@x1 and @y1, but not @x2 and @y2.  To be used only by item implementations.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="x1">
+<parameter_description> Leftmost coordinate of the rectangle to be redrawn.
+</parameter_description>
+</parameter>
+<parameter name="y1">
+<parameter_description> Upper coordinate of the rectangle to be redrawn.
+</parameter_description>
+</parameter>
+<parameter name="x2">
+<parameter_description> Rightmost coordinate of the rectangle to be redrawn, plus 1.
+</parameter_description>
+</parameter>
+<parameter name="y2">
+<parameter_description> Lower coordinate of the rectangle to be redrawn, plus 1.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_copy">
+<description>
+This function copies the contents @src to @dest. The old @dest path
+array is freed and @dest is marked as non-static (editable),
+regardless of the status of @src.
+
+</description>
+<parameters>
+<parameter name="dst">
+<parameter_description> a GnomeCanvasPathDef where the contents of @src will be stored.
+</parameter_description>
+</parameter>
+<parameter name="src">
+<parameter_description> a GnomeCanvasPathDef whose contents will be copied it @src.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_item_ungrab">
+<description>
+Ungrabs the item, which must have been grabbed in the canvas, and ungrabs the
+mouse.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item that holds a grab.
+</parameter_description>
+</parameter>
+<parameter name="etime">
+<parameter_description> The timestamp for ungrabbing the mouse.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_get_miter_points">
+<description>
+Given three points forming an angle, computes the coordinates of the inside
+and outside points of the mitered corner formed by a line of a given width at
+that angle.
+
+
+</description>
+<parameters>
+<parameter name="x1">
+<parameter_description> X coordinate of the first point
+</parameter_description>
+</parameter>
+<parameter name="y1">
+<parameter_description> Y coordinate of the first point
+</parameter_description>
+</parameter>
+<parameter name="x2">
+<parameter_description> X coordinate of the second (angle) point
+</parameter_description>
+</parameter>
+<parameter name="y2">
+<parameter_description> Y coordinate of the second (angle) point
+</parameter_description>
+</parameter>
+<parameter name="x3">
+<parameter_description> X coordinate of the third point
+</parameter_description>
+</parameter>
+<parameter name="y3">
+<parameter_description> Y coordinate of the third point
+</parameter_description>
+</parameter>
+<parameter name="width">
+<parameter_description> Width of the line
+</parameter_description>
+</parameter>
+<parameter name="mx1">
+<parameter_description> The X coordinate of the first miter point is returned here.
+</parameter_description>
+</parameter>
+<parameter name="my1">
+<parameter_description> The Y coordinate of the first miter point is returned here.
+</parameter_description>
+</parameter>
+<parameter name="mx2">
+<parameter_description> The X coordinate of the second miter point is returned here.
+</parameter_description>
+</parameter>
+<parameter name="my2">
+<parameter_description> The Y coordinate of the second miter point is returned here.
+</parameter_description>
+</parameter>
+</parameters>
+<return> FALSE if the angle is less than 11 degrees (this is the same
+threshold as X uses.  If this occurs, the return points are not modified.
+Otherwise, returns TRUE.
+</return>
+</function>
+
+<function name="gnome_canvas_set_center_scroll_region">
+<description>
+When the scrolling region of the canvas is smaller than the canvas window,
+e.g.  the allocation of the canvas, it can be either centered on the window
+or simply made to be on the upper-left corner on the window.  This function
+lets you configure this property.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="center_scroll_region">
+<parameter_description> Whether to center the scrolling region in the canvas
+window when it is smaller than the canvas&apos; allocation.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_item_request_redraw_svp">
+<description>
+Request redraw of the svp if in aa mode, or the entire item in in xlib mode.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> the item containing the svp
+</parameter_description>
+</parameter>
+<parameter name="svp">
+<parameter_description> the svp that needs to be redrawn
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_all_closed">
+<description>
+This function returns a boolean value indicating if the path only
+contains closed segments.
+
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return> boolean, indicating if the path has all closed segments.
+</return>
+</function>
+
+<function name="gnome_canvas_buf_ensure_buf">
+<description>
+Ensure that the buffer is in RGB format, suitable for compositing.
+
+</description>
+<parameters>
+<parameter name="buf">
+<parameter_description> the buf that needs to be represened in RGB format
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_update_bbox">
+<description>
+Sets the bbox to the new value, requesting full repaint.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> the canvas item needing update
+</parameter_description>
+</parameter>
+<parameter name="x1">
+<parameter_description> Left coordinate of the new bounding box
+</parameter_description>
+</parameter>
+<parameter name="y1">
+<parameter_description> Top coordinate of the new bounding box
+</parameter_description>
+</parameter>
+<parameter name="x2">
+<parameter_description> Right coordinate of the new bounding box
+</parameter_description>
+</parameter>
+<parameter name="y2">
+<parameter_description> Bottom coordinate of the new bounding box
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_open_parts">
+<description>
+This function creates a new GnomeCanvasPathDef that contains all of
+the open segments on the passed @path.
+
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new GnomeCanvasPathDef that contains all of the open segemtns in @path.
+</return>
+</function>
+
+<function name="gnome_canvas_path_def_ensure_space">
+<description>
+This function ensures that enough space for @space points is
+allocated at the end of the path.
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+<parameter name="space">
+<parameter_description> number of points to guarantee are allocated at the end of
+the path.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_new_sized">
+<description>
+This funtion creates a new #gnome_canvas_path_def with @length
+number of points allocated. It is useful, if you know the exact
+number of points in path, so you can avoid automatic point
+array reallocation.
+
+
+</description>
+<parameters>
+<parameter name="length">
+<parameter_description> number of points to allocate for the path
+</parameter_description>
+</parameter>
+</parameters>
+<return> the new canvas path definition
+</return>
+</function>
+
+<function name="gnome_canvas_set_pixels_per_unit">
+<description>
+Sets the zooming factor of a canvas by specifying the number of pixels that
+correspond to one canvas unit.
+
+The anchor point for zooming, i.e. the point that stays fixed and all others
+zoom inwards or outwards from it, depends on whether the canvas is set to
+center the scrolling region or not.  You can control this using the
+gnome_canvas_set_center_scroll_region() function.  If the canvas is set to
+center the scroll region, then the center of the canvas window is used as the
+anchor point for zooming.  Otherwise, the upper-left corner of the canvas
+window is used as the anchor point.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="n">
+<parameter_description> The number of pixels that correspond to one canvas unit.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_item_construct">
+<description>
+Constructs a canvas item; meant for use only by item implementations.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> An unconstructed canvas item.
+</parameter_description>
+</parameter>
+<parameter name="parent">
+<parameter_description> The parent group for the item.
+</parameter_description>
+</parameter>
+<parameter name="first_arg_name">
+<parameter_description> The name of the first argument for configuring the item.
+</parameter_description>
+</parameter>
+<parameter name="args">
+<parameter_description> The list of arguments used to configure the item.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_pixbuf_get_type">
+<description>
+Registers the #GnomeCanvasPixbuf class if necessary, and returns the type ID
+associated to it.
+
+
+</description>
+<parameters>
+<parameter name="void">
+<parameter_description>
+</parameter_description>
+</parameter>
+</parameters>
+<return> The type ID of the #GnomeCanvasPixbuf class.
+</return>
+</function>
+
+<function name="gnome_canvas_path_def_is_empty">
+<description>
+This function is a boolean test to see if the path is empty,
+meaning containing no line segments.
+
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return> boolean, indicating if the path is empty.
+</return>
+</function>
+
+<function name="gnome_canvas_path_def_unref">
+<description>
+Decrease the reference count of the passed @path.  If the reference
+count is &amp;lt; 1 the path is deallocated.
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_concat">
+<description>
+This function concatenates a list of GnomeCanvasPathDefs into one
+newly created GnomeCanvasPathDef.
+
+
+</description>
+<parameters>
+<parameter name="list">
+<parameter_description> a GSList of GnomeCanvasPathDefs to concatenate into one new
+path.
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new GnomeCanvasPathDef
+</return>
+</function>
+
+<function name="gnome_canvas_item_move">
+<description>
+Moves a canvas item by creating an affine transformation matrix for
+translation by using the specified values. This happens in item
+local coordinate system, so if you have nontrivial transform, it
+most probably does not do, what you want.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+<parameter name="dx">
+<parameter_description> Horizontal offset.
+</parameter_description>
+</parameter>
+<parameter name="dy">
+<parameter_description> Vertical offset.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_new">
+<description>
+Creates a new empty canvas in non-antialiased mode.  If you wish to use the
+&amp;GnomeCanvasImage item inside this canvas, then you must push the gdk_imlib
+visual and colormap before calling this function, and they can be popped
+afterwards.
+
+
+</description>
+<parameters>
+</parameters>
+<return> A newly-created canvas.
+</return>
+</function>
+
+<function name="gnome_canvas_path_def_new_from_bpath">
+<description>
+This function constructs a new #gnome_canvas_path_def and uses the
+passed @bpath as the contents.  The passed bpath should not be
+static as the path definition is editable when constructed with
+this function. Also, passed bpath will be freed with art_free, if
+path is destroyed, so use it with caution.
+For constructing a #gnome_canvas_path_def
+from (non-modifiable) bpath use
+#gnome_canvas_path_def_new_from_static_bpath.
+
+
+</description>
+<parameters>
+<parameter name="bpath">
+<parameter_description> libart bezier path
+</parameter_description>
+</parameter>
+</parameters>
+<return> the new canvas path definition that is populated with the
+passed bezier path, if the @bpath is bad NULL is returned.
+</return>
+</function>
+
+<function name="gnome_canvas_update_now">
+<description>
+Forces an immediate update and redraw of a canvas.  If the canvas does not
+have any pending update or redraw requests, then no action is taken.  This is
+typically only used by applications that need explicit control of when the
+display is updated, like games.  It is not needed by normal applications.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_points_free">
+<description>
+Decreases the reference count of the specified points structure.  If it
+reaches zero, then the structure is freed.
+
+</description>
+<parameters>
+<parameter name="points">
+<parameter_description> A canvas points structure.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_points_new">
+<description>
+Creates a structure that should be used to pass an array of points to
+items.
+
+
+</description>
+<parameters>
+<parameter name="num_points">
+<parameter_description> The number of points to allocate space for in the array.
+</parameter_description>
+</parameter>
+</parameters>
+<return> A newly-created array of points.  It should be filled in
+by the user.
+</return>
+</function>
+
+<function name="gnome_canvas_path_def_closepath">
+<description>
+This function closes the last subpath of @path, adding a ART_LINETO to
+subpath starting point, if needed and changing starting pathcode to
+ART_MOVETO
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_root">
+<description>
+Queries the root group of a canvas.
+
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+</parameters>
+<return> The root group of the specified canvas.
+</return>
+</function>
+
+<function name="gnome_canvas_w2c">
+<description>
+Converts world coordinates into canvas pixel coordinates.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="wx">
+<parameter_description> World X coordinate.
+</parameter_description>
+</parameter>
+<parameter name="wy">
+<parameter_description> World Y coordinate.
+</parameter_description>
+</parameter>
+<parameter name="cx">
+<parameter_description> X pixel coordinate (return value).
+</parameter_description>
+</parameter>
+<parameter name="cy">
+<parameter_description> Y pixel coordinate (return value).
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_lineto">
+<description>
+This function add a line segment to the passed @path with the
+specified @x and @y coordinates.
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+<parameter name="x">
+<parameter_description> x coordinate
+</parameter_description>
+</parameter>
+<parameter name="y">
+<parameter_description> y coordinate
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_all_open">
+<description>
+This function returns a boolean value indicating if the path only
+contains open segments.
+
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return> boolean, indicating if the path has all open segments.
+</return>
+</function>
+
+<function name="gnome_canvas_item_reset_bounds">
+<description>
+Resets the bounding box of a canvas item to an empty rectangle.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_points_ref">
+<description>
+Increases the reference count of the specified points structure.
+
+
+</description>
+<parameters>
+<parameter name="points">
+<parameter_description> A canvas points structure.
+</parameter_description>
+</parameter>
+</parameters>
+<return> The canvas points structure itself.
+</return>
+</function>
+
+<function name="gnome_canvas_path_def_any_closed">
+<description>
+This function returns a boolean valid indicating if the path has
+any closed segements.
+
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return> boolean, indicating if the path has any closed segments.
+</return>
+</function>
+
+<function name="gnome_canvas_get_scroll_offsets">
+<description>
+Queries the scrolling offsets of a canvas.  The values are returned in canvas
+pixel units.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="cx">
+<parameter_description> Horizontal scrolling offset (return value).
+</parameter_description>
+</parameter>
+<parameter name="cy">
+<parameter_description> Vertical scrolling offset (return value).
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_shape_set_path_def">
+<description>
+This function sets the the GnomeCanvasPathDef used by the
+GnomeCanvasShape. Notice, that it does not request updates, as
+it is meant to be used from item implementations, from inside
+update queue.
+
+</description>
+<parameters>
+<parameter name="shape">
+<parameter_description> a GnomeCanvasShape
+</parameter_description>
+</parameter>
+<parameter name="def">
+<parameter_description> a GnomeCanvasPathDef 
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_item_lower_to_bottom">
+<description>
+Lowers an item to the bottom of its parent&apos;s stack.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_c2w">
+<description>
+Converts canvas pixel coordinates to world coordinates.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="cx">
+<parameter_description> Canvas pixel X coordinate.
+</parameter_description>
+</parameter>
+<parameter name="cy">
+<parameter_description> Canvas pixel Y coordinate.
+</parameter_description>
+</parameter>
+<parameter name="wx">
+<parameter_description> X world coordinate (return value).
+</parameter_description>
+</parameter>
+<parameter name="wy">
+<parameter_description> Y world coordinate (return value).
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_item_hide">
+<description>
+Hides a canvas item.  If the item was already hidden, then no action is
+taken.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_item_get_type">
+<description>
+Registers the &amp;GnomeCanvasItem class if necessary, and returns the type ID
+associated to it.
+
+
+</description>
+<parameters>
+</parameters>
+<return>  The type ID of the &amp;GnomeCanvasItem class.
+</return>
+</function>
+
+<function name="gnome_canvas_path_def_closed_parts">
+<description>
+This function returns a new GnomeCanvasPathDef that contains the
+all of close parts of passed @path.
+
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new GnomeCanvasPathDef that contains all of the closed
+parts of passed @path.
+</return>
+</function>
+
+<function name="gnome_canvas_item_w2i">
+<description>
+Converts a coordinate pair from world coordinates to item-relative
+coordinates.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+<parameter name="x">
+<parameter_description> X coordinate to convert (input/output value).
+</parameter_description>
+</parameter>
+<parameter name="y">
+<parameter_description> Y coordinate to convert (input/output value).
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_item_lower">
+<description>
+Lowers the item in its parent&apos;s stack by the specified number of positions.
+If the number of positions is greater than the distance to the bottom of the
+stack, then the item is put at the bottom.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+<parameter name="positions">
+<parameter_description> Number of steps to lower the item.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_duplicate">
+<description>
+This function duplicates the passed @path. The new path is
+marked as non-static regardless of the state of original.
+
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef to duplicate
+</parameter_description>
+</parameter>
+</parameters>
+<return> a GnomeCanvasPathDef which is a duplicate of @path.
+</return>
+</function>
+
+<function name="gnome_canvas_item_show">
+<description>
+Shows a canvas item.  If the item was already shown, then no action is taken.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_cap_gdk_to_art">
+<description>
+Convert from GDK line cap specifier to libart.
+
+
+</description>
+<parameters>
+<parameter name="gdk_cap">
+<parameter_description> a cap type, represented in GDK format
+</parameter_description>
+</parameter>
+</parameters>
+<return> The line cap specifier in libart format.
+</return>
+</function>
+
+<function name="gnome_canvas_get_item_at">
+<description>
+Looks for the item that is under the specified position, which must be
+specified in world coordinates.
+
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="x">
+<parameter_description> X position in world coordinates.
+</parameter_description>
+</parameter>
+<parameter name="y">
+<parameter_description> Y position in world coordinates.
+</parameter_description>
+</parameter>
+</parameters>
+<return> The sought item, or NULL if no item is at the specified
+coordinates.
+</return>
+</function>
+
+<function name="gnome_canvas_item_update_svp">
+<description>
+Sets the svp to the new value, requesting repaint on what&apos;s changed. This
+function takes responsibility for freeing new_svp. This routine also adds the
+svp&apos;s bbox to the item&apos;s.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> the canvas item containing the svp that needs updating.
+</parameter_description>
+</parameter>
+<parameter name="p_svp">
+<parameter_description> a pointer to the existing svp
+</parameter_description>
+</parameter>
+<parameter name="new_svp">
+<parameter_description> the new svp
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_world_to_window">
+<description>
+Converts world coordinates into window-relative coordinates.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="worldx">
+<parameter_description> World X coordinate.
+</parameter_description>
+</parameter>
+<parameter name="worldy">
+<parameter_description> World Y coordinate.
+</parameter_description>
+</parameter>
+<parameter name="winx">
+<parameter_description> X window-relative coordinate.
+</parameter_description>
+</parameter>
+<parameter name="winy">
+<parameter_description> Y window-relative coordinate.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_item_request_update">
+<description>
+To be used only by item implementations.  Requests that the canvas queue an
+update for the specified item.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_item_grab_focus">
+<description>
+Makes the specified item take the keyboard focus, so all keyboard events will
+be sent to it.  If the canvas widget itself did not have the focus, it grabs
+it as well.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_item_grab">
+<description>
+Specifies that all events that match the specified event mask should be sent
+to the specified item, and also grabs the mouse by calling
+gdk_pointer_grab().  The event mask is also used when grabbing the pointer.
+If @cursor is not NULL, then that cursor is used while the grab is active.
+The @etime parameter is the timestamp required for grabbing the mouse.
+
+Return value: If an item was already grabbed, it returns %GDK_GRAB_ALREADY_GRABBED.  If
+the specified item was hidden by calling gnome_canvas_item_hide(), then it
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+<parameter name="event_mask">
+<parameter_description> Mask of events that will be sent to this item.
+</parameter_description>
+</parameter>
+<parameter name="cursor">
+<parameter_description> If non-NULL, the cursor that will be used while the grab is active.
+</parameter_description>
+</parameter>
+<parameter name="etime">
+<parameter_description> The timestamp required for grabbing the mouse, or GDK_CURRENT_TIME.
+</parameter_description>
+</parameter>
+</parameters>
+<return>%GDK_GRAB_NOT_VIEWABLE.  Else, it returns the result of calling
+gdk_pointer_grab().
+</return>
+</function>
+
+<function name="gnome_canvas_path_def_currentpoint">
+<description>
+Stores the current point of the path definition in the passed ArtPoint @p.
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+<parameter name="p">
+<parameter_description> a ArtPoint where to store the current point
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_curveto">
+<description>
+This function adds a bezier curve segment to the path definition.
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+<parameter name="x0">
+<parameter_description> first control point x coordinate
+</parameter_description>
+</parameter>
+<parameter name="y0">
+<parameter_description> first control point y coordinate
+</parameter_description>
+</parameter>
+<parameter name="x1">
+<parameter_description> second control point x coordinate
+</parameter_description>
+</parameter>
+<parameter name="y1">
+<parameter_description> second control point y coordinate
+</parameter_description>
+</parameter>
+<parameter name="x2">
+<parameter_description> end of curve x coordinate
+</parameter_description>
+</parameter>
+<parameter name="y2">
+<parameter_description> end of curve y coordinate
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_first_bpath">
+<description>
+This function returns the first ArtBpath point in the definition.
+
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return> ArtBpath being the first point in the path definition or
+null if no points are defined
+</return>
+</function>
+
+<function name="gnome_canvas_get_type">
+<description>
+Registers the &amp;GnomeCanvas class if necessary, and returns the type ID
+associated to it.
+
+
+</description>
+<parameters>
+</parameters>
+<return>  The type ID of the &amp;GnomeCanvas class.
+</return>
+</function>
+
+<function name="gnome_canvas_path_def_new_from_static_bpath">
+<description>
+This function constructs a new #gnome_canvas_path_def and
+references the passed @bpath as its contents.  The
+#gnome_canvas_path_def returned from this function is to be
+considered static and non-editable (meaning you cannot change the
+path from what you passed in @bpath). The bpath will not be freed,
+if path will be destroyed, so use it with caution.
+
+
+</description>
+<parameters>
+<parameter name="bpath">
+<parameter_description> libart bezier path
+</parameter_description>
+</parameter>
+</parameters>
+<return> the new canvas path definition that references the passed
+@bpath, or if the path is bad NULL is returned.
+</return>
+</function>
+
+<function name="gnome_canvas_item_affine_absolute">
+<description>
+Makes the item&apos;s affine transformation matrix be equal to the specified
+matrix. NULL affine is treated as identity.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+<parameter name="affine">
+<parameter_description> An affine transformation matrix.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_item_raise">
+<description>
+Raises the item in its parent&apos;s stack by the specified number of positions.
+If the number of positions is greater than the distance to the top of the
+stack, then the item is put at the top.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+<parameter name="positions">
+<parameter_description> Number of steps to raise the item.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_update_svp">
+<description>
+Sets the svp to the new value, requesting repaint on what&apos;s changed. This
+function takes responsibility for freeing new_svp.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> the canvas containing the svp that needs updating.
+</parameter_description>
+</parameter>
+<parameter name="p_svp">
+<parameter_description> a pointer to the existing svp
+</parameter_description>
+</parameter>
+<parameter name="new_svp">
+<parameter_description> the new svp
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_ref">
+<description>
+Increment the reference count of the GnomeCanvasPathDef.
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_any_open">
+<description>
+This function returns a boolean value indicating if the path has
+any open segments.
+
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return> boolean, indicating if the path has any open segments.
+</return>
+</function>
+
+<function name="gnome_canvas_item_set_valist">
+<description>
+Configures a canvas item.  The arguments in the item are set to the specified
+values, and the item is repainted as appropriate.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+<parameter name="first_arg_name">
+<parameter_description> The name of the first argument used to configure the item.
+</parameter_description>
+</parameter>
+<parameter name="args">
+<parameter_description> The list of object argument name/value pairs used to configure the item.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_has_currentpoint">
+<description>
+This function is a boolean test checking to see if the path has a
+current point defined. Current point will be set by line operators,
+and cleared by closing subpath.
+
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathdef
+</parameter_description>
+</parameter>
+</parameters>
+<return> boolean, indicating if the path has a current point defined.
+</return>
+</function>
+
+<function name="gnome_canvas_get_center_scroll_region">
+<description>
+Returns whether the canvas is set to center the scrolling region in the window
+if the former is smaller than the canvas&apos; allocation.
+
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+</parameters>
+<return> Whether the scroll region is being centered in the canvas window.
+</return>
+</function>
+
+<function name="gnome_canvas_scroll_to">
+<description>
+Makes a canvas scroll to the specified offsets, given in canvas pixel units.
+The canvas will adjust the view so that it is not outside the scrolling
+region.  This function is typically not used, as it is better to hook
+scrollbars to the canvas layout&apos;s scrolling adjusments.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="cx">
+<parameter_description> Horizontal scrolling offset in canvas pixel units.
+</parameter_description>
+</parameter>
+<parameter name="cy">
+<parameter_description> Vertical scrolling offset in canvas pixel units.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_reset">
+<description>
+This function clears the contents of the passed @path.
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_item_get_bounds">
+<description>
+Queries the bounding box of a canvas item.  The bounds are returned in the
+coordinate system of the item&apos;s parent.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+<parameter name="x1">
+<parameter_description> Leftmost edge of the bounding box (return value).
+</parameter_description>
+</parameter>
+<parameter name="y1">
+<parameter_description> Upper edge of the bounding box (return value).
+</parameter_description>
+</parameter>
+<parameter name="x2">
+<parameter_description> Rightmost edge of the bounding box (return value).
+</parameter_description>
+</parameter>
+<parameter name="y2">
+<parameter_description> Lower edge of the bounding box (return value).
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_item_update_svp_clip">
+<description>
+Sets the svp to the new value, clipping if necessary, and requesting repaint
+on what&apos;s changed. This function takes responsibility for freeing new_svp.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> the canvas item containing the svp that needs updating.
+</parameter_description>
+</parameter>
+<parameter name="p_svp">
+<parameter_description> a pointer to the existing svp
+</parameter_description>
+</parameter>
+<parameter name="new_svp">
+<parameter_description> the new svp
+</parameter_description>
+</parameter>
+<parameter name="clip_svp">
+<parameter_description> a clip path, if non-null
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_last_bpath">
+<description>
+This function returns pointer to the last ArtBpath segment in the path
+definition.
+
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return> ArtBpath, being the last segment in the path definition or
+null if no line segments have been defined.
+</return>
+</function>
+
+<function name="gnome_canvas_set_dither">
+<description>
+Controls dithered rendering for antialiased canvases. The value of
+dither should be #GDK_RGB_DITHER_NONE, #GDK_RGB_DITHER_NORMAL, or
+#GDK_RGB_DITHER_MAX. The default canvas setting is
+#GDK_RGB_DITHER_NORMAL.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="dither">
+<parameter_description> Type of dithering used to render an antialiased canvas.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_set_scroll_region">
+<description>
+Sets the scrolling region of a canvas to the specified rectangle.  The canvas
+will then be able to scroll only within this region.  The view of the canvas
+is adjusted as appropriate to display as much of the new region as possible.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="x1">
+<parameter_description> Leftmost limit of the scrolling region.
+</parameter_description>
+</parameter>
+<parameter name="y1">
+<parameter_description> Upper limit of the scrolling region.
+</parameter_description>
+</parameter>
+<parameter name="x2">
+<parameter_description> Rightmost limit of the scrolling region.
+</parameter_description>
+</parameter>
+<parameter name="y2">
+<parameter_description> Lower limit of the scrolling region.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_get_color">
+<description>
+Allocates a color based on the specified X color specification.  As a
+convenience to item implementations, it returns TRUE if the color was
+allocated, or FALSE if the specification was NULL.  A NULL color
+specification is considered as &quot;transparent&quot; by the canvas.
+
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="spec">
+<parameter_description> X color specification, or NULL for &quot;transparent&quot;.
+</parameter_description>
+</parameter>
+<parameter name="color">
+<parameter_description> Returns the allocated color.
+</parameter_description>
+</parameter>
+</parameters>
+<return> TRUE if @spec is non-NULL and the color is allocated.  If @spec
+is NULL, then returns FALSE.
+</return>
+</function>
+
+<function name="gnome_canvas_path_def_closepath_current">
+<description>
+This function closes the last subpath by setting the coordinates of
+the endpoint of the last segment (line or curve) to starting point.
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_item_set">
+<description>
+Configures a canvas item.  The arguments in the item are set to the specified
+values, and the item is repainted as appropriate.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+<parameter name="first_arg_name">
+<parameter_description> The list of object argument name/value pairs used to configure the item.
+</parameter_description>
+</parameter>
+<parameter name="Varargs">
+<parameter_description>
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_split">
+<description>
+This function splits the passed @path into a list of
+GnomeCanvasPathDefs which represent each segment of the origional
+path.  The path is split when ever an ART_MOVETO or ART_MOVETO_OPEN
+is encountered. The closedness of resulting paths is set accordingly
+to closedness of corresponding segment.
+
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return> a list of GnomeCanvasPathDef(s).
+</return>
+</function>
+
+<function name="gnome_canvas_w2c_affine">
+<description>
+Gets the affine transform that converts from world coordinates to canvas
+pixel coordinates.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="affine">
+<parameter_description> An affine transformation matrix (return value).
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_finish">
+<description>
+Trims dynamic point array to exact length of path.
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_shape_get_path_def">
+<description>
+This function returns the #GnomeCanvasPathDef that the shape
+currently uses.  It adds a reference to the #GnomeCanvasPathDef and
+returns it, if there is not a #GnomeCanvasPathDef set for the shape
+it returns NULL.
+
+
+</description>
+<parameters>
+<parameter name="shape">
+<parameter_description> a GnomeCanvasShape
+</parameter_description>
+</parameter>
+</parameters>
+<return> a #GnomeCanvasPathDef or NULL if none is set for the shape.
+</return>
+</function>
+
+<function name="gnome_canvas_polygon_to_point">
+<description>
+Computes the distance between a point and a polygon.
+
+
+</description>
+<parameters>
+<parameter name="poly">
+<parameter_description> Vertices of the polygon.  X coordinates are in the even indices, and Y
+coordinates are in the odd indices
+</parameter_description>
+</parameter>
+<parameter name="num_points">
+<parameter_description> Number of points in the polygon
+</parameter_description>
+</parameter>
+<parameter name="x">
+<parameter_description> X coordinate of the point
+</parameter_description>
+</parameter>
+<parameter name="y">
+<parameter_description> Y coordinate of the point
+</parameter_description>
+</parameter>
+</parameters>
+<return> The distance from the point to the polygon, or zero if the
+point is inside the polygon.
+</return>
+</function>
+
+<function name="gnome_canvas_window_to_world">
+<description>
+Converts window-relative coordinates into world coordinates.  You can use
+this when you need to convert mouse coordinates into world coordinates, for
+example.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="winx">
+<parameter_description> Window-relative X coordinate.
+</parameter_description>
+</parameter>
+<parameter name="winy">
+<parameter_description> Window-relative Y coordinate.
+</parameter_description>
+</parameter>
+<parameter name="worldx">
+<parameter_description> X world coordinate (return value).
+</parameter_description>
+</parameter>
+<parameter name="worldy">
+<parameter_description> Y world coordinate (return value).
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_get_scroll_region">
+<description>
+Queries the scrolling region of a canvas.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="x1">
+<parameter_description> Leftmost limit of the scrolling region (return value).
+</parameter_description>
+</parameter>
+<parameter name="y1">
+<parameter_description> Upper limit of the scrolling region (return value).
+</parameter_description>
+</parameter>
+<parameter name="x2">
+<parameter_description> Rightmost limit of the scrolling region (return value).
+</parameter_description>
+</parameter>
+<parameter name="y2">
+<parameter_description> Lower limit of the scrolling region (return value).
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_moveto">
+<description>
+This function adds starts new subpath on @path, and sets its
+starting point to @x and @y. If current subpath is empty, it
+simply changes its starting coordinates to new values.
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+<parameter name="x">
+<parameter_description> x coordinate
+</parameter_description>
+</parameter>
+<parameter name="y">
+<parameter_description> y coordinate
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_get_butt_points">
+<description>
+Computes the butt points of a line segment.
+
+</description>
+<parameters>
+<parameter name="x1">
+<parameter_description> X coordinate of first point in the line
+</parameter_description>
+</parameter>
+<parameter name="y1">
+<parameter_description> Y cooordinate of first point in the line
+</parameter_description>
+</parameter>
+<parameter name="x2">
+<parameter_description> X coordinate of second point (endpoint) of the line
+</parameter_description>
+</parameter>
+<parameter name="y2">
+<parameter_description> Y coordinate of second point (endpoint) of the line
+</parameter_description>
+</parameter>
+<parameter name="width">
+<parameter_description> Width of the line
+</parameter_description>
+</parameter>
+<parameter name="project">
+<parameter_description> Whether the butt points should project out by width/2 distance
+</parameter_description>
+</parameter>
+<parameter name="bx1">
+<parameter_description> X coordinate of first butt point is returned here
+</parameter_description>
+</parameter>
+<parameter name="by1">
+<parameter_description> Y coordinate of first butt point is returned here
+</parameter_description>
+</parameter>
+<parameter name="bx2">
+<parameter_description> X coordinate of second butt point is returned here
+</parameter_description>
+</parameter>
+<parameter name="by2">
+<parameter_description> Y coordinate of second butt point is returned here
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_item_new">
+<description>
+Creates a new canvas item with @parent as its parent group.  The item is
+created at the top of its parent&apos;s stack, and starts up as visible.  The item
+is of the specified @type, for example, it can be
+gnome_canvas_rect_get_type().  The list of object arguments/value pairs is
+used to configure the item.
+
+
+</description>
+<parameters>
+<parameter name="parent">
+<parameter_description> The parent group for the new item.
+</parameter_description>
+</parameter>
+<parameter name="type">
+<parameter_description> The object type of the item.
+</parameter_description>
+</parameter>
+<parameter name="first_arg_name">
+<parameter_description> A list of object argument name/value pairs, NULL-terminated,
+used to configure the item.  For example, &quot;fill_color&quot;, &quot;black&quot;,
+&quot;width_units&quot;, 5.0, NULL.
+</parameter_description>
+</parameter>
+<parameter name="Varargs">
+<parameter_description>
+</parameter_description>
+</parameter>
+</parameters>
+<return> The newly-created item.
+</return>
+</function>
+
+<function name="gnome_canvas_set_stipple_origin">
+<description>
+Sets the stipple origin of the specified GC as is appropriate for the canvas,
+so that it will be aligned with other stipple patterns used by canvas items.
+This is typically only needed by item implementations.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="gc">
+<parameter_description> GC on which to set the stipple origin.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_join_gdk_to_art">
+<description>
+Convert from GDK line join specifier to libart.
+
+
+</description>
+<parameters>
+<parameter name="gdk_join">
+<parameter_description> a join type, represented in GDK format
+</parameter_description>
+</parameter>
+</parameters>
+<return> The line join specifier in libart format.
+</return>
+</function>
+
+<function name="gnome_canvas_get_color_pixel">
+<description>
+Allocates a color from the RGBA value passed into this function.  The alpha
+opacity value is discarded, since normal X colors do not support it.
+
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="rgba">
+<parameter_description> RGBA color specification.
+</parameter_description>
+</parameter>
+</parameters>
+<return> Allocated pixel value corresponding to the specified color.
+</return>
+</function>
+
+<function name="gnome_canvas_new_aa">
+<description>
+Creates a new empty canvas in antialiased mode.  You should push the GdkRGB
+visual and colormap before calling this functions, and they can be popped
+afterwards.
+
+
+</description>
+<parameters>
+</parameters>
+<return> A newly-created antialiased canvas.
+</return>
+</function>
+
+<function name="gnome_canvas_w2c_d">
+<description>
+Converts world coordinates into canvas pixel coordinates.  This version
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="wx">
+<parameter_description> World X coordinate.
+</parameter_description>
+</parameter>
+<parameter name="wy">
+<parameter_description> World Y coordinate.
+</parameter_description>
+</parameter>
+<parameter name="cx">
+<parameter_description> X pixel coordinate (return value).
+</parameter_description>
+</parameter>
+<parameter name="cy">
+<parameter_description> Y pixel coordinate (return value).
+</parameter_description>
+</parameter>
+</parameters>
+<return>coordinates in floating point coordinates, for greater precision.
+</return>
+</function>
+
+<function name="gnome_canvas_item_i2w_affine">
+<description>
+Gets the affine transform that converts from the item&apos;s coordinate system to
+world coordinates.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item
+</parameter_description>
+</parameter>
+<parameter name="affine">
+<parameter_description> An affine transformation matrix (return value).
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_get_dither">
+<description>
+Returns the type of dithering used to render an antialiased canvas.
+
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+</parameters>
+<return> The dither setting.
+</return>
+</function>
+
+<function name="gnome_canvas_path_def_lineto_moving">
+<description>
+This functions adds a new line segment with loose endpoint to the path, or
+if endpoint is already loose, changes its coordinates to @x, @y. You
+can change the coordinates of loose endpoint as many times as you want,
+the last ones set will be fixed, if you continue line. This is useful
+for handling drawing with mouse.
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+<parameter name="x">
+<parameter_description> x coordinate
+</parameter_description>
+</parameter>
+<parameter name="y">
+<parameter_description> y coordinate
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_item_i2c_affine">
+<description>
+Gets the affine transform that converts from item-relative coordinates to
+canvas pixel coordinates.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+<parameter name="affine">
+<parameter_description> An affine transformation matrix (return value).
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_length">
+<description>
+This function returns the length of the path definition.  Not
+Euclidian length of the path but rather the number of points on the
+path.
+
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return> integer, number of points on the path.
+</return>
+</function>
+
+<function name="gnome_canvas_item_raise_to_top">
+<description>
+Raises an item to the top of its parent&apos;s stack.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_item_i2w">
+<description>
+Converts a coordinate pair from item-relative coordinates to world
+coordinates.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+<parameter name="x">
+<parameter_description> X coordinate to convert (input/output value).
+</parameter_description>
+</parameter>
+<parameter name="y">
+<parameter_description> Y coordinate to convert (input/output value).
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_path_def_bpath">
+<description>
+This function returns a ArtBpath that consists of the path
+definition.
+
+
+</description>
+<parameters>
+<parameter name="path">
+<parameter_description> a GnomeCanvasPathDef
+</parameter_description>
+</parameter>
+</parameters>
+<return> ArtBpath
+</return>
+</function>
+
+<function name="gnome_canvas_item_reparent">
+<description>
+Changes the parent of the specified item to be the new group.  The item keeps
+its group-relative coordinates as for its old parent, so the item may change
+its absolute position within the canvas.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> A canvas item.
+</parameter_description>
+</parameter>
+<parameter name="new_group">
+<parameter_description> A canvas group.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_text_get_type">
+<description>
+Registers the &amp;GnomeCanvasText class if necessary, and returns the type ID
+associated to it.
+
+
+</description>
+<parameters>
+<parameter name="void">
+<parameter_description> 
+</parameter_description>
+</parameter>
+</parameters>
+<return> The type ID of the &amp;GnomeCanvasText class.
+</return>
+</function>
+
+<function name="gnome_canvas_path_def_new_from_foreign_bpath">
+<description>
+This function constructs a new #gnome_canvas_path_def and
+duplicates the contents of the passed @bpath in the definition.
+
+
+</description>
+<parameters>
+<parameter name="bpath">
+<parameter_description> libart bezier path
+</parameter_description>
+</parameter>
+</parameters>
+<return> the newly created #gnome_canvas_path_def or NULL if the
+path is invalid.
+</return>
+</function>
+
+<function name="gnome_canvas_path_def_new">
+<description>
+This function creates a new empty #gnome_canvas_path_def.
+
+
+</description>
+<parameters>
+</parameters>
+<return> the new canvas path definition. 
+</return>
+</function>
+
+<function name="gnome_canvas_group_get_type">
+<description>
+Registers the &amp;GnomeCanvasGroup class if necessary, and returns the type ID
+associated to it.
+
+
+</description>
+<parameters>
+</parameters>
+<return>  The type ID of the &amp;GnomeCanvasGroup class.
+</return>
+</function>
+
+<function name="gnome_canvas_request_redraw_uta">
+<description>
+Informs a canvas that the specified area, given as a microtile array, needs
+to be repainted.  To be used only by item implementations.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> A canvas.
+</parameter_description>
+</parameter>
+<parameter name="uta">
+<parameter_description> Microtile array that specifies the area to be redrawn.  It will
+be freed by this function, so the argument you pass will be invalid
+after you call this function.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_update_svp_clip">
+<description>
+Sets the svp to the new value, clipping if necessary, and requesting repaint
+on what&apos;s changed. This function takes responsibility for freeing new_svp.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> the canvas containing the svp that needs updating.
+</parameter_description>
+</parameter>
+<parameter name="p_svp">
+<parameter_description> a pointer to the existing svp
+</parameter_description>
+</parameter>
+<parameter name="new_svp">
+<parameter_description> the new svp
+</parameter_description>
+</parameter>
+<parameter name="clip_svp">
+<parameter_description> a clip path, if non-null
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="gnome_canvas_render_svp">
+<description>
+Render the svp over the buf.
+
+</description>
+<parameters>
+<parameter name="buf">
+<parameter_description> the canvas buffer to render over
+</parameter_description>
+</parameter>
+<parameter name="svp">
+<parameter_description> the vector path to render
+</parameter_description>
+</parameter>
+<parameter name="rgba">
+<parameter_description> the rgba color to render
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+</root>

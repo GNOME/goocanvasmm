@@ -1,0 +1,49 @@
+/* $Id: rect.hg,v 1.5 2002/04/01 16:54:22 murrayc Exp $ */
+
+/* rect.h
+ * 
+ * Copyright (C) 1998 EMC Capital Management Inc.
+ * Developed by Havoc Pennington <hp@pobox.com>
+ *
+ * Copyright (C) 1999 The Gtk-- Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <libgnomecanvasmm/item.h>
+#include <libgnomecanvasmm/group.h>
+#include <libgnomecanvasmm/rect-ellipse.h>
+_DEFS(libgnomecanvasmm,libgnomecanvas)
+_PINCLUDE(libgnomecanvasmm/private/rect-ellipse_p.h)
+
+namespace Gnome
+{
+
+namespace Canvas
+{
+
+//class Group;
+
+class Rect : public RectEllipse
+{
+  _CLASS_GTKOBJECT(Rect, GnomeCanvasRect, GNOME_CANVAS_RECT, RectEllipse, GnomeCanvasRE)
+
+public:
+  Rect(Group& parent, double x1, double y1, double x2, double y2);
+  explicit Rect(Group& parent);
+};
+
+} /* namespace Canvas */
+} /* namespace Gnome */

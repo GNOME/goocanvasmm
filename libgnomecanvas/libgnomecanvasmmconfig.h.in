@@ -1,0 +1,12 @@
+#ifndef _LIBGNOMEUIMM_CONFIG_H
+#define _LIBGNOMEUIMM_CONFIG_H 1
+
+#include "gtkmmconfig.h"
+
+/* version numbers */
+#undef LIBGNOMEUIMM_MAJOR_VERSION
+#undef LIBGNOMEUIMM_MINOR_VERSION
+#undef LIBGNOMEUIMM_MICRO_VERSION
+
+#endif /* _LIBGNOMEUIMM_CONFIG_H */
+

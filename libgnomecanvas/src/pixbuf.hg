@@ -1,0 +1,59 @@
+// -*- C++ -*-
+/* $Id: pixbuf.hg,v 1.9 2002/06/02 19:47:14 daniel Exp $ */
+
+/* pixbuf.h
+ *
+ *
+ * Copyright (C) 2002 The libgnomecanvasmm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <gdkmm/pixbuf.h>
+#include <gtkmm/enums.h>
+#include <libgnomecanvasmm/item.h>
+#include <libgnomecanvas/gnome-canvas-pixbuf.h>
+_DEFS(libgnomecanvasmm,libgnomecanvas)
+_PINCLUDE(libgnomecanvasmm/private/item_p.h)
+
+namespace Gnome
+{
+
+namespace Canvas
+{
+
+class Pixbuf : public Item
+{
+  _CLASS_GTKOBJECT(Pixbuf, GnomeCanvasPixbuf, GNOME_CANVAS_PIXBUF, Item, GnomeCanvasItem)
+public:
+  Pixbuf(Group& parent, double x, double y, const Glib::RefPtr<Gdk::Pixbuf>& image);
+  explicit Pixbuf(Group& parent);
+
+  _WRAP_PROPERTY("pixbuf", Glib::RefPtr<Gdk::Pixbuf>)
+  _WRAP_PROPERTY("width", double)
+  _WRAP_PROPERTY("width-set", bool)
+  _WRAP_PROPERTY("width-in-pixels", bool)
+  _WRAP_PROPERTY("height", double)
+  _WRAP_PROPERTY("height-set", bool)
+  _WRAP_PROPERTY("height-in-pixels", bool)
+  _WRAP_PROPERTY("x", double)
+  _WRAP_PROPERTY("x-in-pixels", bool)
+  _WRAP_PROPERTY("y", double)
+  _WRAP_PROPERTY("y-in-pixels", bool)
+  _WRAP_PROPERTY("anchor", Gtk::AnchorType)
+};
+
+} /* namespace Canvas */
+} /* namespace Gnome */

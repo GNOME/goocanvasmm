@@ -1,0 +1,76 @@
+// -*- C++ -*-
+/* $Id: canvas.ccg,v 1.8 2003/07/21 19:45:07 murrayc Exp $ */
+
+/* canvas.cc
+ *
+ * Copyright (C) 1998 EMC Capital Management Inc.
+ * Developed by Havoc Pennington <hp@pobox.com>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <gtk/gtk.h>
+
+#include <libgnomecanvasmm/group.h>
+#include <libgnomecanvasmm/item.h>
+#include <libgnomecanvasmm/wrap_init.h>
+#include <libgnomecanvas/gnome-canvas-util.h>
+
+namespace Gnome
+{
+
+namespace Canvas
+{
+
+bool
+Canvas::get_color(const Glib::ustring& spec, Gdk::Color& color) const
+{
+  GdkColor* pColor = 0;
+  gboolean result = gnome_canvas_get_color(const_cast<GnomeCanvas*>(gobj()),
+                                           const_cast<gchar*>(spec.c_str()),
+                                           pColor);
+  color = Glib::wrap(pColor);
+  return (result == TRUE);
+}
+
+
+CanvasAA::CanvasAA()
+:
+  Glib::ObjectBase(0), //Mark this class as gtkmmproc-generated, rather than a custom class, to allow vfunc optimisations.
+  Canvas(Glib::ConstructParams(canvas_class_.init(), "aa", TRUE, (char*) 0))
+{
+  //Note that the use of Glib::ConstructParams() here required use of _GMMPROC_PROTECTED_GCLASS in cavas.hg.
+  
+  //gtk_widget_push_colormap (gdk_rgb_get_cmap ());
+  //ObjectBase::initialize ((GObject*)g_object_new (get_type (),
+  //                                                "aa", true,
+  //                                                NULL));
+  //gtk_widget_pop_colormap();
+}
+
+CanvasAA::~CanvasAA()
+{
+}
+
+Art::AffineTrans Canvas::w2c_affine() const
+{
+  double pAffine[6];
+  gnome_canvas_w2c_affine(const_cast<GnomeCanvas*>(gobj()), pAffine);
+
+  return Art::AffineTrans(pAffine);
+}
+
+} /* namespace Canvas */
+} /* namespace Gnome */
