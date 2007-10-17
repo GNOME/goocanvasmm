@@ -1,8 +1,0 @@
-Makefile
-Makefile.in
-
-libgnomecanvasmm-2.0.pc
-libgnomecanvasmm-2.0-uninstalled.pc
-libgnomecanvasmmconfig.h
-
-stamp*

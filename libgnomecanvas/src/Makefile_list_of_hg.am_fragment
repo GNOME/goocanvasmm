@@ -1,7 +1,0 @@
-# This file is include by other Makefile.am files, using the new automake include feature.
-# The include happens in Makefile.am, not Makefile.in or Makefile,
-# so it's like copy-and-pasting this into each of those Makefile.am files.
-
-files_hg = canvas.hg ellipse.hg rect.hg group.hg item.hg line.hg polygon.hg \
-           rect-ellipse.hg shape.hg pixbuf.hg rich-text.hg text.hg widget.hg \
-	   path-def.hg bpath.hg

@@ -1,1 +1,0 @@
-/opt/gnome220/share/libtool/ltmain.sh
