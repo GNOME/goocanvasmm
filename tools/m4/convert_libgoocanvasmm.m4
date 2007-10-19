@@ -22,9 +22,7 @@ _CONVERSION(`Canvas*',`GooCanvas*',`($3)->gobj()')
 #_CONVERSION(`Canvas&',`GooCanvas*',__FR2PD)
 
 _CONVERSION(`GooCanvasItem*',`Glib::RefPtr<Item>',`Glib::wrap($3)')
-_CONVERSION(`GooCanvasItem*',`const Glib::RefPtr<Item>&',`Glib::wrap($3, true)')
 _CONVERSION(`GooCanvasItemModel*',`Glib::RefPtr<ItemModel>',`Glib::wrap($3)')
-_CONVERSION(`GooCanvasItemModel*',`const Glib::RefPtr<ItemModel>&',`Glib::wrap($3, true)')
 _CONVERSION(`GooCanvasItemSimple',`Glib::RefPtr<ItemSimple>',`Glib::wrap($3)')
 _CONVERSION(`GooCanvasStyle*',`Glib::RefPtr<Style>',`Glib::wrap($3)')
 _CONVERSION(`GooCanvasStyle*',`Glib::RefPtr<const Style>',`Glib::wrap($3)')
@@ -34,10 +32,6 @@ _CONVERSION(`const Glib::RefPtr<ItemModel>&',`GooCanvasItemModel*',__CONVERT_REF
 _CONVERSION(`const Glib::RefPtr<ItemSimple>&',`GooCanvasItemSimple*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`const Glib::RefPtr<Style>&',`GooCanvasStyle*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`const Glib::RefPtr<Goocanvas::Widget>&',`GooCanvasWidget*',__CONVERT_REFPTR_TO_P)
-
-#I think I need these for wrapping Goocanvas::Item::get_items_at()
-define(`__FL2H_SHALLOW',`$`'2($`'3, Glib::OWNERSHIP_SHALLOW)')
-_CONVERSION(`GList*',`Glib::ListHandle< Glib::RefPtr<Item> >', __FL2H_SHALLOW)
 
 _CONVERSION(`const Cairo::RefPtr<Cairo::Context>&',`cairo_t*',`($3)->cobj()')
 _CONVERSION(`cairo_t*',`Cairo::RefPtr<Cairo::Context>',`Cairo::RefPtr<Cairo::Context>(new Cairo::Context($3))')

@@ -58,6 +58,10 @@ public:
 
   //TODO: Ref the items?
   //TODO: Add const versions
+
+#define(`__FL2H_SHALLOW',`$`'2($`'3, Glib::OWNERSHIP_SHALLOW)')
+#_CONVERSION(`GList*',`Glib::ListHandle< Glib::RefPtr<Item> >', __FL2H_SHALLOW)
+
   _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<Item> > get_items_at(double x, double y, bool is_pointer_event), goo_canvas_get_items_at)
   _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<Item> > get_items_in_area(const Bounds& area, bool inside_area, bool allow_overlaps, bool include_containers) const, goo_canvas_get_items_in_area)
 
@@ -92,6 +96,9 @@ public:
 #m4 _CONVERSION(`GtkAdjustment*',`Gtk::Adjustment*',__RP2P)
 
   _WRAP_SIGNAL(void set_scroll_adjustments(Gtk::Adjustment* hadjustment, Gtk::Adjustment* vadjustment), "set_scroll_adjustments")
+
+#m4 _CONVERSION(`GooCanvasItem*',`const Glib::RefPtr<Item>&',`Glib::wrap($3, true)')
+#m4 _CONVERSION(`GooCanvasItemModel*',`const Glib::RefPtr<ItemModel>&',`Glib::wrap($3, true)')
   _WRAP_SIGNAL(void item_created(const Glib::RefPtr<Item>& item, const Glib::RefPtr<ItemModel>& model), "item_created")
 
 protected:

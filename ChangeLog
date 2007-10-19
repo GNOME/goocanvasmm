@@ -1,3 +1,11 @@
+2007-10-19  Murray Cumming  <murrayc@murrayc.com>
+
+	* goocanvas/src/canvas.hg:
+	* goocanvas/src/item.hg: Added refreturn to get_style().
+	* tools/m4/convert_libgoocanvasmm.m4:
+	Moved signal-specific conversions to the .hg files to 
+	avoid accidental use for non-signals.
+
 2007-10-17  Murray Cumming  <murrayc@murrayc.com>
 
 	* configure.in:
