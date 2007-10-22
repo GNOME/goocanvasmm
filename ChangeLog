@@ -1,5 +1,10 @@
 2007-10-22  Murray Cumming  <murrayc@murrayc.com>
 
+	* goocanvas/src/image.hg: Added default values for the 
+	constructors and made them explicit.
+
+2007-10-22  Murray Cumming  <murrayc@murrayc.com>
+
 	* goocanvas/src/ellipsemodel.hg:
 	* goocanvas/src/image.hg:
 	* goocanvas/src/imagemodel.hg:

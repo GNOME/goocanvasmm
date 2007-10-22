@@ -29,11 +29,8 @@ class Image : public Goocanvas::ItemSimple
 {
   _CLASS_GOBJECT(Image,GooCanvasImage,GOO_CANVAS_IMAGE,Goocanvas::ItemSimple,GooCanvasItemSimple)
 protected:
-  //TODO: goo_canvas_image_new() does more than g_object_new(), which is a goocanvas bug, 
-  //so instances of this object will not work.
-  //In the worst case, we can implement a custom ctor and reimplement the same code.
-  Image(double x, double y);
-  Image(const Glib::RefPtr<Gdk::Pixbuf>& pixbuf, double x, double y);
+  explicit Image(double x = 0.0, double y = 0.0);
+  explicit Image(const Glib::RefPtr<Gdk::Pixbuf>& pixbuf, double x = 0.0, double y = 0.0);
   _IGNORE(goo_canvas_image_new)
 
 public:
@@ -43,7 +40,7 @@ public:
 
   _WRAP_PROPERTY("height", double)
   _WRAP_PROPERTY("pattern", Cairo::RefPtr<Cairo::Pattern>)
-  _WRAP_PROPERTY("pixbuf",Glib::RefPtr<Gdk::Pixbuf>)
+  _WRAP_PROPERTY("pixbuf", Glib::RefPtr<Gdk::Pixbuf>)
   _WRAP_PROPERTY("width", double)
   _WRAP_PROPERTY("x", double)
   _WRAP_PROPERTY("y", double)
