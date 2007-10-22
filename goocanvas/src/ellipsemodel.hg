@@ -29,7 +29,7 @@ class EllipseModel : public Goocanvas::ItemModelSimple
   _CLASS_GOBJECT(EllipseModel,GooCanvasEllipseModel,GOO_CANVAS_ELLIPSE_MODEL,Goocanvas::ItemModelSimple,GooCanvasItemModelSimple)
 protected:
 
-  EllipseModel(double center_x = 0.0, double center_y = 0., double radius_x = 0.0, double radius_y = 0.0 ) ;
+  EllipseModel(double center_x = 0.0, double center_y = 0., double radius_x = 0.0, double radius_y = 0.0);
   _IGNORE(goo_canvas_ellipse_model_new)
 
 public:

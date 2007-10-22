@@ -31,7 +31,7 @@ class RectModel :
 
 protected:
 
-  RectModel(gdouble x, double y, gdouble width, gdouble height) ;
+  RectModel(gdouble x, double y, gdouble width, gdouble height);
   _IGNORE(goo_canvas_rect_model_new)
 
 public:

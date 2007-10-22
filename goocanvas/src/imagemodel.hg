@@ -32,8 +32,8 @@ protected:
   //TODO: goo_canvas_image_new() does more than g_object_new(), which is a goocanvas bug, 
   //so instances of this object will not work.
   //In the worst case, we can implement a custom ctor and reimplement the same code.
-  ImageModel(double x, double y) ;
-  ImageModel(const Glib::RefPtr<Gdk::Pixbuf>& pixbuf, double x, double y) ;
+  ImageModel(double x, double y);
+  ImageModel(const Glib::RefPtr<Gdk::Pixbuf>& pixbuf, double x, double y);
   _IGNORE(goo_canvas_image_model_new)
 
 public:
