@@ -1,5 +1,10 @@
 2007-10-22  Murray Cumming  <murrayc@murrayc.com>
 
+	* goocanvas/src/image.hg: Added a create() method to 
+	match the new constructor added inthe last commit.
+
+2007-10-22  Murray Cumming  <murrayc@murrayc.com>
+
 	* goocanvas/src/image.hg: Added default values for the 
 	constructors and made them explicit.
 

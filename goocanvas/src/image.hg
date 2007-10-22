@@ -35,8 +35,8 @@ protected:
 
 public:
 
-  _WRAP_CREATE(double x, double y )
-  _WRAP_CREATE(const Glib::RefPtr<Gdk::Pixbuf>& pixbuf, double x, double y)
+  _WRAP_CREATE(double x = 0.0, double y = 0.0)
+  _WRAP_CREATE(const Glib::RefPtr<Gdk::Pixbuf>& pixbuf, double x = 0.0, double y = 0.0)
 
   _WRAP_PROPERTY("height", double)
   _WRAP_PROPERTY("pattern", Cairo::RefPtr<Cairo::Pattern>)
