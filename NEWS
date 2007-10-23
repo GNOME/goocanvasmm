@@ -1,3 +1,9 @@
+0.3.0:
+
+* Canvas: Wrapped the properties.
+* Image: Added default values for the constructors.
+* Item: get_style(): refcount correction.
+
 0.2.0:
 
 * The pkg-config file is now called goocanvas-1.0 instead of libgoocanvas.

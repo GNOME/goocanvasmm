@@ -16,7 +16,7 @@ AC_INIT(goocanvas/goocanvasmmconfig.h.in)
 #  Version and initialization
 #########################################################################
 LIBGOOCANVASMM_MAJOR_VERSION=0
-LIBGOOCANVASMM_MINOR_VERSION=2
+LIBGOOCANVASMM_MINOR_VERSION=3
 LIBGOOCANVASMM_MICRO_VERSION=0
 
 #
