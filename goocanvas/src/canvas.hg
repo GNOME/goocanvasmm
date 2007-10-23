@@ -25,6 +25,7 @@
 #include <gtkmm/container.h>
 #include <gdkmm/cursor.h>
 #include <cairomm/context.h>
+#include <gtkmm/papersize.h> //For Gtk::Unit
 
 
 
@@ -69,7 +70,8 @@ public:
   _WRAP_METHOD(void set_scale(double scale), goo_canvas_set_scale)
 
   _WRAP_METHOD(void get_bounds(double& left, double& top, double& right, double& bottom) const, goo_canvas_get_bounds)
-  _WRAP_METHOD(void set_bounds(double left, double top, double right, double bototm), goo_canvas_set_bounds)
+  _WRAP_METHOD(void set_bounds(double left, double top, double right, double bottom), goo_canvas_set_bounds)
+  void set_bounds(const Bounds& bounds);
 
   _WRAP_METHOD(void scroll_to(double left, double top), goo_canvas_scroll_to)
 
@@ -116,6 +118,26 @@ protected:
   _WRAP_METHOD(void register_widget_item(const Glib::RefPtr<Goocanvas::Widget>& widget), goo_canvas_register_widget_item)
   _WRAP_METHOD(void unregister_widget_item(const Glib::RefPtr<Goocanvas::Widget>& widget), goo_canvas_unregister_widget_item)
 
+
+  _WRAP_PROPERTY("scale", double)
+  _WRAP_PROPERTY("scale-x", double)
+  _WRAP_PROPERTY("scale-y", double)
+  _WRAP_PROPERTY("anchor", Gtk::AnchorType)
+  _WRAP_PROPERTY("x1", double)
+  _WRAP_PROPERTY("y1", double)
+  _WRAP_PROPERTY("x2", double)
+  _WRAP_PROPERTY("y2", double)
+  _WRAP_PROPERTY("automatic-bounds", bool)
+  _WRAP_PROPERTY("bounds-from-origin", bool)
+  _WRAP_PROPERTY("bounds-padding", double)
+  _WRAP_PROPERTY("units", Gtk::Unit)
+  _WRAP_PROPERTY("resolution-x", double)
+  _WRAP_PROPERTY("resolution-y", double)
+  _WRAP_PROPERTY("background-color", Glib::ustring)
+  _WRAP_PROPERTY("background-color-rgb", guint)
+  _WRAP_PROPERTY("integer-layout", bool)
+
 };
 
-}
+} //namespace Goocanvas
+
