@@ -69,7 +69,10 @@ public:
   _WRAP_METHOD(double get_scale() const, goo_canvas_get_scale)
   _WRAP_METHOD(void set_scale(double scale), goo_canvas_set_scale)
 
+
   _WRAP_METHOD(void get_bounds(double& left, double& top, double& right, double& bottom) const, goo_canvas_get_bounds)
+  void get_bounds(Bounds& bounds) const;
+
   _WRAP_METHOD(void set_bounds(double left, double top, double right, double bottom), goo_canvas_set_bounds)
   void set_bounds(const Bounds& bounds);
 

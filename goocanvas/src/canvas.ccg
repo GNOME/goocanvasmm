@@ -31,6 +31,16 @@ void Canvas::render(const Cairo::RefPtr<Cairo::Context>& context, double scale)
   goo_canvas_render(gobj(), (context)->cobj(), NULL, scale); 
 }
 
+void Canvas::get_bounds(Bounds& bounds) const
+{
+  double x1 = 0;
+  double y1 = 0;
+  double x2 = 0;
+  double y2 = 0;
+  get_bounds(x1, y1, x2, y2);
+  bounds = Bounds(x1, y1, x2, y2);
+}
+
 void Canvas::set_bounds(const Bounds& bounds)
 {
   set_bounds(bounds.get_x1(), bounds.get_y1(), bounds.get_x2(), bounds.get_y2());
