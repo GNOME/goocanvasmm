@@ -36,11 +36,13 @@ ExampleWindow::ExampleWindow()
   m_label_origin.set_alignment(0.0, 0.5);
 
   m_canvas.set_size_request(640, 480);
-  m_canvas.set_bounds(0, 0, 1000, 1000);
+  m_canvas.property_units() = Gtk::UNIT_MM;
+  m_canvas.set_bounds(0, 0, 210, 297);
 
   Glib::RefPtr<Goocanvas::Item> root = m_canvas.get_root_item();
   m_text = Goocanvas::Text::create("some text");
   root->add_child(m_text);
+  m_text->property_font() = "Sans 9";
   m_text->property_line_width().set_value(10.0);
   m_text->property_stroke_color().set_value("yellow");
   m_text->property_fill_color().set_value("gray");

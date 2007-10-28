@@ -141,6 +141,12 @@ public:
   _WRAP_SIGNAL(bool grab_broken_event(const Glib::RefPtr<Item>& target, GdkEventGrabBroken* event), "grab_broken_event")
   _WRAP_SIGNAL(void child_notify(GParamSpec* pspec), "child_notify")
 
+  _WRAP_PROPERTY("can-focus", bool)
+  _WRAP_PROPERTY("visibility", ItemVisibility)
+  _WRAP_PROPERTY("description", Glib::ustring)
+  _WRAP_PROPERTY("visibility-threshold", double)
+  _WRAP_PROPERTY("pointer-events", PointerEvents)
+
 protected:
 
 /*
@@ -223,11 +229,7 @@ protected:
 							 GooCanvasItemModel	*model);
 */
 
-  _WRAP_PROPERTY("can-focus", bool)
-  _WRAP_PROPERTY("visibility", ItemVisibility)
-  _WRAP_PROPERTY("description", Glib::ustring)
-  _WRAP_PROPERTY("visibility-threshold", double)
-  _WRAP_PROPERTY("pointer-events", PointerEvents)
+
 };
 
 } //namespace Goocanvas

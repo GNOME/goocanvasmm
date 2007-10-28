@@ -97,17 +97,6 @@ public:
   _WRAP_METHOD(GdkGrabStatus keyboard_grab(const Glib::RefPtr<Item>& item, bool owner_events, guint32 time), goo_canvas_keyboard_grab)
   _WRAP_METHOD(void keyboard_ungrab(const Glib::RefPtr<Item>& item, guint32 time), goo_canvas_keyboard_ungrab)
 
-#m4 _CONVERSION(`Gtk::Adjustment*',`GtkAdjustment*',__FP2P)
-#m4 _CONVERSION(`GtkAdjustment*',`Gtk::Adjustment*',__RP2P)
-
-  _WRAP_SIGNAL(void set_scroll_adjustments(Gtk::Adjustment* hadjustment, Gtk::Adjustment* vadjustment), "set_scroll_adjustments")
-
-#m4 _CONVERSION(`GooCanvasItem*',`const Glib::RefPtr<Item>&',`Glib::wrap($3, true)')
-#m4 _CONVERSION(`GooCanvasItemModel*',`const Glib::RefPtr<ItemModel>&',`Glib::wrap($3, true)')
-  _WRAP_SIGNAL(void item_created(const Glib::RefPtr<Item>& item, const Glib::RefPtr<ItemModel>& model), "item_created")
-
-protected:
-
   _WRAP_METHOD(Cairo::RefPtr<Cairo::Context> create_cairo_context(), goo_canvas_create_cairo_context)
 
   _WRAP_METHOD(Glib::RefPtr<Item> create_item(const Glib::RefPtr<ItemModel>& model), goo_canvas_create_item)
@@ -121,6 +110,14 @@ protected:
   _WRAP_METHOD(void register_widget_item(const Glib::RefPtr<Goocanvas::Widget>& widget), goo_canvas_register_widget_item)
   _WRAP_METHOD(void unregister_widget_item(const Glib::RefPtr<Goocanvas::Widget>& widget), goo_canvas_unregister_widget_item)
 
+#m4 _CONVERSION(`Gtk::Adjustment*',`GtkAdjustment*',__FP2P)
+#m4 _CONVERSION(`GtkAdjustment*',`Gtk::Adjustment*',__RP2P)
+
+  _WRAP_SIGNAL(void set_scroll_adjustments(Gtk::Adjustment* hadjustment, Gtk::Adjustment* vadjustment), "set_scroll_adjustments")
+
+#m4 _CONVERSION(`GooCanvasItem*',`const Glib::RefPtr<Item>&',`Glib::wrap($3, true)')
+#m4 _CONVERSION(`GooCanvasItemModel*',`const Glib::RefPtr<ItemModel>&',`Glib::wrap($3, true)')
+  _WRAP_SIGNAL(void item_created(const Glib::RefPtr<Item>& item, const Glib::RefPtr<ItemModel>& model), "item_created")
 
   _WRAP_PROPERTY("scale", double)
   _WRAP_PROPERTY("scale-x", double)
