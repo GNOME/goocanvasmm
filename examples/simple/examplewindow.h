@@ -2,15 +2,15 @@
 #include <gtkmm.h>
 #include <goocanvasmm.h>
 
-class SimpleWindow : public Gtk::Window
+class ExampleWindow : public Gtk::Window
 {
 public:
-  SimpleWindow() ;
+  ExampleWindow() ;
 
-private:
+protected:
 
-  Goocanvas::Canvas* _canvas ;
-  Glib::RefPtr<Goocanvas::Rect> _rect ;
+  Goocanvas::Canvas m_canvas;
+  Glib::RefPtr<Goocanvas::Rect> m_table;
 
   bool on_rect_button_press(const Glib::RefPtr<Goocanvas::Item>& target, GdkEventButton* event);
 };

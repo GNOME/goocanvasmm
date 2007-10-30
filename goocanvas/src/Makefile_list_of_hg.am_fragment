@@ -24,6 +24,7 @@ pathmodel.hg \
 rect.hg \
 rectmodel.hg \
 style.hg \
+table.hg \
 text.hg \
 textmodel.hg \
 widget.hg

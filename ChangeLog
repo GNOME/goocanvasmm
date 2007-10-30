@@ -1,3 +1,15 @@
+2007-10-30  Murray Cumming  <murrayc@murrayc.com>
+
+	* configure.in:
+	* goocanvas/goocanvasmm.h:
+	* goocanvas/src/Makefile_list_of_hg.am_fragment:
+	* goocanvas/src/table.ccg:
+	* goocanvas/src/table.hg: Wrapped GooCanvasTable, 
+	though we need some API for the child properties.
+	* examples/Makefile.am:
+	* examples/simple/: Cleaned up the synax a little.
+	* examples/table/: New example.
+
 2007-10-28  Murray Cumming  <murrayc@murrayc.com>
 
 	* goocanvas/src/canvas.hg:

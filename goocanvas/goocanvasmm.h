@@ -54,6 +54,7 @@ extern const int goocanvasmm_micro_version;
 #include <goocanvasmm/rect.h>
 #include <goocanvasmm/rectmodel.h>
 #include <goocanvasmm/style.h>
+#include <goocanvasmm/table.h>
 #include <goocanvasmm/text.h>
 #include <goocanvasmm/textmodel.h>
 #include <goocanvasmm/types.h>

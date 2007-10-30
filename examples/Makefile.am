@@ -1,4 +1,4 @@
-SUBDIRS = simple moving_shapes demo coordinates text
+SUBDIRS = simple moving_shapes demo coordinates text table
 
 #EXTRA_DIST	=  Makefile.am_fragment README.txt
 
