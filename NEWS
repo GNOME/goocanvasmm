@@ -1,3 +1,12 @@
+0.4.0:
+
+* Canvas:
+  - Make the properties public.
+  - Added get_bounds(Bounds&) method overload.
+* Item: Make the properties public.
+* Added Table, with an example.
+  (Murray Cumming)
+
 0.3.0:
 
 * Canvas: Wrapped the properties.
