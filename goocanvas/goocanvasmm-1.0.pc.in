@@ -8,4 +8,4 @@ Description: C++ wrapper for libgoocanvas
 Requires: gtkmm-2.4 goocanvas
 Version: @VERSION@
 Libs: -L${libdir} -lgoocanvasmm-0.1
-Cflags: -I${includedir}/goocanvasmm-0.1
+Cflags: -I${includedir}/goocanvasmm-0.1 -I${libdir}/goocanvasmm-0.1/include

@@ -5,5 +5,5 @@ EXTRA_DIST = $(files_tools_m4) \
 
 # Install the .m4, files:
 
-tools_m4_includedir = $(libdir)/libgoocanvasmm-0.1/proc/m4
+tools_m4_includedir = $(libdir)/goocanvasmm-0.1/proc/m4
 tools_m4_include_HEADERS = $(files_tools_m4)
