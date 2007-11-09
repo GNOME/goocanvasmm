@@ -1,5 +1,10 @@
 2007-11-09  Murray Cumming  <murrayc@murrayc.com>
 
+	* configure.in: Removed cairomm and glibmm checks.
+	gtkmm should be enough.
+
+2007-11-09  Murray Cumming  <murrayc@murrayc.com>
+
 	* tools/m4/Makefile.am: Correct the install location 
 	of the .m4 files.
 	* goocanvas/goocanvasmm-1.0.pc.in: Mention the include 
