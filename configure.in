@@ -144,9 +144,10 @@ AC_OUTPUT([
     docs/reference/Doxyfile
 
   examples/Makefile
+    examples/demo/Makefile
+    examples/drag_to_canvas/Makefile
     examples/simple/Makefile
     examples/moving_shapes/Makefile
-    examples/demo/Makefile
     examples/coordinates/Makefile
     examples/text/Makefile
     examples/table/Makefile

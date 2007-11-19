@@ -1,3 +1,19 @@
+2007-11-19  Murray Cumming  <murrayc@murrayc.com>
+
+	* goocanvas/src/ellipse.hg: Add default values to the 
+	constructor parameters.
+	* goocanvas/src/rect.hg: Remove the default constructor, 
+	because we already have a constructor with all default 
+	parameter values.
+
+	* configure.in:
+	* examples/Makefile.am:
+	* examples/drag_to_canvas/examplewindow.cc:
+	* examples/drag_to_canvas/examplewindow.h:
+	* examples/drag_to_canvas/main.cc: Added an example of 
+	dragging items from a toolbar to a canvas, though this 
+	does not work yet.
+
 2007-11-09  Murray Cumming  <murrayc@murrayc.com>
 
 	* configure.in: Removed cairomm and glibmm checks.

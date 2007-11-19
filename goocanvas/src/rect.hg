@@ -30,14 +30,12 @@ class Rect : public Goocanvas::ItemSimple
 
 protected:
 
-  _CTOR_DEFAULT()
-  explicit Rect(double x, double y, double width, double height);
+  explicit Rect(double x = 0.0, double y = 0.0, double width = 0.0, double height = 0.0);
   _IGNORE(goo_canvas_rect_new)
 
 public:
 
   _WRAP_CREATE(double x = 0.0, double y = 0.0, double width = 0.0, double height = 0.0)
-  _WRAP_CREATE()
 
   _WRAP_PROPERTY("height", double)
   _WRAP_PROPERTY("radius-x", double)
