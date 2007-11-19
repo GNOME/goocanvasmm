@@ -1,5 +1,10 @@
 2007-11-19  Murray Cumming  <murrayc@murrayc.com>
 
+	* examples/drag_to_canvas/examplewindow.cc: Handle drag-motion 
+	again to show the problem.
+
+2007-11-19  Murray Cumming  <murrayc@murrayc.com>
+
 	* examples/drag_to_canvas/examplewindow.cc:
 	* examples/drag_to_canvas/examplewindow.h: Make this work 
 	for drops, but without using drag_motion to show a preview. 

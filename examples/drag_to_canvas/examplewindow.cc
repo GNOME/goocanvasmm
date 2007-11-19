@@ -32,8 +32,8 @@ ExampleWindow::ExampleWindow()
 
   //Make the canvas a drag-and-drop destination:
   m_canvas.drag_dest_set(m_drag_targets, Gtk::DEST_DEFAULT_ALL, Gdk::ACTION_COPY);
-  //m_canvas.signal_drag_motion().connect(
-  //    sigc::mem_fun(*this, &ExampleWindow::on_canvas_drag_motion) );
+  m_canvas.signal_drag_motion().connect(
+      sigc::mem_fun(*this, &ExampleWindow::on_canvas_drag_motion) );
   m_canvas.signal_drag_drop().connect(
       sigc::mem_fun(*this, &ExampleWindow::on_canvas_drag_drop) );
 
@@ -96,8 +96,8 @@ bool ExampleWindow::on_canvas_drag_motion(const Glib::RefPtr<Gdk::DragContext>& 
 
     //We need to examine the SelectionData:
     //This will cause our drag_data_received callback to be called, with that information:
-    //m_drag_preview_requested = true;
-    //m_canvas.drag_get_data(drag_context, target, timestamp);
+    m_drag_preview_requested = true;
+    m_canvas.drag_get_data(drag_context, target, timestamp);
     return true;
   }
 
@@ -145,6 +145,9 @@ void ExampleWindow::on_canvas_drag_data_received(const Glib::RefPtr<Gdk::DragCon
   }
   else
   {
+    if(m_layout_item_dropping)
+      m_layout_item_dropping->remove();
+
     m_layout_item_dropping.clear();
     create_canvas_item(drag_item, x, y);
   }
