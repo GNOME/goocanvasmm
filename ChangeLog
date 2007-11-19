@@ -1,5 +1,11 @@
 2007-11-19  Murray Cumming  <murrayc@murrayc.com>
 
+	* examples/drag_to_canvas/examplewindow.cc:
+	* examples/drag_to_canvas/examplewindow.h: Make this work 
+	for drops, but without using drag_motion to show a preview. 
+
+2007-11-19  Murray Cumming  <murrayc@murrayc.com>
+
 	* goocanvas/src/ellipse.hg: Add default values to the 
 	constructor parameters.
 	* goocanvas/src/rect.hg: Remove the default constructor, 

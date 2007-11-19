@@ -32,8 +32,8 @@ ExampleWindow::ExampleWindow()
 
   //Make the canvas a drag-and-drop destination:
   m_canvas.drag_dest_set(m_drag_targets, Gtk::DEST_DEFAULT_ALL, Gdk::ACTION_COPY);
-  m_canvas.signal_drag_motion().connect(
-      sigc::mem_fun(*this, &ExampleWindow::on_canvas_drag_motion) );
+  //m_canvas.signal_drag_motion().connect(
+  //    sigc::mem_fun(*this, &ExampleWindow::on_canvas_drag_motion) );
   m_canvas.signal_drag_drop().connect(
       sigc::mem_fun(*this, &ExampleWindow::on_canvas_drag_drop) );
 
@@ -70,8 +70,10 @@ bool ExampleWindow::on_canvas_drag_drop(const Glib::RefPtr<Gdk::DragContext>& dr
   if(target.empty())
     return false;
 
-
-  //m_canvas.drag_get_data(drag_context, target, timestamp);
+  //Get the details, to create the appropriate canvas item:
+  //This will cause our drag_data_received callback to be called, with that information:
+  m_drag_preview_requested = false;
+  m_canvas.drag_get_data(drag_context, target, timestamp);
   return true; //Allow the drop.
 }
 
@@ -88,16 +90,18 @@ bool ExampleWindow::on_canvas_drag_motion(const Glib::RefPtr<Gdk::DragContext>& 
   //Create the temporary canvas item if necesary:
   if(!m_layout_item_dropping)
   {
-    //std::cout << "ExampleWindow::on_canvas_drag_motion(): Calling drag_get_data()" << std::endl;
+    std::cout << "  ExampleWindow::on_canvas_drag_motion(): Calling drag_get_data()" << std::endl;
 
     //TODO: This stops the drop (or any further motion events) from happening:
 
     //We need to examine the SelectionData:
     //This will cause our drag_data_received callback to be called, with that information:
-    m_drag_preview_requested = true;
-    m_canvas.drag_get_data(drag_context, target, timestamp);
+    //m_drag_preview_requested = true;
+    //m_canvas.drag_get_data(drag_context, target, timestamp);
     return true;
   }
+
+  std::cout << "  ExampleWindow::on_canvas_drag_motion(): item already created." << std::endl;
 
   drag_context->drag_status(Gdk::ACTION_COPY, timestamp);
 
@@ -130,29 +134,26 @@ void ExampleWindow::on_canvas_drag_data_received(const Glib::RefPtr<Gdk::DragCon
   //This is called when an item is dropped on the canvas,
   //or after our drag_motion handler has called drag_get_data()): 
   
-  //Discover what toolbar item was dropped:
+  //Discover what toolbar item was dragged:
   const DragItem drag_item = get_drag_item_from_selection_data(selection_data);
+
+
+  //Create the temporary drag item if necessary:
+  if(m_drag_preview_requested && !m_layout_item_dropping)
+  {
+    m_layout_item_dropping = create_canvas_item(drag_item, x, y);
+  }
+  else
+  {
+    m_layout_item_dropping.clear();
+    create_canvas_item(drag_item, x, y);
+  }
   
   if(m_drag_preview_requested)
   {
     std::cout << "ExampleWindow::on_canvas_drag_data_received: m_drag_preview_requested" << std::endl;
 
-    //Create the temporary drag item if necessary:
-    if(!m_layout_item_dropping)
-    {
-      m_layout_item_dropping = create_canvas_item(drag_item);
-      Glib::RefPtr<Goocanvas::Item> root = m_canvas.get_root_item();
-      root->add_child(m_layout_item_dropping);
-
-      //Show it on the canvas, at the position:
-      double item_x = x;
-      double item_y = y;
-      m_canvas.convert_from_pixels(item_x, item_y);
-      m_layout_item_dropping->translate(item_x, item_y);
-
-      drag_context->drag_status(Gdk::ACTION_COPY, timestamp);
-    }
-
+    drag_context->drag_status(Gdk::ACTION_COPY, timestamp);
     m_drag_preview_requested = false;
   }
   else
@@ -171,13 +172,13 @@ void ExampleWindow::on_button_drag_data_get(const Glib::RefPtr<Gdk::DragContext>
           1 /* 1 byte */);
 }
 
-Glib::RefPtr<Goocanvas::Item> ExampleWindow::create_canvas_item(DragItem drag_item)
+Glib::RefPtr<Goocanvas::Item> ExampleWindow::create_canvas_item(DragItem drag_item, int x, int y)
 {
   Glib::RefPtr<Goocanvas::Item> result;
 
   if(drag_item == DRAG_ITEM_RECTANGLE)
   {
-    Glib::RefPtr<Goocanvas::Rect> rect = Goocanvas::Rect::create(100, 100, 400, 400);
+    Glib::RefPtr<Goocanvas::Rect> rect = Goocanvas::Rect::create(0, 0, 20, 20);
     rect->property_line_width().set_value(10.0);
     rect->property_stroke_color().set_value("yellow");
     rect->property_fill_color().set_value("red");
@@ -192,6 +193,18 @@ Glib::RefPtr<Goocanvas::Item> ExampleWindow::create_canvas_item(DragItem drag_it
     ellipse->property_stroke_color().set_value("yellow");
     ellipse->property_fill_color().set_value("red");
     result = ellipse;
+  }
+
+  if(result)
+  {
+    Glib::RefPtr<Goocanvas::Item> root = m_canvas.get_root_item();
+    root->add_child(result);
+
+    //Show it on the canvas, at the position:
+    double item_x = x;
+    double item_y = y;
+    m_canvas.convert_from_pixels(item_x, item_y);
+    result->translate(item_x, item_y);
   }
 
   return result;

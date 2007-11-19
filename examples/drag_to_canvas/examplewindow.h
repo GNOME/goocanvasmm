@@ -23,8 +23,9 @@ protected:
   bool on_canvas_drag_motion(const Glib::RefPtr<Gdk::DragContext>& drag_context, int x, int y, guint timestamp);
   void on_canvas_drag_data_received(const Glib::RefPtr<Gdk::DragContext>& drag_context, int x, int y, const Gtk::SelectionData& selection_data, guint info, guint timestamp);
 
+  Glib::RefPtr<Goocanvas::Item> create_canvas_item(DragItem drag_item, int x, int y);
+  
   static DragItem get_drag_item_from_selection_data(const Gtk::SelectionData& selection_data);
-  static Glib::RefPtr<Goocanvas::Item> create_canvas_item(DragItem drag_item);
   
   Goocanvas::Canvas m_canvas;
 
