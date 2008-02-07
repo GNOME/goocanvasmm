@@ -1,5 +1,10 @@
 2008-02-07  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* examples/simple/examplewindow.cc: hook up the button-press signal on the
+	simple example
+
+2008-02-07  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* goocanvas/src/libgoocanvas_vfuncs.defs: added vfunc definitions for
 	ItemSimple
 	* goocanvas/src/itemsimple.hg: added _MEMBER_GET/SET for bounds, attempted

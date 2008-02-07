@@ -17,6 +17,8 @@ ExampleWindow::ExampleWindow()
   rect->property_radius_y().set_value(20.0);
   rect->property_stroke_color().set_value("yellow");
   rect->property_fill_color().set_value("red");
+  rect->signal_button_press_event ().connect (sigc::mem_fun (this,
+              &ExampleWindow::on_rect_button_press));
 
   Glib::RefPtr<Goocanvas::Text> text = Goocanvas::Text::create("Hello World", 300, 300, -1, Gtk::ANCHOR_CENTER);
   root->add_child(text);
