@@ -1,3 +1,11 @@
+2008-02-07  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* goocanvas/src/libgoocanvas_vfuncs.defs: added vfunc definitions for
+	ItemSimple
+	* goocanvas/src/itemsimple.hg: added _MEMBER_GET/SET for bounds, attempted
+	to wrap the vfuncs, but there seems to be a ref-counting issue -- needs
+	investigation.
+
 2008-02-06  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* goocanvas/src/libgoocanvas_docs.xml: re-generated docs
