@@ -1,3 +1,16 @@
+2008-02-16  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* goocanvas/src/item.hg: modify get_items_at() to take a non-const
+	listhandle for found_items since the convention for C functions that
+	implement this function is to add any found items onto this list and then
+	pass it down to the child item which adds their found items.
+	Also wrapped a few more vfuncs
+	* goocanvas/src/itemsimple.hg: wrap vfuncs, add getters and setters for some
+	public data members
+	* goocanvas/src/libgoocanvas_vfuncs.defs: update get_items_at()
+	* tools/m4/convert_libgoocanvasmm.m4: minor changes to support the changes
+	above
+
 2008-02-07  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* examples/simple/examplewindow.cc: hook up the button-press signal on the

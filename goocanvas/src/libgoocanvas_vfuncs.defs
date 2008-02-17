@@ -101,15 +101,16 @@
 	)
 )
 
-(define-vfunc get_item_at
+(define-vfunc get_items_at
 	(of-object "GooCanvasItem")
-	(return-type "GooCanvasItem*")
+	(return-type "GList*")
 	(parameters
 		'("gdouble" "x")
 		'("gdouble" "y")
 		'("cairo_t*" "cr")
 		'("gboolean" "is_pointer_event")
 		'("gboolean" "parent_is_visible")
+		'("GList*" "found_items")
 	)
 )
 
