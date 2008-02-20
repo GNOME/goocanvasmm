@@ -25,7 +25,7 @@ namespace Goocanvas
 
 TextModel::TextModel(const Glib::ustring& string, double x, double y, double width, Gtk::AnchorType anchor)
 : 
-  _CONSTRUCT("string", string.c_str(), "x", x, "y", y, "width", width, "anchor", (GtkAnchorType)anchor)
+  _CONSTRUCT("text", string.c_str(), "x", x, "y", y, "width", width, "anchor", (GtkAnchorType)anchor)
 {
 }
 

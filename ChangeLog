@@ -1,3 +1,8 @@
+2008-02-20  Gennaro Bellizio  <genbell@tiscali.it>
+
+	* goocanvas/src/textmodel.ccg: Constructor: Correct the property name 
+	from string to text to fix the instantiation.
+
 2008-02-16  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* goocanvas/src/item.hg: modify get_items_at() to take a non-const
