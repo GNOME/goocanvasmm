@@ -1,3 +1,8 @@
+2008-02-21  Gennaro Bellizio  <genbell@tiscali.it>
+
+	* goocanvas/src/textmodel.hg: Use the C++ type for the alignment 
+	property. Bug #517817.
+
 2008-02-20  Gennaro Bellizio  <genbell@tiscali.it>
 
 	* goocanvas/src/textmodel.ccg: Constructor: Correct the property name 

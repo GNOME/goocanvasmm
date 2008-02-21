@@ -37,7 +37,7 @@ public:
 
   _WRAP_CREATE(const Glib::ustring& string = Glib::ustring(), double x = 0.0, double y = 0.0, double width = -1, Gtk::AnchorType anchor = Gtk::ANCHOR_NORTH_WEST)
 
-  _WRAP_PROPERTY("alignment", PangoAlignment)
+  _WRAP_PROPERTY("alignment", Pango::Alignment)
   _WRAP_PROPERTY("anchor", Gtk::AnchorType)
   _WRAP_PROPERTY("font", Glib::ustring)
   _WRAP_PROPERTY("font-desc", Pango::FontDescription) //TODO: Use pointer? */
