@@ -1,3 +1,15 @@
+2008-02-24  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* goocanvas/src/Makefile_list_of_hg.am_fragment:
+	* goocanvas/src/enums.ccg:
+	* goocanvas/src/enums.hg: move PointerEvents and ItemVisiblity enums to a
+	separate enums file so that they can be used from both Item and ItemModel
+	* goocanvas/src/item.hg: move enums from here
+	* goocanvas/src/itemmodel.hg: wrap some additional properties and signals of
+	the ItemModel class
+	* goocanvas/src/libgoocanvas_signals.defs: re-generate signals / properties
+	* goocanvas/goocanvasmm.h: add new enums header
+
 2008-02-21  Gennaro Bellizio  <genbell@tiscali.it>
 
 	* goocanvas/src/textmodel.hg: Use the C++ type for the alignment 

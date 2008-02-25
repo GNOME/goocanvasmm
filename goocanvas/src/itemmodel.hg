@@ -19,6 +19,7 @@
 #include <cairomm/cairomm.h>
 #include <goocanvasitemmodel.h>
 #include <goocanvasmm/style.h>
+#include <goocanvasmm/enums.h>
 
 _DEFS(goocanvasmm,libgoocanvas)
 _PINCLUDE(glibmm/private/interface_p.h)
@@ -90,6 +91,20 @@ public:
 
   _WRAP_METHOD(void animate(double x, double y, double scale, double degrees, bool absolute, int duration, int step_time, AnimateType animate_type), goo_canvas_item_model_animate)
   _WRAP_METHOD(void stop_animation(), goo_canvas_item_model_stop_animation)
+
+  _WRAP_SIGNAL(void child_added (int child_num), "child-added")
+  _WRAP_SIGNAL(void child_removed (int child_num), "child-removed")
+  _WRAP_SIGNAL(void child_moved (int old_child_num, int new_child_num), "child-moved")
+  _WRAP_SIGNAL(void changed (bool recompute_bounds), "changed")
+  _WRAP_SIGNAL(void child_notify(GParamSpec* pspec), "child_notify")
+
+  _WRAP_PROPERTY("parent", Glib::RefPtr<ItemModel>);
+  _WRAP_PROPERTY("can-focus", bool);
+  _WRAP_PROPERTY("title", Glib::ustring)
+  _WRAP_PROPERTY("description", Glib::ustring)
+  _WRAP_PROPERTY("pointer-events", PointerEvents)
+  _WRAP_PROPERTY("visibility", ItemVisibility)
+  _WRAP_PROPERTY("visibility-threshold", double)
 
 protected:
 

@@ -17,6 +17,7 @@
  */
 
 #include <goocanvasmm/bounds.h>
+#include <goocanvasmm/enums.h>
 #include <goocanvasmm/style.h>
 #include <cairomm/cairomm.h>
 #include <goocanvasitem.h>
@@ -30,10 +31,6 @@ extern "C" { typedef union _GooCanvasPathCommand GooCanvasPathCommand; }
 
 namespace Goocanvas
 {
-
-//TODO: Somehow make the enum values be ITEM_VISIBLE instead of CANVAS_ITEM_VISIBLE. It seems to just find the first _.
-_WRAP_ENUM(PointerEvents,GooCanvasPointerEvents)
-_WRAP_ENUM(ItemVisibility,GooCanvasItemVisibility)
 
 class Canvas ;
 class ItemModel ;
@@ -99,7 +96,7 @@ public:
   _WRAP_METHOD(double get_requested_height(const Cairo::RefPtr<Cairo::Context>& context, double width) const, goo_canvas_item_get_requested_height)
   _WRAP_METHOD(void allocate_area(const Cairo::RefPtr<Cairo::Context>& context, const Bounds& requested_area, const Bounds& allocated_area, double x_offset, double y_offset), goo_canvas_item_allocate_area)
 
-#m4 _CONVERSION(`GList*',`Glib::ListHandle< Glib::RefPtr<Item> >',`$2($3, Glib::OWNERSHIP_SHALLOW)')
+#m4 _CONVERSION(`GList*',`Glib::ListHandle< Glib::RefPtr<Item> >',`$2($3, Glib::OWNERSHIP_NONE)')
 #m4 _CONVERSION(`Glib::ListHandle< Glib::RefPtr<Item> >&',`GList*', `($3).data()')
   _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<Item> > get_items_at(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool parent_is_visible, Glib::ListHandle< Glib::RefPtr<Item> >& found_items), goo_canvas_item_get_items_at)
 
@@ -163,7 +160,6 @@ protected:
   _WRAP_VFUNC(Glib::RefPtr<Item> get_child(int child_num), get_child)
   _WRAP_VFUNC(void request_update(), request_update)
   _WRAP_VFUNC(GooCanvas* get_canvas(), get_canvas)
-  // TODO: should this be passed by reference instead of by pointer?
   _WRAP_VFUNC(void set_canvas(GooCanvas* canvas), set_canvas)
   /* Virtual methods that group items may implement. */
 

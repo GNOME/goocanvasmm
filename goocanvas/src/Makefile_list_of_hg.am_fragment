@@ -27,5 +27,6 @@ style.hg \
 table.hg \
 text.hg \
 textmodel.hg \
-widget.hg
+widget.hg \
+enums.hg
 
