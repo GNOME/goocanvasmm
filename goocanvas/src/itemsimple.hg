@@ -49,6 +49,7 @@ public:
   _WRAP_METHOD(void paint_path(const Cairo::RefPtr<Cairo::Context>& cr), goo_canvas_item_simple_paint_path)
   _WRAP_METHOD(void changed(bool recompute_bounds), goo_canvas_item_simple_changed)
   _WRAP_METHOD(void check_style(), goo_canvas_item_simple_check_style)
+  _WRAP_METHOD(double get_line_width() const, goo_canvas_item_simple_get_line_width)
 
   _WRAP_PROPERTY("title", Glib::ustring)
   _WRAP_PROPERTY("visibility-threshold", double)

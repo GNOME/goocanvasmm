@@ -1,5 +1,12 @@
 2008-02-24  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* goocanvas/src/libgoocanvas_methods.defs: re-generate
+	* goocanvas/src/item.hg: wrap get/set_child_property()
+	* goocanvas/src/itemmodel.hg: wrap get/set_child_property()
+	* goocanvas/src/itemsimple.hg: wrap get_line_width()
+
+2008-02-24  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* goocanvas/src/Makefile_list_of_hg.am_fragment:
 	* goocanvas/src/enums.ccg:
 	* goocanvas/src/enums.hg: move PointerEvents and ItemVisiblity enums to a

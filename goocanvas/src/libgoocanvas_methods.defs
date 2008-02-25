@@ -225,25 +225,6 @@
 )
 
 
-;; From goocanvasatk.h
-
-(define-function goo_canvas_accessible_factory_get_type
-  (c-name "goo_canvas_accessible_factory_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_canvas_item_accessible_factory_get_type
-  (c-name "goo_canvas_item_accessible_factory_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_canvas_widget_accessible_factory_get_type
-  (c-name "goo_canvas_widget_accessible_factory_get_type")
-  (return-type "GType")
-)
-
-
-
 ;; From goocanvasellipse.h
 
 (define-function goo_canvas_ellipse_get_type
@@ -697,6 +678,11 @@
 
 ;; From goocanvasitem.h
 
+(define-function goo_canvas_bounds_get_type
+  (c-name "goo_canvas_bounds_get_type")
+  (return-type "GType")
+)
+
 (define-function goo_canvas_item_get_type
   (c-name "goo_canvas_item_get_type")
   (return-type "GType")
@@ -752,6 +738,28 @@
   (return-type "none")
   (parameters
     '("gint" "child_num")
+  )
+)
+
+(define-method get_child_property
+  (of-object "GooCanvasItem")
+  (c-name "goo_canvas_item_get_child_property")
+  (return-type "none")
+  (parameters
+    '("GooCanvasItem*" "child")
+    '("const-gchar*" "property_name")
+    '("GValue*" "value")
+  )
+)
+
+(define-method set_child_property
+  (of-object "GooCanvasItem")
+  (c-name "goo_canvas_item_set_child_property")
+  (return-type "none")
+  (parameters
+    '("GooCanvasItem*" "child")
+    '("const-gchar*" "property_name")
+    '("const-GValue*" "value")
   )
 )
 
@@ -1186,6 +1194,28 @@
   )
 )
 
+(define-method get_child_property
+  (of-object "GooCanvasItemModel")
+  (c-name "goo_canvas_item_model_get_child_property")
+  (return-type "none")
+  (parameters
+    '("GooCanvasItemModel*" "child")
+    '("const-gchar*" "property_name")
+    '("GValue*" "value")
+  )
+)
+
+(define-method set_child_property
+  (of-object "GooCanvasItemModel")
+  (c-name "goo_canvas_item_model_set_child_property")
+  (return-type "none")
+  (parameters
+    '("GooCanvasItemModel*" "child")
+    '("const-gchar*" "property_name")
+    '("const-GValue*" "value")
+  )
+)
+
 (define-method get_child_properties
   (of-object "GooCanvasItemModel")
   (c-name "goo_canvas_item_model_get_child_properties")
@@ -1494,6 +1524,12 @@
   (return-type "none")
 )
 
+(define-method get_line_width
+  (of-object "GooCanvasItemSimple")
+  (c-name "goo_canvas_item_simple_get_line_width")
+  (return-type "gdouble")
+)
+
 (define-method set_model
   (of-object "GooCanvasItemSimple")
   (c-name "goo_canvas_item_simple_set_model")
@@ -1636,66 +1672,6 @@
     '("gdouble" "y2")
   )
   (varargs #t)
-)
-
-
-
-;; From goocanvasprivate.h
-
-(define-function goo_canvas_util_ptr_array_insert
-  (c-name "goo_canvas_util_ptr_array_insert")
-  (return-type "none")
-  (parameters
-    '("GPtrArray*" "ptr_array")
-    '("gpointer" "data")
-    '("gint" "index")
-  )
-)
-
-(define-function goo_canvas_util_ptr_array_move
-  (c-name "goo_canvas_util_ptr_array_move")
-  (return-type "none")
-  (parameters
-    '("GPtrArray*" "ptr_array")
-    '("gint" "old_index")
-    '("gint" "new_index")
-  )
-)
-
-(define-function goo_canvas_util_ptr_array_find_index
-  (c-name "goo_canvas_util_ptr_array_find_index")
-  (return-type "gint")
-  (parameters
-    '("GPtrArray*" "ptr_array")
-    '("gpointer" "data")
-  )
-)
-
-(define-function goo_canvas_cairo_pattern_from_pixbuf
-  (c-name "goo_canvas_cairo_pattern_from_pixbuf")
-  (return-type "cairo_pattern_t*")
-  (parameters
-    '("GdkPixbuf*" "pixbuf")
-  )
-)
-
-(define-function goo_canvas_cairo_surface_from_pixbuf
-  (c-name "goo_canvas_cairo_surface_from_pixbuf")
-  (return-type "cairo_surface_t*")
-  (parameters
-    '("GdkPixbuf*" "pixbuf")
-  )
-)
-
-(define-function goo_canvas_boolean_handled_accumulator
-  (c-name "goo_canvas_boolean_handled_accumulator")
-  (return-type "gboolean")
-  (parameters
-    '("GSignalInvocationHint*" "ihint")
-    '("GValue*" "return_accu")
-    '("const-GValue*" "handler_return")
-    '("gpointer" "dummy")
-  )
 )
 
 
@@ -2027,13 +2003,5 @@
   )
   (varargs #t)
 )
-
-
-
-;; From stamp-goocanvasenumtypes.h
-
-
-
-;; From stamp-goocanvasmarshal.h
 
 

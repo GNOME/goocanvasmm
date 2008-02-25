@@ -48,6 +48,8 @@ public:
   _WRAP_METHOD(int get_n_children() const, goo_canvas_item_model_get_n_children, constversion)
   _WRAP_METHOD(Glib::RefPtr<ItemModel> get_child(int child_num), goo_canvas_item_model_get_child, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const ItemModel> get_child(int child_num) const, goo_canvas_item_model_get_child, refreturn, constversion)
+  _WRAP_METHOD(void get_child_property(const Glib::RefPtr<ItemModel>& child, const Glib::ustring& property_name, Glib::ValueBase& value) const, goo_canvas_item_model_get_child_property)
+  _WRAP_METHOD(void set_child_property(const Glib::RefPtr<ItemModel>& child, const Glib::ustring& property_name, const Glib::ValueBase& value), goo_canvas_item_model_set_child_property)
 
   _WRAP_METHOD(void add_child(const Glib::RefPtr<ItemModel>& child, int position), goo_canvas_item_model_add_child)
    void add_child(const Glib::RefPtr<ItemModel>& child);
