@@ -1,3 +1,30 @@
+0.5.0:
+
+* Ellipse:
+  Constructor: Added default parameter values.
+  (Murray Cumming)
+* Item:
+  - modify get_items_at(): Corrected the constness of the parameters.
+  - Added get/set_child_property().
+  (Jonathon Jongsma)
+* ItemModel:
+  - Added properties and signals.
+  - Added get/set_child_property().
+  (Jonathon Jongsma)
+* ItemSimple:
+  - Added get/set_bounds(), and get_line_width().
+  - Added vfuncs.
+  (Jonathon Jongsma)
+* TextModel:
+  - Correct a bug in the constructor.
+  - alignment property: Use a C++ type.
+  (Gennaro Bellizio. Bug #517817)
+
+* Build:
+  Correct installation of .m4 gmmproc files, 
+  and correct the .pc file.
+  (Murray Cumming) (Bug #489865. Yaakov Selkovitz)
+
 0.4.0:
 
 * Canvas:
