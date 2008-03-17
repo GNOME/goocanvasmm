@@ -37,8 +37,9 @@ _CONVERSION(`const Glib::RefPtr<Goocanvas::Widget>&',`GooCanvasWidget*',__CONVER
 
 _CONVERSION(`const Cairo::RefPtr<Cairo::Context>&',`cairo_t*',`($3)->cobj()')
 _CONVERSION(`cairo_t*',`Cairo::RefPtr<Cairo::Context>',`Cairo::RefPtr<Cairo::Context>(new Cairo::Context($3))')
-_CONVERSION(`cairo_matrix_t*',`Cairo::Matrix*',`((Cairo::Matrix*))($3))')
+_CONVERSION(`cairo_matrix_t*',`Cairo::Matrix*',`((Cairo::Matrix*)($3))')
 _CONVERSION(`Cairo::Matrix*',`cairo_matrix_t*',`((cairo_matrix_t*)($3))')
+_CONVERSION(`const cairo_matrix_t*',`const Cairo::Matrix*',`((const Cairo::Matrix*)($3))')
 _CONVERSION(`const Cairo::Matrix*',`const cairo_matrix_t*',`((const cairo_matrix_t*)($3))')
 
 # GooCairoPattern* is actually a cairo_pattern_t*:

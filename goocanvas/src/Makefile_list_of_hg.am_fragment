@@ -25,6 +25,7 @@ rect.hg \
 rectmodel.hg \
 style.hg \
 table.hg \
+tablemodel.hg \
 text.hg \
 textmodel.hg \
 widget.hg \

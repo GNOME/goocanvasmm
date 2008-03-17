@@ -17,6 +17,10 @@
 
 #include <goocanvasutils.h>
 
+#include <cairomm/enums.h>
+#include <cairomm/pattern.h>
+#include <cairomm/context.h> // For Cairo::Matrix
+
 _DEFS(goocanvasmm,libgoocanvas)
 
 namespace Goocanvas
@@ -28,3 +32,76 @@ _WRAP_ENUM(ItemVisibility,GooCanvasItemVisibility)
 _WRAP_ENUM(PathCommandType,GooCanvasPathCommandType)
 
 } //namespace Goocanvas
+
+namespace Glib
+{
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+// Make the cairo enums and structures work with Glib::Value using the
+// GTypes goocanvas defines for them in goocanvasutil.h
+
+template<>
+class Value<Cairo::Pattern> : public Glib::ValueBase_Boxed
+{
+public:
+  static GType value_type() G_GNUC_CONST;
+
+  void set(const Cairo::Pattern& data) { set_boxed(data.cobj()); }
+  Cairo::Pattern get() const { return Cairo::Pattern(static_cast<cairo_pattern_t*>(get_boxed())); }
+};
+
+template<>
+class Value<Cairo::Matrix*> : public Glib::ValueBase_Boxed
+{
+public:
+  static GType value_type() G_GNUC_CONST;
+
+  void set(const Cairo::Matrix* data) { set_boxed(data); }
+  Cairo::Matrix* get() const { return static_cast<Cairo::Matrix*>(get_boxed()); }
+};
+
+template<>
+class Value<Cairo::FillRule> : public Glib::Value_Enum<Cairo::FillRule>
+{
+public:
+  static GType value_type() G_GNUC_CONST;
+};
+
+template<>
+class Value<Cairo::Operator> : public Glib::Value_Enum<Cairo::Operator>
+{
+public:
+  static GType value_type() G_GNUC_CONST;
+};
+
+template<>
+class Value<Cairo::Antialias> : public Glib::Value_Enum<Cairo::Antialias>
+{
+public:
+  static GType value_type() G_GNUC_CONST;
+};
+
+template<>
+class Value<Cairo::LineCap> : public Glib::Value_Enum<Cairo::LineCap>
+{
+public:
+  static GType value_type() G_GNUC_CONST;
+};
+
+template<>
+class Value<Cairo::LineJoin> : public Glib::Value_Enum<Cairo::LineJoin>
+{
+public:
+  static GType value_type() G_GNUC_CONST;
+};
+
+template<>
+class Value<Cairo::HintMetrics> : public Glib::Value_Enum<Cairo::HintMetrics>
+{
+public:
+  static GType value_type() G_GNUC_CONST;
+};
+
+#endif // DOXYGEN_SHOULD_SKIP_THIS
+
+}

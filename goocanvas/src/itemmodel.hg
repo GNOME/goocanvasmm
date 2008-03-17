@@ -30,6 +30,8 @@ extern "C" { typedef union _GooCanvasPathCommand GooCanvasPathCommand; }
 
 namespace Goocanvas
 {
+  class Canvas ;
+  class Item ;
 
 _WRAP_ENUM(AnimateType,GooCanvasAnimateType)
 
@@ -44,8 +46,7 @@ public:
   _IGNORE(goo_canvas_item_model_get_child_properties_valist)
   _IGNORE(goo_canvas_item_model_set_child_properties_valist)
 
-  _WRAP_METHOD(int get_n_children(), goo_canvas_item_model_get_n_children)
-  _WRAP_METHOD(int get_n_children() const, goo_canvas_item_model_get_n_children, constversion)
+  _WRAP_METHOD(int get_n_children() const, goo_canvas_item_model_get_n_children)
   _WRAP_METHOD(Glib::RefPtr<ItemModel> get_child(int child_num), goo_canvas_item_model_get_child, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const ItemModel> get_child(int child_num) const, goo_canvas_item_model_get_child, refreturn, constversion)
   _WRAP_METHOD(void get_child_property(const Glib::RefPtr<ItemModel>& child, const Glib::ustring& property_name, Glib::ValueBase& value) const, goo_canvas_item_model_get_child_property)
@@ -100,8 +101,9 @@ public:
   _WRAP_SIGNAL(void changed (bool recompute_bounds), "changed")
   _WRAP_SIGNAL(void child_notify(GParamSpec* pspec), "child_notify")
 
-  _WRAP_PROPERTY("parent", Glib::RefPtr<ItemModel>);
-  _WRAP_PROPERTY("can-focus", bool);
+  _WRAP_PROPERTY("parent", Glib::RefPtr<ItemModel>)
+  _WRAP_PROPERTY("can-focus", bool)
+  _WRAP_PROPERTY("transform", Cairo::Matrix*)
   _WRAP_PROPERTY("title", Glib::ustring)
   _WRAP_PROPERTY("description", Glib::ustring)
   _WRAP_PROPERTY("pointer-events", PointerEvents)
@@ -109,7 +111,31 @@ public:
   _WRAP_PROPERTY("visibility-threshold", double)
 
 protected:
+#m4 _CONVERSION(`Glib::RefPtr<ItemModel>', `GooCanvasItemModel*', `(($3) ? ($3)->gobj() : 0)')
+#m4 _CONVERSION(`GooCanvasItemModel*', `Glib::RefPtr<ItemModel>', `Glib::wrap($3, true)')
+#m4 _CONVERSION(`GooCanvasItemModel*', `const Glib::RefPtr<ItemModel>&', `Glib::wrap($3, true)')
+  _WRAP_VFUNC(int get_n_children() const, get_n_children)
+  _WRAP_VFUNC(Glib::RefPtr<ItemModel> get_child(int child_num) const, get_child)
+  _WRAP_VFUNC(void add_child(const Glib::RefPtr<ItemModel>& child, int position), add_child)
+  _WRAP_VFUNC(void move_child(int old_position, int ne_position), move_child)
+  _WRAP_VFUNC(void remove_child(int child_num), remove_child)
+  _WRAP_VFUNC(void get_child_property(const Glib::RefPtr<ItemModel>& child, guint property_id, Glib::ValueBase& value, GParamSpec* pspec) const, get_child_property)
+  _WRAP_VFUNC(void set_child_property(const Glib::RefPtr<ItemModel>& child, guint property_id, const Glib::ValueBase& value, GParamSpec* pspec), set_child_property)
 
+  _WRAP_VFUNC(Glib::RefPtr<ItemModel> get_parent() const, get_parent)
+  _WRAP_VFUNC(void set_parent(const Glib::RefPtr<ItemModel>& parent), set_parent)
+
+#m4 _CONVERSION(`Glib::RefPtr<Item>', `GooCanvasItem*', `static_cast<GooCanvasItem*>(g_object_ref(Glib::unwrap($3)))')
+#m4 _CONVERSION(`GooCanvasItem*', `Glib::RefPtr<Item>', `Glib::wrap($3, false)')
+  _WRAP_VFUNC(Glib::RefPtr<Item> create_item(Canvas* canvas), create_item)
+  _WRAP_VFUNC(bool get_transform(Cairo::Matrix* transform) const, get_transform)
+  _WRAP_VFUNC(void set_transform(const Cairo::Matrix* transform), set_transform)
+
+#m4 _CONVERSION(`Glib::RefPtr<Style>', `GooCanvasStyle*', `(($3) ? ($3)->gobj() : 0)')
+#m4 _CONVERSION(`GooCanvasStyle*', `Glib::RefPtr<Style>', `Glib::wrap($3, true)')
+#m4 _CONVERSION(`GooCanvasStyle*', `const Glib::RefPtr<Style>&', `Glib::wrap($3, true)')
+  _WRAP_VFUNC(Glib::RefPtr<Style> get_style() const, get_style)
+  _WRAP_VFUNC(void set_style(const Glib::RefPtr<Style>& style), set_style)
 };
 
 }

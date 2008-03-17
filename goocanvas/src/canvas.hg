@@ -57,14 +57,14 @@ public:
   _WRAP_METHOD(Glib::RefPtr<Item> get_item_at(double x, double y, bool is_pointer_event), goo_canvas_get_item_at, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Item> get_item_at(double x, double y, bool is_pointer_event) const, goo_canvas_get_item_at, constversion)
 
-  //TODO: Ref the items?
-  //TODO: Add const versions
-
 #define(`__FL2H_SHALLOW',`$`'2($`'3, Glib::OWNERSHIP_SHALLOW)')
 #_CONVERSION(`GList*',`Glib::ListHandle< Glib::RefPtr<Item> >', __FL2H_SHALLOW)
+#_CONVERSION(`GList*',`Glib::ListHandle< Glib::RefPtr<const Item> >', __FL2H_SHALLOW)
 
   _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<Item> > get_items_at(double x, double y, bool is_pointer_event), goo_canvas_get_items_at)
-  _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<Item> > get_items_in_area(const Bounds& area, bool inside_area, bool allow_overlaps, bool include_containers) const, goo_canvas_get_items_in_area)
+  _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<const Item> > get_items_at(double x, double y, bool is_pointer_event) const, goo_canvas_get_items_at)
+  _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<Item> > get_items_in_area(const Bounds& area, bool inside_area, bool allow_overlaps, bool include_containers), goo_canvas_get_items_in_area)
+  _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<const Item> > get_items_in_area(const Bounds& area, bool inside_area, bool allow_overlaps, bool include_containers) const, goo_canvas_get_items_in_area)
 
   _WRAP_METHOD(double get_scale() const, goo_canvas_get_scale)
   _WRAP_METHOD(void set_scale(double scale), goo_canvas_set_scale)
@@ -136,7 +136,10 @@ public:
   _WRAP_PROPERTY("background-color", Glib::ustring)
   _WRAP_PROPERTY("background-color-rgb", guint)
   _WRAP_PROPERTY("integer-layout", bool)
+  _WRAP_PROPERTY("clear-background", bool)
 
+protected:
+  _WRAP_VFUNC(Glib::RefPtr<Item> create_item(const Glib::RefPtr<ItemModel>& model), "create_item")
 };
 
 } //namespace Goocanvas

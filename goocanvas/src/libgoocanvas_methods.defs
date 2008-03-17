@@ -225,6 +225,25 @@
 )
 
 
+;; From goocanvasatk.h
+
+(define-function goo_canvas_accessible_factory_get_type
+  (c-name "goo_canvas_accessible_factory_get_type")
+  (return-type "GType")
+)
+
+(define-function goo_canvas_item_accessible_factory_get_type
+  (c-name "goo_canvas_item_accessible_factory_get_type")
+  (return-type "GType")
+)
+
+(define-function goo_canvas_widget_accessible_factory_get_type
+  (c-name "goo_canvas_widget_accessible_factory_get_type")
+  (return-type "GType")
+)
+
+
+
 ;; From goocanvasellipse.h
 
 (define-function goo_canvas_ellipse_get_type
@@ -1676,6 +1695,66 @@
 
 
 
+;; From goocanvasprivate.h
+
+(define-function goo_canvas_util_ptr_array_insert
+  (c-name "goo_canvas_util_ptr_array_insert")
+  (return-type "none")
+  (parameters
+    '("GPtrArray*" "ptr_array")
+    '("gpointer" "data")
+    '("gint" "index")
+  )
+)
+
+(define-function goo_canvas_util_ptr_array_move
+  (c-name "goo_canvas_util_ptr_array_move")
+  (return-type "none")
+  (parameters
+    '("GPtrArray*" "ptr_array")
+    '("gint" "old_index")
+    '("gint" "new_index")
+  )
+)
+
+(define-function goo_canvas_util_ptr_array_find_index
+  (c-name "goo_canvas_util_ptr_array_find_index")
+  (return-type "gint")
+  (parameters
+    '("GPtrArray*" "ptr_array")
+    '("gpointer" "data")
+  )
+)
+
+(define-function goo_canvas_cairo_pattern_from_pixbuf
+  (c-name "goo_canvas_cairo_pattern_from_pixbuf")
+  (return-type "cairo_pattern_t*")
+  (parameters
+    '("GdkPixbuf*" "pixbuf")
+  )
+)
+
+(define-function goo_canvas_cairo_surface_from_pixbuf
+  (c-name "goo_canvas_cairo_surface_from_pixbuf")
+  (return-type "cairo_surface_t*")
+  (parameters
+    '("GdkPixbuf*" "pixbuf")
+  )
+)
+
+(define-function goo_canvas_boolean_handled_accumulator
+  (c-name "goo_canvas_boolean_handled_accumulator")
+  (return-type "gboolean")
+  (parameters
+    '("GSignalInvocationHint*" "ihint")
+    '("GValue*" "return_accu")
+    '("const-GValue*" "handler_return")
+    '("gpointer" "dummy")
+  )
+)
+
+
+
 ;; From goocanvasrect.h
 
 (define-function goo_canvas_rect_get_type
@@ -1847,6 +1926,16 @@
   (varargs #t)
 )
 
+(define-method get_natural_extents
+  (of-object "GooCanvasText")
+  (c-name "goo_canvas_text_get_natural_extents")
+  (return-type "none")
+  (parameters
+    '("PangoRectangle*" "ink_rect")
+    '("PangoRectangle*" "logical_rect")
+  )
+)
+
 (define-function goo_canvas_text_model_get_type
   (c-name "goo_canvas_text_model_get_type")
   (return-type "GType")
@@ -2003,5 +2092,13 @@
   )
   (varargs #t)
 )
+
+
+
+;; From stamp-goocanvasenumtypes.h
+
+
+
+;; From stamp-goocanvasmarshal.h
 
 

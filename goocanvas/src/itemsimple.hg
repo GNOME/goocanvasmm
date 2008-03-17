@@ -84,7 +84,7 @@ public:
   _WRAP_PROPERTY("parent", Glib::RefPtr<Item>)
   _WRAP_PROPERTY("can-focus", bool)
   _WRAP_PROPERTY("clip-path", Glib::ustring)
-  _WRAP_PROPERTY("clip-path-fill-rule", Cairo::FillRule)
+  _WRAP_PROPERTY("clip-fill-rule", Cairo::FillRule)
 
 #m4 _CONVERSION(`Bounds',`GooCanvasBounds',*($3).gobj())
 #m4 _CONVERSION(`GooCanvasBounds',`Bounds',`Glib::wrap(&$3)')

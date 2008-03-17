@@ -17,7 +17,10 @@
  */
 
 #include <glibmm/object.h>
-#include <cairo.h> //TODO: Replace this with appropriate cairomm/*.h includes.
+#include <cairomm/context.h>
+#include <cairomm/refptr.h>
+
+#include <goocanvasstyle.h>
 
 _DEFS(goocanvasmm,libgoocanvas)
 _PINCLUDE(glibmm/private/object_p.h)
@@ -35,9 +38,36 @@ public:
   _WRAP_CREATE()
   _IGNORE(goo_canvas_style_new)
 
+  template<typename PropertyType>
+  void get_property(GQuark property_id, PropertyType& value) const;
+  _IGNORE(goo_canvas_style_get_property)
+
+  template<typename PropertyType>
+  void set_property(GQuark property_id, const PropertyType& value);
+  _IGNORE(goo_canvas_style_set_property)
+
+  _WRAP_METHOD(Glib::RefPtr<Style> copy() const, goo_canvas_style_copy)
+  _WRAP_METHOD(Glib::RefPtr<Style> get_parent() const, goo_canvas_style_get_parent, refreturn)
+  _WRAP_METHOD(void set_parent(const Glib::RefPtr<Style>& style), goo_canvas_style_set_parent)
+  _WRAP_METHOD(bool set_stroke_options(const Cairo::RefPtr<Cairo::Context>& context), goo_canvas_style_set_stroke_options)
+  _WRAP_METHOD(bool set_fill_options(const Cairo::RefPtr<Cairo::Context>& context), goo_canvas_style_set_fill_options)
 };
 
+template<typename PropertyType> inline
+void Style::get_property(GQuark property_id, PropertyType& value) const
+{
+  Glib::Value<PropertyType> property_value(goo_canvas_style_get_property(const_cast<GooCanvasStyle*>(gobj()), property_id));
+  value = property_value.get();
+}
 
+template<typename PropertyType> inline
+void Style::set_property(GQuark property_id, const PropertyType& value)
+{
+  Glib::Value<PropertyType> property_value;
+  property_value.init(Glib::Value<PropertyType>::value_type());
+  property_value.set(value);
+  goo_canvas_style_set_property(gobj(), property_id, property_value.gobj());
+}
 
 }
 

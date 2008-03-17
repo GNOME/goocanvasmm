@@ -16,6 +16,7 @@
  */
 
 #include <goocanvasenumtypes.h>
+#include <goocanvasmm/canvas.h>
 
 
 namespace Goocanvas

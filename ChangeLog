@@ -1,3 +1,39 @@
+2008-03-17  Armin Burgmeier  <armin@openismus.com>
+
+	* goocanvas/src/table.hg:
+	* goocanvas/src/table.ccg:
+	* examples/table/examplewindow.h: 
+	* examples/table/examplewindow.cc: Added attach() convenience API.
+
+	* goocanvas/src/tablemodel.hg:
+	* goocanvas/src/tablemodel.ccg:
+	* goocanvas/src/Makefile_list_of_hg.am_fragment:
+	* goocanvas/goocanvasmm.h: Wrapped GooCanvasItemModel.
+
+	* goocanvas/src/style.hg:
+	* goocanvas/src/style.ccg:
+	* goocanvas/src/enums.ccg: Wrapped goo_canvas_style_get/set_property()
+	via a similar approach to Glib::ObjectBase::get/set_property(). This
+	requires Glib::Value<> to work with some non-GObject-based cairo
+	types (that goocanvas already wraps for GObject).
+
+	* goocanvas/src/libgoocanvas_methods.defs: Regenerated.
+
+	* goocanvas/src/libgoocanvas_vfuncs.defs: Added missing vfuncs.
+
+	* tools/m4/convert_libgoocanvasmm.m4: Added more required conversions.
+
+	* goocanvas/src/itemsimple.hg:
+	* goocanvas/src/itemmodel.ccg:
+	* goocanvas/src/canvas.hg:
+	* goocanvas/src/widget.hg:
+	* goocanvas/src/enums.hg:
+	* goocanvas/src/item.hg:
+	* goocanvas/src/itemmodel.hg:
+	* goocanvas/src/text.hg:
+	* goocanvas/src/item.ccg: Wrapped remaining properties, signals,
+	methods and vfuncs.
+
 0.5.0:
 
 2008-02-24  Jonathon Jongsma  <jjongsma@gnome.org>

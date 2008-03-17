@@ -39,13 +39,7 @@ ExampleWindow::ExampleWindow()
 void ExampleWindow::add_text_to_cell(const Glib::RefPtr<Goocanvas::Table>& table, const Glib::ustring& text, guint row, guint col)
 {
   Glib::RefPtr<Goocanvas::Text> text_item = Goocanvas::Text::create(text);
-  table->add_child(text_item);
-  goo_canvas_item_set_child_properties(GOO_CANVAS_ITEM(table->gobj()), GOO_CANVAS_ITEM(text_item->gobj()),
-                                       "row", row,
-                                       "column", col,
-                                       "x-fill", TRUE, 
-                                       "x-expand", TRUE, 
-                                       NULL);
+  table->attach(text_item, col, col+1, row, row+1, Gtk::EXPAND | Gtk::FILL, Gtk::SHRINK);
 }
 
 bool

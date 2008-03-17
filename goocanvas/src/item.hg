@@ -98,9 +98,19 @@ public:
   _WRAP_METHOD(double get_requested_height(const Cairo::RefPtr<Cairo::Context>& context, double width) const, goo_canvas_item_get_requested_height)
   _WRAP_METHOD(void allocate_area(const Cairo::RefPtr<Cairo::Context>& context, const Bounds& requested_area, const Bounds& allocated_area, double x_offset, double y_offset), goo_canvas_item_allocate_area)
 
-#m4 _CONVERSION(`GList*',`Glib::ListHandle< Glib::RefPtr<Item> >',`$2($3, Glib::OWNERSHIP_NONE)')
-#m4 _CONVERSION(`Glib::ListHandle< Glib::RefPtr<Item> >&',`GList*', `($3).data()')
-  _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<Item> > get_items_at(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool parent_is_visible, Glib::ListHandle< Glib::RefPtr<Item> >& found_items), goo_canvas_item_get_items_at)
+
+  // Note the semantics of the C version: The returned list is the same as the
+  // one fed into the function, with possibly some elements added to the head.
+#m4 _CONVERSION(`const Glib::ListHandle< Glib::RefPtr<Item> >&', `GList*', `g_list_copy(($3).data())')
+#m4 _CONVERSION(`const Glib::ListHandle< Glib::RefPtr<const Item> >&', `GList*', `g_list_copy(($3).data())')
+#m4 _CONVERSION(`GList*', `Glib::ListHandle< Glib::RefPtr<Item> >', `$2($3, Glib::OWNERSHIP_SHALLOW)')
+#m4 _CONVERSION(`GList*', `Glib::ListHandle< Glib::RefPtr<const Item> >', `$2($3, Glib::OWNERSHIP_SHALLOW)')
+  _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<Item> > get_items_at(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool parent_is_visible, const Glib::ListHandle< Glib::RefPtr<Item> >& found_items), goo_canvas_item_get_items_at)
+  _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<const Item> > get_items_at(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool parent_is_visible, const Glib::ListHandle< Glib::RefPtr<const Item> >& found_items) const, goo_canvas_item_get_items_at)
+
+  // Use this if you don't have a list already:
+  Glib::ListHandle< Glib::RefPtr<Item> > get_items_at(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool parent_is_visible);
+  Glib::ListHandle< Glib::RefPtr<const Item> > get_items_at(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool parent_is_visible) const;
 
   //TODO: Use Cairo::RefPtr?
   _WRAP_METHOD(bool get_transform(Cairo::Matrix* matrix), goo_canvas_item_get_transform)
@@ -141,90 +151,85 @@ public:
   _WRAP_SIGNAL(bool grab_broken_event(const Glib::RefPtr<Item>& target, GdkEventGrabBroken* event), "grab_broken_event")
   _WRAP_SIGNAL(void child_notify(GParamSpec* pspec), "child_notify")
 
-  _WRAP_PROPERTY("can-focus", bool)
+  _WRAP_PROPERTY("parent", Glib::RefPtr<Item>);
   _WRAP_PROPERTY("visibility", ItemVisibility)
-  _WRAP_PROPERTY("description", Glib::ustring)
   _WRAP_PROPERTY("visibility-threshold", double)
+  _WRAP_PROPERTY("transform", Cairo::Matrix*);
   _WRAP_PROPERTY("pointer-events", PointerEvents)
+  _WRAP_PROPERTY("title", Glib::ustring)
+  _WRAP_PROPERTY("description", Glib::ustring)
+  _WRAP_PROPERTY("can-focus", bool)
 
 protected:
 
-/*
-
-  //_WRAP_VFUNC(Cairo::Matrix* get_transform(), get_transform)
-  _WRAP_VFUNC(void set_transform(Cairo::Matrix* matrix), set_transform)
-  //_WRAP_VFUNC(Glib::RefPtr<ItemView> create_view(const Glib::RefPtr<View>& canvas_view, const Glib::RefPtr<ItemView>& parent_view), create_view)
-*/
-
-
+#m4 _CONVERSION(`Glib::RefPtr<Item>', `GooCanvasItem*', `(($3) ? ($3)->gobj() : 0)');
+#m4 _CONVERSION(`GooCanvasItem*', `Glib::RefPtr<Item>', `Glib::wrap($3, true)')
 /* Virtual methods that group items must implement. */
   _WRAP_VFUNC(int get_n_children() const, get_n_children)
-  _WRAP_VFUNC(Glib::RefPtr<Item> get_child(int child_num), get_child)
+  _WRAP_VFUNC(Glib::RefPtr<Item> get_child(int child_num) const, get_child)
   _WRAP_VFUNC(void request_update(), request_update)
-  _WRAP_VFUNC(GooCanvas* get_canvas(), get_canvas)
-  _WRAP_VFUNC(void set_canvas(GooCanvas* canvas), set_canvas)
+  _WRAP_VFUNC(Canvas* get_canvas() const, get_canvas)
+  _WRAP_VFUNC(void set_canvas(Canvas* canvas), set_canvas)
+
   /* Virtual methods that group items may implement. */
 
   _WRAP_VFUNC(void add_child(const Glib::RefPtr<Item>& child, int position), add_child)
-/*
-  void			(* move_child(
-							 gint			 old_position,
-							 gint			 new_position);
-  void			(* remove_child(
-							 gint			 child_num);
-  void			(* get_child_property(
-							 GooCanvasItem		*child,
-							 guint			 property_id,
-							 GValue			*value,
-							 GParamSpec		*pspec);
-  void			(* set_child_property(
-							 GooCanvasItem		*child,
-							 guint			 property_id,
-							 const GValue		*value,
-							 GParamSpec		*pspec);
-  gboolean		(* get_transform_for_child)	(GooCanvasItem		*item,
-							 GooCanvasItem		*child,
-							 cairo_matrix_t		*transform);
-*/
+  _WRAP_VFUNC(void move_child(int old_position, int new_position), move_child)
+  _WRAP_VFUNC(void remove_child(int child_num), remove_child)
+  _WRAP_VFUNC(void get_child_property(const Glib::RefPtr<Item>& child, guint property_id, Glib::ValueBase& value, GParamSpec* pspec) const, get_child_property)
+  _WRAP_VFUNC(void set_child_property(const Glib::RefPtr<Item>& child, guint property_id, const Glib::ValueBase& value, GParamSpec* pspec), set_child_property)
+  _WRAP_VFUNC(bool get_transform_for_child(const Glib::RefPtr<Item>& child, Cairo::Matrix* transform) const, get_transform_for_child)
 
   /* Virtual methods that all canvas items must implement. */
 
-#m4 _CONVERSION(`Glib::RefPtr<Item>', `GooCanvasItem*', `(($3) ? ($3)->gobj() : 0)');
-#m4 _CONVERSION(`GooCanvasItem*', `Glib::RefPtr<Item>', `Glib::wrap($3, true)')
-  _WRAP_VFUNC(GooCanvasItem* get_parent(), get_parent)
-  _WRAP_VFUNC(void set_parent(GooCanvasItem* parent), set_parent)
+  _WRAP_VFUNC(Glib::RefPtr<Item> get_parent() const, get_parent)
+  _WRAP_VFUNC(void set_parent(const Glib::RefPtr<Item>& parent), set_parent)
 
+#ifdef GLIBMM_VFUNCS_ENABLED
+  // Hand code, since Bounds can only copy a GooCanvasBounds* but not ref one.
+  virtual void get_bounds_vfunc(Bounds& bounds) const;
+  virtual Glib::ListHandle<Glib::RefPtr<Item> > get_items_at_vfunc(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool is_parent_visible, const Glib::ListHandle<Glib::RefPtr<Item> >& found_items) const;
+#endif
 
-  _WRAP_VFUNC(void get_bounds(GooCanvasBounds* bounds), get_bounds)
+#m4begin
+  _PUSH(SECTION_PCC_CLASS_INIT_VFUNCS)
+  klass->get_bounds = &get_bounds_vfunc_callback;
+  klass->get_items_at = &get_items_at_vfunc_callback;
+  _SECTION(SECTION_PH_VFUNCS)
+  static void get_bounds_vfunc_callback(GooCanvasItem* self, GooCanvasBounds* bounds);
+  static GList* get_items_at_vfunc_callback(GooCanvasItem* self, gdouble x, gdouble y, cairo_t* cr, gboolean is_pointer_event, gboolean parent_is_visible, GList* found_items);
+  _POP()
+#m4end
 
 #m4 _CONVERSION(`cairo_t*',`const Cairo::RefPtr<Cairo::Context>&',`Cairo::RefPtr<Cairo::Context>(new Cairo::Context($3, false /* has_reference */))')
-  _WRAP_VFUNC(GList* get_items_at(double x, double y, const Cairo::RefPtr<Cairo::Context>& cr, bool is_pointer_event, bool parent_is_visible, GList* found_items), get_items_at)
   _WRAP_VFUNC(void update(bool entire_tree, const Cairo::RefPtr<Cairo::Context>& cr, Bounds& bounds), update)
 
 #m4 _CONVERSION(`const GooCanvasBounds*', `const Bounds&', `Glib::wrap($3)');
   _WRAP_VFUNC(void paint(const Cairo::RefPtr<Cairo::Context>& cr, const Bounds& bounds, double scale), paint)
 
-  _WRAP_VFUNC(bool get_requested_area(const Cairo::RefPtr<Cairo::Context>& cr, GooCanvasBounds* requested_area), get_requested_area)
+  _WRAP_VFUNC(bool get_requested_area(const Cairo::RefPtr<Cairo::Context>& cr, GooCanvasBounds* requested_area) const, get_requested_area)
   _WRAP_VFUNC(void allocate_area(const Cairo::RefPtr<Cairo::Context>& cr, const Bounds& requested_area, const Bounds& allocated_area, double x_offset, double y_offset), allocate_area)
 
 
   /* Virtual methods that canvas items may implement. */
 
-  _WRAP_VFUNC(bool get_transform(cairo_matrix_t* transform), get_transform)
-  _WRAP_VFUNC(void set_transform(const cairo_matrix_t* transform), set_transform)
-  _WRAP_VFUNC(GooCanvasStyle* get_style(), get_style)
-  _WRAP_VFUNC(void set_style(GooCanvasStyle* style), set_style)
-  _WRAP_VFUNC(bool is_visible(), is_visible)
+  _WRAP_VFUNC(bool get_transform(Cairo::Matrix* transform) const, get_transform)
+  _WRAP_VFUNC(void set_transform(const Cairo::Matrix* transform), set_transform)
+
+#m4 _CONVERSION(`Glib::RefPtr<Style>', `GooCanvasStyle*', `(($3) ? ($3)->gobj() : 0)')
+#m4 _CONVERSION(`GooCanvasStyle*', `Glib::RefPtr<Style>', `Glib::wrap($3, true)')
+#m4 _CONVERSION(`GooCanvasStyle*', `const Glib::RefPtr<Style>&', `Glib::wrap($3, true)')
+  _WRAP_VFUNC(Glib::RefPtr<Style> get_style() const, get_style)
+  _WRAP_VFUNC(void set_style(const Glib::RefPtr<Style>& style), set_style)
+  _WRAP_VFUNC(bool is_visible() const, is_visible)
   _WRAP_VFUNC(double get_requested_height(const Cairo::RefPtr<Cairo::Context>& cr, double width), get_requested_height)
 
   /* Virtual methods that model/view items must implement. */
-/*
-  GooCanvasItemModel*	(* get_model)			(GooCanvasItem		*item);
-  void			(* set_model(
-							 GooCanvasItemModel	*model);
-*/
-
-
+#m4 _CONVERSION(`Glib::RefPtr<ItemModel>', `GooCanvasItemModel*', `(($3) ? ($3)->gobj() : 0)');
+#m4 _CONVERSION(`GooCanvasItemModel*', `Glib::RefPtr<ItemModel>', `Glib::wrap($3, true)')
+#m4 _CONVERSION(`GooCanvasItemModel*', `const Glib::RefPtr<ItemModel>&', `Glib::wrap($3, true)')
+  _WRAP_VFUNC(Glib::RefPtr<ItemModel> get_model() const, get_model)
+  _WRAP_VFUNC(void set_model(const Glib::RefPtr<ItemModel>& model), set_model)
 };
 
 } //namespace Goocanvas

@@ -16,7 +16,7 @@
  */
 
 
-#include <goocanvasmm/group.h>
+#include <goocanvasmm/groupmodel.h>
 #include <gtkmm/enums.h>
 
 _DEFS(goocanvasmm,libgoocanvas)
@@ -24,23 +24,21 @@ _DEFS(goocanvasmm,libgoocanvas)
 namespace Goocanvas
 {
 
-class Table : public Goocanvas::Group
+class TableModel : public Goocanvas::GroupModel
 {
-  _CLASS_GOBJECT(Table, GooCanvasTable, GOO_CANVAS_TABLE, Goocanvas::Group, GooCanvasGroup)
+  _CLASS_GOBJECT(TableModel, GooCanvasTableModel, GOO_CANVAS_TABLE_MODEL, Goocanvas::GroupModel, GooCanvasGroupModel)
 protected:
   _CTOR_DEFAULT()
-  _IGNORE(goo_canvas_table_new)
+  _IGNORE(goo_canvas_table_model_new)
 
 public:
 
   _WRAP_CREATE()
 
-  void attach(const Glib::RefPtr<Item>& item, guint left_attach, guint right_attach, guint top_attach, guint bottom_attach, Gtk::AttachOptions xoptions = Gtk::FILL | Gtk::EXPAND, Gtk::AttachOptions yoptions = Gtk::FILL | Gtk::EXPAND, gdouble left_padding = 0.0, gdouble right_padding = 0.0, gdouble top_padding = 0.0, gdouble bottom_padding = 0.0);
+  void attach(const Glib::RefPtr<ItemModel>& item, guint left_attach, guint right_attach, guint top_attach, guint bottom_attach, Gtk::AttachOptions xoptions = Gtk::FILL | Gtk::EXPAND, Gtk::AttachOptions yoptions = Gtk::FILL | Gtk::EXPAND, gdouble left_padding = 0.0, gdouble right_padding = 0.0, gdouble top_padding = 0.0, gdouble bottom_padding = 0.0);
 
-  // TODO: We should get rid of this overload with the next gtkmm API/ABI break.
-  // See http://bugzilla.gnome.org/show_bug.cgi?id=142849.
-  void set_align(const Glib::RefPtr<Item>& child, double xalign = 0.0, double yalign = 0.0);
-  void set_align(const Glib::RefPtr<Item>& child, Gtk::AlignmentEnum xalign = Gtk::ALIGN_LEFT, Gtk::AlignmentEnum yalign = Gtk::ALIGN_TOP);
+  void set_align(const Glib::RefPtr<ItemModel>& child, double xalign = 0.0, double yalign = 0.0);
+  void set_align(const Glib::RefPtr<ItemModel>& child, Gtk::AlignmentEnum xalign = Gtk::ALIGN_LEFT, Gtk::AlignmentEnum yalign = Gtk::ALIGN_TOP);
 
   _WRAP_PROPERTY("width", double)
   _WRAP_PROPERTY("height", double)

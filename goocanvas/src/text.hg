@@ -37,6 +37,9 @@ public:
 
   _WRAP_CREATE(const Glib::ustring& text = Glib::ustring(), double x = 0.0, double y = 0.0, double width = 0.0, Gtk::AnchorType anchor = Gtk::ANCHOR_NORTH_WEST);
 
+#m4 _CONVERSION(`Pango::Rectangle&',`PangoRectangle*',`($3).gobj()')
+  _WRAP_METHOD(void get_natural_extents(Pango::Rectangle& ink_rect, Pango::Rectangle& logical_rect) const, goo_canvas_text_get_natural_extents)
+
   _WRAP_PROPERTY("alignment", Pango::Alignment)
   _WRAP_PROPERTY("anchor", Gtk::AnchorType)
   _WRAP_PROPERTY("ellipsize",Pango::EllipsizeMode)
