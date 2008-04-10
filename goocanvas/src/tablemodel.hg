@@ -46,6 +46,10 @@ public:
   _WRAP_PROPERTY("column-spacing", double)
   _WRAP_PROPERTY("homogeneous-rows", bool)
   _WRAP_PROPERTY("homogeneous-columns", bool)
+  _WRAP_PROPERTY("x-border-spacing", double)
+  _WRAP_PROPERTY("y-border-spacing", double)
+  _WRAP_PROPERTY("vert-grid-line-width", double)
+  _WRAP_PROPERTY("horz-grid-line-width", double)
 };
 
 } //namespace Goocanvas

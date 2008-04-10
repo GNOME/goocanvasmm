@@ -1,3 +1,12 @@
+2008-04-10  Armin Burgmeier  <armin@openismus.com>
+
+	* goocanvas/src/table.hg:
+	* goocanvas/src/tablemodel.hg: Added x-border-spacing,
+	y-border-spacing, vert-grid-line-width, horz-grid-line-width
+	properties.
+
+	* goocanvas/src/libgoocanvas_signals.defs: Regenerated.
+
 2008-03-17  Armin Burgmeier  <armin@openismus.com>
 
 	* goocanvas/src/table.hg:

@@ -409,37 +409,10 @@
 
 ;; From GooCanvasEllipse
 
-(define-property parent
-  (of-object "GooCanvasEllipse")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property can-focus
   (of-object "GooCanvasEllipse")
   (prop-type "GParamBoolean")
   (docs "If the item can take the keyboard focus")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property description
-  (of-object "GooCanvasEllipse")
-  (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasEllipse")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -463,10 +436,28 @@
   (construct-only #f)
 )
 
-(define-property visibility
+(define-property transform
   (of-object "GooCanvasEllipse")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GooCanvasEllipse")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property description
+  (of-object "GooCanvasEllipse")
+  (prop-type "GParamString")
+  (docs "A description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -476,6 +467,15 @@
   (of-object "GooCanvasEllipse")
   (prop-type "GParamString")
   (docs "A short context-rich description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasEllipse")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -611,7 +611,7 @@
   (of-object "GooCanvasEllipse")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -638,7 +638,7 @@
   (of-object "GooCanvasEllipse")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -708,10 +708,10 @@
 
 ;; From GooCanvasEllipseModel
 
-(define-property pointer-events
+(define-property transform
   (of-object "GooCanvasEllipseModel")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -721,15 +721,6 @@
   (of-object "GooCanvasEllipseModel")
   (prop-type "GParamString")
   (docs "A short context-rich description of the item for use by assistive technologies")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasEllipseModel")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -753,15 +744,6 @@
   (construct-only #f)
 )
 
-(define-property visibility
-  (of-object "GooCanvasEllipseModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property visibility-threshold
   (of-object "GooCanvasEllipseModel")
   (prop-type "GParamDouble")
@@ -775,6 +757,24 @@
   (of-object "GooCanvasEllipseModel")
   (prop-type "GParamString")
   (docs "A description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasEllipseModel")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasEllipseModel")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -910,7 +910,7 @@
   (of-object "GooCanvasEllipseModel")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -937,7 +937,7 @@
   (of-object "GooCanvasEllipseModel")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -1007,19 +1007,10 @@
 
 ;; From GooCanvasGroup
 
-(define-property visibility
+(define-property visibility-threshold
   (of-object "GooCanvasGroup")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property description
-  (of-object "GooCanvasGroup")
-  (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
+  (prop-type "GParamDouble")
+  (docs "The scale threshold at which the item becomes visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1043,15 +1034,6 @@
   (construct-only #f)
 )
 
-(define-property parent
-  (of-object "GooCanvasGroup")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property pointer-events
   (of-object "GooCanvasGroup")
   (prop-type "GParamFlags")
@@ -1061,10 +1043,28 @@
   (construct-only #f)
 )
 
-(define-property visibility-threshold
+(define-property parent
   (of-object "GooCanvasGroup")
-  (prop-type "GParamDouble")
-  (docs "The scale threshold at which the item becomes visible")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasGroup")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property description
+  (of-object "GooCanvasGroup")
+  (prop-type "GParamString")
+  (docs "A description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1209,7 +1209,7 @@
   (of-object "GooCanvasGroup")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -1236,7 +1236,7 @@
   (of-object "GooCanvasGroup")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -1270,10 +1270,10 @@
 
 ;; From GooCanvasGroupModel
 
-(define-property pointer-events
+(define-property transform
   (of-object "GooCanvasGroupModel")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1283,15 +1283,6 @@
   (of-object "GooCanvasGroupModel")
   (prop-type "GParamString")
   (docs "A short context-rich description of the item for use by assistive technologies")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasGroupModel")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1315,15 +1306,6 @@
   (construct-only #f)
 )
 
-(define-property visibility
-  (of-object "GooCanvasGroupModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property visibility-threshold
   (of-object "GooCanvasGroupModel")
   (prop-type "GParamDouble")
@@ -1337,6 +1319,24 @@
   (of-object "GooCanvasGroupModel")
   (prop-type "GParamString")
   (docs "A description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasGroupModel")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasGroupModel")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1472,7 +1472,7 @@
   (of-object "GooCanvasGroupModel")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -1499,7 +1499,7 @@
   (of-object "GooCanvasGroupModel")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -1533,19 +1533,10 @@
 
 ;; From GooCanvasImage
 
-(define-property visibility
+(define-property visibility-threshold
   (of-object "GooCanvasImage")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property description
-  (of-object "GooCanvasImage")
-  (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
+  (prop-type "GParamDouble")
+  (docs "The scale threshold at which the item becomes visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1569,15 +1560,6 @@
   (construct-only #f)
 )
 
-(define-property parent
-  (of-object "GooCanvasImage")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property pointer-events
   (of-object "GooCanvasImage")
   (prop-type "GParamFlags")
@@ -1587,10 +1569,28 @@
   (construct-only #f)
 )
 
-(define-property visibility-threshold
+(define-property parent
   (of-object "GooCanvasImage")
-  (prop-type "GParamDouble")
-  (docs "The scale threshold at which the item becomes visible")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasImage")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property description
+  (of-object "GooCanvasImage")
+  (prop-type "GParamString")
+  (docs "A description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1735,7 +1735,7 @@
   (of-object "GooCanvasImage")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -1762,7 +1762,7 @@
   (of-object "GooCanvasImage")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -1850,10 +1850,10 @@
 
 ;; From GooCanvasImageModel
 
-(define-property pointer-events
+(define-property transform
   (of-object "GooCanvasImageModel")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1863,15 +1863,6 @@
   (of-object "GooCanvasImageModel")
   (prop-type "GParamString")
   (docs "A short context-rich description of the item for use by assistive technologies")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasImageModel")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1895,15 +1886,6 @@
   (construct-only #f)
 )
 
-(define-property visibility
-  (of-object "GooCanvasImageModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property visibility-threshold
   (of-object "GooCanvasImageModel")
   (prop-type "GParamDouble")
@@ -1917,6 +1899,24 @@
   (of-object "GooCanvasImageModel")
   (prop-type "GParamString")
   (docs "A description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasImageModel")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasImageModel")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2052,7 +2052,7 @@
   (of-object "GooCanvasImageModel")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -2079,7 +2079,7 @@
   (of-object "GooCanvasImageModel")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -2276,19 +2276,10 @@
   )
 )
 
-(define-property visibility
+(define-property visibility-threshold
   (of-object "GooCanvasItem")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property description
-  (of-object "GooCanvasItem")
-  (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
+  (prop-type "GParamDouble")
+  (docs "The scale threshold at which the item becomes visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2312,15 +2303,6 @@
   (construct-only #f)
 )
 
-(define-property parent
-  (of-object "GooCanvasItem")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property pointer-events
   (of-object "GooCanvasItem")
   (prop-type "GParamFlags")
@@ -2330,10 +2312,28 @@
   (construct-only #f)
 )
 
-(define-property visibility-threshold
+(define-property parent
   (of-object "GooCanvasItem")
-  (prop-type "GParamDouble")
-  (docs "The scale threshold at which the item becomes visible")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasItem")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property description
+  (of-object "GooCanvasItem")
+  (prop-type "GParamString")
+  (docs "A description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2396,10 +2396,10 @@
   )
 )
 
-(define-property pointer-events
+(define-property transform
   (of-object "GooCanvasItemModel")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2409,15 +2409,6 @@
   (of-object "GooCanvasItemModel")
   (prop-type "GParamString")
   (docs "A short context-rich description of the item for use by assistive technologies")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasItemModel")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2441,15 +2432,6 @@
   (construct-only #f)
 )
 
-(define-property visibility
-  (of-object "GooCanvasItemModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property visibility-threshold
   (of-object "GooCanvasItemModel")
   (prop-type "GParamDouble")
@@ -2468,10 +2450,17 @@
   (construct-only #f)
 )
 
-;; From GooCanvasItemSimple
+(define-property pointer-events
+  (of-object "GooCanvasItemModel")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
 
 (define-property visibility
-  (of-object "GooCanvasItemSimple")
+  (of-object "GooCanvasItemModel")
   (prop-type "GParamEnum")
   (docs "When the canvas item is visible")
   (readable #t)
@@ -2479,10 +2468,12 @@
   (construct-only #f)
 )
 
-(define-property description
+;; From GooCanvasItemSimple
+
+(define-property visibility-threshold
   (of-object "GooCanvasItemSimple")
-  (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
+  (prop-type "GParamDouble")
+  (docs "The scale threshold at which the item becomes visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2506,15 +2497,6 @@
   (construct-only #f)
 )
 
-(define-property parent
-  (of-object "GooCanvasItemSimple")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property pointer-events
   (of-object "GooCanvasItemSimple")
   (prop-type "GParamFlags")
@@ -2524,10 +2506,28 @@
   (construct-only #f)
 )
 
-(define-property visibility-threshold
+(define-property parent
   (of-object "GooCanvasItemSimple")
-  (prop-type "GParamDouble")
-  (docs "The scale threshold at which the item becomes visible")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasItemSimple")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property description
+  (of-object "GooCanvasItemSimple")
+  (prop-type "GParamString")
+  (docs "A description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2672,7 +2672,7 @@
   (of-object "GooCanvasItemSimple")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -2699,7 +2699,7 @@
   (of-object "GooCanvasItemSimple")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -2733,10 +2733,10 @@
 
 ;; From GooCanvasItemModelSimple
 
-(define-property pointer-events
+(define-property transform
   (of-object "GooCanvasItemModelSimple")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2746,15 +2746,6 @@
   (of-object "GooCanvasItemModelSimple")
   (prop-type "GParamString")
   (docs "A short context-rich description of the item for use by assistive technologies")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasItemModelSimple")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2778,15 +2769,6 @@
   (construct-only #f)
 )
 
-(define-property visibility
-  (of-object "GooCanvasItemModelSimple")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property visibility-threshold
   (of-object "GooCanvasItemModelSimple")
   (prop-type "GParamDouble")
@@ -2800,6 +2782,24 @@
   (of-object "GooCanvasItemModelSimple")
   (prop-type "GParamString")
   (docs "A description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasItemModelSimple")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasItemModelSimple")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2935,7 +2935,7 @@
   (of-object "GooCanvasItemModelSimple")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -2962,7 +2962,7 @@
   (of-object "GooCanvasItemModelSimple")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -2998,19 +2998,10 @@
 
 ;; From GooCanvasPath
 
-(define-property visibility
+(define-property visibility-threshold
   (of-object "GooCanvasPath")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property description
-  (of-object "GooCanvasPath")
-  (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
+  (prop-type "GParamDouble")
+  (docs "The scale threshold at which the item becomes visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3034,15 +3025,6 @@
   (construct-only #f)
 )
 
-(define-property parent
-  (of-object "GooCanvasPath")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property pointer-events
   (of-object "GooCanvasPath")
   (prop-type "GParamFlags")
@@ -3052,10 +3034,28 @@
   (construct-only #f)
 )
 
-(define-property visibility-threshold
+(define-property parent
   (of-object "GooCanvasPath")
-  (prop-type "GParamDouble")
-  (docs "The scale threshold at which the item becomes visible")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasPath")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property description
+  (of-object "GooCanvasPath")
+  (prop-type "GParamString")
+  (docs "A description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3200,7 +3200,7 @@
   (of-object "GooCanvasPath")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -3227,7 +3227,7 @@
   (of-object "GooCanvasPath")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -3270,10 +3270,10 @@
 
 ;; From GooCanvasPathModel
 
-(define-property pointer-events
+(define-property transform
   (of-object "GooCanvasPathModel")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3283,15 +3283,6 @@
   (of-object "GooCanvasPathModel")
   (prop-type "GParamString")
   (docs "A short context-rich description of the item for use by assistive technologies")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasPathModel")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3315,15 +3306,6 @@
   (construct-only #f)
 )
 
-(define-property visibility
-  (of-object "GooCanvasPathModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property visibility-threshold
   (of-object "GooCanvasPathModel")
   (prop-type "GParamDouble")
@@ -3337,6 +3319,24 @@
   (of-object "GooCanvasPathModel")
   (prop-type "GParamString")
   (docs "A description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasPathModel")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasPathModel")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3472,7 +3472,7 @@
   (of-object "GooCanvasPathModel")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -3499,7 +3499,7 @@
   (of-object "GooCanvasPathModel")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -3544,19 +3544,10 @@
 
 ;; From GooCanvasPolyline
 
-(define-property visibility
+(define-property visibility-threshold
   (of-object "GooCanvasPolyline")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property description
-  (of-object "GooCanvasPolyline")
-  (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
+  (prop-type "GParamDouble")
+  (docs "The scale threshold at which the item becomes visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3580,15 +3571,6 @@
   (construct-only #f)
 )
 
-(define-property parent
-  (of-object "GooCanvasPolyline")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property pointer-events
   (of-object "GooCanvasPolyline")
   (prop-type "GParamFlags")
@@ -3598,10 +3580,28 @@
   (construct-only #f)
 )
 
-(define-property visibility-threshold
+(define-property parent
   (of-object "GooCanvasPolyline")
-  (prop-type "GParamDouble")
-  (docs "The scale threshold at which the item becomes visible")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasPolyline")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property description
+  (of-object "GooCanvasPolyline")
+  (prop-type "GParamString")
+  (docs "A description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3746,7 +3746,7 @@
   (of-object "GooCanvasPolyline")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -3773,7 +3773,7 @@
   (of-object "GooCanvasPolyline")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -3870,10 +3870,10 @@
 
 ;; From GooCanvasPolylineModel
 
-(define-property pointer-events
+(define-property transform
   (of-object "GooCanvasPolylineModel")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3883,15 +3883,6 @@
   (of-object "GooCanvasPolylineModel")
   (prop-type "GParamString")
   (docs "A short context-rich description of the item for use by assistive technologies")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasPolylineModel")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3915,15 +3906,6 @@
   (construct-only #f)
 )
 
-(define-property visibility
-  (of-object "GooCanvasPolylineModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property visibility-threshold
   (of-object "GooCanvasPolylineModel")
   (prop-type "GParamDouble")
@@ -3937,6 +3919,24 @@
   (of-object "GooCanvasPolylineModel")
   (prop-type "GParamString")
   (docs "A description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasPolylineModel")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasPolylineModel")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -4072,7 +4072,7 @@
   (of-object "GooCanvasPolylineModel")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -4099,7 +4099,7 @@
   (of-object "GooCanvasPolylineModel")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -4196,19 +4196,10 @@
 
 ;; From GooCanvasRect
 
-(define-property visibility
+(define-property visibility-threshold
   (of-object "GooCanvasRect")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property description
-  (of-object "GooCanvasRect")
-  (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
+  (prop-type "GParamDouble")
+  (docs "The scale threshold at which the item becomes visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -4232,15 +4223,6 @@
   (construct-only #f)
 )
 
-(define-property parent
-  (of-object "GooCanvasRect")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property pointer-events
   (of-object "GooCanvasRect")
   (prop-type "GParamFlags")
@@ -4250,10 +4232,28 @@
   (construct-only #f)
 )
 
-(define-property visibility-threshold
+(define-property parent
   (of-object "GooCanvasRect")
-  (prop-type "GParamDouble")
-  (docs "The scale threshold at which the item becomes visible")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasRect")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property description
+  (of-object "GooCanvasRect")
+  (prop-type "GParamString")
+  (docs "A description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -4398,7 +4398,7 @@
   (of-object "GooCanvasRect")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -4425,7 +4425,7 @@
   (of-object "GooCanvasRect")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -4513,10 +4513,10 @@
 
 ;; From GooCanvasRectModel
 
-(define-property pointer-events
+(define-property transform
   (of-object "GooCanvasRectModel")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -4526,15 +4526,6 @@
   (of-object "GooCanvasRectModel")
   (prop-type "GParamString")
   (docs "A short context-rich description of the item for use by assistive technologies")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasRectModel")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -4558,15 +4549,6 @@
   (construct-only #f)
 )
 
-(define-property visibility
-  (of-object "GooCanvasRectModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property visibility-threshold
   (of-object "GooCanvasRectModel")
   (prop-type "GParamDouble")
@@ -4580,6 +4562,24 @@
   (of-object "GooCanvasRectModel")
   (prop-type "GParamString")
   (docs "A description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasRectModel")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasRectModel")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -4715,7 +4715,7 @@
   (of-object "GooCanvasRectModel")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -4742,7 +4742,7 @@
   (of-object "GooCanvasRectModel")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -4832,19 +4832,10 @@
 
 ;; From GooCanvasTable
 
-(define-property visibility
+(define-property visibility-threshold
   (of-object "GooCanvasTable")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property description
-  (of-object "GooCanvasTable")
-  (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
+  (prop-type "GParamDouble")
+  (docs "The scale threshold at which the item becomes visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -4868,15 +4859,6 @@
   (construct-only #f)
 )
 
-(define-property parent
-  (of-object "GooCanvasTable")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property pointer-events
   (of-object "GooCanvasTable")
   (prop-type "GParamFlags")
@@ -4886,10 +4868,28 @@
   (construct-only #f)
 )
 
-(define-property visibility-threshold
+(define-property parent
   (of-object "GooCanvasTable")
-  (prop-type "GParamDouble")
-  (docs "The scale threshold at which the item becomes visible")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasTable")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property description
+  (of-object "GooCanvasTable")
+  (prop-type "GParamString")
+  (docs "A description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -5034,7 +5034,7 @@
   (of-object "GooCanvasTable")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -5061,7 +5061,7 @@
   (of-object "GooCanvasTable")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -5147,12 +5147,48 @@
   (construct-only #f)
 )
 
+(define-property x-border-spacing
+  (of-object "GooCanvasTable")
+  (prop-type "GParamDouble")
+  (docs "The amount of spacing between the lefmost and rightmost cells and the border grid line")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y-border-spacing
+  (of-object "GooCanvasTable")
+  (prop-type "GParamDouble")
+  (docs "The amount of spacing between the topmost and bottommost cells and the border grid line")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property vert-grid-line-width
+  (of-object "GooCanvasTable")
+  (prop-type "GParamDouble")
+  (docs "The width of the grid line to draw between columns")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property horz-grid-line-width
+  (of-object "GooCanvasTable")
+  (prop-type "GParamDouble")
+  (docs "The width of the grid line to draw between rows")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From GooCanvasTableModel
 
-(define-property pointer-events
+(define-property transform
   (of-object "GooCanvasTableModel")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -5162,15 +5198,6 @@
   (of-object "GooCanvasTableModel")
   (prop-type "GParamString")
   (docs "A short context-rich description of the item for use by assistive technologies")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasTableModel")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -5194,15 +5221,6 @@
   (construct-only #f)
 )
 
-(define-property visibility
-  (of-object "GooCanvasTableModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property visibility-threshold
   (of-object "GooCanvasTableModel")
   (prop-type "GParamDouble")
@@ -5216,6 +5234,24 @@
   (of-object "GooCanvasTableModel")
   (prop-type "GParamString")
   (docs "A description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasTableModel")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasTableModel")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -5351,7 +5387,7 @@
   (of-object "GooCanvasTableModel")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -5378,7 +5414,7 @@
   (of-object "GooCanvasTableModel")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -5464,21 +5500,48 @@
   (construct-only #f)
 )
 
-;; From GooCanvasText
-
-(define-property visibility
-  (of-object "GooCanvasText")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
+(define-property x-border-spacing
+  (of-object "GooCanvasTableModel")
+  (prop-type "GParamDouble")
+  (docs "The amount of spacing between the lefmost and rightmost cells and the border grid line")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property description
+(define-property y-border-spacing
+  (of-object "GooCanvasTableModel")
+  (prop-type "GParamDouble")
+  (docs "The amount of spacing between the topmost and bottommost cells and the border grid line")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property vert-grid-line-width
+  (of-object "GooCanvasTableModel")
+  (prop-type "GParamDouble")
+  (docs "The width of the grid line to draw between columns")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property horz-grid-line-width
+  (of-object "GooCanvasTableModel")
+  (prop-type "GParamDouble")
+  (docs "The width of the grid line to draw between rows")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GooCanvasText
+
+(define-property visibility-threshold
   (of-object "GooCanvasText")
-  (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
+  (prop-type "GParamDouble")
+  (docs "The scale threshold at which the item becomes visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -5502,15 +5565,6 @@
   (construct-only #f)
 )
 
-(define-property parent
-  (of-object "GooCanvasText")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property pointer-events
   (of-object "GooCanvasText")
   (prop-type "GParamFlags")
@@ -5520,10 +5574,28 @@
   (construct-only #f)
 )
 
-(define-property visibility-threshold
+(define-property parent
   (of-object "GooCanvasText")
-  (prop-type "GParamDouble")
-  (docs "The scale threshold at which the item becomes visible")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasText")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property description
+  (of-object "GooCanvasText")
+  (prop-type "GParamString")
+  (docs "A description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -5668,7 +5740,7 @@
   (of-object "GooCanvasText")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -5695,7 +5767,7 @@
   (of-object "GooCanvasText")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -5810,10 +5882,10 @@
 
 ;; From GooCanvasTextModel
 
-(define-property pointer-events
+(define-property transform
   (of-object "GooCanvasTextModel")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -5823,15 +5895,6 @@
   (of-object "GooCanvasTextModel")
   (prop-type "GParamString")
   (docs "A short context-rich description of the item for use by assistive technologies")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasTextModel")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -5855,15 +5918,6 @@
   (construct-only #f)
 )
 
-(define-property visibility
-  (of-object "GooCanvasTextModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property visibility-threshold
   (of-object "GooCanvasTextModel")
   (prop-type "GParamDouble")
@@ -5877,6 +5931,24 @@
   (of-object "GooCanvasTextModel")
   (prop-type "GParamString")
   (docs "A description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasTextModel")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasTextModel")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -6012,7 +6084,7 @@
   (of-object "GooCanvasTextModel")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -6039,7 +6111,7 @@
   (of-object "GooCanvasTextModel")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -6154,19 +6226,10 @@
 
 ;; From GooCanvasWidget
 
-(define-property visibility
+(define-property visibility-threshold
   (of-object "GooCanvasWidget")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property description
-  (of-object "GooCanvasWidget")
-  (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
+  (prop-type "GParamDouble")
+  (docs "The scale threshold at which the item becomes visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -6190,15 +6253,6 @@
   (construct-only #f)
 )
 
-(define-property parent
-  (of-object "GooCanvasWidget")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property pointer-events
   (of-object "GooCanvasWidget")
   (prop-type "GParamFlags")
@@ -6208,10 +6262,28 @@
   (construct-only #f)
 )
 
-(define-property visibility-threshold
+(define-property parent
   (of-object "GooCanvasWidget")
-  (prop-type "GParamDouble")
-  (docs "The scale threshold at which the item becomes visible")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasWidget")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property description
+  (of-object "GooCanvasWidget")
+  (prop-type "GParamString")
+  (docs "A description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -6356,7 +6428,7 @@
   (of-object "GooCanvasWidget")
   (prop-type "GParamUInt")
   (docs "The color to use for the item's perimeter, specified as a 32-bit integer value. To disable painting set the 'stroke-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -6383,7 +6455,7 @@
   (of-object "GooCanvasWidget")
   (prop-type "GParamUInt")
   (docs "The color to use to paint the interior of the item, specified as a 32-bit integer value. To disable painting set the 'fill-pattern' property to NULL")
-  (readable #f)
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
