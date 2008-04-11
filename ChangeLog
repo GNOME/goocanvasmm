@@ -1,3 +1,13 @@
+2008-04-11  Armin Burgmeier  <armin@openismus.com>
+
+	* examples/tablemodel/examplewindow.h:
+	* examples/tablemodel/examplewindow.cc:
+	* examples/tablemodel/Makefile.am: Added a new example showing two
+	canvases that display the same underlaying model.
+
+	* examples/Makefile.am:
+	* configure.in: Build the new example.
+
 2008-04-10  Armin Burgmeier  <armin@openismus.com>
 
 	* goocanvas/src/table.hg:

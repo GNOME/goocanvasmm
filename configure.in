@@ -151,5 +151,6 @@ AC_OUTPUT([
     examples/coordinates/Makefile
     examples/text/Makefile
     examples/table/Makefile
+    examples/tablemodel/Makefile
 ])
 :
