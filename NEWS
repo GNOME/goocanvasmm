@@ -1,3 +1,18 @@
+0.6.0:
+
+* Item, ItemModel: Added get_simple_transform(). (Murray Cumming)
+* Table:
+  - Added attach() convenience method.
+  - Added x-border-spacing, y-border-spacing, vert-grid-line-width, 
+    horz-grid-line-width properties.
+* Added TableModel.
+* Added properties and vfuncs (there should be almost none left now).
+  (Armin Burgmeier, Openismus)
+* Documentation:
+  - Added tablemodel example, showing two canvases that display the same 
+  underlying model.
+  (Armin Burgmeier, Openismus)
+
 0.5.0:
 
 * Ellipse:

@@ -31,19 +31,19 @@ class RectModel :
 
 protected:
 
-  RectModel(gdouble x, double y, gdouble width, gdouble height);
+  RectModel(double x, double y, double width, double height);
   _IGNORE(goo_canvas_rect_model_new)
 
 public:
 
-  _WRAP_CREATE(gdouble x, gdouble y, gdouble width, gdouble height)
+  _WRAP_CREATE(double x, double y, double width, double height)
 
-  _WRAP_PROPERTY("height", gdouble)
-  _WRAP_PROPERTY("radius-x", gdouble)
-  _WRAP_PROPERTY("radius-y", gdouble)
-  _WRAP_PROPERTY("width", gdouble)
-  _WRAP_PROPERTY("x", gdouble)
-  _WRAP_PROPERTY("y", gdouble)
+  _WRAP_PROPERTY("height", double)
+  _WRAP_PROPERTY("radius-x", double)
+  _WRAP_PROPERTY("radius-y", double)
+  _WRAP_PROPERTY("width", double)
+  _WRAP_PROPERTY("x", double)
+  _WRAP_PROPERTY("y", double)
 
 };
 

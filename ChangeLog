@@ -1,3 +1,19 @@
+0.6.0:
+
+2008-05-06  Murray Cumming  <murrayc@murrayc.com>
+
+	* goocanvas/src/item.hg:
+	* goocanvas/src/itemmodel.hg: Added get_simple_transform().
+	* goocanvas/src/table.ccg:
+	* goocanvas/src/table.hg: Added documentation for attach().
+
+	* goocanvas/src/itemmodelsimple.hg:
+	* goocanvas/src/libgoocanvas_methods.defs:
+	* goocanvas/src/rectmodel.hg:
+	* goocanvas/src/tablemodel.ccg:
+	* goocanvas/src/tablemodel.hg: Use double instead of gdouble in the API, 
+	for consistency with gtkmm.
+
 2008-05-05  Armin Burgmeier  <armin@openismus.com>
 
 	* examples/tablemodel/main.cc: Added missing main.cc file.
@@ -7,7 +23,7 @@
 	* examples/tablemodel/examplewindow.h:
 	* examples/tablemodel/examplewindow.cc:
 	* examples/tablemodel/Makefile.am: Added a new example showing two
-	canvases that display the same underlaying model.
+	canvases that display the same underlying model.
 
 	* examples/Makefile.am:
 	* configure.in: Build the new example.
@@ -31,7 +47,7 @@
 	* goocanvas/src/tablemodel.hg:
 	* goocanvas/src/tablemodel.ccg:
 	* goocanvas/src/Makefile_list_of_hg.am_fragment:
-	* goocanvas/goocanvasmm.h: Wrapped GooCanvasItemModel.
+	* goocanvas/goocanvasmm.h: Wrapped GooCanvasTableModel.
 
 	* goocanvas/src/style.hg:
 	* goocanvas/src/style.ccg:

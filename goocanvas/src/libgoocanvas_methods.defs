@@ -910,6 +910,18 @@
   )
 )
 
+(define-method get_simple_transform
+  (of-object "GooCanvasItem")
+  (c-name "goo_canvas_item_get_simple_transform")
+  (return-type "gboolean")
+  (parameters
+    '("gdouble*" "x")
+    '("gdouble*" "y")
+    '("gdouble*" "scale")
+    '("gdouble*" "rotation")
+  )
+)
+
 (define-method set_simple_transform
   (of-object "GooCanvasItem")
   (c-name "goo_canvas_item_set_simple_transform")
@@ -1335,6 +1347,18 @@
   (return-type "none")
   (parameters
     '("const-cairo_matrix_t*" "transform")
+  )
+)
+
+(define-method get_simple_transform
+  (of-object "GooCanvasItemModel")
+  (c-name "goo_canvas_item_model_get_simple_transform")
+  (return-type "gboolean")
+  (parameters
+    '("gdouble*" "x")
+    '("gdouble*" "y")
+    '("gdouble*" "scale")
+    '("gdouble*" "rotation")
   )
 )
 

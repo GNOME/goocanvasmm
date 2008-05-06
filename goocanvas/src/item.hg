@@ -117,6 +117,7 @@ public:
   _WRAP_METHOD(void set_transform(const Cairo::Matrix* matrix), goo_canvas_item_set_transform)
 
   _WRAP_METHOD(void set_simple_transform(double x, double y, double scale, double rotation), goo_canvas_item_set_simple_transform)
+  _WRAP_METHOD(bool get_simple_transform(double& x, double& y, double& scale, double& rotation) const, goo_canvas_item_get_simple_transform)
   _WRAP_METHOD(void translate(double tx, double ty), goo_canvas_item_translate)
   _WRAP_METHOD(void scale(double sx, double sy), goo_canvas_item_scale)
   _WRAP_METHOD(void rotate(double degrees, double cx, double cy), goo_canvas_item_rotate)

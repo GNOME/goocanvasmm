@@ -23,7 +23,7 @@ _PINCLUDE(goocanvasmm/private/groupmodel_p.h)
 namespace Goocanvas
 {
 
-void TableModel::attach(const Glib::RefPtr<ItemModel>& item, guint left_attach, guint right_attach, guint top_attach, guint bottom_attach, Gtk::AttachOptions xoptions, Gtk::AttachOptions yoptions, gdouble left_padding, gdouble right_padding, gdouble top_padding, gdouble bottom_padding)
+void TableModel::attach(const Glib::RefPtr<ItemModel>& item, guint left_attach, guint right_attach, guint top_attach, guint bottom_attach, Gtk::AttachOptions xoptions, Gtk::AttachOptions yoptions, double left_padding, double right_padding, double top_padding, double bottom_padding)
 {
   const gboolean x_expand = (xoptions & Gtk::EXPAND) != 0;
   const gboolean x_fill = (xoptions & Gtk::FILL) != 0;

@@ -35,7 +35,7 @@ public:
 
   _WRAP_CREATE()
 
-  void attach(const Glib::RefPtr<ItemModel>& item, guint left_attach, guint right_attach, guint top_attach, guint bottom_attach, Gtk::AttachOptions xoptions = Gtk::FILL | Gtk::EXPAND, Gtk::AttachOptions yoptions = Gtk::FILL | Gtk::EXPAND, gdouble left_padding = 0.0, gdouble right_padding = 0.0, gdouble top_padding = 0.0, gdouble bottom_padding = 0.0);
+  void attach(const Glib::RefPtr<ItemModel>& item, guint left_attach, guint right_attach, guint top_attach, guint bottom_attach, Gtk::AttachOptions xoptions = Gtk::FILL | Gtk::EXPAND, Gtk::AttachOptions yoptions = Gtk::FILL | Gtk::EXPAND, double left_padding = 0.0, double right_padding = 0.0, double top_padding = 0.0, double bottom_padding = 0.0);
 
   void set_align(const Glib::RefPtr<ItemModel>& child, double xalign = 0.0, double yalign = 0.0);
   void set_align(const Glib::RefPtr<ItemModel>& child, Gtk::AlignmentEnum xalign = Gtk::ALIGN_LEFT, Gtk::AlignmentEnum yalign = Gtk::ALIGN_TOP);
