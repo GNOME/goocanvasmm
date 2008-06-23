@@ -1,5 +1,7 @@
 2008-06-23  Hubert Figuiere  <hub@figuiere.net>
 
+	* configure.in: require goocanvas 0.10. Bug #539600
+
 	* goocanvas/src/item.hg: Remove spurious ';'.
 
 0.6.0:
