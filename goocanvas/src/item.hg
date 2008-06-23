@@ -152,10 +152,10 @@ public:
   _WRAP_SIGNAL(bool grab_broken_event(const Glib::RefPtr<Item>& target, GdkEventGrabBroken* event), "grab_broken_event")
   _WRAP_SIGNAL(void child_notify(GParamSpec* pspec), "child_notify")
 
-  _WRAP_PROPERTY("parent", Glib::RefPtr<Item>);
+  _WRAP_PROPERTY("parent", Glib::RefPtr<Item>)
   _WRAP_PROPERTY("visibility", ItemVisibility)
   _WRAP_PROPERTY("visibility-threshold", double)
-  _WRAP_PROPERTY("transform", Cairo::Matrix*);
+  _WRAP_PROPERTY("transform", Cairo::Matrix*)
   _WRAP_PROPERTY("pointer-events", PointerEvents)
   _WRAP_PROPERTY("title", Glib::ustring)
   _WRAP_PROPERTY("description", Glib::ustring)
@@ -163,7 +163,7 @@ public:
 
 protected:
 
-#m4 _CONVERSION(`Glib::RefPtr<Item>', `GooCanvasItem*', `(($3) ? ($3)->gobj() : 0)');
+#m4 _CONVERSION(`Glib::RefPtr<Item>', `GooCanvasItem*', `(($3) ? ($3)->gobj() : 0)')
 #m4 _CONVERSION(`GooCanvasItem*', `Glib::RefPtr<Item>', `Glib::wrap($3, true)')
 /* Virtual methods that group items must implement. */
   _WRAP_VFUNC(int get_n_children() const, get_n_children)
@@ -205,7 +205,7 @@ protected:
 #m4 _CONVERSION(`cairo_t*',`const Cairo::RefPtr<Cairo::Context>&',`Cairo::RefPtr<Cairo::Context>(new Cairo::Context($3, false /* has_reference */))')
   _WRAP_VFUNC(void update(bool entire_tree, const Cairo::RefPtr<Cairo::Context>& cr, Bounds& bounds), update)
 
-#m4 _CONVERSION(`const GooCanvasBounds*', `const Bounds&', `Glib::wrap($3)');
+#m4 _CONVERSION(`const GooCanvasBounds*', `const Bounds&', `Glib::wrap($3)')
   _WRAP_VFUNC(void paint(const Cairo::RefPtr<Cairo::Context>& cr, const Bounds& bounds, double scale), paint)
 
   _WRAP_VFUNC(bool get_requested_area(const Cairo::RefPtr<Cairo::Context>& cr, GooCanvasBounds* requested_area) const, get_requested_area)
@@ -226,7 +226,7 @@ protected:
   _WRAP_VFUNC(double get_requested_height(const Cairo::RefPtr<Cairo::Context>& cr, double width), get_requested_height)
 
   /* Virtual methods that model/view items must implement. */
-#m4 _CONVERSION(`Glib::RefPtr<ItemModel>', `GooCanvasItemModel*', `(($3) ? ($3)->gobj() : 0)');
+#m4 _CONVERSION(`Glib::RefPtr<ItemModel>', `GooCanvasItemModel*', `(($3) ? ($3)->gobj() : 0)')
 #m4 _CONVERSION(`GooCanvasItemModel*', `Glib::RefPtr<ItemModel>', `Glib::wrap($3, true)')
 #m4 _CONVERSION(`GooCanvasItemModel*', `const Glib::RefPtr<ItemModel>&', `Glib::wrap($3, true)')
   _WRAP_VFUNC(Glib::RefPtr<ItemModel> get_model() const, get_model)
