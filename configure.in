@@ -64,7 +64,35 @@ AC_PROG_CC
 AC_PROG_CPP
 AC_PROG_MAKE_SET
 AC_CANONICAL_HOST
-AM_DISABLE_STATIC
+
+dnl Used for enabling the "-no-undefined" flag while generating DLLs
+dnl Copied from the official gtk+-2 configure.in
+AC_MSG_CHECKING([for some Win32 platform])
+case "$host" in
+  *-*-mingw*|*-*-cygwin*)
+    platform_win32=yes
+    ;;
+  *)
+    platform_win32=no
+    ;;
+esac
+AC_MSG_RESULT([$platform_win32])
+AM_CONDITIONAL(PLATFORM_WIN32, test "$platform_win32" = "yes")
+
+AC_MSG_CHECKING([for native Win32])
+case "$host" in
+  *-*-mingw*)
+    os_win32=yes
+    ;;
+  *)
+    os_win32=no
+    ;;
+esac
+AC_MSG_RESULT([$os_win32])
+AM_CONDITIONAL(OS_WIN32, test "$os_win32" = "yes")
+
+AC_DISABLE_STATIC
+AC_LIBTOOL_WIN32_DLL
 AM_PROG_LIBTOOL
 
 AL_PROG_GNU_M4(AC_MSG_ERROR([dnl

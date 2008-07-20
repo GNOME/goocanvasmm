@@ -21,7 +21,14 @@
 
 files_all_cc	= $(files_built_cc) $(files_extra_cc)
 
-common_ldflags	= -version-info $(sublib_libversion)
+# Support for DLL on mingw using libtool > 1.4
+if PLATFORM_WIN32
+no_undefined = -no-undefined -Wl,--export-all-symbols
+else
+no_undefined =
+endif
+
+common_ldflags	= -version-info $(sublib_libversion) $(no_undefined)
 
 all_includes	= -I$(top_builddir)/$(sublib_topdir)		-I$(top_srcdir)/$(sublib_topdir)	\
 		  $(sublib_cflags)

@@ -1,3 +1,12 @@
+2007-07-20  Armin Burgmeier  <armin@openismus.com>
+
+	* configure.in: Added detection of Win32 platform, and added the
+	AC_LIBTOOL_WIN32_DLL macro to produce a DLL on Windows.
+
+	* build_shared/Makefile_build.am_fragment: Add -no-undefined to the
+	ldflags on Windows because DLLs are not allowed to contain undefined
+	references.
+
 2008-06-23  Hubert Figuiere  <hub@figuiere.net>
 
 	* configure.in: require goocanvas 0.10. Bug #539600
