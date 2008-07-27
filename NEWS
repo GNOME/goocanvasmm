@@ -1,9 +1,15 @@
-0.9.0 (unstable)
+0.9.0 (unstable):
 
+* Depend on goocanvas-0.10.
+  (Hubert Figuiere)
 * Increased version to match the goocanvas version more.
-* Item: remove spurious ';' in the public header. (Hubert Figuiere)
+  (Murray Cumming)
+* Item: remove spurious ';' in the public header.
+  (Hubert Figuiere)
+* Fixed the Windows build.
+  (Armin Burgmeier)
 
-0.6.0: (unstable)
+0.6.0 (unstable):
 
 * Item, ItemModel: Added get_simple_transform(). (Murray Cumming)
 * Table:
@@ -18,7 +24,7 @@
   underlying model.
   (Armin Burgmeier, Openismus)
 
-0.5.0:
+0.5.0 (unstable):
 
 * Ellipse:
   Constructor: Added default parameter values.
@@ -45,7 +51,7 @@
   and correct the .pc file.
   (Murray Cumming) (Bug #489865. Yaakov Selkovitz)
 
-0.4.0:
+0.4.0 (unstable):
 
 * Canvas:
   - Make the properties public.
@@ -54,13 +60,13 @@
 * Added Table, with an example.
   (Murray Cumming)
 
-0.3.0:
+0.3.0 (unstable):
 
 * Canvas: Wrapped the properties.
 * Image: Added default values for the constructors.
 * Item: get_style(): refcount correction.
 
-0.2.0:
+0.2.0 (unstable):
 
 * The pkg-config file is now called goocanvas-1.0 instead of libgoocanvas.
 * The files should now be included as, for instance,
@@ -74,6 +80,6 @@
   Use add_child() instead.
 * Various methods were added or improved. 
 
-0.1.0
+0.1.0 (unstable):
 
 Initial version.
