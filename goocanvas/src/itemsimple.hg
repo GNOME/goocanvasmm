@@ -94,8 +94,8 @@ public:
 protected:
 #m4 _CONVERSION(`cairo_t*',`const Cairo::RefPtr<Cairo::Context>&',`Cairo::RefPtr<Cairo::Context>(new Cairo::Context($3, false /* has reference */))')
 #m4 _CONVERSION(`const GooCanvasBounds*',`const Bounds&',`Glib::wrap($3)')
-  _WRAP_VFUNC(void simple_create_path(const Cairo::RefPtr<Cairo::Context>& cr), "simple_create_path")
-  _WRAP_VFUNC(void simple_update(const Cairo::RefPtr<Cairo::Context>& cr), "simple_update")
+  _WRAP_VFUNC(void simple_create_path(const Cairo::RefPtr<Cairo::Context>& cr), simple_create_path)
+  _WRAP_VFUNC(void simple_update(const Cairo::RefPtr<Cairo::Context>& cr), simple_update)
   _WRAP_VFUNC(void simple_paint(const Cairo::RefPtr<Cairo::Context>& cr, const Bounds& bounds), simple_paint)
   _WRAP_VFUNC(bool simple_is_item_at(double x, double y, const Cairo::RefPtr<Cairo::Context>& cr, bool is_pointer_event), "simple_is_item_at")
   _MEMBER_GET(need_update, need_update, bool, guint);

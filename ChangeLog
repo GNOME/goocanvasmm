@@ -1,3 +1,23 @@
+2008-07-27  Murray Cumming  <murrayc@murrayc.com>
+
+	* examples/coordinates/window.h:
+	* examples/custom_item/Makefile.am:
+	* examples/custom_item/exampleitem.cc:
+	* examples/custom_item/exampleitem.h:
+	* examples/custom_item/examplewindow.cc:
+	* examples/custom_item/examplewindow.h:
+	* examples/drag_to_canvas/examplewindow.h:
+	* examples/moving_shapes/window.h:
+	* examples/simple/examplewindow.h:
+	* examples/table/examplewindow.h:
+	* examples/tablemodel/examplewindow.h:
+	* examples/text/window.h: Added header guards.
+
+	* configure.in:
+	* examples/Makefile.am:
+	* examples/custom_item/: New unfinished unworking 
+	example of a custom item doing its own drawing.
+
 0.9.0:
 
 2008-07-27  Murray Cumming  <murrayc@murrayc.com>

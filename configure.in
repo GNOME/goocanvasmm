@@ -172,6 +172,7 @@ AC_OUTPUT([
     docs/reference/Doxyfile
 
   examples/Makefile
+    examples/custom_item/Makefile
     examples/demo/Makefile
     examples/drag_to_canvas/Makefile
     examples/simple/Makefile

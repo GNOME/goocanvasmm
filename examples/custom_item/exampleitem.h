@@ -15,25 +15,25 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef _GOOCANVASMM_EXAMPLEWINDOW_H
-#define _GOOCANVASMM_EXAMPLEWINDOW_H
+#ifndef _GOOCANVASMM_EXAMPLEITEM_H
+#define _GOOCANVASMM_EXAMPLEITEM_H
 
-#include <gtkmm.h>
-#include <goocanvasmm.h>
+#include <goocanvasmm/itemsimple.h>
 
-class ExampleWindow : public Gtk::Window
+class ExampleItem : public Goocanvas::ItemSimple
 {
+protected:
+  ExampleItem(double x = 0, double y = 0, double width = 0, double height = 0);
+
 public:
-  ExampleWindow() ;
+  static Glib::RefPtr<ExampleItem> create(double x = 0, double y = 0, double width = 0, double height = 0);
 
 protected:
+  void simple_update_vfunc(const Cairo::RefPtr<Cairo::Context>& cr);
+  void simple_paint_vfunc(const Cairo::RefPtr<Cairo::Context>& cr, const Goocanvas::Bounds& bounds);
 
-  void add_text_to_cell(const Glib::RefPtr<Goocanvas::Table>&, const Glib::ustring& text, guint row, guint col);
-
-  bool on_rect_button_press(const Glib::RefPtr<Goocanvas::Item>& target, GdkEventButton* event);
-  
-  Goocanvas::Canvas m_canvas;
-  Glib::RefPtr<Goocanvas::Table> m_table;
+  double m_x, m_y;
+  double m_width, m_height;
 };
 
 #endif //_GOOCANVASMM_EXAMPLEWINDOW_H
