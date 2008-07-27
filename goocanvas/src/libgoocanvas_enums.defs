@@ -1,4 +1,4 @@
-;; From goocanvas/src/goocanvasitem.h
+;; From /home/murrayc/svn/gnome220/goocanvas/src/goocanvasitem.h
 
 (define-enum-extended CanvasAnimateType
   (in-module "Goo")
@@ -11,7 +11,7 @@
   )
 )
 
-;; From goocanvas/src/goocanvasutils.h
+;; From /home/murrayc/svn/gnome220/goocanvas/src/goocanvasutils.h
 
 (define-flags-extended CanvasPointerEvents
   (in-module "Goo")

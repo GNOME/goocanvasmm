@@ -81,19 +81,20 @@ have their visibility set to %GOO_CANVAS_ITEM_VISIBLE_ABOVE_THRESHOLD.
 <return></return>
 </function>
 
-<function name="goo_canvas_points_unref">
+<function name="goo_canvas_style_get_parent">
 <description>
-Decrements the reference count of the given #GooCanvasPoints struct,
-freeing it if the reference count falls to zero.
+Gets the parent of the style.
+
 
 </description>
 <parameters>
-<parameter name="points">
-<parameter_description> a #GooCanvasPoints struct.
+<parameter name="style">
+<parameter_description> a style.
 </parameter_description>
 </parameter>
 </parameters>
-<return></return>
+<return> the parent of the given style, or %NULL.
+</return>
 </function>
 
 <function name="goo_canvas_item_model_set_child_properties_valist">
@@ -165,6 +166,55 @@ Gets the transformation matrix of an item.
 </return>
 </function>
 
+<function name="goo_canvas_item_allocate_area">
+<description>
+This function is only intended to be used when implementing new canvas
+items, specifically layout items such as #GooCanvasTable.
+
+It allocates an area to a child #GooCanvasItem.
+
+Note that the parent layout item will use a transform to move each of its
+children for the layout, so there is no need for the child item to
+reposition itself. It only needs to recalculate its device bounds.
+
+To help recalculate the item&apos;s device bounds, the @x_offset and @y_offset
+of the child item&apos;s allocated position from its requested position are
+provided. Simple items can just add these to their bounds.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> a #GooCanvasItem.
+</parameter_description>
+</parameter>
+<parameter name="cr">
+<parameter_description> a cairo context.
+</parameter_description>
+</parameter>
+<parameter name="requested_area">
+<parameter_description> the area that the item originally requested, in the
+parent&apos;s coordinate space.
+</parameter_description>
+</parameter>
+<parameter name="allocated_area">
+<parameter_description> the area that the item has been allocated, in the parent&apos;s
+coordinate space.
+</parameter_description>
+</parameter>
+<parameter name="x_offset">
+<parameter_description> the x offset of the allocated area from the requested area in
+the device coordinate space.
+</parameter_description>
+</parameter>
+<parameter name="y_offset">
+<parameter_description> the y offset of the allocated area from the requested area in
+the device coordinate space.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
 <function name="goo_canvas_item_model_get_child_properties">
 <description>
 Gets the values of one or more child properties of @child.
@@ -197,12 +247,10 @@ Unique #GQuark identifier used for the standard line cap property.
 <return></return>
 </function>
 
-<function name="goo_canvas_item_get_transform_for_child">
+<function name="goo_canvas_item_rotate">
 <description>
-Gets the transformation matrix of an item combined with any special
-transform needed for the given child. These special transforms are used
-by layout items such as #GooCanvasTable.
-
+Rotates the item&apos;s coordinate system by the given amount, about the given
+origin.
 
 </description>
 <parameters>
@@ -210,17 +258,20 @@ by layout items such as #GooCanvasTable.
 <parameter_description> an item.
 </parameter_description>
 </parameter>
-<parameter name="child">
-<parameter_description> a child of @item.
+<parameter name="degrees">
+<parameter_description> the clockwise angle of rotation.
 </parameter_description>
 </parameter>
-<parameter name="transform">
-<parameter_description> the place to store the transform.
+<parameter name="cx">
+<parameter_description> the x coordinate of the origin of the rotation.
+</parameter_description>
+</parameter>
+<parameter name="cy">
+<parameter_description> the y coordinate of the origin of the rotation.
 </parameter_description>
 </parameter>
 </parameters>
-<return> %TRUE if a transform is set.
-</return>
+<return></return>
 </function>
 
 <function name="goo_canvas_get_item">
@@ -361,22 +412,6 @@ See #GooCanvasItem:visibility-threshold.
 <return></return>
 </function>
 
-<function name="goo_canvas_style_get_parent">
-<description>
-Gets the parent of the style.
-
-
-</description>
-<parameters>
-<parameter name="style">
-<parameter_description> a style.
-</parameter_description>
-</parameter>
-</parameters>
-<return> the parent of the given style, or %NULL.
-</return>
-</function>
-
 <function name="goo_canvas_item_model_rotate">
 <description>
 Rotates the model&apos;s coordinate system by the given amount, about the given
@@ -398,21 +433,6 @@ origin.
 </parameter>
 <parameter name="cy">
 <parameter_description> the y coordinate of the origin of the rotation.
-</parameter_description>
-</parameter>
-</parameters>
-<return></return>
-</function>
-
-<function name="goo_canvas_line_dash_unref">
-<description>
-Decrements the reference count of the dash pattern. If it falls to 0
-it is freed.
-
-</description>
-<parameters>
-<parameter name="dash">
-<parameter_description> a #GooCanvasLineDash.
 </parameter_description>
 </parameter>
 </parameters>
@@ -564,14 +584,25 @@ Applications can set up signal handlers for the new items here.
 <return></return>
 </function>
 
-<function name="goo_canvas_style_line_dash_id">
+<function name="goo_canvas_style_set_fill_options">
 <description>
-Unique #GQuark identifier used for the standard line dash property.
+Sets the standard cairo fill options using the given style.
+
 
 </description>
 <parameters>
+<parameter name="style">
+<parameter_description> a style.
+</parameter_description>
+</parameter>
+<parameter name="cr">
+<parameter_description> a cairo context.
+</parameter_description>
+</parameter>
 </parameters>
-<return></return>
+<return> %TRUE if a paint source is set, or %FALSE if the fill should
+be skipped.
+</return>
 </function>
 
 <function name="goo_canvas_keyboard_ungrab">
@@ -846,55 +877,14 @@ be skipped.
 </return>
 </function>
 
-<function name="goo_canvas_rect_model_new">
+<function name="goo_canvas_style_fill_pattern_id">
 <description>
-Creates a new rectangle item.
-
-&amp;lt;!--PARAMETERS--&amp;gt;
-
-Here&apos;s an example showing how to create a rectangle at (100,100) with a
-width of 200 and a height of 100.
-
-&amp;lt;informalexample&amp;gt;&amp;lt;programlisting&amp;gt;
-GooCanvasItemModel *rect = goo_canvas_rect_model_new (mygroup, 100.0, 100.0, 200.0, 100.0,
-&quot;stroke-color&quot;, &quot;red&quot;,
-&quot;line-width&quot;, 5.0,
-&quot;fill-color&quot;, &quot;blue&quot;,
-NULL);
-&amp;lt;/programlisting&amp;gt;&amp;lt;/informalexample&amp;gt;
-
+Unique #GQuark identifier used for the standard fill pattern property.
 
 </description>
 <parameters>
-<parameter name="parent">
-<parameter_description> the parent model, or %NULL. If a parent is specified, it will
-assume ownership of the item, and the item will automatically be freed when
-it is removed from the parent. Otherwise call g_object_unref() to free it.
-</parameter_description>
-</parameter>
-<parameter name="x">
-<parameter_description> the x coordinate of the left of the rectangle.
-</parameter_description>
-</parameter>
-<parameter name="y">
-<parameter_description> the y coordinate of the top of the rectangle.
-</parameter_description>
-</parameter>
-<parameter name="width">
-<parameter_description> the width of the rectangle.
-</parameter_description>
-</parameter>
-<parameter name="height">
-<parameter_description> the height of the rectangle.
-</parameter_description>
-</parameter>
-<parameter name="Varargs">
-<parameter_description> optional pairs of property names and values, and a terminating %NULL.
-</parameter_description>
-</parameter>
 </parameters>
-<return> a new rectangle model.
-</return>
+<return></return>
 </function>
 
 <function name="goo_canvas_item_get_parent">
@@ -936,33 +926,22 @@ come from the relevant #GdkEvent.
 <return></return>
 </function>
 
-<function name="goo_canvas_get_item_at">
+<function name="goo_canvas_item_ensure_updated">
 <description>
-Gets the item at the given point.
+This function is only intended to be used when implementing new canvas
+items.
 
+It updates the canvas immediately, if an update is scheduled.
+This ensures that all item bounds are up-to-date.
 
 </description>
 <parameters>
-<parameter name="canvas">
-<parameter_description> a #GooCanvas.
-</parameter_description>
-</parameter>
-<parameter name="x">
-<parameter_description> the x coordinate of the point.
-</parameter_description>
-</parameter>
-<parameter name="y">
-<parameter_description> the y coordinate of the point
-</parameter_description>
-</parameter>
-<parameter name="is_pointer_event">
-<parameter_description> %TRUE if the &quot;pointer-events&quot; property of
-items should be used to determine which parts of the item are tested.
+<parameter name="item">
+<parameter_description> a #GooCanvasItem.
 </parameter_description>
 </parameter>
 </parameters>
-<return> the item found at the given point, or %NULL if no item was found.
-</return>
+<return></return>
 </function>
 
 <function name="goo_canvas_item_simple_changed">
@@ -986,18 +965,52 @@ It requests an update or redraw of the item as appropriate.
 <return></return>
 </function>
 
-<function name="goo_canvas_grab_focus">
+<function name="goo_canvas_item_model_animate">
 <description>
-Grabs the keyboard focus for the given item.
+Animates a model from its current position to the given offsets, scale
+and rotation.
 
 </description>
 <parameters>
-<parameter name="canvas">
-<parameter_description> a #GooCanvas.
+<parameter name="model">
+<parameter_description> an item model.
 </parameter_description>
 </parameter>
-<parameter name="item">
-<parameter_description> the item to grab the focus.
+<parameter name="x">
+<parameter_description> the final x coordinate.
+</parameter_description>
+</parameter>
+<parameter name="y">
+<parameter_description> the final y coordinate.
+</parameter_description>
+</parameter>
+<parameter name="scale">
+<parameter_description> the final scale.
+</parameter_description>
+</parameter>
+<parameter name="degrees">
+<parameter_description> the final rotation. This can be negative to rotate anticlockwise,
+and can also be greater than 360 to rotate a number of times.
+</parameter_description>
+</parameter>
+<parameter name="absolute">
+<parameter_description> if the @x, @y, @scale and @degrees values are absolute, or
+relative to the current transform. Note that absolute animations only work
+if the model currently has a simple transform. If the model has a shear or
+some other complicated transform it may result in strange animations.
+</parameter_description>
+</parameter>
+<parameter name="duration">
+<parameter_description> the duration of the animation, in milliseconds (1/1000ths of a
+second).
+</parameter_description>
+</parameter>
+<parameter name="step_time">
+<parameter_description> the time between each animation step, in milliseconds.
+</parameter_description>
+</parameter>
+<parameter name="type">
+<parameter_description> specifies what happens when the animation finishes.
 </parameter_description>
 </parameter>
 </parameters>
@@ -1084,18 +1097,54 @@ item&apos;s own transformation matrix, if it has one.
 <return></return>
 </function>
 
-<function name="goo_canvas_item_model_set_style">
+<function name="goo_canvas_create_item">
 <description>
-Sets the model&apos;s style, by copying the properties from the given style.
+This function is only intended to be used when implementing new canvas
+items, typically container items such as #GooCanvasGroup.
+
+It creates a new canvas item for the given item model, and recursively
+creates items for any children.
+
+It uses the create_item() virtual method if it has been set.
+Subclasses of #GooCanvas can define this method if they want to use
+custom views for items.
+
+It emits the #GooCanvas::item-created signal after creating the view, so
+application code can connect signal handlers to the new view if desired.
+
 
 </description>
 <parameters>
-<parameter name="model">
-<parameter_description> an item model.
+<parameter name="canvas">
+<parameter_description> a #GooCanvas.
 </parameter_description>
 </parameter>
-<parameter name="style">
-<parameter_description> a style.
+<parameter name="model">
+<parameter_description> the item model to create a canvas item for.
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new canvas item.
+</return>
+</function>
+
+<function name="goo_canvas_scroll_to">
+<description>
+Scrolls the canvas, placing the given point as close to the top-left of
+the view as possible.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> a #GooCanvas.
+</parameter_description>
+</parameter>
+<parameter name="left">
+<parameter_description> the x coordinate to scroll to.
+</parameter_description>
+</parameter>
+<parameter name="top">
+<parameter_description> the y coordinate to scroll to.
 </parameter_description>
 </parameter>
 </parameters>
@@ -1138,68 +1187,6 @@ the canvas has been repainted.
 <return></return>
 </function>
 
-<function name="goo_canvas_table_new">
-<description>
-Creates a new table item.
-
-&amp;lt;!--PARAMETERS--&amp;gt;
-
-Here&apos;s an example showing how to create a table with a square, a circle and
-a triangle in it:
-
-&amp;lt;informalexample&amp;gt;&amp;lt;programlisting&amp;gt;
-GooCanvasItem *table, *square, *circle, *triangle;
-
-table = goo_canvas_table_new (root,
-&quot;row-spacing&quot;, 4.0,
-&quot;column-spacing&quot;, 4.0,
-NULL);
-goo_canvas_item_translate (table, 400, 200);
-
-square = goo_canvas_rect_new (table, 0.0, 0.0, 50.0, 50.0,
-&quot;fill-color&quot;, &quot;red&quot;,
-NULL);
-goo_canvas_item_set_child_properties (table, square,
-&quot;row&quot;, 0,
-&quot;column&quot;, 0,
-NULL);
-
-circle = goo_canvas_ellipse_new (table, 0.0, 0.0, 25.0, 25.0,
-&quot;fill-color&quot;, &quot;blue&quot;,
-NULL);
-goo_canvas_item_set_child_properties (table, circle,
-&quot;row&quot;, 0,
-&quot;column&quot;, 1,
-NULL);
-
-triangle = goo_canvas_polyline_new (table, TRUE, 3,
-25.0, 0.0, 0.0, 50.0, 50.0, 50.0,
-&quot;fill-color&quot;, &quot;yellow&quot;,
-NULL);
-goo_canvas_item_set_child_properties (table, triangle,
-&quot;row&quot;, 0,
-&quot;column&quot;, 2,
-NULL);
-&amp;lt;/programlisting&amp;gt;&amp;lt;/informalexample&amp;gt;
-
-
-</description>
-<parameters>
-<parameter name="parent">
-<parameter_description> the parent item, or %NULL. If a parent is specified, it will assume
-ownership of the item, and the item will automatically be freed when it is
-removed from the parent. Otherwise call g_object_unref() to free it.
-</parameter_description>
-</parameter>
-<parameter name="Varargs">
-<parameter_description> optional pairs of property names and values, and a terminating %NULL.
-</parameter_description>
-</parameter>
-</parameters>
-<return> a new table item.
-</return>
-</function>
-
 <function name="goo_canvas_item_model_set_child_properties">
 <description>
 Sets the values of one or more child properties of @child.
@@ -1222,23 +1209,24 @@ Sets the values of one or more child properties of @child.
 <return></return>
 </function>
 
-<function name="goo_canvas_item_simple_check_style">
+<function name="goo_canvas_get_scale">
 <description>
-This function is intended to be used by subclasses of #GooCanvasItemSimple,
-typically in their update() or get_requested_area() methods.
+Gets the current scale of the canvas.
 
-It ensures that the item&apos;s style is setup correctly. If the item has its
-own #GooCanvasStyle it makes sure the parent is set correctly. If it
-doesn&apos;t have its own style it uses the parent item&apos;s style.
+The scale specifies the magnification factor of the canvas, e.g. if an item
+has a width of 2 pixels and the scale is set to 3, it will be displayed with
+a width of 2 x 3 = 6 pixels.
+
 
 </description>
 <parameters>
-<parameter name="item">
-<parameter_description> a #GooCanvasItemSimple.
+<parameter name="canvas">
+<parameter_description> a #GooCanvas.
 </parameter_description>
 </parameter>
 </parameters>
-<return></return>
+<return> the current scale setting.
+</return>
 </function>
 
 <function name="goo_canvas_item_model_get_parent">
@@ -1272,6 +1260,33 @@ of items in the model. Any current canvas items will be removed.
 </parameter>
 <parameter name="model">
 <parameter_description> a #GooCanvasItemModel.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="goo_canvas_item_model_skew_y">
+<description>
+Skews the model&apos;s coordinate system along the y axis by the given amount,
+about the given origin.
+
+</description>
+<parameters>
+<parameter name="model">
+<parameter_description> an item model.
+</parameter_description>
+</parameter>
+<parameter name="degrees">
+<parameter_description> the skew angle.
+</parameter_description>
+</parameter>
+<parameter name="cx">
+<parameter_description> the x coordinate of the origin of the skew transform.
+</parameter_description>
+</parameter>
+<parameter name="cy">
+<parameter_description> the y coordinate of the origin of the skew transform.
 </parameter_description>
 </parameter>
 </parameters>
@@ -1345,6 +1360,44 @@ as soon as the application is idle, and before the canvas is redrawn.
 <return></return>
 </function>
 
+<function name="goo_canvas_item_get_child_properties">
+<description>
+Gets the values of one or more child properties of @child.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> a #GooCanvasItem.
+</parameter_description>
+</parameter>
+<parameter name="child">
+<parameter_description> a child #GooCanvasItem.
+</parameter_description>
+</parameter>
+<parameter name="Varargs">
+<parameter_description> pairs of property names and value pointers, and a terminating %NULL.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="goo_canvas_get_root_item">
+<description>
+Gets the root item of the canvas, usually a #GooCanvasGroup.
+
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> a #GooCanvas.
+</parameter_description>
+</parameter>
+</parameters>
+<return> the root item, or %NULL if there is no root item.
+</return>
+</function>
+
 <function name="goo_canvas_style_get_property">
 <description>
 Gets the value of a property.
@@ -1369,54 +1422,6 @@ not be changed.
 </parameters>
 <return> the property value, or %NULL if it isn&apos;t set.
 </return>
-</function>
-
-<function name="goo_canvas_get_root_item">
-<description>
-Gets the root item of the canvas, usually a #GooCanvasGroup.
-
-
-</description>
-<parameters>
-<parameter name="canvas">
-<parameter_description> a #GooCanvas.
-</parameter_description>
-</parameter>
-</parameters>
-<return> the root item, or %NULL if there is no root item.
-</return>
-</function>
-
-<function name="goo_canvas_style_fill_pattern_id">
-<description>
-Unique #GQuark identifier used for the standard fill pattern property.
-
-</description>
-<parameters>
-</parameters>
-<return></return>
-</function>
-
-<function name="goo_canvas_item_get_child_properties">
-<description>
-Gets the values of one or more child properties of @child.
-
-</description>
-<parameters>
-<parameter name="item">
-<parameter_description> a #GooCanvasItem.
-</parameter_description>
-</parameter>
-<parameter name="child">
-<parameter_description> a child #GooCanvasItem.
-</parameter_description>
-</parameter>
-<parameter name="Varargs">
-<parameter_description> pairs of property names and value pointers, and a terminating %NULL.
-</parameter_description>
-</parameter>
-</parameters>
-<return></return>
 </function>
 
 <function name="goo_canvas_style_set_parent">
@@ -1499,26 +1504,22 @@ it is removed from the parent. Otherwise call g_object_unref() to free it.
 </return>
 </function>
 
-<function name="goo_canvas_item_set_child_properties_valist">
+<function name="goo_canvas_parse_path_data">
 <description>
-Sets the values of one or more child properties of @child.
+Parses the given SVG path specification string.
+
 
 </description>
 <parameters>
-<parameter name="item">
-<parameter_description> a #GooCanvasItem.
-</parameter_description>
-</parameter>
-<parameter name="child">
-<parameter_description> a child #GooCanvasItem.
-</parameter_description>
-</parameter>
-<parameter name="var_args">
-<parameter_description> pairs of property names and values, and a terminating %NULL.
+<parameter name="path_data">
+<parameter_description> the sequence of path commands, specified as a string using the
+same syntax as in the &amp;lt;ulink url=&quot;http://www.w3.org/Graphics/SVG/&quot;&amp;gt;Scalable
+Vector Graphics (SVG)&amp;lt;/ulink&amp;gt; path element.
 </parameter_description>
 </parameter>
 </parameters>
-<return></return>
+<return> a #GArray of #GooCanvasPathCommand elements.
+</return>
 </function>
 
 <function name="goo_canvas_item_add_child">
@@ -1544,63 +1545,32 @@ the stacking order).
 <return></return>
 </function>
 
-<function name="goo_canvas_rect_new">
+<function name="goo_canvas_item_get_canvas">
 <description>
-Creates a new rectangle item.
-
-&amp;lt;!--PARAMETERS--&amp;gt;
-
-Here&apos;s an example showing how to create a rectangle at (100,100) with a
-width of 200 and a height of 100.
-
-&amp;lt;informalexample&amp;gt;&amp;lt;programlisting&amp;gt;
-GooCanvasItem *rect = goo_canvas_rect_new (mygroup, 100.0, 100.0, 200.0, 100.0,
-&quot;stroke-color&quot;, &quot;red&quot;,
-&quot;line-width&quot;, 5.0,
-&quot;fill-color&quot;, &quot;blue&quot;,
-NULL);
-&amp;lt;/programlisting&amp;gt;&amp;lt;/informalexample&amp;gt;
-
+Returns: the #GooCanvas.
 
 </description>
 <parameters>
-<parameter name="parent">
-<parameter_description> the parent item, or %NULL. If a parent is specified, it will assume
-ownership of the item, and the item will automatically be freed when it is
-removed from the parent. Otherwise call g_object_unref() to free it.
-</parameter_description>
-</parameter>
-<parameter name="x">
-<parameter_description> the x coordinate of the left of the rectangle.
-</parameter_description>
-</parameter>
-<parameter name="y">
-<parameter_description> the y coordinate of the top of the rectangle.
-</parameter_description>
-</parameter>
-<parameter name="width">
-<parameter_description> the width of the rectangle.
-</parameter_description>
-</parameter>
-<parameter name="height">
-<parameter_description> the height of the rectangle.
-</parameter_description>
-</parameter>
-<parameter name="Varargs">
-<parameter_description> optional pairs of property names and values, and a terminating %NULL.
+<parameter name="item">
+<parameter_description> a #GooCanvasItem.
 </parameter_description>
 </parameter>
 </parameters>
-<return> a new rectangle item.
+<return> the #GooCanvas.
 </return>
 </function>
 
 <function name="goo_canvas_item_set_parent">
 <description>
 This function is only intended to be used when implementing new canvas
-items, specifically container items such as #GooCanvasGroup.
-
-It sets the parent of the item.
+items (specifically container items such as #GooCanvasGroup).
+It sets the parent of the child item.
+&amp;lt;!--PARAMETERS--&amp;gt;
+&amp;lt;note&amp;gt;&amp;lt;para&amp;gt;
+This function cannot be used to add an item to a group
+or to change the parent of an item.
+To do that use the #GooCanvasItem:parent property.
+&amp;lt;/para&amp;gt;&amp;lt;/note&amp;gt;
 
 </description>
 <parameters>
@@ -1775,40 +1745,81 @@ goo_canvas_set_root_item_model().
 </return>
 </function>
 
-<function name="goo_canvas_get_items_in_area">
+<function name="goo_canvas_rect_model_new">
 <description>
-Gets a list of items inside or outside a given area.
+Creates a new rectangle item.
+
+&amp;lt;!--PARAMETERS--&amp;gt;
+
+Here&apos;s an example showing how to create a rectangle at (100,100) with a
+width of 200 and a height of 100.
+
+&amp;lt;informalexample&amp;gt;&amp;lt;programlisting&amp;gt;
+GooCanvasItemModel *rect = goo_canvas_rect_model_new (mygroup, 100.0, 100.0, 200.0, 100.0,
+&quot;stroke-color&quot;, &quot;red&quot;,
+&quot;line-width&quot;, 5.0,
+&quot;fill-color&quot;, &quot;blue&quot;,
+NULL);
+&amp;lt;/programlisting&amp;gt;&amp;lt;/informalexample&amp;gt;
 
 
 </description>
 <parameters>
-<parameter name="canvas">
-<parameter_description> a #GooCanvas.
+<parameter name="parent">
+<parameter_description> the parent model, or %NULL. If a parent is specified, it will
+assume ownership of the item, and the item will automatically be freed when
+it is removed from the parent. Otherwise call g_object_unref() to free it.
 </parameter_description>
 </parameter>
-<parameter name="area">
-<parameter_description> the area to compare with each item&apos;s bounds.
+<parameter name="x">
+<parameter_description> the x coordinate of the left of the rectangle.
 </parameter_description>
 </parameter>
-<parameter name="inside_area">
-<parameter_description> %TRUE if items inside @area should be returned, or %FALSE if
-items outside @area should be returned.
+<parameter name="y">
+<parameter_description> the y coordinate of the top of the rectangle.
 </parameter_description>
 </parameter>
-<parameter name="allow_overlaps">
-<parameter_description> %TRUE if items which are partly inside and partly outside
-should be returned.
+<parameter name="width">
+<parameter_description> the width of the rectangle.
 </parameter_description>
 </parameter>
-<parameter name="include_containers">
-<parameter_description> %TRUE if containers should be checked as well as
-normal items.
+<parameter name="height">
+<parameter_description> the height of the rectangle.
+</parameter_description>
+</parameter>
+<parameter name="Varargs">
+<parameter_description> optional pairs of property names and values, and a terminating %NULL.
 </parameter_description>
 </parameter>
 </parameters>
-<return> a list of items in the given area, or %NULL if no items are found.
-The list should be freed with g_list_free().
+<return> a new rectangle model.
 </return>
+</function>
+
+<function name="goo_canvas_item_model_set_child_property">
+<description>
+Sets a child property of @child.
+
+</description>
+<parameters>
+<parameter name="model">
+<parameter_description> a #GooCanvasItemModel.
+</parameter_description>
+</parameter>
+<parameter name="child">
+<parameter_description> a child #GooCanvasItemModel.
+</parameter_description>
+</parameter>
+<parameter name="property_name">
+<parameter_description> the name of the child property to set.
+</parameter_description>
+</parameter>
+<parameter name="value">
+<parameter_description> the value to set the property to.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
 </function>
 
 <function name="goo_canvas_item_lower">
@@ -1935,9 +1946,179 @@ A convenience function to set the item&apos;s transformation matrix.
 <return></return>
 </function>
 
-<function name="goo_canvas_item_get_child_property">
+<function name="goo_canvas_get_root_item_model">
 <description>
-Gets a child property of @child.
+Gets the root item model of the canvas.
+
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> a #GooCanvas.
+</parameter_description>
+</parameter>
+</parameters>
+<return> the root item model, or %NULL if there is no root item model.
+</return>
+</function>
+
+<function name="goo_canvas_item_get_transform_for_child">
+<description>
+Gets the transformation matrix of an item combined with any special
+transform needed for the given child. These special transforms are used
+by layout items such as #GooCanvasTable.
+
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> an item.
+</parameter_description>
+</parameter>
+<parameter name="child">
+<parameter_description> a child of @item.
+</parameter_description>
+</parameter>
+<parameter name="transform">
+<parameter_description> the place to store the transform.
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if a transform is set.
+</return>
+</function>
+
+<function name="goo_canvas_get_item_at">
+<description>
+Gets the item at the given point.
+
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> a #GooCanvas.
+</parameter_description>
+</parameter>
+<parameter name="x">
+<parameter_description> the x coordinate of the point.
+</parameter_description>
+</parameter>
+<parameter name="y">
+<parameter_description> the y coordinate of the point
+</parameter_description>
+</parameter>
+<parameter name="is_pointer_event">
+<parameter_description> %TRUE if the &quot;pointer-events&quot; property of
+items should be used to determine which parts of the item are tested.
+</parameter_description>
+</parameter>
+</parameters>
+<return> the item found at the given point, or %NULL if no item was found.
+</return>
+</function>
+
+<function name="SECTION">
+<description>
+#GooCanvas is the main widget containing a number of canvas items.
+
+Here is a simple example:
+
+&amp;lt;informalexample&amp;gt;&amp;lt;programlisting&amp;gt;
+&amp;num;include &amp;lt;goocanvas.h&amp;gt;
+
+static gboolean on_rect_button_press (GooCanvasItem  *view,
+GooCanvasItem  *target,
+GdkEventButton *event,
+gpointer        data);
+
+int
+main (int argc, char *argv[])
+{
+GtkWidget *window, *scrolled_win, *canvas;
+GooCanvasItem *root, *rect_item, *text_item;
+
+/&amp;ast; Initialize GTK+. &amp;ast;/
+gtk_set_locale&amp;nbsp;();
+gtk_init (&amp;amp;argc, &amp;amp;argv);
+
+/&amp;ast; Create the window and widgets. &amp;ast;/
+window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+gtk_window_set_default_size (GTK_WINDOW (window), 640, 600);
+gtk_widget_show (window);
+g_signal_connect (window, &quot;delete_event&quot;, (GtkSignalFunc) on_delete_event,
+NULL);
+
+scrolled_win = gtk_scrolled_window_new (NULL, NULL);
+gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_win),
+GTK_SHADOW_IN);
+gtk_widget_show (scrolled_win);
+gtk_container_add (GTK_CONTAINER (window), scrolled_win);
+
+canvas = goo_canvas_new&amp;nbsp;();
+gtk_widget_set_size_request (canvas, 600, 450);
+goo_canvas_set_bounds (GOO_CANVAS (canvas), 0, 0, 1000, 1000);
+gtk_widget_show (canvas);
+gtk_container_add (GTK_CONTAINER (scrolled_win), canvas);
+
+root = goo_canvas_get_root_item (GOO_CANVAS (canvas));
+
+/&amp;ast; Add a few simple items. &amp;ast;/
+rect_item = goo_canvas_rect_new (root, 100, 100, 400, 400,
+&quot;line-width&quot;, 10.0,
+&quot;radius-x&quot;, 20.0,
+&quot;radius-y&quot;, 10.0,
+&quot;stroke-color&quot;, &quot;yellow&quot;,
+&quot;fill-color&quot;, &quot;red&quot;,
+NULL);
+
+text_item = goo_canvas_text_new (root, &quot;Hello World&quot;, 300, 300, -1,
+GTK_ANCHOR_CENTER,
+&quot;font&quot;, &quot;Sans 24&quot;,
+NULL);
+goo_canvas_item_rotate (text_item, 45, 300, 300);
+
+/&amp;ast; Connect a signal handler for the rectangle item. &amp;ast;/
+g_signal_connect (rect_item, &quot;button_press_event&quot;,
+(GtkSignalFunc) on_rect_button_press, NULL);
+
+/&amp;ast; Pass control to the GTK+ main event loop. &amp;ast;/
+gtk_main&amp;nbsp;();
+
+return 0;
+}
+
+
+/&amp;ast; This handles button presses in item views. We simply output a message to
+the console. &amp;ast;/
+static gboolean
+on_rect_button_press (GooCanvasItem  *item,
+GooCanvasItem  *target,
+GdkEventButton *event,
+gpointer        data)
+{
+g_print (&quot;rect item received button press event\n&quot;);
+return TRUE;
+}
+
+&amp;lt;/programlisting&amp;gt;&amp;lt;/informalexample&amp;gt;
+
+</description>
+<parameters>
+<parameter name="Title">
+<parameter_description> GooCanvas
+</parameter_description>
+</parameter>
+<parameter name="Short_Description">
+<parameter_description> the main canvas widget.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="goo_canvas_item_set_child_properties_valist">
+<description>
+Sets the values of one or more child properties of @child.
 
 </description>
 <parameters>
@@ -1949,113 +2130,12 @@ Gets a child property of @child.
 <parameter_description> a child #GooCanvasItem.
 </parameter_description>
 </parameter>
-<parameter name="property_name">
-<parameter_description> the name of the child property to get.
-</parameter_description>
-</parameter>
-<parameter name="value">
-<parameter_description> a location to return the value.
+<parameter name="var_args">
+<parameter_description> pairs of property names and values, and a terminating %NULL.
 </parameter_description>
 </parameter>
 </parameters>
 <return></return>
-</function>
-
-<function name="goo_canvas_item_rotate">
-<description>
-Rotates the item&apos;s coordinate system by the given amount, about the given
-origin.
-
-</description>
-<parameters>
-<parameter name="item">
-<parameter_description> an item.
-</parameter_description>
-</parameter>
-<parameter name="degrees">
-<parameter_description> the clockwise angle of rotation.
-</parameter_description>
-</parameter>
-<parameter name="cx">
-<parameter_description> the x coordinate of the origin of the rotation.
-</parameter_description>
-</parameter>
-<parameter name="cy">
-<parameter_description> the y coordinate of the origin of the rotation.
-</parameter_description>
-</parameter>
-</parameters>
-<return></return>
-</function>
-
-<function name="goo_canvas_item_ensure_updated">
-<description>
-This function is only intended to be used when implementing new canvas
-items.
-
-It updates the canvas immediately, if an update is scheduled.
-This ensures that all item bounds are up-to-date.
-
-</description>
-<parameters>
-<parameter name="item">
-<parameter_description> a #GooCanvasItem.
-</parameter_description>
-</parameter>
-</parameters>
-<return></return>
-</function>
-
-<function name="SECTION">
-<description>
-GooCanvasWidget provides support for placing any GtkWidget in the canvas.
-
-Note that there are a number of limitations in the use of #GooCanvasWidget:
-
-&amp;lt;itemizedlist&amp;gt;&amp;lt;listitem&amp;gt;&amp;lt;para&amp;gt;
-It doesn&apos;t support any transformation besides simple translation.
-This means you can&apos;t scale a canvas with a #GooCanvasWidget in it.
-&amp;lt;/para&amp;gt;&amp;lt;/listitem&amp;gt;&amp;lt;listitem&amp;gt;&amp;lt;para&amp;gt;
-It doesn&apos;t support layering, so you can&apos;t place other items beneath
-or above the #GooCanvasWidget.
-&amp;lt;/para&amp;gt;&amp;lt;/listitem&amp;gt;&amp;lt;listitem&amp;gt;&amp;lt;para&amp;gt;
-It doesn&apos;t support rendering of widgets to a given cairo_t, which
-means you can&apos;t output the widget to a pdf or postscript file.
-&amp;lt;/para&amp;gt;&amp;lt;/listitem&amp;gt;&amp;lt;listitem&amp;gt;&amp;lt;para&amp;gt;
-It doesn&apos;t have a model/view variant like the other standard items,
-so it can only be used in a simple canvas without a model.
-&amp;lt;/para&amp;gt;&amp;lt;/listitem&amp;gt;&amp;lt;/itemizedlist&amp;gt;
-
-</description>
-<parameters>
-<parameter name="Title">
-<parameter_description> GooCanvasWidget
-</parameter_description>
-</parameter>
-<parameter name="Short_Description">
-<parameter_description> an embedded widget item.
-</parameter_description>
-</parameter>
-</parameters>
-<return></return>
-</function>
-
-<function name="goo_canvas_parse_path_data">
-<description>
-Parses the given SVG path specification string.
-
-
-</description>
-<parameters>
-<parameter name="path_data">
-<parameter_description> the sequence of path commands, specified as a string using the
-same syntax as in the &amp;lt;ulink url=&quot;http://www.w3.org/Graphics/SVG/&quot;&amp;gt;Scalable
-Vector Graphics (SVG)&amp;lt;/ulink&amp;gt; path element.
-</parameter_description>
-</parameter>
-</parameters>
-<return> a #GArray of #GooCanvasPathCommand elements.
-</return>
 </function>
 
 <function name="goo_canvas_line_dash_new">
@@ -2078,20 +2158,10 @@ Creates a new dash pattern.
 </return>
 </function>
 
-<function name="goo_canvas_item_allocate_area">
+<function name="goo_canvas_item_get_model">
 <description>
-This function is only intended to be used when implementing new canvas
-items, specifically layout items such as #GooCanvasTable.
+Gets the model of the given canvas item.
 
-It allocates an area to a child #GooCanvasItem.
-
-Note that the parent layout item will use a transform to move each of its
-children for the layout, so there is no need for the child item to
-reposition itself. It only needs to recalculate its device bounds.
-
-To help recalculate the item&apos;s device bounds, the @x_offset and @y_offset
-of the child item&apos;s allocated position from its requested position are
-provided. Simple items can just add these to their bounds.
 
 </description>
 <parameters>
@@ -2099,32 +2169,9 @@ provided. Simple items can just add these to their bounds.
 <parameter_description> a #GooCanvasItem.
 </parameter_description>
 </parameter>
-<parameter name="cr">
-<parameter_description> a cairo context.
-</parameter_description>
-</parameter>
-<parameter name="requested_area">
-<parameter_description> the area that the item originally requested, in the
-parent&apos;s coordinate space.
-</parameter_description>
-</parameter>
-<parameter name="allocated_area">
-<parameter_description> the area that the item has been allocated, in the parent&apos;s
-coordinate space.
-</parameter_description>
-</parameter>
-<parameter name="x_offset">
-<parameter_description> the x offset of the allocated area from the requested area in
-the device coordinate space.
-</parameter_description>
-</parameter>
-<parameter name="y_offset">
-<parameter_description> the y offset of the allocated area from the requested area in
-the device coordinate space.
-</parameter_description>
-</parameter>
 </parameters>
-<return></return>
+<return> the item&apos;s model, or %NULL if it has no model.
+</return>
 </function>
 
 <function name="goo_canvas_item_model_remove_child">
@@ -2145,21 +2192,83 @@ Removes the child at the given position.
 <return></return>
 </function>
 
-<function name="goo_canvas_create_item">
+<function name="goo_canvas_rect_new">
 <description>
-This function is only intended to be used when implementing new canvas
-items, typically container items such as #GooCanvasGroup.
+Creates a new rectangle item.
 
-It creates a new canvas item for the given item model, and recursively
-creates items for any children.
+&amp;lt;!--PARAMETERS--&amp;gt;
 
-It uses the create_item() virtual method if it has been set.
-Subclasses of #GooCanvas can define this method if they want to use
-custom views for items.
+Here&apos;s an example showing how to create a rectangle at (100,100) with a
+width of 200 and a height of 100.
 
-It emits the #GooCanvas::item-created signal after creating the view, so
-application code can connect signal handlers to the new view if desired.
+&amp;lt;informalexample&amp;gt;&amp;lt;programlisting&amp;gt;
+GooCanvasItem *rect = goo_canvas_rect_new (mygroup, 100.0, 100.0, 200.0, 100.0,
+&quot;stroke-color&quot;, &quot;red&quot;,
+&quot;line-width&quot;, 5.0,
+&quot;fill-color&quot;, &quot;blue&quot;,
+NULL);
+&amp;lt;/programlisting&amp;gt;&amp;lt;/informalexample&amp;gt;
 
+
+</description>
+<parameters>
+<parameter name="parent">
+<parameter_description> the parent item, or %NULL. If a parent is specified, it will assume
+ownership of the item, and the item will automatically be freed when it is
+removed from the parent. Otherwise call g_object_unref() to free it.
+</parameter_description>
+</parameter>
+<parameter name="x">
+<parameter_description> the x coordinate of the left of the rectangle.
+</parameter_description>
+</parameter>
+<parameter name="y">
+<parameter_description> the y coordinate of the top of the rectangle.
+</parameter_description>
+</parameter>
+<parameter name="width">
+<parameter_description> the width of the rectangle.
+</parameter_description>
+</parameter>
+<parameter name="height">
+<parameter_description> the height of the rectangle.
+</parameter_description>
+</parameter>
+<parameter name="Varargs">
+<parameter_description> optional pairs of property names and values, and a terminating %NULL.
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new rectangle item.
+</return>
+</function>
+
+<function name="goo_canvas_item_get_child_properties_valist">
+<description>
+Gets the values of one or more child properties of @child.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> a #GooCanvasItem.
+</parameter_description>
+</parameter>
+<parameter name="child">
+<parameter_description> a child #GooCanvasItem.
+</parameter_description>
+</parameter>
+<parameter name="var_args">
+<parameter_description> pairs of property names and value pointers, and a terminating
+%NULL.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="goo_canvas_grab_focus">
+<description>
+Grabs the keyboard focus for the given item.
 
 </description>
 <parameters>
@@ -2167,61 +2276,8 @@ application code can connect signal handlers to the new view if desired.
 <parameter_description> a #GooCanvas.
 </parameter_description>
 </parameter>
-<parameter name="model">
-<parameter_description> the item model to create a canvas item for.
-</parameter_description>
-</parameter>
-</parameters>
-<return> a new canvas item.
-</return>
-</function>
-
-<function name="goo_canvas_item_model_animate">
-<description>
-Animates a model from its current position to the given offsets, scale
-and rotation.
-
-</description>
-<parameters>
-<parameter name="model">
-<parameter_description> an item model.
-</parameter_description>
-</parameter>
-<parameter name="x">
-<parameter_description> the final x coordinate.
-</parameter_description>
-</parameter>
-<parameter name="y">
-<parameter_description> the final y coordinate.
-</parameter_description>
-</parameter>
-<parameter name="scale">
-<parameter_description> the final scale.
-</parameter_description>
-</parameter>
-<parameter name="degrees">
-<parameter_description> the final rotation. This can be negative to rotate anticlockwise,
-and can also be greater than 360 to rotate a number of times.
-</parameter_description>
-</parameter>
-<parameter name="absolute">
-<parameter_description> if the @x, @y, @scale and @degrees values are absolute, or
-relative to the current transform. Note that absolute animations only work
-if the model currently has a simple transform. If the model has a shear or
-some other complicated transform it may result in strange animations.
-</parameter_description>
-</parameter>
-<parameter name="duration">
-<parameter_description> the duration of the animation, in milliseconds (1/1000ths of a
-second).
-</parameter_description>
-</parameter>
-<parameter name="step_time">
-<parameter_description> the time between each animation step, in milliseconds.
-</parameter_description>
-</parameter>
-<parameter name="type">
-<parameter_description> specifies what happens when the animation finishes.
+<parameter name="item">
+<parameter_description> the item to grab the focus.
 </parameter_description>
 </parameter>
 </parameters>
@@ -2280,19 +2336,29 @@ come from the relevant #GdkEvent.
 </return>
 </function>
 
-<function name="goo_canvas_item_get_canvas">
+<function name="goo_canvas_text_get_natural_extents">
 <description>
-Returns: the #GooCanvas.
+Gets the natural extents of the text, in the text item&apos;s coordinate space.
+
+The final extents of the text may be different, if the text item is placed
+in a layout container such as #GooCanvasTable.
 
 </description>
 <parameters>
-<parameter name="item">
-<parameter_description> a #GooCanvasItem.
+<parameter name="text">
+<parameter_description> a #GooCanvasText.
+</parameter_description>
+</parameter>
+<parameter name="ink_rect">
+<parameter_description> the location to return the ink rect, or %NULL.
+</parameter_description>
+</parameter>
+<parameter name="logical_rect">
+<parameter_description> the location to return the logical rect, or %NULL.
 </parameter_description>
 </parameter>
 </parameters>
-<return> the #GooCanvas.
-</return>
+<return></return>
 </function>
 
 <function name="goo_canvas_item_set_child_properties">
@@ -2315,22 +2381,6 @@ Sets the values of one or more child properties of @child.
 </parameter>
 </parameters>
 <return></return>
-</function>
-
-<function name="goo_canvas_item_get_model">
-<description>
-Gets the model of the given canvas item.
-
-
-</description>
-<parameters>
-<parameter name="item">
-<parameter_description> a #GooCanvasItem.
-</parameter_description>
-</parameter>
-</parameters>
-<return> the item&apos;s model, or %NULL if it has no model.
-</return>
 </function>
 
 <function name="goo_canvas_item_simple_check_in_path">
@@ -2534,32 +2584,19 @@ removed from the parent. Otherwise call g_object_unref() to free it.
 </return>
 </function>
 
-<function name="goo_canvas_item_get_requested_area">
+<function name="goo_canvas_points_unref">
 <description>
-This function is only intended to be used when implementing new canvas
-items, specifically layout items such as #GooCanvasTable.
-
-It gets the requested area of a child item.
-
+Decrements the reference count of the given #GooCanvasPoints struct,
+freeing it if the reference count falls to zero.
 
 </description>
 <parameters>
-<parameter name="item">
-<parameter_description> a #GooCanvasItem.
-</parameter_description>
-</parameter>
-<parameter name="cr">
-<parameter_description> a cairo context.
-</parameter_description>
-</parameter>
-<parameter name="requested_area">
-<parameter_description> a #GooCanvasBounds to return the requested area in, in the
-parent&apos;s coordinate space.
+<parameter name="points">
+<parameter_description> a #GooCanvasPoints struct.
 </parameter_description>
 </parameter>
 </parameters>
-<return> %TRUE if the item should be allocated space.
-</return>
+<return></return>
 </function>
 
 <function name="goo_canvas_update">
@@ -2624,25 +2661,32 @@ It installs a child property on a canvas item class.
 <return></return>
 </function>
 
-<function name="goo_canvas_request_redraw">
+<function name="goo_canvas_item_get_requested_area">
 <description>
-This function is only intended to be used by subclasses of #GooCanvas or
-#GooCanvasItem implementations.
+This function is only intended to be used when implementing new canvas
+items, specifically layout items such as #GooCanvasTable.
 
-Requests that the given bounds be redrawn.
+It gets the requested area of a child item.
+
 
 </description>
 <parameters>
-<parameter name="canvas">
-<parameter_description> a #GooCanvas.
+<parameter name="item">
+<parameter_description> a #GooCanvasItem.
 </parameter_description>
 </parameter>
-<parameter name="bounds">
-<parameter_description> the bounds to redraw.
+<parameter name="cr">
+<parameter_description> a cairo context.
+</parameter_description>
+</parameter>
+<parameter name="requested_area">
+<parameter_description> a #GooCanvasBounds to return the requested area in, in the
+parent&apos;s coordinate space.
 </parameter_description>
 </parameter>
 </parameters>
-<return></return>
+<return> %TRUE if the item should be allocated space.
+</return>
 </function>
 
 <function name="goo_canvas_item_simple_user_bounds_to_parent">
@@ -2710,7 +2754,8 @@ Gets the child at the given stack position.
 </parameter_description>
 </parameter>
 </parameters>
-<return> the child at the given stack position.
+<return> the child at the given stack position, or %NULL if @child_num
+is out of range.
 </return>
 </function>
 
@@ -2840,7 +2885,15 @@ placed at the @x and @y coordinates.
 
 <function name="goo_canvas_item_model_set_parent">
 <description>
-Sets the parent of the model.
+This function is only intended to be used when implementing new canvas
+item models (specifically container models such as #GooCanvasGroupModel).
+It sets the parent of the child model.
+&amp;lt;!--PARAMETERS--&amp;gt;
+&amp;lt;note&amp;gt;&amp;lt;para&amp;gt;
+This function cannot be used to add a model to a group
+or to change the parent of a model.
+To do that use the #GooCanvasItemModel:parent property.
+&amp;lt;/para&amp;gt;&amp;lt;/note&amp;gt;
 
 </description>
 <parameters>
@@ -2923,7 +2976,70 @@ Gets the child item at the given stack position.
 </parameter_description>
 </parameter>
 </parameters>
-<return> the child item at the given stack position.
+<return> the child item at the given stack position, or %NULL if @child_num
+is out of range.
+</return>
+</function>
+
+<function name="goo_canvas_table_new">
+<description>
+Creates a new table item.
+
+&amp;lt;!--PARAMETERS--&amp;gt;
+
+Here&apos;s an example showing how to create a table with a square, a circle and
+a triangle in it:
+
+&amp;lt;informalexample&amp;gt;&amp;lt;programlisting&amp;gt;
+GooCanvasItem *table, *square, *circle, *triangle;
+
+table = goo_canvas_table_new (root,
+&quot;row-spacing&quot;, 4.0,
+&quot;column-spacing&quot;, 4.0,
+NULL);
+goo_canvas_item_translate (table, 400, 200);
+
+square = goo_canvas_rect_new (table, 0.0, 0.0, 50.0, 50.0,
+&quot;fill-color&quot;, &quot;red&quot;,
+NULL);
+goo_canvas_item_set_child_properties (table, square,
+&quot;row&quot;, 0,
+&quot;column&quot;, 0,
+NULL);
+
+circle = goo_canvas_ellipse_new (table, 0.0, 0.0, 25.0, 25.0,
+&quot;fill-color&quot;, &quot;blue&quot;,
+NULL);
+goo_canvas_item_set_child_properties (table, circle,
+&quot;row&quot;, 0,
+&quot;column&quot;, 1,
+NULL);
+
+triangle = goo_canvas_polyline_new (table, TRUE, 3,
+25.0, 0.0, 0.0, 50.0, 50.0, 50.0,
+&quot;fill-color&quot;, &quot;yellow&quot;,
+NULL);
+goo_canvas_item_set_child_properties (table, triangle,
+&quot;row&quot;, 0,
+&quot;column&quot;, 2,
+NULL);
+&amp;lt;/programlisting&amp;gt;&amp;lt;/informalexample&amp;gt;
+
+
+</description>
+<parameters>
+<parameter name="parent">
+<parameter_description> the parent item, or %NULL. If a parent is specified, it will assume
+ownership of the item, and the item will automatically be freed when it is
+removed from the parent. Otherwise call g_object_unref() to free it.
+</parameter_description>
+</parameter>
+<parameter name="Varargs">
+<parameter_description> optional pairs of property names and values, and a terminating %NULL.
+</parameter_description>
+</parameter>
+</parameters>
+<return> a new table item.
 </return>
 </function>
 
@@ -2994,27 +3110,15 @@ Sets the root item of the canvas. Any existing canvas items are removed.
 <return></return>
 </function>
 
-<function name="goo_canvas_item_model_skew_y">
+<function name="goo_canvas_line_dash_unref">
 <description>
-Skews the model&apos;s coordinate system along the y axis by the given amount,
-about the given origin.
+Decrements the reference count of the dash pattern. If it falls to 0
+it is freed.
 
 </description>
 <parameters>
-<parameter name="model">
-<parameter_description> an item model.
-</parameter_description>
-</parameter>
-<parameter name="degrees">
-<parameter_description> the skew angle.
-</parameter_description>
-</parameter>
-<parameter name="cx">
-<parameter_description> the x coordinate of the origin of the skew transform.
-</parameter_description>
-</parameter>
-<parameter name="cy">
-<parameter_description> the y coordinate of the origin of the skew transform.
+<parameter name="dash">
+<parameter_description> a #GooCanvasLineDash.
 </parameter_description>
 </parameter>
 </parameters>
@@ -3037,25 +3141,12 @@ Gets the default line width, which depends on the current units setting.
 </return>
 </function>
 
-<function name="goo_canvas_item_get_child_properties_valist">
+<function name="goo_canvas_style_line_dash_id">
 <description>
-Gets the values of one or more child properties of @child.
+Unique #GQuark identifier used for the standard line dash property.
 
 </description>
 <parameters>
-<parameter name="item">
-<parameter_description> a #GooCanvasItem.
-</parameter_description>
-</parameter>
-<parameter name="child">
-<parameter_description> a child #GooCanvasItem.
-</parameter_description>
-</parameter>
-<parameter name="var_args">
-<parameter_description> pairs of property names and value pointers, and a terminating
-%NULL.
-</parameter_description>
-</parameter>
 </parameters>
 <return></return>
 </function>
@@ -3263,24 +3354,59 @@ Scales the item&apos;s coordinate system by the given amounts.
 <return></return>
 </function>
 
-<function name="goo_canvas_get_scale">
+<function name="goo_canvas_item_get_simple_transform">
 <description>
-Gets the current scale of the canvas.
-
-The scale specifies the magnification factor of the canvas, e.g. if an item
-has a width of 2 pixels and the scale is set to 3, it will be displayed with
-a width of 2 x 3 = 6 pixels.
+This function can be used to get the position, scale and rotation of an
+item, providing that the item has a simple transformation matrix
+(e.g. set with goo_canvas_item_set_simple_transform(), or using a
+combination of simple translate, scale and rotate operations). If the item
+has a complex transformation matrix the results will be incorrect.
 
 
 </description>
 <parameters>
-<parameter name="canvas">
-<parameter_description> a #GooCanvas.
+<parameter name="item">
+<parameter_description> an item.
+</parameter_description>
+</parameter>
+<parameter name="x">
+<parameter_description> returns the x coordinate of the origin of the item&apos;s coordinate space.
+</parameter_description>
+</parameter>
+<parameter name="y">
+<parameter_description> returns the y coordinate of the origin of the item&apos;s coordinate space.
+</parameter_description>
+</parameter>
+<parameter name="scale">
+<parameter_description> returns the scale of the item.
+</parameter_description>
+</parameter>
+<parameter name="rotation">
+<parameter_description> returns the clockwise rotation of the item, in degrees (0-360).
 </parameter_description>
 </parameter>
 </parameters>
-<return> the current scale setting.
+<return> %TRUE if a transform is set.
 </return>
+</function>
+
+<function name="goo_canvas_item_simple_check_style">
+<description>
+This function is intended to be used by subclasses of #GooCanvasItemSimple,
+typically in their update() or get_requested_area() methods.
+
+It ensures that the item&apos;s style is setup correctly. If the item has its
+own #GooCanvasStyle it makes sure the parent is set correctly. If it
+doesn&apos;t have its own style it uses the parent item&apos;s style.
+
+</description>
+<parameters>
+<parameter name="item">
+<parameter_description> a #GooCanvasItemSimple.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
 </function>
 
 <function name="goo_canvas_get_items_at">
@@ -3354,6 +3480,42 @@ transformation to the identity matrix.
 </parameter>
 </parameters>
 <return></return>
+</function>
+
+<function name="goo_canvas_item_model_get_simple_transform">
+<description>
+This function can be used to get the position, scale and rotation of an
+item model, providing that the model has a simple transformation matrix
+(e.g. set with goo_canvas_item_model_set_simple_transform(), or using a
+combination of simple translate, scale and rotate operations). If the model
+has a complex transformation matrix the results will be incorrect.
+
+
+</description>
+<parameters>
+<parameter name="model">
+<parameter_description> an item model.
+</parameter_description>
+</parameter>
+<parameter name="x">
+<parameter_description> returns the x coordinate of the origin of the model&apos;s coordinate space.
+</parameter_description>
+</parameter>
+<parameter name="y">
+<parameter_description> returns the y coordinate of the origin of the model&apos;s coordinate space.
+</parameter_description>
+</parameter>
+<parameter name="scale">
+<parameter_description> returns the scale of the model.
+</parameter_description>
+</parameter>
+<parameter name="rotation">
+<parameter_description> returns the clockwise rotation of the model, in degrees (0-360).
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if a transform is set.
+</return>
 </function>
 
 <function name="goo_canvas_item_model_get_child_properties_valist">
@@ -3552,6 +3714,27 @@ optional pairs of property names and values, and a terminating %NULL.
 </return>
 </function>
 
+<function name="goo_canvas_request_redraw">
+<description>
+This function is only intended to be used by subclasses of #GooCanvas or
+#GooCanvasItem implementations.
+
+Requests that the given bounds be redrawn.
+
+</description>
+<parameters>
+<parameter name="canvas">
+<parameter_description> a #GooCanvas.
+</parameter_description>
+</parameter>
+<parameter name="bounds">
+<parameter_description> the bounds to redraw.
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
 <function name="goo_canvas_item_remove_child">
 <description>
 Removes the child item at the given position.
@@ -3641,30 +3824,40 @@ position.
 <return></return>
 </function>
 
-<function name="goo_canvas_item_model_set_child_property">
+<function name="goo_canvas_get_items_in_area">
 <description>
-Sets a child property of @child.
+Gets a list of items inside or outside a given area.
+
 
 </description>
 <parameters>
-<parameter name="model">
-<parameter_description> a #GooCanvasItemModel.
+<parameter name="canvas">
+<parameter_description> a #GooCanvas.
 </parameter_description>
 </parameter>
-<parameter name="child">
-<parameter_description> a child #GooCanvasItemModel.
+<parameter name="area">
+<parameter_description> the area to compare with each item&apos;s bounds.
 </parameter_description>
 </parameter>
-<parameter name="property_name">
-<parameter_description> the name of the child property to set.
+<parameter name="inside_area">
+<parameter_description> %TRUE if items inside @area should be returned, or %FALSE if
+items outside @area should be returned.
 </parameter_description>
 </parameter>
-<parameter name="value">
-<parameter_description> the value to set the property to.
+<parameter name="allow_overlaps">
+<parameter_description> %TRUE if items which are partly inside and partly outside
+should be returned.
+</parameter_description>
+</parameter>
+<parameter name="include_containers">
+<parameter_description> %TRUE if containers should be checked as well as
+normal items.
 </parameter_description>
 </parameter>
 </parameters>
-<return></return>
+<return> a list of items in the given area, or %NULL if no items are found.
+The list should be freed with g_list_free().
+</return>
 </function>
 
 <function name="goo_canvas_line_dash_ref">
@@ -3876,23 +4069,18 @@ Moves a child to a new stack position.
 <return></return>
 </function>
 
-<function name="goo_canvas_scroll_to">
+<function name="goo_canvas_item_model_set_style">
 <description>
-Scrolls the canvas, placing the given point as close to the top-left of
-the view as possible.
+Sets the model&apos;s style, by copying the properties from the given style.
 
 </description>
 <parameters>
-<parameter name="canvas">
-<parameter_description> a #GooCanvas.
+<parameter name="model">
+<parameter_description> an item model.
 </parameter_description>
 </parameter>
-<parameter name="left">
-<parameter_description> the x coordinate to scroll to.
-</parameter_description>
-</parameter>
-<parameter name="top">
-<parameter_description> the y coordinate to scroll to.
+<parameter name="style">
+<parameter_description> a style.
 </parameter_description>
 </parameter>
 </parameters>
@@ -4084,20 +4272,30 @@ This would normally also result in the item being freed.
 <return></return>
 </function>
 
-<function name="goo_canvas_get_root_item_model">
+<function name="goo_canvas_item_get_child_property">
 <description>
-Gets the root item model of the canvas.
-
+Gets a child property of @child.
 
 </description>
 <parameters>
-<parameter name="canvas">
-<parameter_description> a #GooCanvas.
+<parameter name="item">
+<parameter_description> a #GooCanvasItem.
+</parameter_description>
+</parameter>
+<parameter name="child">
+<parameter_description> a child #GooCanvasItem.
+</parameter_description>
+</parameter>
+<parameter name="property_name">
+<parameter_description> the name of the child property to get.
+</parameter_description>
+</parameter>
+<parameter name="value">
+<parameter_description> a location to return the value.
 </parameter_description>
 </parameter>
 </parameters>
-<return> the root item model, or %NULL if there is no root item model.
-</return>
+<return></return>
 </function>
 
 <function name="goo_canvas_style_fill_rule_id">
@@ -4314,27 +4512,6 @@ bottom of the stack.
 </parameter>
 </parameters>
 <return></return>
-</function>
-
-<function name="goo_canvas_style_set_fill_options">
-<description>
-Sets the standard cairo fill options using the given style.
-
-
-</description>
-<parameters>
-<parameter name="style">
-<parameter_description> a style.
-</parameter_description>
-</parameter>
-<parameter name="cr">
-<parameter_description> a cairo context.
-</parameter_description>
-</parameter>
-</parameters>
-<return> %TRUE if a paint source is set, or %FALSE if the fill should
-be skipped.
-</return>
 </function>
 
 <function name="goo_canvas_item_model_class_list_child_properties">

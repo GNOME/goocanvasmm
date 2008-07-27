@@ -2,6 +2,15 @@
 
 2008-07-27  Murray Cumming  <murrayc@murrayc.com>
 
+	* goocanvas/src/libgoocanvas_docs.xml: Regenerated.
+	* goocanvas/src/libgoocanvas_enums.defs: Regenerated.
+	* goocanvas/src/libgoocanvas_signals.defs: Corrected the Event signals by 
+	hand.
+	* goocanvas/src/libgoocanvas_signals.defs.patch: Created this patch 
+	to do the same in future.
+
+2008-07-27  Murray Cumming  <murrayc@murrayc.com>
+
 	* goocanvas/src/libgoocanvas_signals.defs: Regenerated.
 
 2007-07-20  Armin Burgmeier  <armin@openismus.com>
