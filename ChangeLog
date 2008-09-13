@@ -1,3 +1,25 @@
+0.11.0:
+
+2008-09-13  Murray Cumming  <murrayc@murrayc.com>
+
+	* examples/custom_item/exampleitem.cc:
+	* examples/custom_item/examplewindow.cc:
+	* examples/custom_item/main.cc:
+	* examples/demo/main.cc:
+	* examples/demo/window.cc:
+	* examples/demo/window.h:
+	* examples/drag_to_canvas/examplewindow.cc:
+	* examples/drag_to_canvas/main.cc:
+	* examples/moving_shapes/main.cc:
+	* examples/moving_shapes/window.cc:
+	* examples/simple/examplewindow.cc:
+	* examples/simple/main.cc:
+	* examples/table/examplewindow.cc:
+	* examples/table/main.cc:
+	* examples/tablemodel/examplewindow.cc:
+	* examples/tablemodel/main.cc: Added missing copyright 
+	comment blocks.
+
 2008-07-27  Murray Cumming  <murrayc@murrayc.com>
 
 	* examples/coordinates/window.h:
@@ -17,6 +39,8 @@
 	* examples/Makefile.am:
 	* examples/custom_item/: New unfinished unworking 
 	example of a custom item doing its own drawing.
+
+0.10.0: Skipped.
 
 0.9.0:
 
