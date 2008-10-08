@@ -1,0 +1,2 @@
+SUBDIRS = child_properties
+

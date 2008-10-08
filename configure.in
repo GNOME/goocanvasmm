@@ -181,5 +181,8 @@ AC_OUTPUT([
     examples/text/Makefile
     examples/table/Makefile
     examples/tablemodel/Makefile
+
+  tests/Makefile
+    tests/child_properties/Makefile
 ])
 :

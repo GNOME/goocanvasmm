@@ -41,11 +41,6 @@ class Item : public Glib::Interface
 
 public:
 
-  _IGNORE(goo_canvas_item_get_child_properties)
-  _IGNORE(goo_canvas_item_set_child_properties)
-  _IGNORE(goo_canvas_item_get_child_properties_valist)
-  _IGNORE(goo_canvas_item_set_child_properties_valist)
-
   _WRAP_METHOD(Canvas* get_canvas(), goo_canvas_item_get_canvas)
   _WRAP_METHOD(const Canvas* get_canvas() const, goo_canvas_item_get_canvas, constversion)
   // TODO: should this be passed by reference instead of by pointer?
@@ -69,8 +64,11 @@ public:
   _WRAP_METHOD(int find_child(const Glib::RefPtr<Item>& child), goo_canvas_item_find_child)
   _WRAP_METHOD(void add_child(const Glib::RefPtr<Item>& child, int pos), goo_canvas_item_add_child)
   void add_child(const Glib::RefPtr<Item>& child);
+
   _WRAP_METHOD(void get_child_property(const Glib::RefPtr<Item>& child, const Glib::ustring& property_name, Glib::ValueBase& value) const, goo_canvas_item_get_child_property)
   _WRAP_METHOD(void set_child_property(const Glib::RefPtr<Item>& child, const Glib::ustring& property_name, const Glib::ValueBase& value), goo_canvas_item_set_child_property)
+  _IGNORE(goo_canvas_item_get_child_properties_valist)
+  _IGNORE(goo_canvas_item_set_child_properties_valist)
 
   _WRAP_METHOD(void move_child(int old_position, int new_position), goo_canvas_item_move_child)
   _WRAP_METHOD(void remove_child(int child_num), goo_canvas_item_remove_child)
@@ -232,6 +230,24 @@ protected:
   _WRAP_VFUNC(Glib::RefPtr<ItemModel> get_model() const, get_model)
   _WRAP_VFUNC(void set_model(const Glib::RefPtr<ItemModel>& model), set_model)
 };
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+
+/* TODO:
+//The parameter name is "the_property_name" to avoid a warning because there is a method with the "property_name" name.
+template <class PropertyType>
+void Item::get_child_property(const Glib::ustring& the_property_name, PropertyType& value) const
+{
+  Glib::Value<PropertyType> property_value;
+  property_value.init(Glib::Value<PropertyType>::value_type());
+
+  this->get_child_property_value(the_property_name, property_value);
+
+  value = property_value.get();
+}
+*/
+
+#endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
 } //namespace Goocanvas
 

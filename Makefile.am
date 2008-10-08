@@ -1,4 +1,4 @@
-SUBDIRS		= tools goocanvas docs examples
+SUBDIRS		= tools goocanvas docs tests examples
 DIST_SUBDIRS	= $(SUBDIRS) scripts
 
 EXTRA_DIST	=  \
