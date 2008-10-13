@@ -1,3 +1,10 @@
+2008-10-13  Murray Cumming  <murrayc@murrayc.com>
+
+	* goocanvas/src/item.hg: Renamed set/get_child_property() to 
+	set/get_child_property_value() and added templated set/get_child_property() 
+	methods that do not use Glib::Value in their API.
+	* tests/child_properties/main.cc: Adjusted.
+
 2008-10-08  Murray Cumming  <murrayc@murrayc.com>
 
 	* Makefile.am:

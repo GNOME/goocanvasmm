@@ -32,11 +32,19 @@ main(int argc, char* argv[])
   table->attach(child, 2, 3, 5, 6, Gtk::EXPAND | Gtk::FILL, Gtk::SHRINK);
 
   //Examine the child property:
+
+  //Using a Glib::Value"
   Glib::Value<int> column_value;
   column_value.init(Glib::Value<int>::value_type());
-  table->get_child_property(child, "column", column_value);
+  table->get_child_property_value(child, "column", column_value);
 
-  std::cout << "Column: " << column_value.get() << std::endl;
+  std::cout << "Column via Glib::Value: " << column_value.get() << std::endl;
+
+  //Using the template method:
+  int value2 = 0;
+  table->get_child_property(child, "column", value2);
+
+  std::cout << "Column via templated get_child_property(): " << value2 << std::endl;
 
   return 0;
 }
