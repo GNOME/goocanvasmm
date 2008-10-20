@@ -1,4 +1,10 @@
-0.11.0 (unstable)
+0.12.0 (unstable):
+
+* Item: get/set_child_property() is now a templated method.
+  The new get/set_child_property_value() still uses Glib::Value.
+  (Murray Cumming)
+
+0.11.0 (unstable):
 
 * examples: Added missing copyright comment blocks.
 

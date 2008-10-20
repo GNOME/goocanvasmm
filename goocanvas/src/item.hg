@@ -67,9 +67,8 @@ public:
 
   _WRAP_METHOD(void get_child_property_value(const Glib::RefPtr<Item>& child, const Glib::ustring& property_name, Glib::ValueBase& value) const, goo_canvas_item_get_child_property)
   _WRAP_METHOD(void set_child_property_value(const Glib::RefPtr<Item>& child, const Glib::ustring& property_name, const Glib::ValueBase& value), goo_canvas_item_set_child_property)
-  _IGNORE(goo_canvas_item_get_child_properties_valist)
-  _IGNORE(goo_canvas_item_set_child_properties_valist)
-
+  _IGNORE(goo_canvas_item_get_child_properties_valist, goo_canvas_item_set_child_properties_valist)
+  _IGNORE(goo_canvas_item_get_child_properties, goo_canvas_item_set_child_properties)
   template <class PropertyType>
   void get_child_property(const Glib::RefPtr<Item>& child, const Glib::ustring& the_property_name, PropertyType& value) const;
 
