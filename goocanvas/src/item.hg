@@ -94,7 +94,7 @@ public:
   _IGNORE(goo_canvas_item_get_bounds)
 
   _WRAP_METHOD(void request_update(), goo_canvas_item_request_update)
-  _WRAP_METHOD(void ensure_upated(), goo_canvas_item_ensure_updated)
+  _WRAP_METHOD(void ensure_updated(), goo_canvas_item_ensure_updated)
   _WRAP_METHOD(void update(bool entire_tree, const Cairo::RefPtr<Cairo::Context>& context, Bounds& bounds), goo_canvas_item_update)
   _WRAP_METHOD(void paint(const Cairo::RefPtr<Cairo::Context>& context, const Bounds& bounds, double scale), goo_canvas_item_paint)
   _WRAP_METHOD(bool get_requested_area(const Cairo::RefPtr<Cairo::Context>& context, Bounds& bounds) const, goo_canvas_item_get_requested_area)
