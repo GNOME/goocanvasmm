@@ -1,3 +1,11 @@
+2008-11-05  Armin Burgmeier  <armin@openismus.com>
+
+	* goocanvas/src/item.hg:
+	* goocanvas/src/item.ccg: Remove the const qualifier for the
+	get_items_at_vfunc, because otherwise the item itself cannot be added
+	to the returned list of items.
+	Bug #559374 (Louis-Francis Ratté-Boulianne)
+
 2008-10-30  Murray Cumming  <murrayc@murrayc.com>
 
 	* goocanvas/src/item.hg: Correct ensure_upated() to 

@@ -192,7 +192,7 @@ protected:
 #ifdef GLIBMM_VFUNCS_ENABLED
   // Hand code, since Bounds can only copy a GooCanvasBounds* but not ref one.
   virtual void get_bounds_vfunc(Bounds& bounds) const;
-  virtual Glib::ListHandle<Glib::RefPtr<Item> > get_items_at_vfunc(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool is_parent_visible, const Glib::ListHandle<Glib::RefPtr<Item> >& found_items) const;
+  virtual Glib::ListHandle<Glib::RefPtr<Item> > get_items_at_vfunc(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool is_parent_visible, const Glib::ListHandle<Glib::RefPtr<Item> >& found_items);
 #endif
 
 #m4begin

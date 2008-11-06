@@ -152,7 +152,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
   }
 }
 
-Glib::ListHandle<Glib::RefPtr<Item> > Item::get_items_at_vfunc(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool is_parent_visible, const Glib::ListHandle<Glib::RefPtr<Item> >& found_items) const
+Glib::ListHandle<Glib::RefPtr<Item> > Item::get_items_at_vfunc(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool is_parent_visible, const Glib::ListHandle<Glib::RefPtr<Item> >& found_items)
 {
   //Call the default C implementation:
 
