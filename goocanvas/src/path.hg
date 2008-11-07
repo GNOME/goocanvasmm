@@ -25,7 +25,7 @@ namespace Goocanvas
 {
 
 /*
-_WRAP_ENUM(PathCommandType,GooCanvasPathCommandType)
+_WRAP_ENUM(PathCommandType,GooCanvasPathCommandType, s#^CANVAS_##)
 */
 
 class Path : public Goocanvas::ItemSimple

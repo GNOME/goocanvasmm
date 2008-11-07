@@ -1,3 +1,10 @@
+2008-11-07  José Alburquerque  <jaalburqu@svn.gnome.org>
+
+	* goocanvas/src/enums.hg:
+	* goocanvas/src/itemmodel.hg:
+	* goocanvas/src/path.hg: Modify enums so that CANVAS_* is removed.
+	Bug #557990 (Louis-Francis Ratté-Boulianne)
+
 2008-11-05  Armin Burgmeier  <armin@openismus.com>
 
 	* goocanvas/src/item.hg:

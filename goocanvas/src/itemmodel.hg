@@ -33,7 +33,7 @@ namespace Goocanvas
   class Canvas ;
   class Item ;
 
-_WRAP_ENUM(AnimateType,GooCanvasAnimateType)
+_WRAP_ENUM(AnimateType,GooCanvasAnimateType, s#^CANVAS_##)
 
 class ItemModel : public Glib::Interface
 {

@@ -26,10 +26,9 @@ _DEFS(goocanvasmm,libgoocanvas)
 namespace Goocanvas
 {
 
-//TODO: Somehow make the enum values be ITEM_VISIBLE instead of CANVAS_ITEM_VISIBLE. It seems to just find the first _.
-_WRAP_ENUM(PointerEvents,GooCanvasPointerEvents)
-_WRAP_ENUM(ItemVisibility,GooCanvasItemVisibility)
-_WRAP_ENUM(PathCommandType,GooCanvasPathCommandType)
+_WRAP_ENUM(PointerEvents,GooCanvasPointerEvents, s#^CANVAS_##)
+_WRAP_ENUM(ItemVisibility,GooCanvasItemVisibility, s#^CANVAS_##)
+_WRAP_ENUM(PathCommandType,GooCanvasPathCommandType, s#^CANVAS_##)
 
 } //namespace Goocanvas
 
