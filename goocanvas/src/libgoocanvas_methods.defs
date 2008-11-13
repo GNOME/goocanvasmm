@@ -40,6 +40,13 @@
   (gtype-id "GOO_TYPE_CANVAS_GROUP_MODEL")
 )
 
+(define-object CanvasGridModel
+  (in-module "Goo")
+  (parent "GooCanvasItemModelSimple")
+  (c-name "GooCanvasGridModel")
+  (gtype-id "GOO_TYPE_CANVAS_GRID_MODEL")
+)
+
 (define-object CanvasEllipseModel
   (in-module "Goo")
   (parent "GooCanvasItemModelSimple")
@@ -66,6 +73,13 @@
   (parent "GooCanvasItemSimple")
   (c-name "GooCanvasGroup")
   (gtype-id "GOO_TYPE_CANVAS_GROUP")
+)
+
+(define-object CanvasGrid
+  (in-module "Goo")
+  (parent "GooCanvasItemSimple")
+  (c-name "GooCanvasGrid")
+  (gtype-id "GOO_TYPE_CANVAS_GRID")
 )
 
 (define-object CanvasEllipse
@@ -310,6 +324,56 @@
 
 
 
+;; From goocanvasgrid.h
+
+(define-function goo_canvas_grid_get_type
+  (c-name "goo_canvas_grid_get_type")
+  (return-type "GType")
+)
+
+(define-function goo_canvas_grid_new
+  (c-name "goo_canvas_grid_new")
+  (is-constructor-of "GooCanvasGrid")
+  (return-type "GooCanvasItem*")
+  (parameters
+    '("GooCanvasItem*" "parent")
+    '("gdouble" "x")
+    '("gdouble" "y")
+    '("gdouble" "width")
+    '("gdouble" "height")
+    '("gdouble" "x_step")
+    '("gdouble" "y_step")
+    '("gdouble" "x_offset")
+    '("gdouble" "y_offset")
+  )
+  (varargs #t)
+)
+
+(define-function goo_canvas_grid_model_get_type
+  (c-name "goo_canvas_grid_model_get_type")
+  (return-type "GType")
+)
+
+(define-function goo_canvas_grid_model_new
+  (c-name "goo_canvas_grid_model_new")
+  (is-constructor-of "GooCanvasGridModel")
+  (return-type "GooCanvasItemModel*")
+  (parameters
+    '("GooCanvasItemModel*" "parent")
+    '("gdouble" "x")
+    '("gdouble" "y")
+    '("gdouble" "width")
+    '("gdouble" "height")
+    '("gdouble" "x_step")
+    '("gdouble" "y_step")
+    '("gdouble" "x_offset")
+    '("gdouble" "y_offset")
+  )
+  (varargs #t)
+)
+
+
+
 ;; From goocanvasgroup.h
 
 (define-function goo_canvas_group_get_type
@@ -381,6 +445,36 @@
 (define-method set_root_item_model
   (of-object "GooCanvas")
   (c-name "goo_canvas_set_root_item_model")
+  (return-type "none")
+  (parameters
+    '("GooCanvasItemModel*" "model")
+  )
+)
+
+(define-method get_static_root_item
+  (of-object "GooCanvas")
+  (c-name "goo_canvas_get_static_root_item")
+  (return-type "GooCanvasItem*")
+)
+
+(define-method set_static_root_item
+  (of-object "GooCanvas")
+  (c-name "goo_canvas_set_static_root_item")
+  (return-type "none")
+  (parameters
+    '("GooCanvasItem*" "item")
+  )
+)
+
+(define-method get_static_root_item_model
+  (of-object "GooCanvas")
+  (c-name "goo_canvas_get_static_root_item_model")
+  (return-type "GooCanvasItemModel*")
+)
+
+(define-method set_static_root_item_model
+  (of-object "GooCanvas")
+  (c-name "goo_canvas_set_static_root_item_model")
   (return-type "none")
   (parameters
     '("GooCanvasItemModel*" "model")
@@ -541,6 +635,16 @@
   )
 )
 
+(define-method convert_bounds_to_item_space
+  (of-object "GooCanvas")
+  (c-name "goo_canvas_convert_bounds_to_item_space")
+  (return-type "none")
+  (parameters
+    '("GooCanvasItem*" "item")
+    '("GooCanvasBounds*" "bounds")
+  )
+)
+
 (define-method pointer_grab
   (of-object "GooCanvas")
   (c-name "goo_canvas_pointer_grab")
@@ -626,6 +730,16 @@
   (return-type "none")
   (parameters
     '("const-GooCanvasBounds*" "bounds")
+  )
+)
+
+(define-method request_item_redraw
+  (of-object "GooCanvas")
+  (c-name "goo_canvas_request_item_redraw")
+  (return-type "none")
+  (parameters
+    '("const-GooCanvasBounds*" "bounds")
+    '("gboolean" "is_static")
   )
 )
 
@@ -1132,6 +1246,21 @@
     '("const-GooCanvasBounds*" "allocated_area")
     '("gdouble" "x_offset")
     '("gdouble" "y_offset")
+  )
+)
+
+(define-method get_is_static
+  (of-object "GooCanvasItem")
+  (c-name "goo_canvas_item_get_is_static")
+  (return-type "gboolean")
+)
+
+(define-method set_is_static
+  (of-object "GooCanvasItem")
+  (c-name "goo_canvas_item_set_is_static")
+  (return-type "none")
+  (parameters
+    '("gboolean" "is_static")
   )
 )
 
@@ -1766,6 +1895,60 @@
   )
 )
 
+(define-function goo_canvas_convert_colors_to_rgba
+  (c-name "goo_canvas_convert_colors_to_rgba")
+  (return-type "guint")
+  (parameters
+    '("double" "red")
+    '("double" "green")
+    '("double" "blue")
+    '("double" "alpha")
+  )
+)
+
+(define-function goo_canvas_get_rgba_value_from_pattern
+  (c-name "goo_canvas_get_rgba_value_from_pattern")
+  (return-type "none")
+  (parameters
+    '("cairo_pattern_t*" "pattern")
+    '("GValue*" "value")
+  )
+)
+
+(define-function goo_canvas_set_style_property_from_pattern
+  (c-name "goo_canvas_set_style_property_from_pattern")
+  (return-type "none")
+  (parameters
+    '("GooCanvasStyle*" "style")
+    '("GQuark" "property_id")
+    '("cairo_pattern_t*" "pattern")
+  )
+)
+
+(define-function goo_canvas_create_pattern_from_color_value
+  (c-name "goo_canvas_create_pattern_from_color_value")
+  (return-type "cairo_pattern_t*")
+  (parameters
+    '("const-GValue*" "value")
+  )
+)
+
+(define-function goo_canvas_create_pattern_from_rgba_value
+  (c-name "goo_canvas_create_pattern_from_rgba_value")
+  (return-type "cairo_pattern_t*")
+  (parameters
+    '("const-GValue*" "value")
+  )
+)
+
+(define-function goo_canvas_create_pattern_from_pixbuf_value
+  (c-name "goo_canvas_create_pattern_from_pixbuf_value")
+  (return-type "cairo_pattern_t*")
+  (parameters
+    '("const-GValue*" "value")
+  )
+)
+
 (define-function goo_canvas_boolean_handled_accumulator
   (c-name "goo_canvas_boolean_handled_accumulator")
   (return-type "gboolean")
@@ -2116,13 +2299,5 @@
   )
   (varargs #t)
 )
-
-
-
-;; From stamp-goocanvasenumtypes.h
-
-
-
-;; From stamp-goocanvasmarshal.h
 
 

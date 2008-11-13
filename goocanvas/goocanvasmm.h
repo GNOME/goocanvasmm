@@ -37,6 +37,7 @@ extern const int goocanvasmm_micro_version;
 #include <goocanvasmm/ellipse.h>
 #include <goocanvasmm/ellipsemodel.h>
 #include <goocanvasmm/enums.h>
+#include <goocanvasmm/grid.h>
 #include <goocanvasmm/group.h>
 #include <goocanvasmm/groupmodel.h>
 #include <goocanvasmm/image.h>

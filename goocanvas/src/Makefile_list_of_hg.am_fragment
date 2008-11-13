@@ -7,6 +7,7 @@ canvas.hg \
 bounds.hg \
 ellipse.hg \
 ellipsemodel.hg \
+grid.hg \
 group.hg \
 groupmodel.hg \
 image.hg \
