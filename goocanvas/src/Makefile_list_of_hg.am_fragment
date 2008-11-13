@@ -8,6 +8,7 @@ bounds.hg \
 ellipse.hg \
 ellipsemodel.hg \
 grid.hg \
+gridmodel.hg \
 group.hg \
 groupmodel.hg \
 image.hg \

@@ -1,5 +1,11 @@
 2008-11-13  Murray Cumming  <murrayc@murrayc.com>
 
+	* goocanvas/src/Makefile_list_of_hg.am_fragment:
+	* goocanvas/src/gridmodel.ccg:
+	* goocanvas/src/gridmodel.hg: Added GridModel.
+
+2008-11-13  Murray Cumming  <murrayc@murrayc.com>
+
 	* tools/extra_defs_gen/generate_defs_goocanvas.cc: Added the new grid 
 	item.
 	* goocanvas/src/libgoocanvas_methods.defs:
