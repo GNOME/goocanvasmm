@@ -1,3 +1,9 @@
+2008-11-18  Jonathon Jongsma  <jonathon@quotidian.org>
+
+	* examples/demo/primitives.cc: use cairo_matrix_t directly since that's
+	actually the type that we need for the g_object_set() call.  This fixes the
+	build when using cairomm 1.7+ (Bug #560074)
+
 2008-11-13  Murray Cumming  <murrayc@murrayc.com>
 
 	* goocanvas/src/Makefile_list_of_hg.am_fragment:

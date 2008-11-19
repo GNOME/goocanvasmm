@@ -354,7 +354,7 @@ Primitives::_create_stipple(const Glib::ustring& color)
 Glib::RefPtr<Goocanvas::Item>
 Primitives::_create_anchor(double x, double y)
 {
-  Cairo::Matrix m = { 0.8, 0.2, -0.3, 0.5, x, y };
+  cairo_matrix_t m = { 0.8, 0.2, -0.3, 0.5, x, y };
 
   Glib::RefPtr<Goocanvas::Group> group = Goocanvas::Group::create() ;
   _canvas->get_root_item()->add_child(group);
