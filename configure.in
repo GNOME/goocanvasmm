@@ -16,7 +16,7 @@ AC_INIT(goocanvas/goocanvasmmconfig.h.in)
 #  Version and initialization
 #########################################################################
 LIBGOOCANVASMM_MAJOR_VERSION=0
-LIBGOOCANVASMM_MINOR_VERSION=12
+LIBGOOCANVASMM_MINOR_VERSION=13
 LIBGOOCANVASMM_MICRO_VERSION=0
 
 #
@@ -26,7 +26,7 @@ LIBGOOCANVASMM_MICRO_VERSION=0
 #  ? :+1 : ?   == just some internal changes, nothing breaks but might work
 #                 better
 # CURRENT : REVISION : AGE
-LIBGOOCANVASMM_SO_VERSION=3:0:0
+LIBGOOCANVASMM_SO_VERSION=4:0:0
 
 LIBGOOCANVASMM_VERSION=$LIBGOOCANVASMM_MAJOR_VERSION.$LIBGOOCANVASMM_MINOR_VERSION.$LIBGOOCANVASMM_MICRO_VERSION
 LIBGOOCANVASMM_RELEASE=$LIBGOOCANVASMM_MAJOR_VERSION.$LIBGOOCANVASMM_MINOR_VERSION
@@ -110,7 +110,7 @@ AC_CHECK_PROGS(PERL, perl5 perl)
 #########################################################################
 #  Dependancy checks
 #########################################################################
-PKG_CHECK_MODULES(LIBGOOCANVASMM, glibmm-2.4 >= 2.14.2 gtkmm-2.4 >= 2.10.9 goocanvas >= 0.11 )
+PKG_CHECK_MODULES(LIBGOOCANVASMM, glibmm-2.4 >= 2.14.2 gtkmm-2.4 >= 2.10.9 goocanvas >= 0.13 )
 AC_SUBST(LIBGOOCANVASMM_CFLAGS)
 AC_SUBST(LIBGOOCANVASMM_LIBS)
 

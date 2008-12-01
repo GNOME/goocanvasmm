@@ -1,3 +1,25 @@
+0.13.0 (unstable):
+
+* Canvas: Added get_static_root_item() and get_static_root_item_model().
+* Added Grid item.
+* Item:
+  - Added set/get_is_static() and the vfuncs.
+  - Added animation_finished signal.
+  (Murray Cumming)
+  - Remove const from get_items_at_vfunc().
+    (Armin Burgmeier)
+    Bug #559374 (Louis-Francis Ratté-Boulianne)
+  - Correct ensure_upated() to ensure_updated().
+    Bug #558489 (Louis-Francis Ratté-Boulianne)
+* ItemModel: Added animation_finished signal.
+  (Murray Cumming)
+* Remove the CANVAS_ prefix from enum values because they are already 
+  namespaced.
+  (José Alburquerque)
+  Bug #557990 (Louis-Francis Ratté-Boulianne)
+* Build: Fixed build with cairomm 1.7.
+  (Jonathon Jongsma) Bug #560074)
+
 0.12.0 (unstable):
 
 * Item: get/set_child_property() is now a templated method.
