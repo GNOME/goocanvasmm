@@ -101,6 +101,7 @@ public:
   _WRAP_SIGNAL(void child_moved (int old_child_num, int new_child_num), "child-moved")
   _WRAP_SIGNAL(void changed (bool recompute_bounds), "changed")
   _WRAP_SIGNAL(void child_notify(GParamSpec* pspec), "child_notify")
+  _WRAP_SIGNAL(void animation_finished(bool stopped), "animation_finished")
 
   _WRAP_PROPERTY("parent", Glib::RefPtr<ItemModel>)
   _WRAP_PROPERTY("can-focus", bool)

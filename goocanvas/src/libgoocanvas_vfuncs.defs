@@ -300,6 +300,19 @@
 	)
 )
 
+(define-vfunc get_is_static
+	(of-object "GooCanvasItem")
+	(return-type "gboolean")
+)
+
+(define-vfunc set_is_static
+	(of-object "GooCanvasItem")
+	(return-type "void")
+	(parameters
+		'("gboolean" "is_static")
+        )
+)
+
 ; GooCanvasItemModel
 
 (define-vfunc get_n_children

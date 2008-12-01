@@ -136,6 +136,8 @@ public:
   _WRAP_METHOD(void animate(double x, double y, double scale, double degrees, bool absolute, int duration, int step_time, GooCanvasAnimateType type), goo_canvas_item_animate)
   _WRAP_METHOD(void stop_animation(), goo_canvas_item_stop_animation)
 
+  _WRAP_METHOD(bool get_is_static() const, goo_canvas_item_get_is_static)
+  _WRAP_METHOD(void set_is_static(bool is_static = true), goo_canvas_item_set_is_static)
 
   //_WRAP_SIGNAL(void child_added(int child_num), "child_added")
   //_WRAP_SIGNAL(void child_moved(int old_position, int new_position), "child_moved")
@@ -154,6 +156,7 @@ public:
   _WRAP_SIGNAL(bool key_release_event(const Glib::RefPtr<Item>& target, GdkEventKey* event), "key_release_event")
   _WRAP_SIGNAL(bool grab_broken_event(const Glib::RefPtr<Item>& target, GdkEventGrabBroken* event), "grab_broken_event")
   _WRAP_SIGNAL(void child_notify(GParamSpec* pspec), "child_notify")
+  _WRAP_SIGNAL(void animation_finished(bool stopped), "animation_finished")
 
   _WRAP_PROPERTY("parent", Glib::RefPtr<Item>)
   _WRAP_PROPERTY("visibility", ItemVisibility)
@@ -227,6 +230,9 @@ protected:
   _WRAP_VFUNC(void set_style(const Glib::RefPtr<Style>& style), set_style)
   _WRAP_VFUNC(bool is_visible() const, is_visible)
   _WRAP_VFUNC(double get_requested_height(const Cairo::RefPtr<Cairo::Context>& cr, double width), get_requested_height)
+  _WRAP_VFUNC(bool get_is_static() const, get_is_static)
+  _WRAP_VFUNC(void set_is_static(bool is_static), set_is_static)
+
 
   /* Virtual methods that model/view items must implement. */
 #m4 _CONVERSION(`Glib::RefPtr<ItemModel>', `GooCanvasItemModel*', `(($3) ? ($3)->gobj() : 0)')
@@ -234,6 +240,7 @@ protected:
 #m4 _CONVERSION(`GooCanvasItemModel*', `const Glib::RefPtr<ItemModel>&', `Glib::wrap($3, true)')
   _WRAP_VFUNC(Glib::RefPtr<ItemModel> get_model() const, get_model)
   _WRAP_VFUNC(void set_model(const Glib::RefPtr<ItemModel>& model), set_model)
+
 };
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -1,3 +1,12 @@
+2008-12-01  Murray Cumming  <murrayc@murrayc.com>
+
+	* goocanvas/src/canvas.hg: Added get_static_root_item() and 
+	get_static_root_item_model().
+	* goocanvas/src/libgoocanvas_vfuncs.defs:
+	* goocanvas/src/item.hg: Added set/get_is_static() and the vfuncs.
+	Added animation_finished signal.
+	* goocanvas/src/itemmodel.hg: Added animation_finished signal.
+
 2008-11-18  Jonathon Jongsma  <jonathon@quotidian.org>
 
 	* examples/demo/primitives.cc: use cairo_matrix_t directly since that's

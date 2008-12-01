@@ -51,6 +51,14 @@ public:
   _WRAP_METHOD(Glib::RefPtr<const ItemModel> get_root_item_model() const, goo_canvas_get_root_item_model, constversion)
   _WRAP_METHOD(void set_root_item_model(const Glib::RefPtr<ItemModel>& model), goo_canvas_set_root_item_model)
 
+  _WRAP_METHOD(Glib::RefPtr<Item> get_static_root_item(), goo_canvas_get_static_root_item)
+  _WRAP_METHOD(Glib::RefPtr<const Item> get_static_root_item() const, goo_canvas_get_static_root_item, constversion)
+  _WRAP_METHOD(void set_static_root_item(const Glib::RefPtr<Item>& item), goo_canvas_set_static_root_item)
+
+  _WRAP_METHOD(Glib::RefPtr<ItemModel> get_static_root_item_model(), goo_canvas_get_static_root_item_model, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const ItemModel> get_static_root_item_model() const, goo_canvas_get_static_root_item_model, constversion)
+  _WRAP_METHOD(void set_static_root_item_model(const Glib::RefPtr<ItemModel>& model), goo_canvas_set_static_root_item_model)
+
   _WRAP_METHOD(Glib::RefPtr<Item> get_item(const Glib::RefPtr<ItemModel>& model), goo_canvas_get_item, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Item> get_item(const Glib::RefPtr<ItemModel>& model) const, goo_canvas_get_item, constversion)
 
@@ -87,6 +95,7 @@ public:
   _WRAP_METHOD(void convert_from_pixels(double& x, double& y) const, goo_canvas_convert_from_pixels)
   _WRAP_METHOD(void convert_to_item_space(const Glib::RefPtr<Item>& item, double& x, double& y) const, goo_canvas_convert_to_item_space)
   _WRAP_METHOD(void convert_from_item_space(const Glib::RefPtr<Item>& item, double& x, double& y) const, goo_canvas_convert_from_item_space)
+  _WRAP_METHOD(void convert_bounds_to_item_space(const Glib::RefPtr<Item>& item, Bounds& bounds) const, goo_canvas_convert_bounds_to_item_space)
 
   //TODO: Use C++ types?
 #m4 _CONVERSION(`const Gdk::Cursor&',`GdkCursor*',__FCR2P)
@@ -105,6 +114,7 @@ public:
   _WRAP_METHOD(void update(), goo_canvas_update)
   _WRAP_METHOD(void request_update(), goo_canvas_request_update)
   _WRAP_METHOD(void request_redraw(const Bounds& bounds), goo_canvas_request_redraw)
+  _WRAP_METHOD(void request_item_redraw(const Bounds& bounds, bool is_static = false), goo_canvas_request_item_redraw)
   _WRAP_METHOD(double get_default_line_width() const, goo_canvas_get_default_line_width)
 
   _WRAP_METHOD(void register_widget_item(const Glib::RefPtr<Goocanvas::Widget>& widget), goo_canvas_register_widget_item)
