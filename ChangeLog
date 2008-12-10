@@ -1,3 +1,8 @@
+2008-12-10  Hubert Figuiere  <hub@figuiere.net>
+
+	* examples/moving_shapes/window.cc: 
+	* examples/demo/primitives.cc: fix warnings. (Bug #562903)
+
 0.13.0:
 
 2008-12-01  Murray Cumming  <murrayc@murrayc.com>

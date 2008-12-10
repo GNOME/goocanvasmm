@@ -74,6 +74,7 @@ Window::on_item_button_press_event(const Glib::RefPtr<Goocanvas::Item>& item, Gd
     _drag_x = (int) event->x ;
     _drag_y = (int) event->y ;
   }
+  return false;
 }
 
 bool
@@ -83,6 +84,7 @@ Window::on_item_button_release_event(const Glib::RefPtr<Goocanvas::Item>& item, 
   {
     _dragging.clear() ;
   }
+  return false;
 }
 
 bool
@@ -94,4 +96,5 @@ Window::on_item_motion_notify_event(const Glib::RefPtr<Goocanvas::Item>& item, G
     double new_y = event->y ;
     item->translate(new_x - _drag_x, new_y - _drag_y) ;
   }
+  return false;
 }
