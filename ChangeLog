@@ -1,3 +1,9 @@
+2009-01-24  Deng Xiyue  <manphiz@gmail.com>
+
+	* Change license header to mention Lesser General Public License
+	version 2.1 instead of Library General Public License, to be
+	consistent with COPYING.
+
 2008-12-15  Murray Cumming  <murrayc@murrayc.com>
 
 	* goocanvas/src/ellipsemodel.hg:
