@@ -39,6 +39,10 @@ public:
   _WRAP_CREATE(bool close_path, const Points& coords)
   _WRAP_CREATE(double x1, double y1, double x2, double y2)
 
+  _WRAP_PROPERTY("x", double)
+  _WRAP_PROPERTY("y", double)
+  _WRAP_PROPERTY("width", double)
+  _WRAP_PROPERTY("height", double)
   _WRAP_PROPERTY("arrow-length", double)
   _WRAP_PROPERTY("arrow-tip-length", double)
   _WRAP_PROPERTY("arrow-width", double)

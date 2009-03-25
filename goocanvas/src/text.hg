@@ -40,14 +40,15 @@ public:
 #m4 _CONVERSION(`Pango::Rectangle&',`PangoRectangle*',`($3).gobj()')
   _WRAP_METHOD(void get_natural_extents(Pango::Rectangle& ink_rect, Pango::Rectangle& logical_rect) const, goo_canvas_text_get_natural_extents)
 
+  _WRAP_PROPERTY("x", double)
+  _WRAP_PROPERTY("y", double)
+  _WRAP_PROPERTY("width", double)
+  _WRAP_PROPERTY("height", double)
   _WRAP_PROPERTY("alignment", Pango::Alignment)
   _WRAP_PROPERTY("anchor", Gtk::AnchorType)
   _WRAP_PROPERTY("ellipsize",Pango::EllipsizeMode)
   _WRAP_PROPERTY("text", Glib::ustring)
   _WRAP_PROPERTY("use-markup", bool)
-  _WRAP_PROPERTY("width", double)
-  _WRAP_PROPERTY("x", double)
-  _WRAP_PROPERTY("y", double)
   _WRAP_PROPERTY("wrap", Pango::WrapMode)
 };
 

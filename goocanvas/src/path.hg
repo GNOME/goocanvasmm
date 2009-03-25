@@ -41,6 +41,10 @@ public:
 
   _WRAP_CREATE(const Glib::ustring& data)
 
+  _WRAP_PROPERTY("x", double)
+  _WRAP_PROPERTY("y", double)
+  _WRAP_PROPERTY("width", double)
+  _WRAP_PROPERTY("height", double)
   _WRAP_PROPERTY("data", Glib::ustring)
 };
 

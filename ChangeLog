@@ -1,5 +1,14 @@
 2009-03-25  Murray Cumming  <murrayc@murrayc.com>
 
+	* goocanvas/src/ellipse.hg:
+	* goocanvas/src/path.hg:
+	* goocanvas/src/polyline.hg:
+	* goocanvas/src/table.hg:
+	* goocanvas/src/text.hg: Wrapped the (sometimes) new x, y, width, 
+	and height properties.
+
+2009-03-25  Murray Cumming  <murrayc@murrayc.com>
+
 	* configure.in: Depend on the latest goocanvasmm.
 	* goocanvas/src/libgoocanvas_enums.defs:
 	* goocanvas/src/libgoocanvas_methods.defs:
