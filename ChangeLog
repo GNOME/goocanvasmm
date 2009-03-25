@@ -1,3 +1,11 @@
+2009-03-25  Murray Cumming  <murrayc@murrayc.com>
+
+	* configure.in: Depend on the latest goocanvasmm.
+	* goocanvas/src/libgoocanvas_enums.defs:
+	* goocanvas/src/libgoocanvas_methods.defs:
+	* goocanvas/src/libgoocanvas_signals.defs: Regenerated.
+	* goocanvas/src/item.hg: Added signal_scroll_event.
+
 2009-01-24  Deng Xiyue  <manphiz@gmail.com>
 
 	* Change license header to mention Lesser General Public License

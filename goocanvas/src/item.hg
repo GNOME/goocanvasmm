@@ -157,6 +157,7 @@ public:
   _WRAP_SIGNAL(bool grab_broken_event(const Glib::RefPtr<Item>& target, GdkEventGrabBroken* event), "grab_broken_event")
   _WRAP_SIGNAL(void child_notify(GParamSpec* pspec), "child_notify")
   _WRAP_SIGNAL(void animation_finished(bool stopped), "animation_finished")
+  _WRAP_SIGNAL(bool scroll_event(const Glib::RefPtr<Item>& target, GdkEventScroll* event), "scroll_event")
 
   _WRAP_PROPERTY("parent", Glib::RefPtr<Item>)
   _WRAP_PROPERTY("visibility", ItemVisibility)

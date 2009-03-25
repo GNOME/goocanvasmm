@@ -110,7 +110,7 @@ AC_CHECK_PROGS(PERL, perl5 perl)
 #########################################################################
 #  Dependancy checks
 #########################################################################
-PKG_CHECK_MODULES(LIBGOOCANVASMM, glibmm-2.4 >= 2.14.2 gtkmm-2.4 >= 2.10.9 goocanvas >= 0.13 )
+PKG_CHECK_MODULES(LIBGOOCANVASMM, glibmm-2.4 >= 2.14.2 gtkmm-2.4 >= 2.10.9 goocanvas >= 0.14 )
 AC_SUBST(LIBGOOCANVASMM_CFLAGS)
 AC_SUBST(LIBGOOCANVASMM_LIBS)
 

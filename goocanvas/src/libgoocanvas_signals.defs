@@ -416,57 +416,21 @@
   (construct-only #f)
 )
 
+(define-property redraw-when-scrolled
+  (of-object "GooCanvas")
+  (prop-type "GParamBoolean")
+  (docs "If the canvas is completely redrawn when scrolled, to reduce the flicker of static items")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From GooCanvasEllipse
 
 (define-property transform
   (of-object "GooCanvasEllipse")
   (prop-type "GParamBoxed")
   (docs "The transformation matrix of the item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property parent
-  (of-object "GooCanvasEllipse")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property pointer-events
-  (of-object "GooCanvasEllipse")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property title
-  (of-object "GooCanvasEllipse")
-  (prop-type "GParamString")
-  (docs "A short context-rich description of the item for use by assistive technologies")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property visibility
-  (of-object "GooCanvasEllipse")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property visibility-threshold
-  (of-object "GooCanvasEllipse")
-  (prop-type "GParamDouble")
-  (docs "The scale threshold at which the item becomes visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -481,10 +445,64 @@
   (construct-only #f)
 )
 
+(define-property visibility
+  (of-object "GooCanvasEllipse")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property title
+  (of-object "GooCanvasEllipse")
+  (prop-type "GParamString")
+  (docs "A short context-rich description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility-threshold
+  (of-object "GooCanvasEllipse")
+  (prop-type "GParamDouble")
+  (docs "The scale threshold at which the item becomes visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GooCanvasEllipse")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property can-focus
   (of-object "GooCanvasEllipse")
   (prop-type "GParamBoolean")
   (docs "If the item can take the keyboard focus")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property tooltip
+  (of-object "GooCanvasEllipse")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasEllipse")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -715,21 +733,102 @@
   (construct-only #f)
 )
 
-;; From GooCanvasEllipseModel
-
-(define-property visibility
-  (of-object "GooCanvasEllipseModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
+(define-property x
+  (of-object "GooCanvasEllipse")
+  (prop-type "GParamDouble")
+  (docs "The x coordinate of the left side of the ellipse")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
+(define-property y
+  (of-object "GooCanvasEllipse")
+  (prop-type "GParamDouble")
+  (docs "The y coordinate of the top of the ellipse")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width
+  (of-object "GooCanvasEllipse")
+  (prop-type "GParamDouble")
+  (docs "The width of the ellipse")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height
+  (of-object "GooCanvasEllipse")
+  (prop-type "GParamDouble")
+  (docs "The height of the ellipse")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GooCanvasEllipseModel
+
 (define-property visibility-threshold
   (of-object "GooCanvasEllipseModel")
   (prop-type "GParamDouble")
   (docs "The scale threshold at which the item becomes visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property title
+  (of-object "GooCanvasEllipseModel")
+  (prop-type "GParamString")
+  (docs "A short context-rich description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasEllipseModel")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property transform
+  (of-object "GooCanvasEllipseModel")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property can-focus
+  (of-object "GooCanvasEllipseModel")
+  (prop-type "GParamBoolean")
+  (docs "If the item can take the keyboard focus")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property tooltip
+  (of-object "GooCanvasEllipseModel")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasEllipseModel")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -753,42 +852,6 @@
   (construct-only #f)
 )
 
-(define-property transform
-  (of-object "GooCanvasEllipseModel")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property can-focus
-  (of-object "GooCanvasEllipseModel")
-  (prop-type "GParamBoolean")
-  (docs "If the item can take the keyboard focus")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property pointer-events
-  (of-object "GooCanvasEllipseModel")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property title
-  (of-object "GooCanvasEllipseModel")
-  (prop-type "GParamString")
-  (docs "A short context-rich description of the item for use by assistive technologies")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property stroke-pattern
   (of-object "GooCanvasEllipseModel")
   (prop-type "GParamBoxed")
@@ -1014,48 +1077,48 @@
   (construct-only #f)
 )
 
-;; From GooCanvasGrid
-
-(define-property parent
-  (of-object "GooCanvasGrid")
-  (prop-type "GParamObject")
-  (docs "The parent item")
+(define-property x
+  (of-object "GooCanvasEllipseModel")
+  (prop-type "GParamDouble")
+  (docs "The x coordinate of the left side of the ellipse")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
+
+(define-property y
+  (of-object "GooCanvasEllipseModel")
+  (prop-type "GParamDouble")
+  (docs "The y coordinate of the top of the ellipse")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width
+  (of-object "GooCanvasEllipseModel")
+  (prop-type "GParamDouble")
+  (docs "The width of the ellipse")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height
+  (of-object "GooCanvasEllipseModel")
+  (prop-type "GParamDouble")
+  (docs "The height of the ellipse")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GooCanvasGrid
 
 (define-property visibility-threshold
   (of-object "GooCanvasGrid")
   (prop-type "GParamDouble")
   (docs "The scale threshold at which the item becomes visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasGrid")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property pointer-events
-  (of-object "GooCanvasGrid")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property title
-  (of-object "GooCanvasGrid")
-  (prop-type "GParamString")
-  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1070,6 +1133,15 @@
   (construct-only #f)
 )
 
+(define-property transform
+  (of-object "GooCanvasGrid")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property visibility
   (of-object "GooCanvasGrid")
   (prop-type "GParamEnum")
@@ -1079,10 +1151,46 @@
   (construct-only #f)
 )
 
+(define-property parent
+  (of-object "GooCanvasGrid")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property tooltip
+  (of-object "GooCanvasGrid")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasGrid")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property can-focus
   (of-object "GooCanvasGrid")
   (prop-type "GParamBoolean")
   (docs "If the item can take the keyboard focus")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property title
+  (of-object "GooCanvasGrid")
+  (prop-type "GParamString")
+  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1398,6 +1506,24 @@
   (of-object "GooCanvasGrid")
   (prop-type "GParamBoxed")
   (docs "The cairo pattern to paint the border with")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property show-horz-grid-lines
+  (of-object "GooCanvasGrid")
+  (prop-type "GParamBoolean")
+  (docs "If the horizontal grid lines are shown")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property show-vert-grid-lines
+  (of-object "GooCanvasGrid")
+  (prop-type "GParamBoolean")
+  (docs "If the vertical grid lines are shown")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1495,15 +1621,6 @@
 
 ;; From GooCanvasGridModel
 
-(define-property visibility
-  (of-object "GooCanvasGridModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property visibility-threshold
   (of-object "GooCanvasGridModel")
   (prop-type "GParamDouble")
@@ -1513,19 +1630,19 @@
   (construct-only #f)
 )
 
-(define-property description
+(define-property title
   (of-object "GooCanvasGridModel")
   (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
+  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property parent
+(define-property pointer-events
   (of-object "GooCanvasGridModel")
-  (prop-type "GParamObject")
-  (docs "The parent item model")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1549,19 +1666,37 @@
   (construct-only #f)
 )
 
-(define-property pointer-events
+(define-property tooltip
   (of-object "GooCanvasGridModel")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property title
+(define-property visibility
+  (of-object "GooCanvasGridModel")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property description
   (of-object "GooCanvasGridModel")
   (prop-type "GParamString")
-  (docs "A short context-rich description of the item for use by assistive technologies")
+  (docs "A description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GooCanvasGridModel")
+  (prop-type "GParamObject")
+  (docs "The parent item model")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1882,6 +2017,24 @@
   (construct-only #f)
 )
 
+(define-property show-horz-grid-lines
+  (of-object "GooCanvasGridModel")
+  (prop-type "GParamBoolean")
+  (docs "If the horizontal grid lines are shown")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property show-vert-grid-lines
+  (of-object "GooCanvasGridModel")
+  (prop-type "GParamBoolean")
+  (docs "If the vertical grid lines are shown")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property vert-grid-lines-on-top
   (of-object "GooCanvasGridModel")
   (prop-type "GParamBoolean")
@@ -1974,46 +2127,10 @@
 
 ;; From GooCanvasGroup
 
-(define-property parent
-  (of-object "GooCanvasGroup")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property visibility-threshold
   (of-object "GooCanvasGroup")
   (prop-type "GParamDouble")
   (docs "The scale threshold at which the item becomes visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasGroup")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property pointer-events
-  (of-object "GooCanvasGroup")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property title
-  (of-object "GooCanvasGroup")
-  (prop-type "GParamString")
-  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2028,6 +2145,15 @@
   (construct-only #f)
 )
 
+(define-property transform
+  (of-object "GooCanvasGroup")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property visibility
   (of-object "GooCanvasGroup")
   (prop-type "GParamEnum")
@@ -2037,10 +2163,46 @@
   (construct-only #f)
 )
 
+(define-property parent
+  (of-object "GooCanvasGroup")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property tooltip
+  (of-object "GooCanvasGroup")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasGroup")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property can-focus
   (of-object "GooCanvasGroup")
   (prop-type "GParamBoolean")
   (docs "If the item can take the keyboard focus")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property title
+  (of-object "GooCanvasGroup")
+  (prop-type "GParamString")
+  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2235,21 +2397,102 @@
   (construct-only #f)
 )
 
-;; From GooCanvasGroupModel
-
-(define-property visibility
-  (of-object "GooCanvasGroupModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
+(define-property x
+  (of-object "GooCanvasGroup")
+  (prop-type "GParamDouble")
+  (docs "The x coordinate of the group")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
+(define-property y
+  (of-object "GooCanvasGroup")
+  (prop-type "GParamDouble")
+  (docs "The y coordinate of the group")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width
+  (of-object "GooCanvasGroup")
+  (prop-type "GParamDouble")
+  (docs "The width of the group, or -1 to use the default width")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height
+  (of-object "GooCanvasGroup")
+  (prop-type "GParamDouble")
+  (docs "The height of the group, or -1 to use the default height")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GooCanvasGroupModel
+
 (define-property visibility-threshold
   (of-object "GooCanvasGroupModel")
   (prop-type "GParamDouble")
   (docs "The scale threshold at which the item becomes visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property title
+  (of-object "GooCanvasGroupModel")
+  (prop-type "GParamString")
+  (docs "A short context-rich description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasGroupModel")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property transform
+  (of-object "GooCanvasGroupModel")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property can-focus
+  (of-object "GooCanvasGroupModel")
+  (prop-type "GParamBoolean")
+  (docs "If the item can take the keyboard focus")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property tooltip
+  (of-object "GooCanvasGroupModel")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasGroupModel")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2273,42 +2516,6 @@
   (construct-only #f)
 )
 
-(define-property transform
-  (of-object "GooCanvasGroupModel")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property can-focus
-  (of-object "GooCanvasGroupModel")
-  (prop-type "GParamBoolean")
-  (docs "If the item can take the keyboard focus")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property pointer-events
-  (of-object "GooCanvasGroupModel")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property title
-  (of-object "GooCanvasGroupModel")
-  (prop-type "GParamString")
-  (docs "A short context-rich description of the item for use by assistive technologies")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property stroke-pattern
   (of-object "GooCanvasGroupModel")
   (prop-type "GParamBoxed")
@@ -2498,48 +2705,48 @@
   (construct-only #f)
 )
 
-;; From GooCanvasImage
-
-(define-property parent
-  (of-object "GooCanvasImage")
-  (prop-type "GParamObject")
-  (docs "The parent item")
+(define-property x
+  (of-object "GooCanvasGroupModel")
+  (prop-type "GParamDouble")
+  (docs "The x coordinate of the group")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
+
+(define-property y
+  (of-object "GooCanvasGroupModel")
+  (prop-type "GParamDouble")
+  (docs "The y coordinate of the group")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width
+  (of-object "GooCanvasGroupModel")
+  (prop-type "GParamDouble")
+  (docs "The width of the group, or -1 to use the default width")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height
+  (of-object "GooCanvasGroupModel")
+  (prop-type "GParamDouble")
+  (docs "The height of the group, or -1 to use the default height")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GooCanvasImage
 
 (define-property visibility-threshold
   (of-object "GooCanvasImage")
   (prop-type "GParamDouble")
   (docs "The scale threshold at which the item becomes visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasImage")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property pointer-events
-  (of-object "GooCanvasImage")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property title
-  (of-object "GooCanvasImage")
-  (prop-type "GParamString")
-  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2554,6 +2761,15 @@
   (construct-only #f)
 )
 
+(define-property transform
+  (of-object "GooCanvasImage")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property visibility
   (of-object "GooCanvasImage")
   (prop-type "GParamEnum")
@@ -2563,10 +2779,46 @@
   (construct-only #f)
 )
 
+(define-property parent
+  (of-object "GooCanvasImage")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property tooltip
+  (of-object "GooCanvasImage")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasImage")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property can-focus
   (of-object "GooCanvasImage")
   (prop-type "GParamBoolean")
   (docs "If the item can take the keyboard focus")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property title
+  (of-object "GooCanvasImage")
+  (prop-type "GParamString")
+  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2817,15 +3069,6 @@
 
 ;; From GooCanvasImageModel
 
-(define-property visibility
-  (of-object "GooCanvasImageModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property visibility-threshold
   (of-object "GooCanvasImageModel")
   (prop-type "GParamDouble")
@@ -2835,19 +3078,19 @@
   (construct-only #f)
 )
 
-(define-property description
+(define-property title
   (of-object "GooCanvasImageModel")
   (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
+  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property parent
+(define-property pointer-events
   (of-object "GooCanvasImageModel")
-  (prop-type "GParamObject")
-  (docs "The parent item model")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2871,19 +3114,37 @@
   (construct-only #f)
 )
 
-(define-property pointer-events
+(define-property tooltip
   (of-object "GooCanvasImageModel")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property title
+(define-property visibility
+  (of-object "GooCanvasImageModel")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property description
   (of-object "GooCanvasImageModel")
   (prop-type "GParamString")
-  (docs "A short context-rich description of the item for use by assistive technologies")
+  (docs "A description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GooCanvasImageModel")
+  (prop-type "GParamObject")
+  (docs "The parent item model")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3163,6 +3424,16 @@
   )
 )
 
+(define-signal scroll-event
+  (of-object "GooCanvasItem")
+  (return-type "gboolean")
+  (when "last")
+  (parameters
+    '("GooCanvasItem*" "p0")
+    '("GdkEventScroll*" "p1")
+  )
+)
+
 (define-signal motion-notify-event
   (of-object "GooCanvasItem")
   (return-type "gboolean")
@@ -3243,6 +3514,18 @@
   )
 )
 
+(define-signal query-tooltip
+  (of-object "GooCanvasItem")
+  (return-type "gboolean")
+  (when "last")
+  (parameters
+    '("gdouble" "p0")
+    '("gdouble" "p1")
+    '("gboolean" "p2")
+    '("GtkTooltip*" "p3")
+  )
+)
+
 (define-signal animation-finished
   (of-object "GooCanvasItem")
   (return-type "void")
@@ -3252,46 +3535,10 @@
   )
 )
 
-(define-property parent
-  (of-object "GooCanvasItem")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property visibility-threshold
   (of-object "GooCanvasItem")
   (prop-type "GParamDouble")
   (docs "The scale threshold at which the item becomes visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasItem")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property pointer-events
-  (of-object "GooCanvasItem")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property title
-  (of-object "GooCanvasItem")
-  (prop-type "GParamString")
-  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3306,6 +3553,15 @@
   (construct-only #f)
 )
 
+(define-property transform
+  (of-object "GooCanvasItem")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property visibility
   (of-object "GooCanvasItem")
   (prop-type "GParamEnum")
@@ -3315,10 +3571,46 @@
   (construct-only #f)
 )
 
+(define-property parent
+  (of-object "GooCanvasItem")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property tooltip
+  (of-object "GooCanvasItem")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasItem")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property can-focus
   (of-object "GooCanvasItem")
   (prop-type "GParamBoolean")
   (docs "If the item can take the keyboard focus")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property title
+  (of-object "GooCanvasItem")
+  (prop-type "GParamString")
+  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3381,19 +3673,64 @@
   )
 )
 
-(define-property visibility
+(define-property visibility-threshold
   (of-object "GooCanvasItemModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
+  (prop-type "GParamDouble")
+  (docs "The scale threshold at which the item becomes visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property visibility-threshold
+(define-property title
   (of-object "GooCanvasItemModel")
-  (prop-type "GParamDouble")
-  (docs "The scale threshold at which the item becomes visible")
+  (prop-type "GParamString")
+  (docs "A short context-rich description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasItemModel")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property transform
+  (of-object "GooCanvasItemModel")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property can-focus
+  (of-object "GooCanvasItemModel")
+  (prop-type "GParamBoolean")
+  (docs "If the item can take the keyboard focus")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property tooltip
+  (of-object "GooCanvasItemModel")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasItemModel")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3417,84 +3754,12 @@
   (construct-only #f)
 )
 
-(define-property transform
-  (of-object "GooCanvasItemModel")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property can-focus
-  (of-object "GooCanvasItemModel")
-  (prop-type "GParamBoolean")
-  (docs "If the item can take the keyboard focus")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property pointer-events
-  (of-object "GooCanvasItemModel")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property title
-  (of-object "GooCanvasItemModel")
-  (prop-type "GParamString")
-  (docs "A short context-rich description of the item for use by assistive technologies")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 ;; From GooCanvasItemSimple
-
-(define-property parent
-  (of-object "GooCanvasItemSimple")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
 
 (define-property visibility-threshold
   (of-object "GooCanvasItemSimple")
   (prop-type "GParamDouble")
   (docs "The scale threshold at which the item becomes visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasItemSimple")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property pointer-events
-  (of-object "GooCanvasItemSimple")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property title
-  (of-object "GooCanvasItemSimple")
-  (prop-type "GParamString")
-  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3509,6 +3774,15 @@
   (construct-only #f)
 )
 
+(define-property transform
+  (of-object "GooCanvasItemSimple")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property visibility
   (of-object "GooCanvasItemSimple")
   (prop-type "GParamEnum")
@@ -3518,10 +3792,46 @@
   (construct-only #f)
 )
 
+(define-property parent
+  (of-object "GooCanvasItemSimple")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property tooltip
+  (of-object "GooCanvasItemSimple")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasItemSimple")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property can-focus
   (of-object "GooCanvasItemSimple")
   (prop-type "GParamBoolean")
   (docs "If the item can take the keyboard focus")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property title
+  (of-object "GooCanvasItemSimple")
+  (prop-type "GParamString")
+  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3718,15 +4028,6 @@
 
 ;; From GooCanvasItemModelSimple
 
-(define-property visibility
-  (of-object "GooCanvasItemModelSimple")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property visibility-threshold
   (of-object "GooCanvasItemModelSimple")
   (prop-type "GParamDouble")
@@ -3736,19 +4037,19 @@
   (construct-only #f)
 )
 
-(define-property description
+(define-property title
   (of-object "GooCanvasItemModelSimple")
   (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
+  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property parent
+(define-property pointer-events
   (of-object "GooCanvasItemModelSimple")
-  (prop-type "GParamObject")
-  (docs "The parent item model")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3772,19 +4073,37 @@
   (construct-only #f)
 )
 
-(define-property pointer-events
+(define-property tooltip
   (of-object "GooCanvasItemModelSimple")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property title
+(define-property visibility
+  (of-object "GooCanvasItemModelSimple")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property description
   (of-object "GooCanvasItemModelSimple")
   (prop-type "GParamString")
-  (docs "A short context-rich description of the item for use by assistive technologies")
+  (docs "A description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property parent
+  (of-object "GooCanvasItemModelSimple")
+  (prop-type "GParamObject")
+  (docs "The parent item model")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3983,46 +4302,10 @@
 
 ;; From GooCanvasPath
 
-(define-property parent
-  (of-object "GooCanvasPath")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property visibility-threshold
   (of-object "GooCanvasPath")
   (prop-type "GParamDouble")
   (docs "The scale threshold at which the item becomes visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasPath")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property pointer-events
-  (of-object "GooCanvasPath")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property title
-  (of-object "GooCanvasPath")
-  (prop-type "GParamString")
-  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -4037,6 +4320,15 @@
   (construct-only #f)
 )
 
+(define-property transform
+  (of-object "GooCanvasPath")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property visibility
   (of-object "GooCanvasPath")
   (prop-type "GParamEnum")
@@ -4046,10 +4338,46 @@
   (construct-only #f)
 )
 
+(define-property parent
+  (of-object "GooCanvasPath")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property tooltip
+  (of-object "GooCanvasPath")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasPath")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property can-focus
   (of-object "GooCanvasPath")
   (prop-type "GParamBoolean")
   (docs "If the item can take the keyboard focus")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property title
+  (of-object "GooCanvasPath")
+  (prop-type "GParamString")
+  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -4253,21 +4581,102 @@
   (construct-only #f)
 )
 
-;; From GooCanvasPathModel
-
-(define-property visibility
-  (of-object "GooCanvasPathModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
+(define-property x
+  (of-object "GooCanvasPath")
+  (prop-type "GParamDouble")
+  (docs "The x coordinate of the path")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
+(define-property y
+  (of-object "GooCanvasPath")
+  (prop-type "GParamDouble")
+  (docs "The y coordinate of the path")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width
+  (of-object "GooCanvasPath")
+  (prop-type "GParamDouble")
+  (docs "The width of the path")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height
+  (of-object "GooCanvasPath")
+  (prop-type "GParamDouble")
+  (docs "The height of the path")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GooCanvasPathModel
+
 (define-property visibility-threshold
   (of-object "GooCanvasPathModel")
   (prop-type "GParamDouble")
   (docs "The scale threshold at which the item becomes visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property title
+  (of-object "GooCanvasPathModel")
+  (prop-type "GParamString")
+  (docs "A short context-rich description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasPathModel")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property transform
+  (of-object "GooCanvasPathModel")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property can-focus
+  (of-object "GooCanvasPathModel")
+  (prop-type "GParamBoolean")
+  (docs "If the item can take the keyboard focus")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property tooltip
+  (of-object "GooCanvasPathModel")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasPathModel")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -4291,42 +4700,6 @@
   (construct-only #f)
 )
 
-(define-property transform
-  (of-object "GooCanvasPathModel")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property can-focus
-  (of-object "GooCanvasPathModel")
-  (prop-type "GParamBoolean")
-  (docs "If the item can take the keyboard focus")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property pointer-events
-  (of-object "GooCanvasPathModel")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property title
-  (of-object "GooCanvasPathModel")
-  (prop-type "GParamString")
-  (docs "A short context-rich description of the item for use by assistive technologies")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property stroke-pattern
   (of-object "GooCanvasPathModel")
   (prop-type "GParamBoxed")
@@ -4521,6 +4894,42 @@
   (prop-type "GParamString")
   (docs "The sequence of path commands")
   (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property x
+  (of-object "GooCanvasPathModel")
+  (prop-type "GParamDouble")
+  (docs "The x coordinate of the path")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y
+  (of-object "GooCanvasPathModel")
+  (prop-type "GParamDouble")
+  (docs "The y coordinate of the path")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width
+  (of-object "GooCanvasPathModel")
+  (prop-type "GParamDouble")
+  (docs "The width of the path")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height
+  (of-object "GooCanvasPathModel")
+  (prop-type "GParamDouble")
+  (docs "The height of the path")
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -4529,46 +4938,10 @@
 
 ;; From GooCanvasPolyline
 
-(define-property parent
-  (of-object "GooCanvasPolyline")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property visibility-threshold
   (of-object "GooCanvasPolyline")
   (prop-type "GParamDouble")
   (docs "The scale threshold at which the item becomes visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasPolyline")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property pointer-events
-  (of-object "GooCanvasPolyline")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property title
-  (of-object "GooCanvasPolyline")
-  (prop-type "GParamString")
-  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -4583,6 +4956,15 @@
   (construct-only #f)
 )
 
+(define-property transform
+  (of-object "GooCanvasPolyline")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property visibility
   (of-object "GooCanvasPolyline")
   (prop-type "GParamEnum")
@@ -4592,10 +4974,46 @@
   (construct-only #f)
 )
 
+(define-property parent
+  (of-object "GooCanvasPolyline")
+  (prop-type "GParamObject")
+  (docs "The parent item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property tooltip
+  (of-object "GooCanvasPolyline")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasPolyline")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property can-focus
   (of-object "GooCanvasPolyline")
   (prop-type "GParamBoolean")
   (docs "If the item can take the keyboard focus")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property title
+  (of-object "GooCanvasPolyline")
+  (prop-type "GParamString")
+  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -4853,30 +5271,66 @@
   (construct-only #f)
 )
 
+(define-property x
+  (of-object "GooCanvasPolyline")
+  (prop-type "GParamDouble")
+  (docs "The x coordinate of the left-most point of the polyline")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y
+  (of-object "GooCanvasPolyline")
+  (prop-type "GParamDouble")
+  (docs "The y coordinate of the top-most point of the polyline")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width
+  (of-object "GooCanvasPolyline")
+  (prop-type "GParamDouble")
+  (docs "The width of the polyline")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height
+  (of-object "GooCanvasPolyline")
+  (prop-type "GParamDouble")
+  (docs "The height of the polyline")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From GooCanvasPolylineModel
 
-(define-property visibility
-  (of-object "GooCanvasPolylineModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property visibility-threshold
-  (of-object "GooCanvasPolylineModel")
-  (prop-type "GParamDouble")
-  (docs "The scale threshold at which the item becomes visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property description
+(define-property title
   (of-object "GooCanvasPolylineModel")
   (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
+  (docs "A short context-rich description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property can-focus
+  (of-object "GooCanvasPolylineModel")
+  (prop-type "GParamBoolean")
+  (docs "If the item can take the keyboard focus")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasPolylineModel")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -4891,6 +5345,15 @@
   (construct-only #f)
 )
 
+(define-property description
+  (of-object "GooCanvasPolylineModel")
+  (prop-type "GParamString")
+  (docs "A description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property transform
   (of-object "GooCanvasPolylineModel")
   (prop-type "GParamBoxed")
@@ -4900,28 +5363,28 @@
   (construct-only #f)
 )
 
-(define-property can-focus
+(define-property visibility-threshold
   (of-object "GooCanvasPolylineModel")
-  (prop-type "GParamBoolean")
-  (docs "If the item can take the keyboard focus")
+  (prop-type "GParamDouble")
+  (docs "The scale threshold at which the item becomes visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property pointer-events
+(define-property visibility
   (of-object "GooCanvasPolylineModel")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property title
+(define-property tooltip
   (of-object "GooCanvasPolylineModel")
   (prop-type "GParamString")
-  (docs "A short context-rich description of the item for use by assistive technologies")
+  (docs "The tooltip to display for the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -5179,30 +5642,57 @@
   (construct-only #f)
 )
 
-;; From GooCanvasRect
-
-(define-property parent
-  (of-object "GooCanvasRect")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property visibility-threshold
-  (of-object "GooCanvasRect")
+(define-property x
+  (of-object "GooCanvasPolylineModel")
   (prop-type "GParamDouble")
-  (docs "The scale threshold at which the item becomes visible")
+  (docs "The x coordinate of the left-most point of the polyline")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
+
+(define-property y
+  (of-object "GooCanvasPolylineModel")
+  (prop-type "GParamDouble")
+  (docs "The y coordinate of the top-most point of the polyline")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width
+  (of-object "GooCanvasPolylineModel")
+  (prop-type "GParamDouble")
+  (docs "The width of the polyline")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height
+  (of-object "GooCanvasPolylineModel")
+  (prop-type "GParamDouble")
+  (docs "The height of the polyline")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From GooCanvasRect
 
 (define-property transform
   (of-object "GooCanvasRect")
   (prop-type "GParamBoxed")
   (docs "The transformation matrix of the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property can-focus
+  (of-object "GooCanvasRect")
+  (prop-type "GParamBoolean")
+  (docs "If the item can take the keyboard focus")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -5217,10 +5707,28 @@
   (construct-only #f)
 )
 
+(define-property visibility-threshold
+  (of-object "GooCanvasRect")
+  (prop-type "GParamDouble")
+  (docs "The scale threshold at which the item becomes visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property title
   (of-object "GooCanvasRect")
   (prop-type "GParamString")
   (docs "A short context-rich description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property tooltip
+  (of-object "GooCanvasRect")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -5244,10 +5752,10 @@
   (construct-only #f)
 )
 
-(define-property can-focus
+(define-property parent
   (of-object "GooCanvasRect")
-  (prop-type "GParamBoolean")
-  (docs "If the item can take the keyboard focus")
+  (prop-type "GParamObject")
+  (docs "The parent item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -5498,46 +6006,10 @@
 
 ;; From GooCanvasRectModel
 
-(define-property visibility
-  (of-object "GooCanvasRectModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property visibility-threshold
-  (of-object "GooCanvasRectModel")
-  (prop-type "GParamDouble")
-  (docs "The scale threshold at which the item becomes visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property description
+(define-property title
   (of-object "GooCanvasRectModel")
   (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property parent
-  (of-object "GooCanvasRectModel")
-  (prop-type "GParamObject")
-  (docs "The parent item model")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasRectModel")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
+  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -5561,10 +6033,55 @@
   (construct-only #f)
 )
 
-(define-property title
+(define-property parent
+  (of-object "GooCanvasRectModel")
+  (prop-type "GParamObject")
+  (docs "The parent item model")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property description
   (of-object "GooCanvasRectModel")
   (prop-type "GParamString")
-  (docs "A short context-rich description of the item for use by assistive technologies")
+  (docs "A description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property transform
+  (of-object "GooCanvasRectModel")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility-threshold
+  (of-object "GooCanvasRectModel")
+  (prop-type "GParamDouble")
+  (docs "The scale threshold at which the item becomes visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasRectModel")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property tooltip
+  (of-object "GooCanvasRectModel")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -5817,28 +6334,19 @@
 
 ;; From GooCanvasTable
 
-(define-property parent
-  (of-object "GooCanvasTable")
-  (prop-type "GParamObject")
-  (docs "The parent item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property visibility-threshold
-  (of-object "GooCanvasTable")
-  (prop-type "GParamDouble")
-  (docs "The scale threshold at which the item becomes visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property transform
   (of-object "GooCanvasTable")
   (prop-type "GParamBoxed")
   (docs "The transformation matrix of the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property can-focus
+  (of-object "GooCanvasTable")
+  (prop-type "GParamBoolean")
+  (docs "If the item can take the keyboard focus")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -5853,10 +6361,28 @@
   (construct-only #f)
 )
 
+(define-property visibility-threshold
+  (of-object "GooCanvasTable")
+  (prop-type "GParamDouble")
+  (docs "The scale threshold at which the item becomes visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property title
   (of-object "GooCanvasTable")
   (prop-type "GParamString")
   (docs "A short context-rich description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property tooltip
+  (of-object "GooCanvasTable")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -5880,10 +6406,10 @@
   (construct-only #f)
 )
 
-(define-property can-focus
+(define-property parent
   (of-object "GooCanvasTable")
-  (prop-type "GParamBoolean")
-  (docs "If the item can take the keyboard focus")
+  (prop-type "GParamObject")
+  (docs "The parent item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -6078,10 +6604,28 @@
   (construct-only #f)
 )
 
+(define-property x
+  (of-object "GooCanvasTable")
+  (prop-type "GParamDouble")
+  (docs "The x coordinate of the group")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y
+  (of-object "GooCanvasTable")
+  (prop-type "GParamDouble")
+  (docs "The y coordinate of the group")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property width
   (of-object "GooCanvasTable")
   (prop-type "GParamDouble")
-  (docs "The requested width of the table, or -1 to use the default width")
+  (docs "The width of the group, or -1 to use the default width")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -6090,7 +6634,7 @@
 (define-property height
   (of-object "GooCanvasTable")
   (prop-type "GParamDouble")
-  (docs "The requested height of the table, or -1 to use the default height")
+  (docs "The height of the group, or -1 to use the default height")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -6170,46 +6714,10 @@
 
 ;; From GooCanvasTableModel
 
-(define-property visibility
-  (of-object "GooCanvasTableModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property visibility-threshold
-  (of-object "GooCanvasTableModel")
-  (prop-type "GParamDouble")
-  (docs "The scale threshold at which the item becomes visible")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property description
+(define-property title
   (of-object "GooCanvasTableModel")
   (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property parent
-  (of-object "GooCanvasTableModel")
-  (prop-type "GParamObject")
-  (docs "The parent item model")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property transform
-  (of-object "GooCanvasTableModel")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
+  (docs "A short context-rich description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -6233,10 +6741,55 @@
   (construct-only #f)
 )
 
-(define-property title
+(define-property parent
+  (of-object "GooCanvasTableModel")
+  (prop-type "GParamObject")
+  (docs "The parent item model")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property description
   (of-object "GooCanvasTableModel")
   (prop-type "GParamString")
-  (docs "A short context-rich description of the item for use by assistive technologies")
+  (docs "A description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property transform
+  (of-object "GooCanvasTableModel")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility-threshold
+  (of-object "GooCanvasTableModel")
+  (prop-type "GParamDouble")
+  (docs "The scale threshold at which the item becomes visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visibility
+  (of-object "GooCanvasTableModel")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property tooltip
+  (of-object "GooCanvasTableModel")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -6431,10 +6984,28 @@
   (construct-only #f)
 )
 
+(define-property x
+  (of-object "GooCanvasTableModel")
+  (prop-type "GParamDouble")
+  (docs "The x coordinate of the group")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y
+  (of-object "GooCanvasTableModel")
+  (prop-type "GParamDouble")
+  (docs "The y coordinate of the group")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property width
   (of-object "GooCanvasTableModel")
   (prop-type "GParamDouble")
-  (docs "The requested width of the table, or -1 to use the default width")
+  (docs "The width of the group, or -1 to use the default width")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -6443,7 +7014,7 @@
 (define-property height
   (of-object "GooCanvasTableModel")
   (prop-type "GParamDouble")
-  (docs "The requested height of the table, or -1 to use the default height")
+  (docs "The height of the group, or -1 to use the default height")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -6523,10 +7094,19 @@
 
 ;; From GooCanvasText
 
-(define-property parent
+(define-property transform
   (of-object "GooCanvasText")
-  (prop-type "GParamObject")
-  (docs "The parent item")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property can-focus
+  (of-object "GooCanvasText")
+  (prop-type "GParamBoolean")
+  (docs "If the item can take the keyboard focus")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -6536,15 +7116,6 @@
   (of-object "GooCanvasText")
   (prop-type "GParamFlags")
   (docs "Specifies when the item receives pointer events")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property description
-  (of-object "GooCanvasText")
-  (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -6568,6 +7139,24 @@
   (construct-only #f)
 )
 
+(define-property tooltip
+  (of-object "GooCanvasText")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property description
+  (of-object "GooCanvasText")
+  (prop-type "GParamString")
+  (docs "A description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property visibility
   (of-object "GooCanvasText")
   (prop-type "GParamEnum")
@@ -6577,19 +7166,10 @@
   (construct-only #f)
 )
 
-(define-property transform
+(define-property parent
   (of-object "GooCanvasText")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property can-focus
-  (of-object "GooCanvasText")
-  (prop-type "GParamBoolean")
-  (docs "If the item can take the keyboard focus")
+  (prop-type "GParamObject")
+  (docs "The parent item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -6806,6 +7386,15 @@
   (of-object "GooCanvasText")
   (prop-type "GParamDouble")
   (docs "The width to use to layout the text")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height
+  (of-object "GooCanvasText")
+  (prop-type "GParamDouble")
+  (docs "The height to use to layout the text, or -1 to use the natural height")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -6867,15 +7456,6 @@
 
 ;; From GooCanvasTextModel
 
-(define-property pointer-events
-  (of-object "GooCanvasTextModel")
-  (prop-type "GParamFlags")
-  (docs "Specifies when the item receives pointer events")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property title
   (of-object "GooCanvasTextModel")
   (prop-type "GParamString")
@@ -6885,10 +7465,19 @@
   (construct-only #f)
 )
 
-(define-property transform
+(define-property can-focus
   (of-object "GooCanvasTextModel")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
+  (prop-type "GParamBoolean")
+  (docs "If the item can take the keyboard focus")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pointer-events
+  (of-object "GooCanvasTextModel")
+  (prop-type "GParamFlags")
+  (docs "Specifies when the item receives pointer events")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -6903,10 +7492,19 @@
   (construct-only #f)
 )
 
-(define-property visibility
+(define-property description
   (of-object "GooCanvasTextModel")
-  (prop-type "GParamEnum")
-  (docs "When the canvas item is visible")
+  (prop-type "GParamString")
+  (docs "A description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property transform
+  (of-object "GooCanvasTextModel")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -6921,19 +7519,19 @@
   (construct-only #f)
 )
 
-(define-property description
+(define-property visibility
   (of-object "GooCanvasTextModel")
-  (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
+  (prop-type "GParamEnum")
+  (docs "When the canvas item is visible")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property can-focus
+(define-property tooltip
   (of-object "GooCanvasTextModel")
-  (prop-type "GParamBoolean")
-  (docs "If the item can take the keyboard focus")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -7155,6 +7753,15 @@
   (construct-only #f)
 )
 
+(define-property height
+  (of-object "GooCanvasTextModel")
+  (prop-type "GParamDouble")
+  (docs "The height to use to layout the text, or -1 to use the natural height")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property text
   (of-object "GooCanvasTextModel")
   (prop-type "GParamString")
@@ -7211,10 +7818,19 @@
 
 ;; From GooCanvasWidget
 
-(define-property parent
+(define-property transform
   (of-object "GooCanvasWidget")
-  (prop-type "GParamObject")
-  (docs "The parent item")
+  (prop-type "GParamBoxed")
+  (docs "The transformation matrix of the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property can-focus
+  (of-object "GooCanvasWidget")
+  (prop-type "GParamBoolean")
+  (docs "If the item can take the keyboard focus")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -7224,15 +7840,6 @@
   (of-object "GooCanvasWidget")
   (prop-type "GParamFlags")
   (docs "Specifies when the item receives pointer events")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property description
-  (of-object "GooCanvasWidget")
-  (prop-type "GParamString")
-  (docs "A description of the item for use by assistive technologies")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -7256,6 +7863,24 @@
   (construct-only #f)
 )
 
+(define-property tooltip
+  (of-object "GooCanvasWidget")
+  (prop-type "GParamString")
+  (docs "The tooltip to display for the item")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property description
+  (of-object "GooCanvasWidget")
+  (prop-type "GParamString")
+  (docs "A description of the item for use by assistive technologies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property visibility
   (of-object "GooCanvasWidget")
   (prop-type "GParamEnum")
@@ -7265,19 +7890,10 @@
   (construct-only #f)
 )
 
-(define-property transform
+(define-property parent
   (of-object "GooCanvasWidget")
-  (prop-type "GParamBoxed")
-  (docs "The transformation matrix of the item")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property can-focus
-  (of-object "GooCanvasWidget")
-  (prop-type "GParamBoolean")
-  (docs "If the item can take the keyboard focus")
+  (prop-type "GParamObject")
+  (docs "The parent item")
   (readable #t)
   (writable #t)
   (construct-only #f)
