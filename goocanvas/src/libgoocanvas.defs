@@ -3,3 +3,4 @@
 (include libgoocanvas_vfuncs.defs)
 (include libgoocanvas_enums.defs)
 (include libgoocanvas_others.defs)
+(include libgoocanvas_fake_properties.defs)

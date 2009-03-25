@@ -35,10 +35,12 @@ public:
 
   _WRAP_CREATE(double x = 0, double y = 0, double width = 0, double height = 0, double x_step = 0, double y_step = 0, double x_offset = 0, double y_offset = 0)
 
-  _WRAP_PROPERTY("x", double)
-  _WRAP_PROPERTY("y", double)
-  _WRAP_PROPERTY("width", double)
-  _WRAP_PROPERTY("height", double)
+  //We put these in item.hg instead.
+  //See the comment there.
+  //_WRAP_PROPERTY("x", double)
+  //_WRAP_PROPERTY("y", double)
+  //_WRAP_PROPERTY("width", double)
+  //_WRAP_PROPERTY("height", double)
   _WRAP_PROPERTY("x-step", double)
   _WRAP_PROPERTY("y-step", double)
   _WRAP_PROPERTY("x-offset", double)

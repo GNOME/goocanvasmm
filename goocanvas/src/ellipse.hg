@@ -36,10 +36,12 @@ public:
 
   _WRAP_CREATE(double center_x = 0.0, double center_y = 0.0, double radius_x = 0.0, double radius_y = 0.0)
 
-  _WRAP_PROPERTY("x", double)
-  _WRAP_PROPERTY("y", double)
-  _WRAP_PROPERTY("width", double)
-  _WRAP_PROPERTY("height", double)
+  //We put these in item.hg instead.
+  //See the comment there.
+  //_WRAP_PROPERTY("x", double)
+  //_WRAP_PROPERTY("y", double)
+  //_WRAP_PROPERTY("width", double)
+  //_WRAP_PROPERTY("height", double)
   _WRAP_PROPERTY("center-x", double)
   _WRAP_PROPERTY("center-y", double)
   _WRAP_PROPERTY("radius-x", double)

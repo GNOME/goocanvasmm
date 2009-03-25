@@ -112,6 +112,15 @@ public:
   _WRAP_PROPERTY("visibility", ItemVisibility)
   _WRAP_PROPERTY("visibility-threshold", double)
 
+  //These properties are not really in GooCanvasItemModel, but they are actually 
+  //implemented in all derived GooCanvasItemModel classes individually. 
+  //That is a GooCanvas design error, but the patch to fix it has 
+  //not yet been accepted: http://bugzilla.gnome.org/show_bug.cgi?id=555097 
+  _WRAP_PROPERTY("x", double)
+  _WRAP_PROPERTY("y", double)
+  _WRAP_PROPERTY("width", double)
+  _WRAP_PROPERTY("height", double)
+
 protected:
 #m4 _CONVERSION(`Glib::RefPtr<ItemModel>', `GooCanvasItemModel*', `(($3) ? ($3)->gobj() : 0)')
 #m4 _CONVERSION(`GooCanvasItemModel*', `Glib::RefPtr<ItemModel>', `Glib::wrap($3, true)')

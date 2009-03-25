@@ -1,5 +1,35 @@
 2009-03-25  Murray Cumming  <murrayc@murrayc.com>
 
+	* goocanvas/src/Makefile.am:
+	* goocanvas/src/libgoocanvas.defs:
+	* goocanvas/src/libgoocanvas_fake_properties.defs: Added this file, 
+	written by hand.
+	* goocanvas/src/item.hg:
+	* goocanvas/src/itemmodel.hg: Add fake x, y, width, and height 
+	properties in these base classes.
+	These properties are not really in GooCanvasItemModel, but they are 
+	actually implemented in all derived GooCanvasItemModel classes 
+	individually. That is a GooCanvas design error, but the patch to fix it 
+	has not yet been accepted. See bug #555097 
+
+	* goocanvas/src/ellipse.hg:
+	* goocanvas/src/grid.hg:
+	* goocanvas/src/gridmodel.hg:
+	* goocanvas/src/group.hg:
+	* goocanvas/src/image.hg:
+	* goocanvas/src/imagemodel.hg:
+	* goocanvas/src/path.hg:
+	* goocanvas/src/polyline.hg:
+	* goocanvas/src/rect.hg:
+	* goocanvas/src/rectmodel.hg:
+	* goocanvas/src/table.hg:
+	* goocanvas/src/tablemodel.hg:
+	* goocanvas/src/text.hg:
+	* goocanvas/src/widget.hg: Removed the x, y, width, and height 
+	properties from the derived classes.
+
+2009-03-25  Murray Cumming  <murrayc@murrayc.com>
+
 	* goocanvas/src/group.hg: Wrapped the new x, y, width, 
 	and height properties here too.
 

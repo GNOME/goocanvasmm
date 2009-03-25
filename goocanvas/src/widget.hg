@@ -38,11 +38,13 @@ public:
 
   _WRAP_CREATE(Gtk::Widget& widget, double x = 0.0, double y = 0.0, double width = 0.0, double height = 0.0)
 
+  //We put these in item.hg instead.
+  //See the comment there.
+  //_WRAP_PROPERTY("x", double)
+  //_WRAP_PROPERTY("y", double)
+  //_WRAP_PROPERTY("width", double)
+  //_WRAP_PROPERTY("height", double)
   _WRAP_PROPERTY("widget", Gtk::Widget*)
-  _WRAP_PROPERTY("x", double)
-  _WRAP_PROPERTY("y", double)
-  _WRAP_PROPERTY("width", double)
-  _WRAP_PROPERTY("height", double)
   _WRAP_PROPERTY("anchor", Gtk::AnchorType)
 };
 
