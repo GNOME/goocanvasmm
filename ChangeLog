@@ -1,5 +1,10 @@
 2009-03-25  Murray Cumming  <murrayc@murrayc.com>
 
+	* goocanvas/src/group.hg: Wrapped the new x, y, width, 
+	and height properties here too.
+
+2009-03-25  Murray Cumming  <murrayc@murrayc.com>
+
 	* goocanvas/src/ellipse.hg:
 	* goocanvas/src/path.hg:
 	* goocanvas/src/polyline.hg:
