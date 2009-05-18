@@ -1,3 +1,8 @@
+2009-05-18  Murray Cumming  <murrayc@murrayc.com>
+
+	* goocanvas/src/item.ccg: Item_Class::get_items_at_vfunc_callback():
+	Added a return 0 to avoid a compiler warning. Bug #582996 (Vincent Untz)
+
 0.14.0:
 
 2009-03-25  Murray Cumming  <murrayc@murrayc.com>
