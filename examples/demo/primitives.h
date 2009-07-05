@@ -29,39 +29,39 @@
 class Primitives : public Page
 {
 public:
-  Primitives() ;
+  Primitives();
 
   virtual const Glib::ustring&
-  getName() ;
+  getName();
 
   virtual Gtk::Widget*
-  getWidget() ;
+  getWidget();
 
 private:
 
-  bool      _on_background_button_press(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventButton* ev) ;
-  bool      _on_button_press(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventButton* ev) ;
-  bool      _on_button_release(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventButton* ev) ;
-  bool      _on_motion_notify(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventMotion* ev) ;
+  bool      _on_background_button_press(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventButton* ev);
+  bool      _on_button_press(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventButton* ev);
+  bool      _on_button_release(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventButton* ev);
+  bool      _on_motion_notify(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventMotion* ev);
 
-  void      _setup_signals(const Glib::RefPtr<Goocanvas::Item>& item) ;
-  void      _setup_heading(const Glib::ustring& heading, int pos) ;
-  void      _setup_divisions() ;
-  void      _setup_rectangles() ;
-  void      _setup_ellipses() ;
-  void      _setup_texts() ;
-  void      _setup_images() ;
-  void      _setup_lines() ;
+  void      _setup_signals(const Glib::RefPtr<Goocanvas::Item>& item);
+  void      _setup_heading(const Glib::ustring& heading, int pos);
+  void      _setup_divisions();
+  void      _setup_rectangles();
+  void      _setup_ellipses();
+  void      _setup_texts();
+  void      _setup_images();
+  void      _setup_lines();
 
   Cairo::RefPtr<Cairo::Pattern>
-        _create_stipple(const Glib::ustring& color) ;
+        _create_stipple(const Glib::ustring& color);
 
   Glib::RefPtr<Goocanvas::Item>
-        _create_anchor(double x, double y) ;
+        _create_anchor(double x, double y);
 
-  void      _create_flower(double x, double y, Gtk::AnchorType anchor) ;
-  void      _create_polish_diamond() ;
-  void      _create_hilbert() ;
+  void      _create_flower(double x, double y, Gtk::AnchorType anchor);
+  void      _create_polish_diamond();
+  void      _create_hilbert();
 
   Glib::ustring    _name ;
   Gtk::VBox*    _vbox ;

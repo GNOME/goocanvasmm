@@ -26,7 +26,7 @@ class DemoWindow : public Gtk::Window
 {
 public:
 
-  DemoWindow() ;
+  DemoWindow();
 
 private:
 

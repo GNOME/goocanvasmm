@@ -1,4 +1,8 @@
-2009-07-05  Murray Cumming  <murrayc@murrayc-x61>
+2009-07-05  Murray Cumming  <murrayc@murrayc.com>
+
+	Fix the build with the normal API again, and fix some whitespace.
+
+2009-07-05  Murray Cumming  <murrayc@murrayc.com>
 
 	Fix the build with disabled 
 	exceptions and disabled properties API. It is not pretty. 

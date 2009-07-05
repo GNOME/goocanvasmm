@@ -38,9 +38,9 @@ ExampleWindow::ExampleWindow()
   m_rect = Goocanvas::Rect::create(10, 10, 60, 60);
   root->add_child(m_rect);
 #ifdef GLIBMM_PROPERTIES_ENABLED
-  m_rect->property_line_width().set_value(10.0);
-  m_rect->property_stroke_color().set_value("yellow");
-  m_rect->property_fill_color().set_value("gray");
+  m_rect->property_line_width() = 10.0;
+  m_rect->property_stroke_color() = "yellow";
+  m_rect->property_fill_color() = "gray";
 #else
   m_rect->set_property("line_width", 10.0);
   m_rect->set_property("stroke_color", Glib::ustring("yellow"));

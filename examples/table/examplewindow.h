@@ -24,7 +24,7 @@
 class ExampleWindow : public Gtk::Window
 {
 public:
-  ExampleWindow() ;
+  ExampleWindow();
 
 protected:
 

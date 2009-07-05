@@ -201,7 +201,7 @@ Glib::RefPtr<Goocanvas::Item> ExampleWindow::create_canvas_item(DragItem drag_it
     Glib::RefPtr<Goocanvas::Rect> rect = Goocanvas::Rect::create(0, 0, 20, 20);
 #ifdef GLIBMM_PROPERTIES_ENABLED
     rect->property_line_width() = 10.0;
-    rect->property_stroke_color() = "yellow");
+    rect->property_stroke_color() = "yellow";
     rect->property_fill_color() = "red";
 #else
     rect->set_property("line_width", 10.0);

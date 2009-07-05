@@ -49,7 +49,7 @@ ExampleWindow::ExampleWindow()
   Glib::RefPtr<Goocanvas::Text> text = Goocanvas::Text::create("Hello World", 300, 300, -1, Gtk::ANCHOR_CENTER);
   root->add_child(text);
 #ifdef GLIBMM_PROPERTIES_ENABLED
-  text->property_font() = "Sans 24");
+  text->property_font() = "Sans 24";
 #else
   text->set_property("font=", Glib::ustring("Sans 24"));
 #endif //GLIBMM_PROPERTIES_ENABLED

@@ -30,7 +30,7 @@ ExampleWindow::ExampleWindow()
   m_second_canvas.set_size_request(640, 240);
   m_second_canvas.set_bounds(0, 0, 500, 500);
 
-  Glib::RefPtr<Goocanvas::ItemModel> root = Goocanvas::GroupModel::create() ;
+  Glib::RefPtr<Goocanvas::ItemModel> root = Goocanvas::GroupModel::create();
   m_first_canvas.set_root_item_model(root);
   m_second_canvas.set_root_item_model(root);
 

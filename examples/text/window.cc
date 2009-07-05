@@ -48,9 +48,9 @@ ExampleWindow::ExampleWindow()
   root->add_child(m_text);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   m_text->property_font() = "Sans 9";
-  m_text->property_line_width().set_value(10.0);
-  m_text->property_stroke_color().set_value("yellow");
-  m_text->property_fill_color().set_value("gray");
+  m_text->property_line_width() = 10.0;
+  m_text->property_stroke_color() = "yellow";
+  m_text->property_fill_color() = "gray";
 #else
   m_text->set_property("font", Glib::ustring("Sans 9"));
   m_text->set_property("line_width", 10.0);
