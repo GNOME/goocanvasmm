@@ -36,16 +36,27 @@ ExampleWindow::ExampleWindow()
   m_label_origin.set_alignment(0.0, 0.5);
 
   m_canvas.set_size_request(640, 480);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   m_canvas.property_units() = Gtk::UNIT_MM;
+#else
+  m_canvas.set_property("units", Gtk::UNIT_MM);
+#endif 
   m_canvas.set_bounds(0, 0, 210, 297);
 
   Glib::RefPtr<Goocanvas::Item> root = m_canvas.get_root_item();
   m_text = Goocanvas::Text::create("some text");
   root->add_child(m_text);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   m_text->property_font() = "Sans 9";
   m_text->property_line_width().set_value(10.0);
   m_text->property_stroke_color().set_value("yellow");
   m_text->property_fill_color().set_value("gray");
+#else
+  m_text->set_property("font", Glib::ustring("Sans 9"));
+  m_text->set_property("line_width", 10.0);
+  m_text->set_property("stroke_color", Glib::ustring("yellow"));
+  m_text->set_property("fill_color", Glib::ustring("gray"));
+#endif
 
 
   Gtk::ScrolledWindow* sw = Gtk::manage(new Gtk::ScrolledWindow());
@@ -87,9 +98,14 @@ ExampleWindow::ExampleWindow()
 void ExampleWindow::update_label()
 {
   std::stringstream str;
+
+#ifdef GLIBMM_PROPERTIES_ENABLED
   str << "Rect: x=" << m_text->property_x() << ", y=" << m_text->property_y() << 
          ", width=" << m_text->property_width() << //",  height=" << m_text->property_height() << 
          ", line_width=" << m_text->property_line_width() << std::endl;
+#else
+  //TODO:
+#endif
 
   Goocanvas::Bounds bounds = m_text->get_bounds();
   str << "Item bounds: x1=" << bounds.get_x1() << ", y1=" << bounds.get_y1() << ", x2=" << bounds.get_x2() << ", y2=" << bounds.get_y2() << std::endl;
@@ -107,8 +123,14 @@ void ExampleWindow::on_button_translate()
 
 void ExampleWindow::on_button_setxy()
 {
+#ifdef GLIBMM_PROPERTIES_ENABLED
   m_text->property_x() = 50;
   m_text->property_y() = 50;
+#else
+  m_text->set_property("x", 50);
+  m_text->set_property("y", 50);
+#endif
+
   update_label();
 }
 
@@ -126,13 +148,22 @@ void ExampleWindow::on_button_zoom_canvas()
 
 void ExampleWindow::on_button_set_width()
 {
+#ifdef GLIBMM_PROPERTIES_ENABLED
   m_text->property_width() = 40;
+#else
+  m_text->set_property("width", 40);
+#endif
+
   update_label();
 }
 
 void ExampleWindow::on_button_set_width_unlimited()
 {
+#ifdef GLIBMM_PROPERTIES_ENABLED
   m_text->property_width() = -1;
+#else
+  m_text->set_property("width", -1);
+#endif
   update_label();
 }
 

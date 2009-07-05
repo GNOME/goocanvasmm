@@ -35,6 +35,7 @@ ExampleWindow::ExampleWindow()
   m_second_canvas.set_root_item_model(root);
 
   m_table = Goocanvas::TableModel::create();
+#ifdef GLIBMM_PROPERTIES_ENABLED
   //m_table->property_x() = 10;
   //m_table->property_y() = 10;
   m_table->property_height() = 200;
@@ -43,6 +44,12 @@ ExampleWindow::ExampleWindow()
   m_table->property_row_spacing() = 6;
   //m_table->property_columns() = 2;
   //m_table->property_row() = 2;
+#else
+  m_table->set_property("height", 200);
+  m_table->set_property("width", 300);
+  m_table->set_property("column_spacing", 6);
+  m_table->set_property("row_spacing", 6);
+#endif
   root->add_child(m_table);
 
   add_text_to_cell(m_table, "top left", 0, 0); 

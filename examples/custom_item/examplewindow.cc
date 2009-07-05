@@ -28,9 +28,15 @@ ExampleWindow::ExampleWindow()
 
 
   Glib::RefPtr<ExampleItem> item = ExampleItem::create(100, 100, 400, 400);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   item->property_line_width().set_value(10.0);
   item->property_stroke_color().set_value("yellow");
   item->property_fill_color().set_value("red");
+#else
+  item->set_property("line_width", 10.0);
+  item->set_property("stroke_color", Glib::ustring("yellow"));
+  item->set_property("fill_color", Glib::ustring("red"));
+#endif
 
   Glib::RefPtr<Goocanvas::Item> root = m_canvas.get_root_item();
   root->add_child(item);

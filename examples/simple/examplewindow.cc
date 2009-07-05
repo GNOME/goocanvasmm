@@ -29,17 +29,30 @@ ExampleWindow::ExampleWindow()
   Glib::RefPtr<Goocanvas::Item> root = m_canvas.get_root_item();
   Glib::RefPtr<Goocanvas::Rect> rect = Goocanvas::Rect::create(100, 100, 400, 400);
   root->add_child(rect);
-  rect->property_line_width().set_value(10.0);
-  rect->property_radius_x().set_value(20.0);
-  rect->property_radius_y().set_value(20.0);
-  rect->property_stroke_color().set_value("yellow");
-  rect->property_fill_color().set_value("red");
+
+#ifdef GLIBMM_PROPERTIES_ENABLED
+  rect->property_line_width() = 10.0;
+  rect->property_radius_x() = 20.0;
+  rect->property_radius_y() = 20.0;
+  rect->property_stroke_color() = "yellow";
+  rect->property_fill_color() = "red";
+#else
+  rect->set_property("line_width", 10.0);
+  rect->set_property("radius_x", 20.0);
+  rect->set_property("radius_y", 20.0);
+  rect->set_property("stroke_color", Glib::ustring("yellow"));
+  rect->set_property("fill_color", Glib::ustring("red"));
+#endif //GLIBMM_PROPERTIES_ENABLED
   rect->signal_button_press_event ().connect (sigc::mem_fun (this,
-              &ExampleWindow::on_rect_button_press));
+    &ExampleWindow::on_rect_button_press));
 
   Glib::RefPtr<Goocanvas::Text> text = Goocanvas::Text::create("Hello World", 300, 300, -1, Gtk::ANCHOR_CENTER);
   root->add_child(text);
-  text->property_font().set_value("Sans 24");
+#ifdef GLIBMM_PROPERTIES_ENABLED
+  text->property_font() = "Sans 24");
+#else
+  text->set_property("font=", Glib::ustring("Sans 24"));
+#endif //GLIBMM_PROPERTIES_ENABLED
   text->rotate(45, 300, 300);
 
   Gtk::ScrolledWindow* sw = Gtk::manage(new Gtk::ScrolledWindow());
@@ -52,7 +65,7 @@ ExampleWindow::ExampleWindow()
 bool
 ExampleWindow::on_rect_button_press(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventButton* event)
 {
-  std::cout << "You clicked the rectangle!" << std::endl ;
+  std::cout << "You clicked the rectangle." << std::endl ;
   return true ;
 }
 

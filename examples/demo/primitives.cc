@@ -100,7 +100,12 @@ Primitives::_setup_heading(const Glib::ustring& heading, int pos)
 
   Glib::RefPtr<Goocanvas::Text> text = Goocanvas::Text::create(heading, x, y, -1, Gtk::ANCHOR_N) ;
   _canvas->get_root_item()->add_child(text);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "Sans 12" ;
+#else
+  text->set_property("font", Glib::ustring("Sans 12"));
+#endif
+
   text->skew_y(30, x, y) ;
 }
 
@@ -115,23 +120,43 @@ Primitives::_setup_divisions()
 
   item = Goocanvas::Rect::create(0, 0, 600, 450) ;
         group->add_child(item);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   item->property_line_width() = 4.0 ;
+#else
+  item->set_property("line_width", 4.0);
+#endif
 
   item = Goocanvas::Polyline::create(0, 150, 600, 150) ;
   group->add_child(item);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   item->property_line_width() = 4.0 ;
+#else
+  item->set_property("line_width", 4.0);
+#endif
 
   item = Goocanvas::Polyline::create(0, 300, 600, 300) ;
   group->add_child(item);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   item->property_line_width() = 4.0 ;
+#else
+  item->set_property("line_width", 4.0);
+#endif
 
   item = Goocanvas::Polyline::create(200, 0, 200, 450) ;
   group->add_child(item);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   item->property_line_width() = 4.0 ;
+#else
+  item->set_property("line_width", 4.0);
+#endif
 
   item = Goocanvas::Polyline::create(400, 0, 400, 450) ;
   group->add_child(item);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   item->property_line_width() = 4.0 ;
+#else
+  item->set_property("line_width", 4.0);
+#endif
 
   _setup_heading("Rectangles", 0) ;
   _setup_heading("Ellipses", 1) ;
@@ -152,8 +177,13 @@ Primitives::_setup_rectangles()
 
   rect = Goocanvas::Rect::create(20, 30, 50, 30) ;
   root->add_child(rect);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   rect->property_stroke_color() = "red" ;
   rect->property_line_width() = 8.0 ;
+#else
+  rect->set_property("stroke_color", Glib::ustring("red"));
+  rect->set_property("line_width", 8.0);
+#endif
   _setup_signals(rect) ;
 
   rect = Goocanvas::Rect::create(90, 40, 90, 60) ;
@@ -161,33 +191,59 @@ Primitives::_setup_rectangles()
   //rect->property_fill_pattern() = _create_stipple("mediumseagreen") ;
   Cairo::RefPtr<Cairo::Pattern> p = _create_stipple("mediumseagreen") ;
   g_object_set(rect->gobj(), "fill-pattern", p->cobj(), NULL) ;
+#ifdef GLIBMM_PROPERTIES_ENABLED
   rect->property_stroke_color() = "black" ;
   rect->property_line_width() = 4.0 ;
+#else
+  rect->set_property("stroke_color", Glib::ustring("black"));
+  rect->set_property("line_width", 4.0);
+#endif
   _setup_signals(rect) ;
 
   rect = Goocanvas::Rect::create(10, 80, 70, 60) ;
   root->add_child(rect);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   rect->property_fill_color() = "steelblue" ;
+#else
+  rect->set_property("fill_color", Glib::ustring("steelblue"));
+#endif
   _setup_signals(rect) ;
 
   rect = Goocanvas::Rect::create(20, 90, 70, 60) ;
   root->add_child(rect);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   rect->property_fill_color_rgba() = 0x3cb37180 ;
   rect->property_stroke_color() = "blue" ;
   rect->property_line_width() = 2.0 ;
+#else
+  rect->set_property("fill_color_rgba", 0x3cb37180);
+  rect->set_property("stroke_color", Glib::ustring("blue"));
+  rect->set_property("line_width", 2.0);
+#endif
   _setup_signals(rect) ;
 
   rect = Goocanvas::Rect::create(110, 80, 50, 30) ;
   root->add_child(rect);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   rect->property_radius_x() = 20.0 ;
   rect->property_radius_y() = 10.0 ;
   rect->property_stroke_color() = "yellow" ;
   rect->property_fill_color_rgba() = 0x3cb3f180 ;
+#else
+  rect->set_property("radius_x", 20.0);
+  rect->set_property("radius_y", 10.0);
+  rect->set_property("stroke_color", Glib::ustring("yellow"));
+  rect->set_property("fill_color_rgba", 0x3cb3f180);
+#endif
   _setup_signals(rect) ;
 
   rect = Goocanvas::Rect::create(30, 20, 50, 30) ;
   root->add_child(rect);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   rect->property_fill_color() = "yellow" ;
+#else
+  rect->set_property("fill_color", Glib::ustring("yellow"));
+#endif
   _setup_signals(rect) ;
 }
 
@@ -199,16 +255,28 @@ Primitives::_setup_ellipses()
 
   ellipse = Goocanvas::Ellipse::create(245, 45, 25, 15);
   root->add_child(ellipse);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   ellipse->property_stroke_color() = "goldenrod" ;
   ellipse->property_line_width() = 8.0 ;
+#else
+  ellipse->set_property("stroke_color", Glib::ustring("goldenrod"));
+  ellipse->set_property("line_width", 8.0);
+#endif
   _setup_signals(ellipse) ;
 
   ellipse = Goocanvas::Ellipse::create(335, 70, 45, 30) ;
   root->add_child(ellipse);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   ellipse->property_fill_color() = "wheat" ;
   ellipse->property_stroke_color() = "midnightblue" ;
   ellipse->property_line_width() = 4.0 ;
   ellipse->property_title() = "An ellipse" ;
+#else
+  ellipse->set_property("fill_color", Glib::ustring("wheat"));
+  ellipse->set_property("stroke_color", Glib::ustring("midnightblue"));
+  ellipse->set_property("line_width", 4.0);
+  ellipse->set_property("title", Glib::ustring("An ellipse"));
+#endif
   _setup_signals(ellipse) ;
 
   ellipse = Goocanvas::Ellipse::create(245, 110, 35, 30) ;
@@ -216,8 +284,14 @@ Primitives::_setup_ellipses()
   //ellipse->property_fill_pattern() = _create_stipple("cadetblue") ;
   Cairo::RefPtr<Cairo::Pattern> p = _create_stipple("cadetblue") ;
   g_object_set(ellipse->gobj(), "fill-pattern", p->cobj(), NULL) ;
+
+#ifdef GLIBMM_PROPERTIES_ENABLED
   ellipse->property_stroke_color() = "black" ;
   ellipse->property_line_width() = 1.0 ;
+#else
+  ellipse->set_property("stroke_color", Glib::ustring("black"));
+  ellipse->set_property("line_width", 1.0);
+#endif
   _setup_signals(ellipse) ;
 }
 
@@ -233,17 +307,29 @@ Primitives::_setup_texts()
   //ellipse->property_fill_pattern() = _create_stipple("blue") ;
   Cairo::RefPtr<Cairo::Pattern> p = _create_stipple("blue") ;
   g_object_set(text->gobj(), "fill-pattern", p->cobj(), NULL) ;
+#ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "Sans Bold 24" ;
   text->property_alignment() = Pango::ALIGN_CENTER ;
   text->property_fill_color() = "firebrick" ;
+#else
+  text->set_property("font", Glib::ustring("Sans Bold 24"));
+  text->set_property("alignment", Pango::ALIGN_CENTER);
+  text->set_property("fill_color", Glib::ustring("firebrick"));
+#endif
   _setup_signals(text) ;
 
   anchor = _create_anchor(470, 75);
   text = Goocanvas::Text::create("Anchor center\nJustify center\nMultiline text\n8bit text 'gibberish'", 0, 0, -1, Gtk::ANCHOR_CENTER) ;
   anchor->add_child(text);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "monospace bold 14" ;
   text->property_alignment() = Pango::ALIGN_CENTER ;
   text->property_fill_color() = "firebrick" ;
+#else
+  text->set_property("font", Glib::ustring("monospace bold 14"));
+  text->set_property("alignment", Pango::ALIGN_CENTER);
+  text->set_property("fill_color", Glib::ustring("firebrick"));
+#endif
   _setup_signals(text) ;
 
   anchor = _create_anchor(420, 240);
@@ -251,39 +337,63 @@ Primitives::_setup_texts()
     "This is a very long paragraph that will need to be wrapped over several lines so we can see what happens to line-breaking as the view is zoomed in and out.",
     0, 0, 180, Gtk::ANCHOR_W) ;
   anchor->add_child(text);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "Sans 12" ;
   text->property_fill_color() = "goldenrod" ;
+#else
+  text->set_property("font", Glib::ustring("Sans 12"));
+  text->set_property("fill_color", Glib::ustring("goldenrod"));
+#endif
   _setup_signals(text) ;
 
   text = Goocanvas::Text::create("Ellipsized text.", 20, 420, 115, Gtk::ANCHOR_W) ;
   _canvas->get_root_item()->add_child(text);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "Sans 12" ;
   text->property_fill_color() = "blue" ;
   text->property_ellipsize() = Pango::ELLIPSIZE_END ;
+#else
+  text->set_property("font", Glib::ustring("Sans 12"));
+  text->set_property("fill_color", Glib::ustring("blue"));
+  text->set_property("ellipsize", Pango::ELLIPSIZE_END);
+#endif
   _setup_signals(text) ;
 }
 
 void
 Primitives::_setup_images()
 {
+#ifdef GLIBMM_EXCEPTIONS_ENABLED
   try
   {
     Glib::RefPtr<Gdk::Pixbuf> pb = Gdk::Pixbuf::create_from_file("toroid.png") ;
-
-    double w = pb->get_width() ;
-    double h = pb->get_height() ;
-
-    Glib::RefPtr<Goocanvas::Image> img = Goocanvas::Image::create(pb, 100.0 - w / 2.0, 225.0 - h / 2.0) ;
-    _canvas->get_root_item()->add_child(img);
-    img->property_width() = w ;
-    img->property_height() = h ;
-    _setup_signals(img) ;
   }
-
   catch(...)
   {
     g_warning("Couldn't find the toroid.png sample file.") ;
   }
+#else
+  std::auto_ptr<Glib::Error> error;
+  Glib::RefPtr<Gdk::Pixbuf> pb = Gdk::Pixbuf::create_from_file("toroid.png", error) ;
+  if(error.get())
+  {
+    g_warning("Couldn't find the toroid.png sample file.") ;
+  }
+#endif
+
+  double w = pb->get_width() ;
+  double h = pb->get_height() ;
+
+  Glib::RefPtr<Goocanvas::Image> img = Goocanvas::Image::create(pb, 100.0 - w / 2.0, 225.0 - h / 2.0) ;
+  _canvas->get_root_item()->add_child(img);
+#ifdef GLIBMM_PROPERTIES_ENABLED
+  img->property_width() = w ;
+  img->property_height() = h ;
+#else
+  img->set_property("width", w);
+  img->set_property("height", h);
+#endif
+  _setup_signals(img) ;
 
   _create_flower(20.0, 170.0, Gtk::ANCHOR_NW) ;
   _create_flower(180.0, 170.0, Gtk::ANCHOR_NE) ;
@@ -312,6 +422,7 @@ Primitives::_setup_lines()
 
   line = Goocanvas::Polyline::create(356, 180, 374, 220) ;
         root->add_child(line);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   line->property_stroke_color() = "blue" ;
   line->property_line_width() = 1.0 ;
   line->property_start_arrow() = true ;
@@ -319,10 +430,20 @@ Primitives::_setup_lines()
   line->property_arrow_tip_length() = 5.0 ;
   line->property_arrow_length() = 6.0 ;
   line->property_arrow_width() = 6.0 ;
+#else
+  line->set_property("stroke_color", Glib::ustring("blue"));
+  line->set_property("line_width", 1.0);
+  line->set_property("start_arrow", true);
+  line->set_property("end_arrow", true);
+  line->set_property("arrow_tip_length", 5.0);
+  line->set_property("arrow_length", 6.0);
+  line->set_property("arrow_width", 6.0);
+#endif
   _setup_signals(line) ;
 
   line = Goocanvas::Polyline::create(356, 220, 374, 180) ;
         root->add_child(line);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   line->property_stroke_color() = "blue" ;
   line->property_line_width() = 1.0 ;
   line->property_start_arrow() = true ;
@@ -330,6 +451,15 @@ Primitives::_setup_lines()
   line->property_arrow_tip_length() = 5.0 ;
   line->property_arrow_length() = 6.0 ;
   line->property_arrow_width() = 6.0 ;
+#else
+  line->set_property("stroke_color", Glib::ustring("blue"));
+  line->set_property("line_width", 1.0);
+  line->set_property("start_arrow", true);
+  line->set_property("end_arrow", true);
+  line->set_property("arrow_tip_length", 5.0);
+  line->set_property("arrow_length", 6.0);
+  line->set_property("arrow_width", 6.0);
+#endif
   _setup_signals(line) ;
 }
 
@@ -367,7 +497,11 @@ Primitives::_create_anchor(double x, double y)
 
   Glib::RefPtr<Goocanvas::Rect> rect = Goocanvas::Rect::create(-2.5, -2.5, 4, 4) ;
   group->add_child(rect);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   rect->property_line_width() = 1.0 ;
+#else
+  rect->set_property("line_width", 1.0);
+#endif
 
   _setup_signals(group) ;
 
@@ -399,8 +533,13 @@ Primitives::_create_flower(double x, double y, Gtk::AnchorType anchor)
    _canvas->get_root_item()->add_child(img);
   //TODO: img->property_pattern() = pattern ;
   g_object_set(img->gobj(), "pattern", pattern->cobj(), NULL) ;
+#ifdef GLIBMM_PROPERTIES_ENABLED
   img->property_width() = w ;
   img->property_height() = h ;
+#else
+  img->set_property("width", w);
+  img->set_property("height", h);
+#endif
   _setup_signals(img) ;
 }
 

@@ -1,3 +1,20 @@
+2009-07-05  Murray Cumming  <murrayc@murrayc-x61>
+
+	Fix the build with disabled 
+	exceptions and disabled properties API. It is not pretty. 
+
+	* examples/coordinates/window.cc:
+	* examples/custom_item/examplewindow.cc:
+	* examples/demo/primitives.cc:
+	* examples/drag_to_canvas/examplewindow.cc:
+	* examples/moving_shapes/window.cc:
+	* examples/simple/examplewindow.cc:
+	* examples/table/examplewindow.cc:
+	* examples/tablemodel/examplewindow.cc:
+	* examples/text/window.cc:
+	* goocanvas/src/polyline.ccg:
+	* goocanvas/src/polylinemodel.ccg: Added ifdefs.
+
 0.14.0:
 
 2009-03-25  Murray Cumming  <murrayc@murrayc.com>

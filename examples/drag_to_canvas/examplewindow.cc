@@ -199,19 +199,33 @@ Glib::RefPtr<Goocanvas::Item> ExampleWindow::create_canvas_item(DragItem drag_it
   if(drag_item == DRAG_ITEM_RECTANGLE)
   {
     Glib::RefPtr<Goocanvas::Rect> rect = Goocanvas::Rect::create(0, 0, 20, 20);
-    rect->property_line_width().set_value(10.0);
-    rect->property_stroke_color().set_value("yellow");
-    rect->property_fill_color().set_value("red");
+#ifdef GLIBMM_PROPERTIES_ENABLED
+    rect->property_line_width() = 10.0;
+    rect->property_stroke_color() = "yellow");
+    rect->property_fill_color() = "red";
+#else
+    rect->set_property("line_width", 10.0);
+    rect->set_property("stroke_color", Glib::ustring("yellow"));
+    rect->set_property("fill_color", Glib::ustring("red"));
+#endif //GLIBMM_PROPERTIES_ENABLED
     result = rect;
   }
   else if(drag_item == DRAG_ITEM_ELLIPSE)
   {
     Glib::RefPtr<Goocanvas::Ellipse> ellipse = Goocanvas::Ellipse::create();
-    ellipse->property_line_width().set_value(10.0);
-    ellipse->property_radius_x().set_value(20.0);
-    ellipse->property_radius_y().set_value(20.0);
-    ellipse->property_stroke_color().set_value("yellow");
-    ellipse->property_fill_color().set_value("red");
+#ifdef GLIBMM_PROPERTIES_ENABLED
+    ellipse->property_line_width() = 10.0;
+    ellipse->property_radius_x() = 20.0;
+    ellipse->property_radius_y() = 20.0;
+    ellipse->property_stroke_color() = "yellow";
+    ellipse->property_fill_color() = "red";
+#else
+    ellipse->set_property("line_width", 10.0);
+    ellipse->set_property("radius_x", 20.0);
+    ellipse->set_property("radius_y", 20.0);
+    ellipse->set_property("stroke_color", Glib::ustring("yellow"));
+    ellipse->set_property("fill_color", Glib::ustring("red"));
+#endif //GLIBMM_PROPERTIES_ENABLED
     result = ellipse;
   }
 

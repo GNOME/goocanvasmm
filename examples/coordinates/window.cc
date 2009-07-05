@@ -37,9 +37,15 @@ ExampleWindow::ExampleWindow()
   Glib::RefPtr<Goocanvas::Item> root = m_canvas.get_root_item();
   m_rect = Goocanvas::Rect::create(10, 10, 60, 60);
   root->add_child(m_rect);
+#ifdef GLIBMM_PROPERTIES_ENABLED
   m_rect->property_line_width().set_value(10.0);
   m_rect->property_stroke_color().set_value("yellow");
   m_rect->property_fill_color().set_value("gray");
+#else
+  m_rect->set_property("line_width", 10.0);
+  m_rect->set_property("stroke_color", Glib::ustring("yellow"));
+  m_rect->set_property("fill_color", Glib::ustring("gray"));
+#endif
 
 
   Gtk::ScrolledWindow* sw = Gtk::manage(new Gtk::ScrolledWindow());
@@ -70,9 +76,13 @@ ExampleWindow::ExampleWindow()
 void ExampleWindow::update_label()
 {
   std::stringstream str;
+#ifdef GLIBMM_PROPERTIES_ENABLED
   str << "Rect: x=" << m_rect->property_x() << ", y=" << m_rect->property_y() << 
          ", width=" << m_rect->property_width() << ",  height=" << m_rect->property_height() << 
          ", line_width=" << m_rect->property_line_width() << std::endl;
+#else
+  //TODO.
+#endif
 
   Goocanvas::Bounds bounds = m_rect->get_bounds();
   str << "Item bounds: x1=" << bounds.get_x1() << ", y1=" << bounds.get_y1() << ", x2=" << bounds.get_x2() << ", y2=" << bounds.get_y2() << std::endl;
@@ -90,8 +100,14 @@ void ExampleWindow::on_button_translate()
 
 void ExampleWindow::on_button_setxy()
 {
+#ifdef GLIBMM_PROPERTIES_ENABLED
   m_rect->property_x() = 50;
   m_rect->property_y() = 50;
+#else
+  m_rect->set_property("x", 50);
+  m_rect->set_property("y", 50);
+#endif
+
   update_label();
 }
 

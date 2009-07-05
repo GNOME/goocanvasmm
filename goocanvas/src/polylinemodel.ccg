@@ -27,7 +27,11 @@ PolylineModel::PolylineModel(bool close_path, const Points& points )
 :
   _CONSTRUCT("close_path", close_path ? TRUE : FALSE)
 {
+#ifdef GLIBMM_PROPERTIES_ENABLED
   property_points() = points ;
+#else
+  set_property("points", points);
+#endif
 }
 
 PolylineModel::PolylineModel(double x1, double y1, double x2, double y2)
@@ -36,7 +40,12 @@ PolylineModel::PolylineModel(double x1, double y1, double x2, double y2)
 {
   double data[4] = {x1, y1, x2, y2};
   Goocanvas::Points points(2, data);
-  property_points() = points;
+
+#ifdef GLIBMM_PROPERTIES_ENABLED
+  property_points() = points ;
+#else
+  set_property("points", points);
+#endif
 }
 
 } //namespace Goocanvas
