@@ -45,6 +45,7 @@ public:
   //_WRAP_PROPERTY("width", double)
   //_WRAP_PROPERTY("height", double)
   _WRAP_PROPERTY("pattern", Cairo::RefPtr<Cairo::Pattern>)
+  _WRAP_PROPERTY("scale-to-fit", bool)
   _WRAP_PROPERTY("pixbuf", Glib::RefPtr<Gdk::Pixbuf>)
 
 protected:
