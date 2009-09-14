@@ -27,6 +27,7 @@
 namespace Goocanvas
 {
 
+//TODO: Remove these paramters.
 void init(const Glib::ustring& app_id, const Glib::ustring& version, int nargs, gchar *args[]);
 
 } //namespace Goocanvas

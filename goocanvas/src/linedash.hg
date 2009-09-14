@@ -24,7 +24,7 @@ _PINCLUDE(glibmm/private/object_p.h)
 namespace Goocanvas
 {
 
-class LineDash : public Glib::Object
+class LineDash
 {
   _CLASS_BOXEDTYPE(LineDash, GooCanvasLineDash, NONE, goo_canvas_line_dash_ref, goo_canvas_line_dash_unref)
   _IGNORE(goo_canvas_line_dash_ref, goo_canvas_line_dash_unref)

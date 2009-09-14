@@ -28,7 +28,7 @@
 namespace Goocanvas
 {
 
-void init(const Glib::ustring& app_id, const Glib::ustring& version, int nargs, gchar *args[])
+void init(const Glib::ustring& /* app_id */, const Glib::ustring& /* version */, int /* nargs */, gchar * /* args */[])
 {
   Glib::init(); //Sets up the g type system and the Glib::wrap() table.
   wrap_init(); //Tells the Glib::wrap() table about the libgnomecanvasmm classes.

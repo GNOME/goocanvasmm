@@ -1,3 +1,8 @@
+0.15.1 (unstable):
+
+Use the latest mm-common build system, to produce API documentation that is 
+ready for library.gnome.org.
+
 0.15.0 (unstable):
 
 Build:
