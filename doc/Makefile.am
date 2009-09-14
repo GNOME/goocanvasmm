@@ -15,17 +15,12 @@
 ## You should have received a copy of the GNU Lesser General Public License
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-lib_LTLIBRARIES = libgoocanvasmm-@GOOCANVASMM_API_VERSION@.la
+include $(top_srcdir)/goocanvas/src/filelist.am
+include $(top_srcdir)/goocanvas/goocanvasmm/filelist.am
 
-include $(srcdir)/../src/filelist.am
-include $(srcdir)/filelist.am
-include $(top_srcdir)/build/compile-binding.am
+goocanvasmm_files_h = $(files_built_h) $(filter-out wrap_init.h,$(files_extra_h))
 
-local_cppflags = $(binding_includes) $(binding_cppflags) -DGOOCANVASMM_BUILD=1
+book_name = $(GOOCANVASMM_MODULE_NAME)
+doc_input = $(addprefix $(top_srcdir)/goocanvas/goocanvasmm/,$(goocanvasmm_files_h))
 
-AM_CPPFLAGS = $(local_cppflags) $(GTHREAD_CFLAGS) $(GOOCANVASMM_CFLAGS)
-AM_CXXFLAGS = $(GOOCANVASMM_WXXFLAGS)
-
-libgoocanvasmm_@GOOCANVASMM_API_VERSION@_la_SOURCES = $(binding_sources)
-libgoocanvasmm_@GOOCANVASMM_API_VERSION@_la_LDFLAGS = -no-undefined -version-info $(GOOCANVASMM_SO_VERSION)
-libgoocanvasmm_@GOOCANVASMM_API_VERSION@_la_LIBADD  = $(GOOCANVASMM_LIBS)
+include $(top_srcdir)/build/doc-reference.am

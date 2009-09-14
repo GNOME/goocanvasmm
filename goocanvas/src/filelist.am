@@ -1,6 +1,16 @@
-# This file is include by other Makefile.am files, using the new automake include feature.
-# The include happens in Makefile.am, not Makefile.in or Makefile,
-# so it's like copy-and-pasting this into each of those Makefile.am files.
+# This file is part of goocanvasmm.
+
+files_defs =			\
+	libgoocanvas.defs		\
+	libgoocanvas_enums.defs	\
+	libgoocanvas_vfuncs.defs	\
+	libgoocanvas_methods.defs	\
+	libgoocanvas_signals.defs	\
+	libgoocanvas_others.defs	\
+	libgoocanvas_fake_properties.defs \
+	libgoocanvas_docs.xml	\
+	libgoocanvas_docs_override.xml
+
 
 files_hg = \
 canvas.hg \
@@ -33,3 +43,4 @@ textmodel.hg \
 widget.hg \
 enums.hg
 
+files_ccg = $(files_hg:.hg=.ccg)

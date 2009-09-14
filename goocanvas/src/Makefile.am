@@ -1,12 +1,23 @@
-## Copyright (c) 2001
-## The goocanvasmm development team.
+## Copyright (c) 2009  Joe Hacker <joe@example.com>
+##
+## This file is part of goocanvasmm.
+##
+## goocanvasmm is free software: you can redistribute it and/or modify it
+## under the terms of the GNU Lesser General Public License as published
+## by the Free Software Foundation, either version 2.1 of the License,
+## or (at your option) any later version.
+##
+## goocanvasmm is distributed in the hope that it will be useful, but
+## WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+## See the GNU Lesser General Public License for more details.
+##
+## You should have received a copy of the GNU Lesser General Public License
+## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-sublib_name	= goocanvasmm
-sublib_namespace = Goocanvas
-sublib_parentdir = goocanvasmm
-files_defs	= libgoocanvas.defs libgoocanvas_methods.defs libgoocanvas_signals.defs \
-                  libgoocanvas_enums.defs libgoocanvas_vfuncs.defs libgoocanvas_others.defs libgoocanvas_fake_properties.defs \
-                  libgoocanvas_docs.xml libgoocanvas_docs_override.xml
+binding_name    = goocanvasmm
+wrap_init_flags = --namespace=Goocanvas --parent_dir=goocanvasmm
 
-include $(top_srcdir)/build_shared/Makefile_gensrc.am_fragment
-
+include $(srcdir)/filelist.am
+include $(top_srcdir)/codegen/m4/filelist.am
+include $(top_srcdir)/build/generate-binding.am

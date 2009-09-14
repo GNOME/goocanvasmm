@@ -17,7 +17,7 @@
 
 #include <iostream>
 
-#include "glibmm_generate_extra_defs/generate_extra_defs.h"
+#include <glibmm_generate_extra_defs/generate_extra_defs.h>
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
 #include <goocanvas.h>
