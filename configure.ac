@@ -53,7 +53,7 @@ AC_LANG([C++])
 MM_ARG_ENABLE_WARNINGS([GOOCANVASMM_WXXFLAGS],
                        [-Wall],
                        [-pedantic -Wall -Wextra],
-                       [G SKELETON])
+                       [G GOOCANVASMM])
 
 AC_CONFIG_FILES([Makefile
                  codegen/Makefile

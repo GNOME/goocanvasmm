@@ -110,10 +110,10 @@ EXCLUDE_SYMBOLS        = _* \
                          internal \
                          pair \
                          unary_function
-SKELETON_PATH           =
-SKELETON_PATTERNS       = *.cc \
+GOOCANVAS_PATH           =
+GOOCANVAS_PATTERNS       = *.cc \
                          *.h
-SKELETON_RECURSIVE      = NO
+GOOCANVAS_RECURSIVE      = NO
 IMAGE_PATH             =
 INPUT_FILTER           =
 FILTER_PATTERNS        =
