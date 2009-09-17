@@ -1,3 +1,11 @@
+2009-09-17  Murray Cumming  <murrayc@murrayc.com>
+
+	Do not put a generated ChangeLog in the tarball.
+ 
+	* Makefile.am: Remove the include of dist-changelog.am becaise I do not 
+	want some crappy generated ChangeLog based on random vague commit 
+	messages that can't be corrected later. I fight entropy. murrayc.
+
 0.15.1:
 
 2009-09-14  Murray Cumming  <murrayc@murrayc.com>

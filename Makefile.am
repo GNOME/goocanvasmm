@@ -40,4 +40,6 @@ pkgconfig_DATA = goocanvas/$(GOOCANVASMM_MODULE_NAME).pc
 
 dist_noinst_SCRIPTS = autogen.sh
 
-include $(top_srcdir)/build/dist-changelog.am
+# I do not want some crappy generated ChangeLog based on random vague commit 
+# messages that can't be corrected later. I fight entropy. murrayc.
+#include $(top_srcdir)/build/dist-changelog.am
