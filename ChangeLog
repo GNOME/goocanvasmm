@@ -1,3 +1,11 @@
+2009-09-18  Murray Cumming  <murrayc@murrayc.com>
+
+	goocanvasmmconfig.h: Make this work.
+
+	* goocanvas/goocanvasmmconfig.h.in: Use actual GOOCANVASMM values, 
+	instead of being a copy of the file from libgdamm. Noticed by 
+	Daniel Elstner.
+
 2009-09-17  Murray Cumming  <murrayc@murrayc.com>
 
 	Do not put a generated ChangeLog in the tarball.
