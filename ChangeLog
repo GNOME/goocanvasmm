@@ -1,5 +1,19 @@
 2009-09-18  Daniel Elstner  <danielk@openismus.com>
 
+	Add missing tag files and update Doxygen config
+
+	* configure.ac (MM_ARG_WITH_TAGFILE_DOC): Reference the installed
+	Doxygen tag files of cairomm, pangomm and gtkmm.
+	* doc/reference/Doxyfile.in: Update configuration for Doxygen 1.6.1.
+	(SORT_MEMBERS_CTORS_1ST): Set to YES.
+	(EXCLUDE_SYMBOLS): Remove bogus Skeleton* symbols from the list.
+	(EXAMPLE_*): Correct the accidentally substituted variable names.
+	(EXAMPLE_PATH): Point to the examples/ source directory.
+	(EXAMPLE_RECURSIVE): Set to YES.
+	(PREDEFINED): Define GTKMM_ATKMM_ENABLED, just in case.
+
+2009-09-18  Daniel Elstner  <danielk@openismus.com>
+
 	Insert missing comma to separate M4 macro args
 
 	* configure.ac (GOOCANVASMM_WXXFLAGS): Insert missing comma to
