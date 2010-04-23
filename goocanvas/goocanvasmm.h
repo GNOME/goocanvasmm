@@ -1,4 +1,3 @@
-/* $Id: goocanvasmm.h,v 1.4 2005/08/23 15:43:32 murrayc Exp $ */
 /* goocanvasmm - a C++ wrapper for libgoocanvas
  *
  * Copyright 1999-2001 Free Software Foundation
@@ -21,9 +20,37 @@
 #ifndef LIBGOOCANVASMM_H
 #define LIBGOOCANVASMM_H
 
-//extern "C" {
-//#include <gtk/gtk.h>
-//}
+/** @mainpage goocanvasmm Reference Manual
+ *
+ * @section description Description
+ *
+ * goocanvasmm is a C++ binding for goocanvas. See also
+ * <a href="http://live.gnome.org/GooCanvas">the goocanvas website</a> for a
+ * description of goocanvas.
+ *
+ * @section basics Basic Usage
+ * Include the goocanvasmm header:
+ * @code
+ * #include <goocanvasmm.h>
+ * @endcode
+ * (You may include individual headers, such as goocanvasmm/rect.h instead.)
+ *
+ * If your source file is @c program.cc, you can compile it with:
+ * @code
+ * g++ program.cc -o program `pkg-config --cflags --libs goocanvasmm-1.0`
+ * @endcode
+ *
+ * Alternatively, if using autoconf, use the following in @c configure.ac:
+ * @code
+ * PKG_CHECK_MODULES([GOOCANVASMM], [goocanvasmm-1.0])
+ * @endcode
+ * Then use the generated @c GOOCANVASMM_CFLAGS and @c GOOCANVASMM_LIBS
+ * variables in the project @c Makefile.am files. For example:
+ * @code
+ * program_CPPFLAGS = $(GOOCANVASMM_CFLAGS)
+ * program_LDADD = $(GOOCANVASMM_LIBS)
+ * @endcode
+ */
 
 /* goocanvasmm version.  */
 extern const int goocanvasmm_major_version;

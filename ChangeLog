@@ -1,3 +1,10 @@
+2010-04-23  David King  <davidk@openismus.com>
+
+	Add main page to Doxygen documentation
+
+	* doc/Makefile.am: Parse goocanvas/goocanvasmm.h for documentation.
+	* goocanvas/goocanvasmm.h: Add main page to Doxygen documentation.
+
 0.15.2:
 
 2009-09-18  Daniel Elstner  <danielk@openismus.com>

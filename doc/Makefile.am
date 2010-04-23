@@ -1,4 +1,4 @@
-## Copyright (c) 2009  Joe Hacker <joe@example.com>
+## Copyright (c) 2009, 2010 Openismus GmbH
 ##
 ## This file is part of goocanvasmm.
 ##
@@ -21,6 +21,7 @@ include $(top_srcdir)/goocanvas/goocanvasmm/filelist.am
 goocanvasmm_files_h = $(files_built_h) $(filter-out wrap_init.h,$(files_extra_h))
 
 book_name = $(GOOCANVASMM_MODULE_NAME)
-doc_input = $(addprefix $(top_srcdir)/goocanvas/goocanvasmm/,$(goocanvasmm_files_h))
+doc_input = $(addprefix $(top_srcdir)/goocanvas/goocanvasmm/,$(goocanvasmm_files_h)) \
+            $(top_srcdir)/goocanvas/goocanvasmm.h
 
 include $(top_srcdir)/build/doc-reference.am
