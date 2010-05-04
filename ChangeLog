@@ -1,3 +1,13 @@
+2010-05-04  Murray Cumming  <murrayc@murrayc.com>
+
+	Documentation improvements.
+	
+	* goocanvas/goocanvasmm.h: Slight improvements to main page text, adding a 
+	link to the Canvas widget class.
+	* goocanvas/src/canvas.hg: Added a class description.
+	* doc/reference/Doxyfile.in: Make more like gtkmm's. In particular, show 
+	undocumented classes (they should be documented though).
+
 2010-04-23  David King  <davidk@openismus.com>
 
 	Add main page to Doxygen documentation

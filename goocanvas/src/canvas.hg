@@ -35,6 +35,9 @@ _PINCLUDE(gtkmm/private/container_p.h)
 namespace Goocanvas
 {
 
+/** The main canvas widget, containing a number of canvas items.
+ * Add child items (see Item) to the root item (see get_root_item()), for instance with Item::add_child().
+ */
 class Canvas :
   public Gtk::Container
 {

@@ -24,9 +24,8 @@
  *
  * @section description Description
  *
- * goocanvasmm is a C++ binding for goocanvas. See also
- * <a href="http://live.gnome.org/GooCanvas">the goocanvas website</a> for a
- * description of goocanvas.
+ * goocanvasmm is a C++ binding for <a href="http://live.gnome.org/GooCanvas">goocanvas</a>.
+ * See the Goocanvas::Canvas widget.
  *
  * @section basics Basic Usage
  * Include the goocanvasmm header:
