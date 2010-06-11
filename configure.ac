@@ -28,7 +28,7 @@ AM_MAINTAINER_MODE
 AC_ARG_VAR([ACLOCAL_FLAGS], [aclocal flags, e.g. -I <macro dir>])
 
 MM_PREREQ([0.7.2])
-MM_INIT_MODULE([goocanvasmm-1.0])
+MM_INIT_MODULE([goocanvasmm-2.0])
 
 # http://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html
 AC_SUBST([GOOCANVASMM_SO_VERSION], [5:0:0])
@@ -38,7 +38,7 @@ AC_DISABLE_STATIC
 AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
-AC_SUBST([GOOCANVASMM_MODULES], ['glibmm-2.4 >= 2.14.2 gtkmm-2.4 >= 2.10.9 goocanvas >= 0.15'])
+AC_SUBST([GOOCANVASMM_MODULES], ['glibmm-2.4 >= 2.14.2 gtkmm-2.4 >= 2.10.9 goocanvas-2.0 >= 0.15'])
 PKG_CHECK_MODULES([GOOCANVASMM], [$GOOCANVASMM_MODULES])
 
 MM_PKG_CONFIG_SUBST([GTHREAD_CFLAGS], [--cflags-only-other gthread-2.0])

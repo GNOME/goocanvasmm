@@ -1,4 +1,4 @@
-local_goocanvasmm_lib = $(top_builddir)/goocanvas/goocanvasmm/libgoocanvasmm-0.1.la
+local_goocanvasmm_lib = $(top_builddir)/goocanvas/goocanvasmm/libgoocanvasmm-@GOOCANVASMM_API_VERSION@.la
 
 LIBS  = $(LIBGOOCANVASMM_LIBS) $(local_goocanvasmm_lib) 
 

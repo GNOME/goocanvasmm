@@ -1,3 +1,11 @@
+2010-06-11  Murray Cumming  <murrayc@murrayc.com>
+
+	Change to goocanvasmm-2.0
+	
+	* examples/Makefile.am_fragment:
+	* configure.ac: Depend on goocanvas-2.0 instead of 1.0 so we use GTK+ 3, 
+	and change this from goocanvasmm-1.0 to goocanvasmm-2.0.
+
 0.15.3:
 
 2010-05-04  Murray Cumming  <murrayc@murrayc.com>
