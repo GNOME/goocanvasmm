@@ -1,3 +1,9 @@
+2010-06-13  Murray Cumming  <murrayc@murrayc.com>
+
+	Use gtkmm-3.0 instead of gtkmm-2.4.
+
+	* configure.ac: Really use gtkmm-3.0.
+
 2010-06-11  Murray Cumming  <murrayc@murrayc.com>
 
 	Change to goocanvasmm-2.0
