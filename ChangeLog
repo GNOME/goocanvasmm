@@ -1,3 +1,11 @@
+2010-09-02  Murray Cumming  <murrayc@murrayc.com>
+
+	Fix the build with the latest cairomm.
+
+	* goocanvas/src/enums.[hg|ccg]: Remove the (unused) Value<Cairo::Pattern>
+  specialization. Pattern should always (and is always) used via RefPtr
+  anyway.
+
 1.9.0:
 
 2010-06-13  Murray Cumming  <murrayc@murrayc.com>

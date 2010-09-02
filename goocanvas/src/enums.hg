@@ -40,16 +40,6 @@ namespace Glib
 // GTypes goocanvas defines for them in goocanvasutil.h
 
 template<>
-class Value<Cairo::Pattern> : public Glib::ValueBase_Boxed
-{
-public:
-  static GType value_type() G_GNUC_CONST;
-
-  void set(const Cairo::Pattern& data) { set_boxed(data.cobj()); }
-  Cairo::Pattern get() const { return Cairo::Pattern(static_cast<cairo_pattern_t*>(get_boxed())); }
-};
-
-template<>
 class Value<Cairo::Matrix*> : public Glib::ValueBase_Boxed
 {
 public:
