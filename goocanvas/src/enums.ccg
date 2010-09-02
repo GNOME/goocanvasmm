@@ -25,7 +25,6 @@ namespace Glib
 
 // We can't simply derive from Glib::ValueBoxed<> because these have no
 // gobj() function to return the underlying boxed C object.
-GType Value<Cairo::Pattern>::value_type() { return goo_cairo_pattern_get_type(); }
 GType Value<Cairo::Matrix*>::value_type() { return goo_cairo_matrix_get_type(); }
 
 // Normally, _WRAP_ENUM does generate this code for us, but we can't use
@@ -41,4 +40,3 @@ GType Value<Cairo::LineJoin>::value_type() { return goo_cairo_line_join_get_type
 GType Value<Cairo::HintMetrics>::value_type() { return goo_cairo_hint_metrics_get_type(); }
 
 }
-
