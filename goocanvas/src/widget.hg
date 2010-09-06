@@ -18,6 +18,7 @@
 
 #include <gtkmm/widget.h>
 #include <goocanvasmm/itemsimple.h>
+#include <goocanvasmm/enums.h>
 
 _DEFS(goocanvasmm,libgoocanvas)
 _PINCLUDE(goocanvasmm/private/itemsimple_p.h)
@@ -45,7 +46,7 @@ public:
   //_WRAP_PROPERTY("width", double)
   //_WRAP_PROPERTY("height", double)
   _WRAP_PROPERTY("widget", Gtk::Widget*)
-  _WRAP_PROPERTY("anchor", Gtk::AnchorType)
+  _WRAP_PROPERTY("anchor", AnchorType)
 };
 
 }

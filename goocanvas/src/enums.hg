@@ -29,6 +29,7 @@ namespace Goocanvas
 _WRAP_ENUM(PointerEvents,GooCanvasPointerEvents, s#^CANVAS_##)
 _WRAP_ENUM(ItemVisibility,GooCanvasItemVisibility, s#^CANVAS_##)
 _WRAP_ENUM(PathCommandType,GooCanvasPathCommandType, s#^CANVAS_##)
+_WRAP_ENUM(AnchorType,GooCanvasAnchorType, s#^CANVAS_##)
 
 } //namespace Goocanvas
 

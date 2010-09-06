@@ -1,4 +1,13 @@
-;; From /home/murrayc/checkouts/gnome224/goocanvas/src/goocanvasitem.h
+;; From goocanvasitem.h
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   GOO_CANVAS_ANIMATE_FREEZE,
+;;   GOO_CANVAS_ANIMATE_RESET,
+;;   GOO_CANVAS_ANIMATE_RESTART,
+;;   GOO_CANVAS_ANIMATE_BOUNCE
+;; } GooCanvasAnimateType;
 
 (define-enum-extended CanvasAnimateType
   (in-module "Goo")
@@ -11,7 +20,26 @@
   )
 )
 
-;; From /home/murrayc/checkouts/gnome224/goocanvas/src/goocanvasutils.h
+;; From goocanvasutils.h
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   GOO_CANVAS_EVENTS_VISIBLE_MASK	= 1 << 0,
+;;   GOO_CANVAS_EVENTS_PAINTED_MASK	= 1 << 1,
+;;   GOO_CANVAS_EVENTS_FILL_MASK		= 1 << 2,
+;;   GOO_CANVAS_EVENTS_STROKE_MASK		= 1 << 3,
+;; 
+;;   GOO_CANVAS_EVENTS_NONE		= 0,
+;;   GOO_CANVAS_EVENTS_VISIBLE_PAINTED	= GOO_CANVAS_EVENTS_VISIBLE_MASK | GOO_CANVAS_EVENTS_PAINTED_MASK | GOO_CANVAS_EVENTS_FILL_MASK | GOO_CANVAS_EVENTS_STROKE_MASK,
+;;   GOO_CANVAS_EVENTS_VISIBLE_FILL	= GOO_CANVAS_EVENTS_VISIBLE_MASK | GOO_CANVAS_EVENTS_FILL_MASK,
+;;   GOO_CANVAS_EVENTS_VISIBLE_STROKE	= GOO_CANVAS_EVENTS_VISIBLE_MASK | GOO_CANVAS_EVENTS_STROKE_MASK,
+;;   GOO_CANVAS_EVENTS_VISIBLE		= GOO_CANVAS_EVENTS_VISIBLE_MASK | GOO_CANVAS_EVENTS_FILL_MASK | GOO_CANVAS_EVENTS_STROKE_MASK,
+;;   GOO_CANVAS_EVENTS_PAINTED		= GOO_CANVAS_EVENTS_PAINTED_MASK | GOO_CANVAS_EVENTS_FILL_MASK | GOO_CANVAS_EVENTS_STROKE_MASK,
+;;   GOO_CANVAS_EVENTS_FILL		= GOO_CANVAS_EVENTS_FILL_MASK,
+;;   GOO_CANVAS_EVENTS_STROKE		= GOO_CANVAS_EVENTS_STROKE_MASK,
+;;   GOO_CANVAS_EVENTS_ALL			= GOO_CANVAS_EVENTS_FILL_MASK | GOO_CANVAS_EVENTS_STROKE_MASK
+;; } GooCanvasPointerEvents;
 
 (define-flags-extended CanvasPointerEvents
   (in-module "Goo")
@@ -21,17 +49,26 @@
     '("painted-mask" "GOO_CANVAS_EVENTS_PAINTED_MASK" "1 << 1")
     '("fill-mask" "GOO_CANVAS_EVENTS_FILL_MASK" "1 << 2")
     '("stroke-mask" "GOO_CANVAS_EVENTS_STROKE_MASK" "1 << 3")
-    '("none" "GOO_CANVAS_EVENTS_NONE" "0")
-    '("visible-painted" "GOO_CANVAS_EVENTS_VISIBLE_PAINTED" "0x1")
-    '("visible-fill" "GOO_CANVAS_EVENTS_VISIBLE_FILL" "0x1")
-    '("visible-stroke" "GOO_CANVAS_EVENTS_VISIBLE_STROKE" "0x1")
-    '("visible" "GOO_CANVAS_EVENTS_VISIBLE" "0x1")
-    '("painted" "GOO_CANVAS_EVENTS_PAINTED" "0x2")
+    '("none" "GOO_CANVAS_EVENTS_NONE" "0x0")
+    '("visible-painted" "GOO_CANVAS_EVENTS_VISIBLE_PAINTED" "0xF")
+    '("visible-fill" "GOO_CANVAS_EVENTS_VISIBLE_FILL" "0x5")
+    '("visible-stroke" "GOO_CANVAS_EVENTS_VISIBLE_STROKE" "0x9")
+    '("visible" "GOO_CANVAS_EVENTS_VISIBLE" "0xD")
+    '("painted" "GOO_CANVAS_EVENTS_PAINTED" "0xE")
     '("fill" "GOO_CANVAS_EVENTS_FILL" "0x4")
     '("stroke" "GOO_CANVAS_EVENTS_STROKE" "0x8")
-    '("all" "GOO_CANVAS_EVENTS_ALL" "0x4")
+    '("all" "GOO_CANVAS_EVENTS_ALL" "0xC")
   )
 )
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   GOO_CANVAS_ITEM_HIDDEN			= 0,
+;;   GOO_CANVAS_ITEM_INVISIBLE			= 1,
+;;   GOO_CANVAS_ITEM_VISIBLE			= 2,
+;;   GOO_CANVAS_ITEM_VISIBLE_ABOVE_THRESHOLD	= 3
+;; } GooCanvasItemVisibility;
 
 (define-enum-extended CanvasItemVisibility
   (in-module "Goo")
@@ -43,6 +80,26 @@
     '("visible-above-threshold" "GOO_CANVAS_ITEM_VISIBLE_ABOVE_THRESHOLD" "3")
   )
 )
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   /* Simple commands like moveto and lineto: MmZzLlHhVv. */
+;;   GOO_CANVAS_PATH_MOVE_TO,
+;;   GOO_CANVAS_PATH_CLOSE_PATH,
+;;   GOO_CANVAS_PATH_LINE_TO,
+;;   GOO_CANVAS_PATH_HORIZONTAL_LINE_TO,
+;;   GOO_CANVAS_PATH_VERTICAL_LINE_TO,
+;; 
+;;   /* Bezier curve commands: CcSsQqTt. */
+;;   GOO_CANVAS_PATH_CURVE_TO,
+;;   GOO_CANVAS_PATH_SMOOTH_CURVE_TO,
+;;   GOO_CANVAS_PATH_QUADRATIC_CURVE_TO,
+;;   GOO_CANVAS_PATH_SMOOTH_QUADRATIC_CURVE_TO,
+;; 
+;;   /* The elliptical arc commands: Aa. */
+;;   GOO_CANVAS_PATH_ELLIPTICAL_ARC
+;; } GooCanvasPathCommandType;
 
 (define-enum-extended CanvasPathCommandType
   (in-module "Goo")
@@ -58,6 +115,52 @@
     '("quadratic-curve-to" "GOO_CANVAS_PATH_QUADRATIC_CURVE_TO" "7")
     '("smooth-quadratic-curve-to" "GOO_CANVAS_PATH_SMOOTH_QUADRATIC_CURVE_TO" "8")
     '("elliptical-arc" "GOO_CANVAS_PATH_ELLIPTICAL_ARC" "9")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   GOO_CANVAS_ANCHOR_CENTER,
+;;   GOO_CANVAS_ANCHOR_NORTH,
+;;   GOO_CANVAS_ANCHOR_NORTH_WEST,
+;;   GOO_CANVAS_ANCHOR_NORTH_EAST,
+;;   GOO_CANVAS_ANCHOR_SOUTH,
+;;   GOO_CANVAS_ANCHOR_SOUTH_WEST,
+;;   GOO_CANVAS_ANCHOR_SOUTH_EAST,
+;;   GOO_CANVAS_ANCHOR_WEST,
+;;   GOO_CANVAS_ANCHOR_EAST,
+;;   GOO_CANVAS_ANCHOR_N		= GOO_CANVAS_ANCHOR_NORTH,
+;;   GOO_CANVAS_ANCHOR_NW		= GOO_CANVAS_ANCHOR_NORTH_WEST,
+;;   GOO_CANVAS_ANCHOR_NE		= GOO_CANVAS_ANCHOR_NORTH_EAST,
+;;   GOO_CANVAS_ANCHOR_S		= GOO_CANVAS_ANCHOR_SOUTH,
+;;   GOO_CANVAS_ANCHOR_SW		= GOO_CANVAS_ANCHOR_SOUTH_WEST,
+;;   GOO_CANVAS_ANCHOR_SE		= GOO_CANVAS_ANCHOR_SOUTH_EAST,
+;;   GOO_CANVAS_ANCHOR_W		= GOO_CANVAS_ANCHOR_WEST,
+;;   GOO_CANVAS_ANCHOR_E		= GOO_CANVAS_ANCHOR_EAST
+;; } GooCanvasAnchorType;
+
+(define-enum-extended CanvasAnchorType
+  (in-module "Goo")
+  (c-name "GooCanvasAnchorType")
+  (values
+    '("center" "GOO_CANVAS_ANCHOR_CENTER" "0")
+    '("north" "GOO_CANVAS_ANCHOR_NORTH" "1")
+    '("north-west" "GOO_CANVAS_ANCHOR_NORTH_WEST" "2")
+    '("north-east" "GOO_CANVAS_ANCHOR_NORTH_EAST" "3")
+    '("south" "GOO_CANVAS_ANCHOR_SOUTH" "4")
+    '("south-west" "GOO_CANVAS_ANCHOR_SOUTH_WEST" "5")
+    '("south-east" "GOO_CANVAS_ANCHOR_SOUTH_EAST" "6")
+    '("west" "GOO_CANVAS_ANCHOR_WEST" "7")
+    '("east" "GOO_CANVAS_ANCHOR_EAST" "8")
+    '("n" "GOO_CANVAS_ANCHOR_N" "1")
+    '("nw" "GOO_CANVAS_ANCHOR_NW" "2")
+    '("ne" "GOO_CANVAS_ANCHOR_NE" "3")
+    '("s" "GOO_CANVAS_ANCHOR_S" "4")
+    '("sw" "GOO_CANVAS_ANCHOR_SW" "5")
+    '("se" "GOO_CANVAS_ANCHOR_SE" "6")
+    '("w" "GOO_CANVAS_ANCHOR_W" "7")
+    '("e" "GOO_CANVAS_ANCHOR_E" "8")
   )
 )
 

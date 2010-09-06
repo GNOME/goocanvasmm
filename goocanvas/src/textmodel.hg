@@ -30,15 +30,15 @@ class TextModel : public Goocanvas::ItemModelSimple
   _CLASS_GOBJECT(TextModel,GooCanvasTextModel,GOO_CANVAS_TEXT_MODEL,Goocanvas::ItemModelSimple,GooCanvasItemModelSimple)
 protected:
 
-  TextModel(const Glib::ustring& string = Glib::ustring(), double x = 0.0, double y = 0.0, double width = -1, Gtk::AnchorType anchor = Gtk::ANCHOR_NORTH_WEST);
+  TextModel(const Glib::ustring& string = Glib::ustring(), double x = 0.0, double y = 0.0, double width = -1, AnchorType anchor = ANCHOR_NORTH_WEST);
   _IGNORE(goo_canvas_text_model_new)
 
 public:
 
-  _WRAP_CREATE(const Glib::ustring& string = Glib::ustring(), double x = 0.0, double y = 0.0, double width = -1, Gtk::AnchorType anchor = Gtk::ANCHOR_NORTH_WEST)
+  _WRAP_CREATE(const Glib::ustring& string = Glib::ustring(), double x = 0.0, double y = 0.0, double width = -1, AnchorType anchor = ANCHOR_NORTH_WEST)
 
   _WRAP_PROPERTY("alignment", Pango::Alignment)
-  _WRAP_PROPERTY("anchor", Gtk::AnchorType)
+  _WRAP_PROPERTY("anchor", AnchorType)
   _WRAP_PROPERTY("font", Glib::ustring)
   _WRAP_PROPERTY("font-desc", Pango::FontDescription) //TODO: Use pointer? */
   _WRAP_PROPERTY("text", Glib::ustring)

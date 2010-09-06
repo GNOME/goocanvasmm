@@ -45,5 +45,5 @@ _CONVERSION(`const Cairo::Matrix*',`const cairo_matrix_t*',`((const cairo_matrix
 # GooCairoPattern* is actually a cairo_pattern_t*:
 _CONVERSION(`Cairo::RefPtr<Cairo::Pattern>', `GooCairoPattern*',__CONVERT_REFPTR_TO_P)
 
-_CONVERSION(`Gtk::AnchorType',`AnchorType',`($2)($3)')
+_CONVERSION(`GooCanvasAnchorType',`AnchorType',`($2)($3)')
 

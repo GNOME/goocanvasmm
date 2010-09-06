@@ -135,7 +135,7 @@ public:
   _WRAP_PROPERTY("scale", double)
   _WRAP_PROPERTY("scale-x", double)
   _WRAP_PROPERTY("scale-y", double)
-  _WRAP_PROPERTY("anchor", Gtk::AnchorType)
+  _WRAP_PROPERTY("anchor", AnchorType)
   _WRAP_PROPERTY("x1", double)
   _WRAP_PROPERTY("y1", double)
   _WRAP_PROPERTY("x2", double)

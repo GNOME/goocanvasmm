@@ -23,9 +23,9 @@ _PINCLUDE(goocanvasmm/private/itemsimple_p.h)
 namespace Goocanvas
 {
 
-Text::Text(const Glib::ustring& text, double x, double y, double width, Gtk::AnchorType anchor)
+Text::Text(const Glib::ustring& text, double x, double y, double width, AnchorType anchor)
 : 
-  _CONSTRUCT("text", text.c_str(), "x", x, "y", y, "width", width, "anchor", (GtkAnchorType)anchor)
+  _CONSTRUCT("text", text.c_str(), "x", x, "y", y, "width", width, "anchor", (GooCanvasAnchorType)anchor)
 {
 }
 
