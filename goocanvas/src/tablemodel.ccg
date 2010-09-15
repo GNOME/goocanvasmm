@@ -59,7 +59,7 @@ void TableModel::set_align(const Glib::RefPtr<ItemModel>& child, double xalign, 
                                             static_cast<void*>(0));
 }
 
-void TableModel::set_align(const Glib::RefPtr<ItemModel>& child, Gtk::AlignmentEnum xalign, Gtk::AlignmentEnum yalign)
+void TableModel::set_align(const Glib::RefPtr<ItemModel>& child, Gtk::Align xalign, Gtk::Align yalign)
 {
   set_align(child, _gtkmm_align_float_from_enum(xalign), _gtkmm_align_float_from_enum(yalign));
 }

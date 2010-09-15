@@ -1,3 +1,11 @@
+2010-09-15  Murray Cumming  <murrayc@murrayc.com>
+
+	Replace use of Gtk::AlignmentEnum with Gtk::Align.
+
+	* goocanvas/src/table.[hg|ccg]:
+	* goocanvas/src/tablemodel.[hg|ccg]: This fixes the build with 
+	gtkmm from git master.
+
 2010-09-06  Murray Cumming  <murrayc@murrayc.com>
 
 	Adapt to latest goocanvas API, using the new AnchorType enum.
