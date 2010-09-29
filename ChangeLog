@@ -1,9 +1,15 @@
+2010-09-29  Murray Cumming  <murrayc@murrayc.com>
+
+	Fix the build with the latest gtkmm 3 API.
+
+	* goocanvas/src/canvas.[hg|ccg]: Use Gtk::Adjustment via RefPtr.
+
 2010-09-15  Murray Cumming  <murrayc@murrayc.com>
 
 	Replace use of Gtk::AlignmentEnum with Gtk::Align.
 
 	* goocanvas/src/table.[hg|ccg]:
-	* goocanvas/src/tablemodel.[hg|ccg]: This fixes the build with 
+	* goocanvas/src/tablemodel.[hg|ccg]: This fixes the build with
 	gtkmm from git master.
 
 2010-09-06  Murray Cumming  <murrayc@murrayc.com>

@@ -28,7 +28,7 @@ Gdk::GrabStatus Canvas::pointer_grab(const Glib::RefPtr<Item>& item, Gdk::EventM
 
 void Canvas::render(const Cairo::RefPtr<Cairo::Context>& context, double scale)
 {
-  goo_canvas_render(gobj(), (context)->cobj(), NULL, scale); 
+  goo_canvas_render(gobj(), (context)->cobj(), NULL, scale);
 }
 
 void Canvas::get_bounds(Bounds& bounds) const
@@ -47,4 +47,3 @@ void Canvas::set_bounds(const Bounds& bounds)
 }
 
 } //namespace Goocanvas
-
