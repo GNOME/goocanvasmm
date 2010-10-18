@@ -1,5 +1,12 @@
 2010-10-18  Murray Cumming  <murrayc@murrayc.com>
 
+	Use non-deprecated Gtk::ALIGN_* for default parameters.
+
+	* goocanvas/src/table.hg:
+	* goocanvas/src/tablemodel.hg: Replace ALIGN_LEFT/TOP with ALIGN_START.
+
+2010-10-18  Murray Cumming  <murrayc@murrayc.com>
+
 	Fix the build with fatal warnings with gtkmm 2.22.
 
 	* goocanvas/src/bounds.hg:
