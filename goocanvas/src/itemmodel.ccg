@@ -15,26 +15,26 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <goocanvasenumtypes.h>
 #include <goocanvasmm/canvas.h>
-
+#include <goocanvasitemmodel.h>
+#include <goocanvasenumtypes.h>
 
 namespace Goocanvas
 {
 
 void ItemModel::raise()
 {
-  goo_canvas_item_model_raise(gobj(), NULL); 
+  goo_canvas_item_model_raise(gobj(), NULL);
 }
 
 void ItemModel::lower()
 {
-  goo_canvas_item_model_lower(gobj(), NULL); 
+  goo_canvas_item_model_lower(gobj(), NULL);
 }
 
 void ItemModel::add_child(const Glib::RefPtr<ItemModel>& child)
 {
-  goo_canvas_item_model_add_child(gobj(), Glib::unwrap(child), -1); 
+  goo_canvas_item_model_add_child(gobj(), Glib::unwrap(child), -1);
 }
 
 } //namespace Goocanvas

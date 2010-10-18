@@ -16,9 +16,10 @@
  */
 
 
+#include <goocanvasmm/canvas.h>
 #include <goocanvasutils.h>
 #include <goocanvasenumtypes.h>
-#include <goocanvasmm/canvas.h>
+
 
 namespace Goocanvas
 {
@@ -32,17 +33,17 @@ Bounds Item::get_bounds() const
 
 void Item::raise()
 {
-  goo_canvas_item_raise(gobj(), NULL); 
+  goo_canvas_item_raise(gobj(), NULL);
 }
 
 void Item::lower()
 {
-  goo_canvas_item_lower(gobj(), NULL); 
+  goo_canvas_item_lower(gobj(), NULL);
 }
 
 void Item::add_child(const Glib::RefPtr<Item>& child)
 {
-  goo_canvas_item_add_child(gobj(), Glib::unwrap(child), -1); 
+  goo_canvas_item_add_child(gobj(), Glib::unwrap(child), -1);
 }
 
 // We need to hand-code this vfunc to write the result back into the
@@ -150,7 +151,7 @@ g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Ge
     if(base && base->get_items_at)
       return (*base->get_items_at)(self, x, y, cr, is_pointer_event, parent_is_visible, found_items);
   }
-  
+
   return 0;
 }
 
@@ -171,7 +172,7 @@ Glib::ListHandle<Glib::RefPtr<Item> > Item::get_items_at_vfunc(double x, double 
   // ownership.
   if(base && base->get_items_at)
     return Glib::ListHandle<Glib::RefPtr<Item> >((*base->get_items_at)(const_cast<GooCanvasItem*>(gobj()), x, y, context->cobj(), static_cast<int>(is_pointer_event), static_cast<int>(is_parent_visible), found_items.data()), Glib::OWNERSHIP_SHALLOW);
-  
+
   return Glib::ListHandle<Glib::RefPtr<Item> >(NULL, Glib::OWNERSHIP_SHALLOW);
 }
 
@@ -186,4 +187,3 @@ Glib::ListHandle< Glib::RefPtr<const Item> > Item::get_items_at(double x, double
 }
 
 } //namespace Goocanvas
-

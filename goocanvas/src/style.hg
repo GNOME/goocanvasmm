@@ -20,7 +20,8 @@
 #include <cairomm/context.h>
 #include <cairomm/refptr.h>
 
-#include <goocanvasstyle.h>
+#include <gdkmm.h>
+#include <goocanvasstyle.h> //For the template implementations.
 
 _DEFS(goocanvasmm,libgoocanvas)
 _PINCLUDE(glibmm/private/object_p.h)
@@ -70,4 +71,3 @@ void Style::set_property(GQuark property_id, const PropertyType& value)
 }
 
 }
-

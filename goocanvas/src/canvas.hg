@@ -15,18 +15,18 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <goocanvasmm/item.h>
-#include <goocanvasmm/itemmodel.h>
-#include <goocanvasmm/itemsimple.h>
-#include <goocanvasmm/style.h>
-#include <goocanvasmm/widget.h>
+
 
 #include <gtkmm/adjustment.h>
 #include <gtkmm/container.h>
 #include <gdkmm/cursor.h>
 #include <cairomm/context.h>
 #include <gtkmm/papersize.h> //For Gtk::Unit
-
+#include <goocanvasmm/item.h>
+#include <goocanvasmm/itemmodel.h>
+#include <goocanvasmm/itemsimple.h>
+#include <goocanvasmm/style.h>
+#include <goocanvasmm/widget.h>
 
 
 _DEFS(goocanvasmm,libgoocanvas)
@@ -156,4 +156,3 @@ protected:
 };
 
 } //namespace Goocanvas
-

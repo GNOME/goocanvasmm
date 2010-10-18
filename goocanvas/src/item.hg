@@ -20,7 +20,6 @@
 #include <goocanvasmm/enums.h>
 #include <goocanvasmm/style.h>
 #include <cairomm/cairomm.h>
-#include <goocanvasitem.h>
 
 _DEFS(goocanvasmm,libgoocanvas)
 _PINCLUDE(glibmm/private/interface_p.h)
@@ -168,10 +167,10 @@ public:
   _WRAP_PROPERTY("description", Glib::ustring)
   _WRAP_PROPERTY("can-focus", bool)
 
-  //These properties are not really in GooCanvasItem, but they are actually 
-  //implemented in all derived GooCanvasItem classes individually. 
-  //That is a GooCanvas design error, but the patch to fix it has 
-  //not yet been accepted: http://bugzilla.gnome.org/show_bug.cgi?id=555097 
+  //These properties are not really in GooCanvasItem, but they are actually
+  //implemented in all derived GooCanvasItem classes individually.
+  //That is a GooCanvas design error, but the patch to fix it has
+  //not yet been accepted: http://bugzilla.gnome.org/show_bug.cgi?id=555097
   _WRAP_PROPERTY("x", double)
   _WRAP_PROPERTY("y", double)
   _WRAP_PROPERTY("width", double)
@@ -280,4 +279,3 @@ void Item::set_child_property(const Glib::RefPtr<Item>& child, const Glib::ustri
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
 } //namespace Goocanvas
-

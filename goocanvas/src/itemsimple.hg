@@ -15,13 +15,12 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm/object.h>
 #include <gdkmm/pixbuf.h>
-#include <cairomm/cairomm.h>
-
 #include <goocanvasmm/item.h>
 #include <goocanvasmm/linedash.h>
 #include <goocanvasmm/style.h>
+#include <glibmm/object.h>
+#include <cairomm/cairomm.h>
 
 _DEFS(goocanvasmm,libgoocanvas)
 _PINCLUDE(glibmm/private/object_p.h)
@@ -105,4 +104,3 @@ protected:
 };
 
 } //namespace Goocanvas
-

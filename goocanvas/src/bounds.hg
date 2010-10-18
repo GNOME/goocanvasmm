@@ -15,7 +15,8 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <goocanvasitem.h>
+#include <gdkmm.h>
+#include <goocanvasitem.h> //For GooCanvasBounds.
 
 _DEFS(goocanvasmm,libgoocanvas)
 
@@ -43,4 +44,3 @@ public:
 };
 
 }
-

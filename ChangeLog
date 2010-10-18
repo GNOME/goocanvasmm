@@ -1,3 +1,16 @@
+2010-10-18  Murray Cumming  <murrayc@murrayc.com>
+
+	Fix the build with fatal warnings with gtkmm 2.22.
+
+	* goocanvas/src/bounds.hg:
+	* goocanvas/src/canvas.hg:
+	* goocanvas/src/item.ccg:
+	* goocanvas/src/item.hg:
+	* goocanvas/src/itemmodel.[hg|ccg]:
+	* goocanvas/src/itemsimple.hg:
+	* goocanvas/src/style.hg: Rearranged the includes to fix the build with
+  the awkard gdkmm deprecations.
+
 2010-09-02  Murray Cumming  <murrayc@murrayc.com>
 
 	Fix the build with the latest cairomm.

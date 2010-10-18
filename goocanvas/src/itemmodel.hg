@@ -17,14 +17,15 @@
  */
 
 #include <cairomm/cairomm.h>
-#include <goocanvasitemmodel.h>
 #include <goocanvasmm/style.h>
 #include <goocanvasmm/enums.h>
 
 _DEFS(goocanvasmm,libgoocanvas)
 _PINCLUDE(glibmm/private/interface_p.h)
+_PINCLUDE(goocanvasitem.h)
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
+extern "C" { typedef struct _GooCanvasItemModelIface GooCanvasItemModelIface; }
 extern "C" { typedef union _GooCanvasPathCommand GooCanvasPathCommand; }
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
@@ -112,10 +113,10 @@ public:
   _WRAP_PROPERTY("visibility", ItemVisibility)
   _WRAP_PROPERTY("visibility-threshold", double)
 
-  //These properties are not really in GooCanvasItemModel, but they are actually 
-  //implemented in all derived GooCanvasItemModel classes individually. 
-  //That is a GooCanvas design error, but the patch to fix it has 
-  //not yet been accepted: http://bugzilla.gnome.org/show_bug.cgi?id=555097 
+  //These properties are not really in GooCanvasItemModel, but they are actually
+  //implemented in all derived GooCanvasItemModel classes individually.
+  //That is a GooCanvas design error, but the patch to fix it has
+  //not yet been accepted: http://bugzilla.gnome.org/show_bug.cgi?id=555097
   _WRAP_PROPERTY("x", double)
   _WRAP_PROPERTY("y", double)
   _WRAP_PROPERTY("width", double)
@@ -150,4 +151,3 @@ protected:
 };
 
 }
-
