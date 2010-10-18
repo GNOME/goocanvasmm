@@ -1,3 +1,5 @@
+0.15.4:
+
 2010-10-18  Murray Cumming  <murrayc@murrayc.com>
 
 	Use non-deprecated Gtk::ALIGN_* for default parameters.
@@ -11,8 +13,7 @@
 
 	* goocanvas/src/bounds.hg:
 	* goocanvas/src/canvas.hg:
-	* goocanvas/src/item.ccg:
-	* goocanvas/src/item.hg:
+	* goocanvas/src/item.[hg|ccg]:
 	* goocanvas/src/itemmodel.[hg|ccg]:
 	* goocanvas/src/itemsimple.hg:
 	* goocanvas/src/style.hg: Rearranged the includes to fix the build with
