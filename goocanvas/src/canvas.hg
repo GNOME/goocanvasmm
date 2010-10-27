@@ -123,10 +123,6 @@ public:
   _WRAP_METHOD(void register_widget_item(const Glib::RefPtr<Goocanvas::Widget>& widget), goo_canvas_register_widget_item)
   _WRAP_METHOD(void unregister_widget_item(const Glib::RefPtr<Goocanvas::Widget>& widget), goo_canvas_unregister_widget_item)
 
-#m4 _CONVERSION(`GtkAdjustment*',`const Glib::RefPtr<Gtk::Adjustment>&',`Glib::wrap($3, true)')
-#m4 _CONVERSION(`const Glib::RefPtr<Gtk::Adjustment>&',`GtkAdjustment*',__CONVERT_REFPTR_TO_P)
-  _WRAP_SIGNAL(void set_scroll_adjustments(const Glib::RefPtr<Gtk::Adjustment>& hadjustment, const Glib::RefPtr<Gtk::Adjustment>& vadjustment), "set_scroll_adjustments")
-
 #m4 _CONVERSION(`GooCanvasItem*',`const Glib::RefPtr<Item>&',`Glib::wrap($3, true)')
 #m4 _CONVERSION(`GooCanvasItemModel*',`const Glib::RefPtr<ItemModel>&',`Glib::wrap($3, true)')
   _WRAP_SIGNAL(void item_created(const Glib::RefPtr<Item>& item, const Glib::RefPtr<ItemModel>& model), "item_created")

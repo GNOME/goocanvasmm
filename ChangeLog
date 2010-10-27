@@ -1,3 +1,11 @@
+2010-10-27  Murray Cumming  <murrayc@murrayc.com>
+
+	Fix the build with a (future/patched) goocanvas.
+
+	* goocanvas/src/canvas.hg: Don't wrap the set_scroll_adjustments signal,
+	because it was only for internal use by GtkScrolledWindow and will be
+	removed from GooCanvas soon.
+
 2010-09-29  Murray Cumming  <murrayc@murrayc.com>
 
 	Fix the build with the latest gtkmm 3 API.
