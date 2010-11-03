@@ -1,3 +1,9 @@
+1.9.2 (unstable):
+
+* Build with the latest gtkmm and latest goocanvas.
+* Replace use of Gtk::AlignmentEnum with Gtk::Align.
+* Canvas: Use Adjustment via RefPtr.
+
 1.9.0 (unstable):
 
 * Use gtkmm-3.0 instead of gtkmm-2.4, and goocanvas-2.0.
