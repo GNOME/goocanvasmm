@@ -21,6 +21,7 @@
 #include <goocanvasmm/itemmodel.h>
 #include <goocanvasmm/linedash.h>
 #include <goocanvasmm/style.h>
+#include <pangomm/fontdescription.h>
 
 _DEFS(goocanvasmm,libgoocanvas)
 _PINCLUDE(glibmm/private/object_p.h)

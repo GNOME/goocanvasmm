@@ -18,6 +18,8 @@
 
 #include <goocanvasmm/itemsimple.h>
 #include <gtkmm/enums.h> /* For AnchorType. */
+#include <pangomm/rectangle.h>
+#include <pangomm/layout.h> //For Pango::Alignment
 
 _DEFS(goocanvasmm,libgoocanvas)
 _PINCLUDE(glibmm/private/object_p.h)

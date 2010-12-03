@@ -1,3 +1,12 @@
+2010-12-03  Murray Cumming  <murrayc@murrayc.com>
+
+	Fix the build with the latest gtkmm from git master.
+
+	* goocanvas/src/itemmodelsimple.hg:
+	* goocanvas/src/itemsimple.hg:
+	* goocanvas/src/text.hg:
+	* goocanvas/src/textmodel.hg: Added pangomm includes.
+
 1.9.2:
 
 2010-10-27  Murray Cumming  <murrayc@murrayc.com>
