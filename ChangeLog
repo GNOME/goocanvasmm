@@ -1,3 +1,11 @@
+2011-01-05  Murray Cumming  <murrayc@murrayc.com>
+
+	Use Gdk::Cursor via RefPtr.
+
+	* codegen/m4/convert_libgoocanvasmm.m4: Added a conversion.
+	* goocanvas/src/canvas.hg: pointer_grab(): Take the Gdk::Cursor as a RefPtr<>,
+	as is now necessary with gtkmm 3.
+
 2010-12-16  Murray Cumming  <murrayc@murrayc.com>
 
 	Fix the build with the latest gtkmm from git master.

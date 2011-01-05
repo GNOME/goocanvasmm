@@ -100,9 +100,7 @@ public:
   _WRAP_METHOD(void convert_from_item_space(const Glib::RefPtr<Item>& item, double& x, double& y) const, goo_canvas_convert_from_item_space)
   _WRAP_METHOD(void convert_bounds_to_item_space(const Glib::RefPtr<Item>& item, Bounds& bounds) const, goo_canvas_convert_bounds_to_item_space)
 
-  //TODO: Use C++ types?
-#m4 _CONVERSION(`const Gdk::Cursor&',`GdkCursor*',__FCR2P)
-  _WRAP_METHOD(Gdk::GrabStatus pointer_grab(const Glib::RefPtr<Item>& item, Gdk::EventMask mask, const Gdk::Cursor& cursor, guint32 time), goo_canvas_pointer_grab)
+  _WRAP_METHOD(Gdk::GrabStatus pointer_grab(const Glib::RefPtr<Item>& item, Gdk::EventMask mask, const Glib::RefPtr<Gdk::Cursor>& cursor, guint32 time), goo_canvas_pointer_grab)
   Gdk::GrabStatus pointer_grab(const Glib::RefPtr<Item>& item, Gdk::EventMask mask, guint32 time);
 
   _WRAP_METHOD(void pointer_ungrab(const Glib::RefPtr<Item>& item, guint32 time), goo_canvas_pointer_ungrab)

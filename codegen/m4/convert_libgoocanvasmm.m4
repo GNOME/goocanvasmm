@@ -47,3 +47,5 @@ _CONVERSION(`Cairo::RefPtr<Cairo::Pattern>', `GooCairoPattern*',__CONVERT_REFPTR
 
 _CONVERSION(`GooCanvasAnchorType',`AnchorType',`($2)($3)')
 
+_CONVERSION(`const Glib::RefPtr<Gdk::Cursor>&',`GdkCursor*',__CONVERT_REFPTR_TO_P)
+
