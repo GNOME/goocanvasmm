@@ -15,7 +15,7 @@
 ## You should have received a copy of the GNU Lesser General Public License
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-AC_INIT([goocanvasmm], [1.9.2], [http://bugzilla.gnome.org/], [goocanvasmm], [http://www.gtkmm.org/])
+AC_INIT([goocanvasmm], [1.90.2], [http://bugzilla.gnome.org/], [goocanvasmm], [http://www.gtkmm.org/])
 AC_PREREQ([2.59])
 
 AC_CONFIG_SRCDIR([goocanvas/src/canvas.hg])
@@ -38,7 +38,7 @@ AC_DISABLE_STATIC
 AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
-AC_SUBST([GOOCANVASMM_MODULES], ['glibmm-2.4 >= 2.14.2 gtkmm-3.0 >= 2.91.3 goocanvas-2.0 >= 1.9.2'])
+AC_SUBST([GOOCANVASMM_MODULES], ['glibmm-2.4 >= 2.14.2 gtkmm-3.0 >= 2.91.3 goocanvas-2.0 >= 1.90.2'])
 PKG_CHECK_MODULES([GOOCANVASMM], [$GOOCANVASMM_MODULES])
 
 MM_PKG_CONFIG_SUBST([GTHREAD_CFLAGS], [--cflags-only-other gthread-2.0])
@@ -56,8 +56,8 @@ MM_ARG_WITH_TAGFILE_DOC([gtkmm-2.4.tag], [gtkmm-2.4])
 AC_LANG([C++])
 MM_ARG_ENABLE_WARNINGS([GOOCANVASMM_WXXFLAGS],
                        [-Wall],
-                       [-pedantic -Wall -Wextra],
-                       [G ATK PANGO GDK GDK_PIXBUF GTK])
+                       [-pedantic -Wall -Wextra  -Wno-long-long -DGSEAL_ENABLE],
+                       [G PANGO ATK GDK GDK_PIXBUF GTK GLIBMM ATKMM PANGOMM CAIROMM])
 
 AC_CONFIG_FILES([Makefile
                  codegen/Makefile

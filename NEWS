@@ -1,3 +1,8 @@
+1.90.2 (unstable):
+
+* Use Gdk::Cursor via RefPtr.
+* Fix the build with latest gtkmm.
+	
 1.9.2 (unstable):
 
 * Build with the latest gtkmm and latest goocanvas.
