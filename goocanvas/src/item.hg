@@ -104,16 +104,18 @@ public:
 
   // Note the semantics of the C version: The returned list is the same as the
   // one fed into the function, with possibly some elements added to the head.
-#m4 _CONVERSION(`const Glib::ListHandle< Glib::RefPtr<Item> >&', `GList*', `g_list_copy(($3).data())')
-#m4 _CONVERSION(`const Glib::ListHandle< Glib::RefPtr<const Item> >&', `GList*', `g_list_copy(($3).data())')
-#m4 _CONVERSION(`GList*', `Glib::ListHandle< Glib::RefPtr<Item> >', `$2($3, Glib::OWNERSHIP_SHALLOW)')
-#m4 _CONVERSION(`GList*', `Glib::ListHandle< Glib::RefPtr<const Item> >', `$2($3, Glib::OWNERSHIP_SHALLOW)')
-  _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<Item> > get_items_at(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool parent_is_visible, const Glib::ListHandle< Glib::RefPtr<Item> >& found_items), goo_canvas_item_get_items_at)
-  _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<const Item> > get_items_at(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool parent_is_visible, const Glib::ListHandle< Glib::RefPtr<const Item> >& found_items) const, goo_canvas_item_get_items_at)
+#m4 _CONVERSION(`const std::vector< Glib::RefPtr<Item> >&',`GList*',`g_list_copy(Glib::ListHandler<Glib::RefPtr<Item> >::vector_to_list($3).data())')
+#m4 _CONVERSION(`const std::vector< Glib::RefPtr<const Item> >&',`GList*',`g_list_copy(Glib::ListHandler<Glib::RefPtr<const Item> >::vector_to_list($3).data())')
+
+#m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr<Item> >',`Glib::ListHandler<Glib::RefPtr<Item> >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
+#m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr<const Item> >',`Glib::ListHandler<Glib::RefPtr<const Item> >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
+
+  _WRAP_METHOD(std::vector< Glib::RefPtr<Item> > get_items_at(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool parent_is_visible, const std::vector< Glib::RefPtr<Item> >& found_items), goo_canvas_item_get_items_at)
+  _WRAP_METHOD(std::vector< Glib::RefPtr<const Item> > get_items_at(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool parent_is_visible, const std::vector< Glib::RefPtr<const Item> >& found_items) const, goo_canvas_item_get_items_at)
 
   // Use this if you don't have a list already:
-  Glib::ListHandle< Glib::RefPtr<Item> > get_items_at(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool parent_is_visible);
-  Glib::ListHandle< Glib::RefPtr<const Item> > get_items_at(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool parent_is_visible) const;
+  std::vector< Glib::RefPtr<Item> > get_items_at(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool parent_is_visible);
+  std::vector< Glib::RefPtr<const Item> > get_items_at(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool parent_is_visible) const;
 
   //TODO: Use Cairo::RefPtr?
   _WRAP_METHOD(bool get_transform(Cairo::Matrix* matrix), goo_canvas_item_get_transform)
@@ -205,7 +207,7 @@ protected:
 #ifdef GLIBMM_VFUNCS_ENABLED
   // Hand code, since Bounds can only copy a GooCanvasBounds* but not ref one.
   virtual void get_bounds_vfunc(Bounds& bounds) const;
-  virtual Glib::ListHandle<Glib::RefPtr<Item> > get_items_at_vfunc(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool is_parent_visible, const Glib::ListHandle<Glib::RefPtr<Item> >& found_items);
+  virtual std::vector<Glib::RefPtr<Item> > get_items_at_vfunc(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool is_parent_visible, const std::vector<Glib::RefPtr<Item> >& found_items);
 #endif
 
 #m4begin

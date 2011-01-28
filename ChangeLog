@@ -1,3 +1,11 @@
+2011-01-28  Murray Cumming  <murrayc@murrayc.com>
+
+	Replace use of *ListHandle with std::vector<>, as in gtkmm.
+
+	* goocanvas/src/canvas.hg:
+	* goocanvas/src/item.[hg|ccg]: However, the vfunc implemenations here need 
+	some attention to make sure that we are not doing awful things with memory.
+
 1.90.2:
 
 2011-01-05  Murray Cumming  <murrayc@murrayc.com>

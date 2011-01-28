@@ -68,14 +68,13 @@ public:
   _WRAP_METHOD(Glib::RefPtr<Item> get_item_at(double x, double y, bool is_pointer_event), goo_canvas_get_item_at, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Item> get_item_at(double x, double y, bool is_pointer_event) const, goo_canvas_get_item_at, constversion)
 
-#define(`__FL2H_SHALLOW',`$`'2($`'3, Glib::OWNERSHIP_SHALLOW)')
-#_CONVERSION(`GList*',`Glib::ListHandle< Glib::RefPtr<Item> >', __FL2H_SHALLOW)
-#_CONVERSION(`GList*',`Glib::ListHandle< Glib::RefPtr<const Item> >', __FL2H_SHALLOW)
+#m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr<Item> >',`Glib::ListHandler<Glib::RefPtr<Item> >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
+#m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr<const Item> >',`Glib::ListHandler<Glib::RefPtr<const Item> >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
 
-  _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<Item> > get_items_at(double x, double y, bool is_pointer_event), goo_canvas_get_items_at)
-  _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<const Item> > get_items_at(double x, double y, bool is_pointer_event) const, goo_canvas_get_items_at)
-  _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<Item> > get_items_in_area(const Bounds& area, bool inside_area, bool allow_overlaps, bool include_containers), goo_canvas_get_items_in_area)
-  _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<const Item> > get_items_in_area(const Bounds& area, bool inside_area, bool allow_overlaps, bool include_containers) const, goo_canvas_get_items_in_area)
+  _WRAP_METHOD(std::vector< Glib::RefPtr<Item> > get_items_at(double x, double y, bool is_pointer_event), goo_canvas_get_items_at)
+  _WRAP_METHOD(std::vector< Glib::RefPtr<const Item> > get_items_at(double x, double y, bool is_pointer_event) const, goo_canvas_get_items_at)
+  _WRAP_METHOD(std::vector< Glib::RefPtr<Item> > get_items_in_area(const Bounds& area, bool inside_area, bool allow_overlaps, bool include_containers), goo_canvas_get_items_in_area)
+  _WRAP_METHOD(std::vector< Glib::RefPtr<const Item> > get_items_in_area(const Bounds& area, bool inside_area, bool allow_overlaps, bool include_containers) const, goo_canvas_get_items_in_area)
 
   _WRAP_METHOD(double get_scale() const, goo_canvas_get_scale)
   _WRAP_METHOD(void set_scale(double scale), goo_canvas_set_scale)
