@@ -1,3 +1,5 @@
+1.90.3:
+
 2011-02-02  Murray Cumming  <murrayc@murrayc.com>
 
 	Correct the use of Glib::ListHandler.

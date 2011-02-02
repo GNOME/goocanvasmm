@@ -15,7 +15,7 @@
 ## You should have received a copy of the GNU Lesser General Public License
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-AC_INIT([goocanvasmm], [1.90.2], [http://bugzilla.gnome.org/], [goocanvasmm], [http://www.gtkmm.org/])
+AC_INIT([goocanvasmm], [1.90.3], [http://bugzilla.gnome.org/], [goocanvasmm], [http://www.gtkmm.org/])
 AC_PREREQ([2.59])
 
 AC_CONFIG_SRCDIR([goocanvas/src/canvas.hg])
@@ -31,7 +31,7 @@ MM_PREREQ([0.7.2])
 MM_INIT_MODULE([goocanvasmm-2.0])
 
 # http://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html
-AC_SUBST([GOOCANVASMM_SO_VERSION], [5:0:0])
+AC_SUBST([GOOCANVASMM_SO_VERSION], [6:0:0])
 
 AC_PROG_CXX
 AC_DISABLE_STATIC

@@ -1,3 +1,9 @@
+1.90.3 (unstable):
+
+* Replace use of *ListHandle with std::vector<>, as in gtkmm,
+  matching the new convention for this in gtkmm 3.
+  (Murray Cumming)
+
 1.90.2 (unstable):
 
 * Use Gdk::Cursor via RefPtr.
