@@ -1,3 +1,10 @@
+2011-02-02  Murray Cumming  <murrayc@murrayc.com>
+
+	Correct the use of Glib::ListHandler.
+
+	* goocanvas/src/item.ccg: Fix a compilation error and do not try to 
+	remember the temporary value from data().
+
 2011-01-28  Murray Cumming  <murrayc@murrayc.com>
 
 	Replace use of *ListHandle with std::vector<>, as in gtkmm.

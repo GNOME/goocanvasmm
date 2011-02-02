@@ -32,12 +32,12 @@ Bounds Item::get_bounds() const
 
 void Item::raise()
 {
-  goo_canvas_item_raise(gobj(), NULL); 
+  goo_canvas_item_raise(gobj(), 0); 
 }
 
 void Item::lower()
 {
-  goo_canvas_item_lower(gobj(), NULL); 
+  goo_canvas_item_lower(gobj(), 0); 
 }
 
 void Item::add_child(const Glib::RefPtr<Item>& child)
@@ -133,7 +133,7 @@ GList* Item_Class::get_items_at_vfunc_callback(GooCanvasItem* self, gdouble x, g
       std::vector<Glib::RefPtr<Item> > retval(obj->get_items_at_vfunc(x, y, Cairo::RefPtr<Cairo::Context>(new Cairo::Context(cr, false /* has_reference */)), is_pointer_event == TRUE, parent_is_visible == TRUE, vec_found_items));
       // retval will free the list on destruction, and we can't change the
       // ownership here, so we have to copy the list.
-      return g_list_copy(retval.data());
+      return g_list_copy( Glib::ListHandler<Glib::RefPtr<Item> >::vector_to_list(retval).data() );
     #ifdef GLIBMM_EXCEPTIONS_ENABLED
     }
     catch(...)
@@ -174,10 +174,10 @@ std::vector<Glib::RefPtr<Item> > Item::get_items_at_vfunc(double x, double y, co
   // ownership.
   if(base && base->get_items_at)
   {
-    GList* glist_found_items = Glib::ListHandler<Glib::RefPtr<Item> >::vector_to_list(found_items).data();
 
-    GList* cresult = (*base->get_items_at)(const_cast<GooCanvasItem*>(gobj()), x, y, context->cobj(), static_cast<int>(is_pointer_event), static_cast<int>(is_parent_visible), glist_found_items);
-    g_list_free(glist_found_items); //TODO: Is this right?
+    GList* cresult = (*base->get_items_at)(const_cast<GooCanvasItem*>(gobj()), x, y, context->cobj(), static_cast<int>(is_pointer_event), static_cast<int>(is_parent_visible), 
+      Glib::ListHandler<Glib::RefPtr<Item> >::vector_to_list(found_items).data());
+
     return Glib::ListHandler<Glib::RefPtr<Item> >::list_to_vector(cresult, Glib::OWNERSHIP_SHALLOW);
   }
   
@@ -186,12 +186,12 @@ std::vector<Glib::RefPtr<Item> > Item::get_items_at_vfunc(double x, double y, co
 
 std::vector< Glib::RefPtr<Item> > Item::get_items_at(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool parent_is_visible)
 {
-  return Glib::ListHandler<Glib::RefPtr<Item> >::list_to_vector(goo_canvas_item_get_items_at(gobj(), x, y, (context)->cobj(), static_cast<int>(is_pointer_event), static_cast<int>(parent_is_visible), NULL), Glib::OWNERSHIP_SHALLOW);
+  return Glib::ListHandler<Glib::RefPtr<Item> >::list_to_vector(goo_canvas_item_get_items_at(gobj(), x, y, (context)->cobj(), static_cast<int>(is_pointer_event), static_cast<int>(parent_is_visible), 0), Glib::OWNERSHIP_SHALLOW);
 }
 
 std::vector< Glib::RefPtr<const Item> > Item::get_items_at(double x, double y, const Cairo::RefPtr<Cairo::Context>& context, bool is_pointer_event, bool parent_is_visible) const
 {
-  return Glib::ListHandler<Glib::RefPtr<const Item> >::list_to_vector(goo_canvas_item_get_items_at(const_cast<GooCanvasItem*>(gobj()), x, y, (context)->cobj(), static_cast<int>(is_pointer_event), static_cast<int>(parent_is_visible), NULL), Glib::OWNERSHIP_SHALLOW);
+  return Glib::ListHandler<Glib::RefPtr<const Item> >::list_to_vector(goo_canvas_item_get_items_at(const_cast<GooCanvasItem*>(gobj()), x, y, (context)->cobj(), static_cast<int>(is_pointer_event), static_cast<int>(parent_is_visible), 0), Glib::OWNERSHIP_SHALLOW);
 }
 
 } //namespace Goocanvas
