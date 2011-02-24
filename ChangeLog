@@ -1,3 +1,14 @@
+2011-02-24  Murray Cumming  <murrayc@murrayc.com>
+
+	Build the examples during make check (and distcheck).
+
+	* Makefile.am: Add examples to the SUBDIRS.
+	* examples: Remove the individual Makefile.am files, adding their contents 
+	to examples/Makefile.am.
+	
+	The build of the examples was apparently disabled since we converted the build 
+	to use mm-common.
+
 1.90.3:
 
 2011-02-02  Murray Cumming  <murrayc@murrayc.com>

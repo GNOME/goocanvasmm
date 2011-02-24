@@ -59,7 +59,7 @@ private:
   Glib::RefPtr<Goocanvas::Item>
         _create_anchor(double x, double y);
 
-  void      _create_flower(double x, double y, Gtk::AnchorType anchor);
+  void      _create_flower(double x, double y, Goocanvas::AnchorType anchor);
   void      _create_polish_diamond();
   void      _create_hilbert();
 

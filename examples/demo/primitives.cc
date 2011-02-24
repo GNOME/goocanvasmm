@@ -98,7 +98,7 @@ Primitives::_setup_heading(const Glib::ustring& heading, int pos)
   double x = (pos%3) * 200 + 100 ;
   double y = (pos/3) * 150 + 5 ;
 
-  Glib::RefPtr<Goocanvas::Text> text = Goocanvas::Text::create(heading, x, y, -1, Gtk::ANCHOR_N);
+  Glib::RefPtr<Goocanvas::Text> text = Goocanvas::Text::create(heading, x, y, -1, Goocanvas::ANCHOR_N);
   _canvas->get_root_item()->add_child(text);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "Sans 12" ;
@@ -302,7 +302,7 @@ Primitives::_setup_texts()
         Glib::RefPtr<Goocanvas::Item> anchor;
 
   anchor = _create_anchor(420, 20);
-  text = Goocanvas::Text::create("Anchor NW", 0, 0, -1, Gtk::ANCHOR_NW);
+  text = Goocanvas::Text::create("Anchor NW", 0, 0, -1, Goocanvas::ANCHOR_NW);
   anchor->add_child(text);
   //ellipse->property_fill_pattern() = _create_stipple("blue");
   Cairo::RefPtr<Cairo::Pattern> p = _create_stipple("blue");
@@ -319,7 +319,7 @@ Primitives::_setup_texts()
   _setup_signals(text);
 
   anchor = _create_anchor(470, 75);
-  text = Goocanvas::Text::create("Anchor center\nJustify center\nMultiline text\n8bit text 'gibberish'", 0, 0, -1, Gtk::ANCHOR_CENTER);
+  text = Goocanvas::Text::create("Anchor center\nJustify center\nMultiline text\n8bit text 'gibberish'", 0, 0, -1, Goocanvas::ANCHOR_CENTER);
   anchor->add_child(text);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "monospace bold 14" ;
@@ -335,7 +335,7 @@ Primitives::_setup_texts()
   anchor = _create_anchor(420, 240);
   text = Goocanvas::Text::create(
     "This is a very long paragraph that will need to be wrapped over several lines so we can see what happens to line-breaking as the view is zoomed in and out.",
-    0, 0, 180, Gtk::ANCHOR_W);
+    0, 0, 180, Goocanvas::ANCHOR_W);
   anchor->add_child(text);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "Sans 12" ;
@@ -346,7 +346,7 @@ Primitives::_setup_texts()
 #endif
   _setup_signals(text);
 
-  text = Goocanvas::Text::create("Ellipsized text.", 20, 420, 115, Gtk::ANCHOR_W);
+  text = Goocanvas::Text::create("Ellipsized text.", 20, 420, 115, Goocanvas::ANCHOR_W);
   _canvas->get_root_item()->add_child(text);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "Sans 12" ;
@@ -396,10 +396,10 @@ Primitives::_setup_images()
 #endif
   _setup_signals(img);
 
-  _create_flower(20.0, 170.0, Gtk::ANCHOR_NW);
-  _create_flower(180.0, 170.0, Gtk::ANCHOR_NE);
-  _create_flower(20.0, 280.0, Gtk::ANCHOR_SW);
-  _create_flower(180.0, 280.0, Gtk::ANCHOR_SE);
+  _create_flower(20.0, 170.0, Goocanvas::ANCHOR_NW);
+  _create_flower(180.0, 170.0, Goocanvas::ANCHOR_NE);
+  _create_flower(20.0, 280.0, Goocanvas::ANCHOR_SW);
+  _create_flower(180.0, 280.0, Goocanvas::ANCHOR_SE);
 }
 
 void
@@ -510,7 +510,7 @@ Primitives::_create_anchor(double x, double y)
 }
 
 void
-Primitives::_create_flower(double x, double y, Gtk::AnchorType anchor)
+Primitives::_create_flower(double x, double y, Goocanvas::AnchorType anchor)
 {
   Cairo::RefPtr<Cairo::ImageSurface> surface ;
 

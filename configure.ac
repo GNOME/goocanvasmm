@@ -65,6 +65,7 @@ AC_CONFIG_FILES([Makefile
                  goocanvas/${GOOCANVASMM_MODULE_NAME}-uninstalled.pc:goocanvas/goocanvasmm-uninstalled.pc.in
                  goocanvas/src/Makefile
                  goocanvas/goocanvasmm/Makefile
+                 examples/Makefile
                  doc/Makefile
                  doc/reference/Doxyfile])
 AC_OUTPUT

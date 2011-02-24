@@ -52,7 +52,7 @@ protected:
   Gtk::HBox m_hbox;
   Gtk::Button m_button_rect, m_button_ellipse;
 
-  std::list<Gtk::TargetEntry> m_drag_targets;
+  std::vector<Gtk::TargetEntry> m_drag_targets;
   Glib::RefPtr<Goocanvas::Item> m_layout_item_dropping;
   bool m_drag_preview_requested;
 };
