@@ -28,7 +28,7 @@ doc_subdirs = doc
 else
 doc_subdirs =
 endif
-SUBDIRS = $(src_subdirs) goocanvas/goocanvasmm $(doc_subdirs) examples
+SUBDIRS = $(src_subdirs) goocanvas/goocanvasmm $(doc_subdirs) examples tests
 
 goocanvasmm_includedir = $(includedir)/$(GOOCANVASMM_MODULE_NAME)
 goocanvasmm_include_HEADERS = goocanvas/goocanvasmm.h

@@ -1,5 +1,14 @@
 2011-02-24  Murray Cumming  <murrayc@murrayc.com>
 
+	Build the tests during make check too.
+
+	* configure.ac: Mention the tests/Makefile.am file.
+	* Makefile.am: Add tests to SUBDIRS.
+	* tests/Makefile.am: Specify the test to build here, and its source code.
+	* tests/child_properties/Makefile.am: Remove.
+
+2011-02-24  Murray Cumming  <murrayc@murrayc.com>
+
 	Build the examples during make check (and distcheck).
 
 	* Makefile.am: Add examples to the SUBDIRS.

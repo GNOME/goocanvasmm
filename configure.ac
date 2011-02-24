@@ -66,6 +66,7 @@ AC_CONFIG_FILES([Makefile
                  goocanvas/src/Makefile
                  goocanvas/goocanvasmm/Makefile
                  examples/Makefile
+                 tests/Makefile
                  doc/Makefile
                  doc/reference/Doxyfile])
 AC_OUTPUT
