@@ -15,7 +15,7 @@
 ## You should have received a copy of the GNU Lesser General Public License
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-AC_INIT([goocanvasmm], [1.90.3], [http://bugzilla.gnome.org/], [goocanvasmm], [http://www.gtkmm.org/])
+AC_INIT([goocanvasmm], [1.90.4], [http://bugzilla.gnome.org/], [goocanvasmm], [http://www.gtkmm.org/])
 AC_PREREQ([2.59])
 
 AC_CONFIG_SRCDIR([goocanvas/src/canvas.hg])

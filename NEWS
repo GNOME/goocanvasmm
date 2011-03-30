@@ -1,3 +1,10 @@
+1.90.4 (unstable):
+
+* Build:
+  - Avoid a tarball-build dependency on mm-common.
+  - Build the tests and examples during make check.
+  (Murray Cumming)
+
 1.90.3 (unstable):
 
 * Replace use of *ListHandle with std::vector<>, as in gtkmm,
@@ -8,7 +15,7 @@
 
 * Use Gdk::Cursor via RefPtr.
 * Fix the build with latest gtkmm.
-	
+
 1.9.2 (unstable):
 
 * Build with the latest gtkmm and latest goocanvas.
