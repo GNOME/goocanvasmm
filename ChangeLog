@@ -1,3 +1,11 @@
+2011-03-30  Murray Cumming  <murrayc@murrayc.com>
+
+	Avoid a tarball dependency on mm-common.
+
+	* configure.ac: Require the latest version of mm-common.
+	Call MM_CONFIG_DOCTOOL_DIR() to createe, use, and dist a local copy of the
+	mm-common scripts.
+
 2011-02-24  Murray Cumming  <murrayc@murrayc.com>
 
 	Build the tests during make check too.
@@ -12,10 +20,10 @@
 	Build the examples during make check (and distcheck).
 
 	* Makefile.am: Add examples to the SUBDIRS.
-	* examples: Remove the individual Makefile.am files, adding their contents 
+	* examples: Remove the individual Makefile.am files, adding their contents
 	to examples/Makefile.am.
-	
-	The build of the examples was apparently disabled since we converted the build 
+
+	The build of the examples was apparently disabled since we converted the build
 	to use mm-common.
 
 1.90.3:
@@ -24,7 +32,7 @@
 
 	Correct the use of Glib::ListHandler.
 
-	* goocanvas/src/item.ccg: Fix a compilation error and do not try to 
+	* goocanvas/src/item.ccg: Fix a compilation error and do not try to
 	remember the temporary value from data().
 
 2011-01-28  Murray Cumming  <murrayc@murrayc.com>
@@ -32,7 +40,7 @@
 	Replace use of *ListHandle with std::vector<>, as in gtkmm.
 
 	* goocanvas/src/canvas.hg:
-	* goocanvas/src/item.[hg|ccg]: However, the vfunc implemenations here need 
+	* goocanvas/src/item.[hg|ccg]: However, the vfunc implemenations here need
 	some attention to make sure that we are not doing awful things with memory.
 
 1.90.2:

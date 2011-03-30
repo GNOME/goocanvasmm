@@ -27,8 +27,13 @@ AM_INIT_AUTOMAKE([1.9 -Wno-portability check-news dist-bzip2 no-define nostdinc 
 AM_MAINTAINER_MODE
 AC_ARG_VAR([ACLOCAL_FLAGS], [aclocal flags, e.g. -I <macro dir>])
 
-MM_PREREQ([0.7.2])
+MM_PREREQ([0.9.5])
 MM_INIT_MODULE([goocanvasmm-2.0])
+
+# Copy the mm-common .pl scripts into docs/,
+# and use them from there,
+# then dist them to avoid a tarball-build dependency.
+MM_CONFIG_DOCTOOL_DIR([doc])
 
 # http://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html
 AC_SUBST([GOOCANVASMM_SO_VERSION], [6:0:0])
