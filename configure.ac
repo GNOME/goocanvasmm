@@ -23,7 +23,7 @@ AC_CONFIG_AUX_DIR([build])
 AC_CONFIG_MACRO_DIR([build])
 AC_CONFIG_HEADERS([build/config.h goocanvas/goocanvasmmconfig.h])
 
-AM_INIT_AUTOMAKE([1.9 -Wno-portability check-news dist-bzip2 no-define nostdinc tar-pax])
+AM_INIT_AUTOMAKE([1.9 -Wno-portability check-news dist-bzip2 no-define nostdinc tar-ustar])
 AM_MAINTAINER_MODE
 AC_ARG_VAR([ACLOCAL_FLAGS], [aclocal flags, e.g. -I <macro dir>])
 
