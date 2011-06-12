@@ -16,17 +16,20 @@
  */
 
 
+#include <glibmm/object.h>
+#include <goocanvasmm/itemmodelsimple.h>
 #include <goocanvasmm/group.h>
 #include <gtkmm/enums.h>
 
 _DEFS(goocanvasmm,libgoocanvas)
+_PINCLUDE(glibmm/private/object_p.h)
 
 namespace Goocanvas
 {
 
-class GridModel : public Goocanvas::ItemSimple
+class GridModel : public Goocanvas::ItemModelSimple
 {
-  _CLASS_GOBJECT(GridModel, GooCanvasGridModel, GOO_CANVAS_GRID_MODEL, Goocanvas::ItemSimple, GooCanvasItemSimple)
+  _CLASS_GOBJECT(GridModel, GooCanvasGridModel, GOO_CANVAS_GRID_MODEL, Goocanvas::ItemModelSimple, GooCanvasItemModelSimple)
 protected:
   explicit GridModel(double x = 0, double y = 0, double width = 0, double height = 0, double x_step = 0, double y_step = 0, double x_offset = 0, double y_offset = 0);
   _IGNORE(goo_canvas_grid_model_new)

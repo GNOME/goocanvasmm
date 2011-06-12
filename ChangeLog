@@ -1,3 +1,9 @@
+2011-05-28  Andreas Klaedtke  <andreas.klaedtke@gmx.net>
+ 
+ 	Class hierarchy for class GridModel changed (Bug #651355).
+ 	
+ 	* various files: GridModel is now derived from ItemModelSimple.
+	
 2011-06-12  Kjell Ahlstedt  <kjell.ahlstedt@bredband.net>
 
 	Correct null pointer conversion from Goocanvas::Canvas* to GooCanvas*.

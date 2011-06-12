@@ -18,7 +18,7 @@
 
 #include <goocanvasgrid.h>
 
-_PINCLUDE(goocanvasmm/private/itemsimple_p.h)
+_PINCLUDE(goocanvasmm/private/itemmodelsimple_p.h)
 
 namespace Goocanvas
 {
