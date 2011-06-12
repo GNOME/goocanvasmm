@@ -17,7 +17,7 @@ _CONVERSION(`gint',`GooCanvas::StyleValuesMask',`static_cast<GooCanvas::StyleVal
 
 _CONVERSION(`GtkWidget*',`Canvas*',`Glib::Wrap((GtkCanvas*)($3))')
 _CONVERSION(`GooCanvas*',`Canvas*',`Glib::wrap($3)')
-_CONVERSION(`Canvas*',`GooCanvas*',`($3)->gobj()')
+_CONVERSION(`Canvas*',`GooCanvas*',`Glib::unwrap($3)')
 #_CONVERSION(`GooCanvas*',`Canvas*',__RP2P)
 #_CONVERSION(`GooCanvas*',`const Canvas*',__RP2P)
 #_CONVERSION(`Canvas&',`GooCanvas*',__FR2PD)

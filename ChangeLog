@@ -1,3 +1,10 @@
+2011-06-12  Kjell Ahlstedt  <kjell.ahlstedt@bredband.net>
+
+	Correct null pointer conversion from Goocanvas::Canvas* to GooCanvas*.
+
+	* codegen/m4/convert_libgoocanvasmm.m4: Use Glib::unwrap(x) instead of
+	x->gobj(), avoiding a crash when x is 0. Bug #606357.
+
 1.90.4:
 
 2011-03-30  Murray Cumming  <murrayc@murrayc.com>
