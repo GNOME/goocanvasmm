@@ -1,3 +1,14 @@
+2011-06-13  Baldvin Kovács  <baldvin.kovacs@gmail.com>
+
+	Fix the drag_to_canvas example.
+
+	* examples/drag_to_canvas/examplewindow.cc:
+	The way it calls drag_dest_set (with Gtk::DEST_DEFAULT_ALL) is explicitly
+	mentioned as "dramatic" in the documentation of gtk_drag_dest_set. After fixing
+	that, a trivial relative/absolute coordinates bug came up, and after fixing
+	that, it started working.
+	Bug #644033
+
 2011-06-13  Murray Cumming  <murrayc@murrayc.com>
 
 	Get the path to the pangomm and atkmm m4 files.

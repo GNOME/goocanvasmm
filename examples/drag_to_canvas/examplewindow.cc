@@ -47,8 +47,13 @@ ExampleWindow::ExampleWindow()
   sw->add(m_canvas);
   m_vbox.pack_start(*sw);
 
-  //Make the canvas a drag-and-drop destination:
-  m_canvas.drag_dest_set(m_drag_targets, Gtk::DEST_DEFAULT_ALL, Gdk::ACTION_COPY);
+  // Make the canvas a drag-and-drop destination. As we are implementing
+  // custom handlers for all (motion, highlight, drop), we set the second
+  // argument of drag_dest_set to 0. See the documentation of
+  // drag_dest_set for details. It would be nice if Gtk::DestDefaults did
+  // contain a GTK_DEST_DEFAULT_NONE, but short of that we can still brute
+  // force it to 0.
+  m_canvas.drag_dest_set(m_drag_targets, (Gtk::DestDefaults)0, Gdk::ACTION_COPY);
   m_canvas.signal_drag_motion().connect(
       sigc::mem_fun(*this, &ExampleWindow::on_canvas_drag_motion) );
   m_canvas.signal_drag_drop().connect(
@@ -126,7 +131,10 @@ bool ExampleWindow::on_canvas_drag_motion(const Glib::RefPtr<Gdk::DragContext>& 
   double item_x = x;
   double item_y = y;
   m_canvas.convert_from_pixels(item_x, item_y);
-  m_layout_item_dropping->translate(item_x, item_y);
+
+  gdouble t_x, t_y, t_scale, t_rotation;
+  m_layout_item_dropping->get_simple_transform(t_x, t_y, t_scale, t_rotation);
+  m_layout_item_dropping->set_simple_transform(item_x, item_y, t_scale, t_rotation);
 
   return true; //Allow the drop.
 }
