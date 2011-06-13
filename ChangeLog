@@ -1,3 +1,12 @@
+2011-06-13  Murray Cumming  <murrayc@murrayc.com>
+
+	Get the path to the pangomm and atkmm m4 files.
+
+	* configure.ac: Fix the build by getting and using the paths to 
+	the pangomm and atkmm m4 files as well as the gtkmm one.
+	These are only actualy used by the gtkmm m4 file, and it is 
+	tedious to have to do this explicitly, of course.
+
 2011-05-28  Andreas Klaedtke  <andreas.klaedtke@gmx.net>
  
  	Class hierarchy for class GridModel changed (Bug #651355).
