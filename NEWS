@@ -1,3 +1,15 @@
+1.90.5 (unstable):
+
+* GridModel is now correctly derived from ItemModelSimple.
+  (Andreas Klaedtke) Bug #651355
+* Fix the drag_to_canvas example.
+  (Baldvin Kovács) Bug #644033
+* Correct null pointer conversion from Goocanvas::Canvas* to GooCanvas*, 
+  avoiding a crash.
+  (Kjell Ahlstedt) Bug #606357
+* Build: Get the path to the pangomm and atkmm m4 files.
+  (Murray Cumming)
+
 1.90.4 (unstable):
 
 * Build:
