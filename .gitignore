@@ -20,3 +20,7 @@ stamp-h?
 /goocanvas/goocanvasmm-*.pc
 /goocanvas/goocanvasmmconfig.h
 /goocanvas/src/.stamps
+/doc/doc-install.pl
+/doc/doc-postprocess.pl
+/doc/doxygen.css
+/doc/tagfile-to-devhelp2.xsl
