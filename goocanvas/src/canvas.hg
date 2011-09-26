@@ -140,6 +140,7 @@ public:
   _WRAP_PROPERTY("resolution-y", double)
   _WRAP_PROPERTY("background-color", Glib::ustring)
   _WRAP_PROPERTY("background-color-rgb", guint)
+  _WRAP_PROPERTY("background-color-gdk-rgba", Gdk::RGBA)
   _WRAP_PROPERTY("integer-layout", bool)
   _WRAP_PROPERTY("clear-background", bool)
 

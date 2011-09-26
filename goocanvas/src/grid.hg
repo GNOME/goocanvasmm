@@ -54,12 +54,15 @@ public:
   _WRAP_PROPERTY("vert-grid-lines-on-top", bool)
   _WRAP_PROPERTY("horz-grid-line-color", Glib::ustring)
   _WRAP_PROPERTY("horz-grid-line-color-rgba", guint)
+  _WRAP_PROPERTY("horz-grid-line-color-gdk-rgba", Gdk::RGBA)
   _WRAP_PROPERTY("horz-grid-line-pixbuf", Glib::RefPtr<Gdk::Pixbuf>)
   _WRAP_PROPERTY("vert-grid-line-color", Glib::ustring)
   _WRAP_PROPERTY("vert-grid-line-color-rgba", guint)
+  _WRAP_PROPERTY("vert-grid-line-color-gdk-rgba", Gdk::RGBA)
   _WRAP_PROPERTY("vert-grid-line-pixbuf", Glib::RefPtr<Gdk::Pixbuf>)
   _WRAP_PROPERTY("border-color", Glib::ustring)
   _WRAP_PROPERTY("border-color-rgba", guint)
+  _WRAP_PROPERTY("border-color-gdk-rgba", Gdk::RGBA)
   _WRAP_PROPERTY("border-pixbuf", Glib::RefPtr<Gdk::Pixbuf>)
 };
 

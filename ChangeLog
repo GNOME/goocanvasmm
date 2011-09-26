@@ -1,3 +1,15 @@
+2011-09-26  Murray Cumming  <murrayc@murrayc.com>
+
+	Added Gdk::RGBA properties.
+
+	* goocanvas/src/libgoocanvas_methods.defs: Regenerated with h2defs.py.
+	* goocanvas/src/libgoocanvas_signals.defs: Regenerated with extra_defs.
+	* goocanvas/src/canvas.hg: Added the background-color-gdk-rgba property.
+	* goocanvas/src/grid.hg: Added the horz-grid-line-color-gdk-rgba, 
+	vert-grid-line-color-gdk-rgba, and border-color-gdk-rgba lines.
+	* goocanvas/src/itemsimple.hg: Added the stroke-color-gdk-rgba property and 
+	fixed the type of the *-pixbuf properties.
+	
 2011-09-21  Krzesimir Nowak  <qdlacz@gmail.com>
 
 	Search for gtkmm-3.0 tag file, not gtkmm-2.4.

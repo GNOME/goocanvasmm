@@ -624,6 +624,26 @@
   )
 )
 
+(define-method convert_units_to_pixels
+  (of-object "GooCanvas")
+  (c-name "goo_canvas_convert_units_to_pixels")
+  (return-type "none")
+  (parameters
+    '("gdouble*" "x")
+    '("gdouble*" "y")
+  )
+)
+
+(define-method convert_units_from_pixels
+  (of-object "GooCanvas")
+  (c-name "goo_canvas_convert_units_from_pixels")
+  (return-type "none")
+  (parameters
+    '("gdouble*" "x")
+    '("gdouble*" "y")
+  )
+)
+
 (define-method convert_to_item_space
   (of-object "GooCanvas")
   (c-name "goo_canvas_convert_to_item_space")
@@ -1233,6 +1253,17 @@
   (return-type "gboolean")
   (parameters
     '("cairo_t*" "cr")
+    '("GooCanvasBounds*" "requested_area")
+  )
+)
+
+(define-method get_requested_area_for_width
+  (of-object "GooCanvasItem")
+  (c-name "goo_canvas_item_get_requested_area_for_width")
+  (return-type "gboolean")
+  (parameters
+    '("cairo_t*" "cr")
+    '("gdouble" "width")
     '("GooCanvasBounds*" "requested_area")
   )
 )

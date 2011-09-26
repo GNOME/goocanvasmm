@@ -23,6 +23,7 @@
 #include <goocanvasmm/linedash.h>
 #include <goocanvasmm/style.h>
 #include <pangomm/fontdescription.h>
+#include <gdkmm/rgba.h>
 
 _DEFS(goocanvasmm,libgoocanvas)
 _PINCLUDE(glibmm/private/object_p.h)
@@ -77,10 +78,11 @@ public:
 
   _WRAP_PROPERTY("stroke-color", Glib::ustring)
   _WRAP_PROPERTY("stroke-color-rgba", guint)
-  _WRAP_PROPERTY("stroke-pixbuf", Gdk::Pixbuf)
+  _WRAP_PROPERTY("stroke-color-gdk-rgba", Gdk::RGBA)
+  _WRAP_PROPERTY("stroke-pixbuf", Glib::RefPtr<Gdk::Pixbuf>)
   _WRAP_PROPERTY("fill-color", Glib::ustring)
   _WRAP_PROPERTY("fill-color-rgba", guint)
-  _WRAP_PROPERTY("fill-pixbuf", Gdk::Pixbuf)
+  _WRAP_PROPERTY("fill-pixbuf", Glib::RefPtr<Gdk::Pixbuf>)
 
   _WRAP_PROPERTY("parent", Glib::RefPtr<Item>)
   _WRAP_PROPERTY("can-focus", bool)
