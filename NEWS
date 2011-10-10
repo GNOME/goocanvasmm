@@ -1,3 +1,10 @@
+1.90.6 (unstable):
+
+* Canvas, ItemSimple, Grid: Added Gdk::RGBA properties, which were added 
+  to the goocanvas C API.
+  (Murray Cumming)
+* Build: Search for gtkmm-3.0 tag file, not gtkmm-2.4.
+
 1.90.5 (unstable):
 
 * GridModel is now correctly derived from ItemModelSimple.
