@@ -20,6 +20,7 @@
 #include <goocanvasmm/enums.h>
 #include <goocanvasmm/style.h>
 #include <cairomm/cairomm.h>
+#include <glibmm/interface.h>
 #include <goocanvasitem.h>
 
 _DEFS(goocanvasmm,libgoocanvas)

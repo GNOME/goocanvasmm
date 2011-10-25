@@ -1,3 +1,13 @@
+2011-10-25  Murray Cumming  <murrayc@murrayc.com>
+
+	Add #includes needed with the latest glibmm.
+
+	* goocanvas/src/bounds.hg:
+	* goocanvas/src/enums.hg:
+	* goocanvas/src/item.hg:
+	* goocanvas/src/itemmodel.hg:  Add individual includes now that gmmproc does not 
+	add #include glibmm.h at the top of every generated header.
+
 1.90.6:
 
 2011-09-26  Murray Cumming  <murrayc@murrayc.com>

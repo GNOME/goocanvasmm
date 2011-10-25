@@ -20,6 +20,7 @@
 #include <goocanvasitemmodel.h>
 #include <goocanvasmm/style.h>
 #include <goocanvasmm/enums.h>
+#include <glibmm/interface.h>
 
 _DEFS(goocanvasmm,libgoocanvas)
 _PINCLUDE(glibmm/private/interface_p.h)

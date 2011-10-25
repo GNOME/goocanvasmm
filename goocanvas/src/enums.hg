@@ -20,6 +20,7 @@
 #include <cairomm/enums.h>
 #include <cairomm/pattern.h>
 #include <cairomm/context.h> // For Cairo::Matrix
+#include <glibmm/value.h>
 
 _DEFS(goocanvasmm,libgoocanvas)
 
