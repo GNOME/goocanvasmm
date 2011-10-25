@@ -1,5 +1,12 @@
 2011-10-25  Murray Cumming  <murrayc@murrayc.com>
 
+	init.h: Move the glibmm.h include to the .cc file.
+
+	* goocanvas/goocanvasmm/init.[h|cc]: The glibmm.h include does not need to be in 
+	the header.
+
+2011-10-25  Murray Cumming  <murrayc@murrayc.com>
+
 	Add #includes needed with the latest glibmm.
 
 	* goocanvas/src/bounds.hg:
