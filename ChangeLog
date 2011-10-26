@@ -1,5 +1,12 @@
 2011-10-26  Murray Cumming  <murrayc@murrayc.com>
 
+	init(): Remove the parameters.
+
+	* goocanvas/goocanvasmm/init.[h|cc]: Remove the (unused) parameters from 
+	init().
+
+2011-10-26  Murray Cumming  <murrayc@murrayc.com>
+
 	Fix the --enable-warnings=fatal build.
 
 	* goocanvas/goocanvasmm/init.cc:  Do not include glibmm.h. It is not necessary.
