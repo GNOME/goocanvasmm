@@ -1,3 +1,8 @@
+1.90.7 (unstable):
+
+* init(): Remove the parameters.
+* Add #includes needed with the latest glibmm.
+
 1.90.6 (unstable):
 
 * Canvas, ItemSimple, Grid: Added Gdk::RGBA properties, which were added 
