@@ -1,5 +1,20 @@
 2011-10-26  Murray Cumming  <murrayc@murrayc.com>
 
+	examples, tests: Adapt the init() calls.
+
+	* examples/coordinates/main.cc:
+	* examples/custom_item/main.cc:
+	* examples/demo/main.cc:
+	* examples/drag_to_canvas/main.cc:
+	* examples/moving_shapes/main.cc:
+	* examples/simple/main.cc:
+	* examples/table/main.cc:
+	* examples/tablemodel/main.cc:
+	* examples/text/main.cc:
+	* tests/child_properties/main.cc: Remove the extra parameters.
+
+2011-10-26  Murray Cumming  <murrayc@murrayc.com>
+
 	init(): Remove the parameters.
 
 	* goocanvas/goocanvasmm/init.[h|cc]: Remove the (unused) parameters from 
