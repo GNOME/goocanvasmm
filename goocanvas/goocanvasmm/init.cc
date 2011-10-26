@@ -24,7 +24,6 @@
 #include <glibmm/ustring.h>
 #include <goocanvasmmconfig.h> //For LIBGOOCANVASMM_VERSION
 #include <goocanvasmm/wrap_init.h>
-#include <glibmm.h>
 
 namespace Goocanvas
 {

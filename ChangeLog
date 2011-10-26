@@ -1,3 +1,9 @@
+2011-10-26  Murray Cumming  <murrayc@murrayc.com>
+
+	Fix the --enable-warnings=fatal build.
+
+	* goocanvas/goocanvasmm/init.cc:  Do not include glibmm.h. It is not necessary.
+
 2011-10-25  Murray Cumming  <murrayc@murrayc.com>
 
 	init.h: Move the glibmm.h include to the .cc file.
