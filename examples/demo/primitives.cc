@@ -60,26 +60,26 @@ Primitives::getWidget()
 }
 
 bool
-Primitives::_on_background_button_press(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventButton* ev)
+Primitives::_on_background_button_press(const Glib::RefPtr<Goocanvas::Item>& /* item */, GdkEventButton* /* ev */)
 {
   return false;
 }
 
 bool
-Primitives::_on_button_press(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventButton* ev)
+Primitives::_on_button_press(const Glib::RefPtr<Goocanvas::Item>& /* item */, GdkEventButton* /* ev */)
 {
   std::cerr << "Clicked!" << std::endl ;
   return false;
 }
 
 bool
-Primitives::_on_button_release(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventButton* ev)
+Primitives::_on_button_release(const Glib::RefPtr<Goocanvas::Item>& /* item */, GdkEventButton* /* ev */)
 {
   return false;
 }
 
 bool
-Primitives::_on_motion_notify(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventMotion* ev)
+Primitives::_on_motion_notify(const Glib::RefPtr<Goocanvas::Item>& /* item */, GdkEventMotion* /* ev */)
 {
   return false;
 }
@@ -298,12 +298,12 @@ Primitives::_setup_ellipses()
 void
 Primitives::_setup_texts()
 {
-  Glib::RefPtr<Goocanvas::Text> text ;
-        Glib::RefPtr<Goocanvas::Item> anchor;
-
-  anchor = _create_anchor(420, 20);
-  text = Goocanvas::Text::create("Anchor NW", 0, 0, -1, Goocanvas::ANCHOR_NW);
+  Glib::RefPtr<Goocanvas::Item> anchor
+    = _create_anchor(420, 20);
+  Glib::RefPtr<Goocanvas::Text> text
+    = Goocanvas::Text::create("Anchor NW", 0, 0, -1, Goocanvas::ANCHOR_NW);
   anchor->add_child(text);
+
   //ellipse->property_fill_pattern() = _create_stipple("blue");
   Cairo::RefPtr<Cairo::Pattern> p = _create_stipple("blue");
   g_object_set(text->gobj(), "fill-pattern", p->cobj(), NULL);
@@ -509,8 +509,9 @@ Primitives::_create_anchor(double x, double y)
   return group ;
 }
 
+//TODO: What is this anchor parameter for?
 void
-Primitives::_create_flower(double x, double y, Goocanvas::AnchorType anchor)
+Primitives::_create_flower(double x, double y, Goocanvas::AnchorType /* anchor */)
 {
   Cairo::RefPtr<Cairo::ImageSurface> surface ;
 
@@ -525,8 +526,8 @@ Primitives::_create_flower(double x, double y, Goocanvas::AnchorType anchor)
     return ;
   }
 
-  double w = surface->get_width();
-  double h = surface->get_height();
+  const double w = surface->get_width();
+  const double h = surface->get_height();
 
   Cairo::RefPtr<Cairo::SurfacePattern> pattern = Cairo::SurfacePattern::create(surface);
 

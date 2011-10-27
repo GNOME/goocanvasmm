@@ -1,5 +1,20 @@
 2011-10-27  Murray Cumming  <murrayc@murrayc.com>
 
+	tests, examples: Avoid compiler warnings and deprecated API.
+
+	* examples/Makefile.am:
+	* tests/Makefile.am: Fix a typo so we really use warning flags.
+	* examples/coordinates/window.cc:
+	* examples/custom_item/exampleitem.cc:
+	* examples/demo/primitives.cc:
+	* examples/drag_to_canvas/examplewindow.cc:
+	* examples/moving_shapes/window.cc:
+	* examples/simple/examplewindow.cc:
+	* examples/table/examplewindow.cc:
+	* examples/text/window.cc: Fix the build with --enable-warinings=fatal.
+
+2011-10-27  Murray Cumming  <murrayc@murrayc.com>
+
 	init(): Add back the old deprecated method overload.
 
 	* goocanvas/goocanvasmm/init.[h|cc]: Add back the init() call with parameters,

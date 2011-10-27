@@ -85,7 +85,7 @@ void ExampleWindow::make_widget_draggable(Gtk::Widget& widget, DragItem drag_ite
     sigc::bind( sigc::mem_fun(*this, &ExampleWindow::on_button_drag_data_get), drag_item) );
 }
 
-bool ExampleWindow::on_canvas_drag_drop(const Glib::RefPtr<Gdk::DragContext>& drag_context, int x, int y, guint timestamp)
+bool ExampleWindow::on_canvas_drag_drop(const Glib::RefPtr<Gdk::DragContext>& drag_context, int /* x */, int /* y */, guint timestamp)
 {
   std::cout << "ExampleWindow::on_canvas_drag_drop" << std::endl;
   Glib::ustring target = m_canvas.drag_dest_find_target(drag_context);
@@ -152,7 +152,7 @@ ExampleWindow::DragItem ExampleWindow::get_drag_item_from_selection_data(const G
   return item_type;
 }
 
-void ExampleWindow::on_canvas_drag_data_received(const Glib::RefPtr<Gdk::DragContext>& drag_context, int x, int y, const Gtk::SelectionData& selection_data, guint info, guint timestamp)
+void ExampleWindow::on_canvas_drag_data_received(const Glib::RefPtr<Gdk::DragContext>& drag_context, int x, int y, const Gtk::SelectionData& selection_data, guint /* info */, guint timestamp)
 {
   std::cout << "ExampleWindow::on_canvas_drag_data_received" << std::endl;
 
@@ -173,7 +173,7 @@ void ExampleWindow::on_canvas_drag_data_received(const Glib::RefPtr<Gdk::DragCon
     if(m_layout_item_dropping)
       m_layout_item_dropping->remove();
 
-    m_layout_item_dropping.clear();
+    m_layout_item_dropping.reset();
     create_canvas_item(drag_item, x, y);
   }
   
@@ -191,7 +191,7 @@ void ExampleWindow::on_canvas_drag_data_received(const Glib::RefPtr<Gdk::DragCon
   }
 }
 
-void ExampleWindow::on_button_drag_data_get(const Glib::RefPtr<Gdk::DragContext>& drag_context, Gtk::SelectionData& selection_data, guint info, guint time, DragItem drag_item)
+void ExampleWindow::on_button_drag_data_get(const Glib::RefPtr<Gdk::DragContext>& /* drag_context */, Gtk::SelectionData& selection_data, guint /* info */, guint /* time */, DragItem drag_item)
 {
   std::cout << "ExampleWindow::on_button_drag_data_get" << std::endl;
   

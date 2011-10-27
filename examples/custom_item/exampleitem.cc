@@ -25,7 +25,7 @@ ExampleItem::ExampleItem(double x, double y, double width, double height)
 
 Glib::RefPtr<ExampleItem> ExampleItem::create(double x, double y, double width, double height)
 {
-  return Glib::RefPtr<ExampleItem>(new ExampleItem());
+  return Glib::RefPtr<ExampleItem>(new ExampleItem(x, y, width, height));
 }
 
 /* The update method. This is called when the canvas is initially shown and

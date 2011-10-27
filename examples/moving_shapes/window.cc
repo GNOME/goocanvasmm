@@ -15,9 +15,9 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <goocanvasrect.h>
 #include <iostream>
 #include "window.h"
+#include <goocanvasrect.h>
 
 Window::Window()
 {
@@ -73,10 +73,11 @@ Window::Window()
 }
 
 void
-Window::on_item_created(const Glib::RefPtr<Goocanvas::Item>& item, const Glib::RefPtr<Goocanvas::ItemModel>& model)
+Window::on_item_created(const Glib::RefPtr<Goocanvas::Item>& item, const Glib::RefPtr<Goocanvas::ItemModel>& /* model */)
 {
   Glib::RefPtr<Goocanvas::Group> group = Glib::RefPtr<Goocanvas::Group>::cast_dynamic(item);
-  if(group) return ;
+  if(group)
+    return ;
 
   item->signal_button_press_event().connect(sigc::mem_fun(*this, &Window::on_item_button_press_event));
   item->signal_button_release_event().connect(sigc::mem_fun(*this, &Window::on_item_button_release_event));
@@ -96,11 +97,11 @@ Window::on_item_button_press_event(const Glib::RefPtr<Goocanvas::Item>& item, Gd
 }
 
 bool
-Window::on_item_button_release_event(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventButton* event)
+Window::on_item_button_release_event(const Glib::RefPtr<Goocanvas::Item>& /* item */, GdkEventButton* event)
 {
   if(event->button == 1)
   {
-    _dragging.clear();
+    _dragging.reset();
   }
   return false;
 }

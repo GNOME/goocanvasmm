@@ -23,8 +23,8 @@ ExampleWindow::ExampleWindow()
   m_button_box(false, 6),
   m_label_origin("origin (0, 0)"),
   m_button_translate("translate(20, 20)"),
-  m_button_setxy("set x=50,y=50)"),
-  m_button_scale("scale(1.2, 1.2)")
+  m_button_scale("scale(1.2, 1.2)"),
+  m_button_setxy("set x=50,y=50)")
 {
   set_title("goocanvasmm Example");
 

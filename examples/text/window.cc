@@ -24,8 +24,8 @@ ExampleWindow::ExampleWindow()
   m_button_box2(false, 6),
   m_label_origin("origin (0, 0)"),
   m_button_translate("translate(20, 20)"),
-  m_button_setxy("set x=50,y=50)"),
   m_button_scale("scale(1.2, 1.2)"),
+  m_button_setxy("set x=50,y=50)"),
   m_button_zoom("scale (zoom) canvas"),
   m_button_set_width("set width=40"),
   m_button_set_width_unlimited("set width=-1 (unlimited)")

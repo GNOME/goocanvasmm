@@ -3,7 +3,7 @@ include $(top_srcdir)/examples/Makefile.am_fragment
 AUTOMAKE_OPTIONS = subdir-objects
 
 AM_CPPFLAGS = -I$(top_builddir) $(GOOCANVASMM_CFLAGS)
-AM_CXXFLAGS = $(GOOCANSASMM_WXXFLAGS)
+AM_CXXFLAGS = $(GOOCANVASMM_WXXFLAGS)
 LDADD       = $(GOOCANVASMM_LIBS)
 
 check_PROGRAMS = \

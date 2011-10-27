@@ -63,7 +63,7 @@ ExampleWindow::ExampleWindow()
 }
 
 bool
-ExampleWindow::on_rect_button_press(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventButton* event)
+ExampleWindow::on_rect_button_press(const Glib::RefPtr<Goocanvas::Item>& /* item */, GdkEventButton* /* event */)
 {
   std::cout << "You clicked the rectangle." << std::endl ;
   return true ;
