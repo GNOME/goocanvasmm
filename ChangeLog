@@ -1,3 +1,10 @@
+2011-10-27  Murray Cumming  <murrayc@murrayc.com>
+
+	init(): Add back the old deprecated method overload.
+
+	* goocanvas/goocanvasmm/init.[h|cc]: Add back the init() call with parameters,
+	but deprecated, to avoid disturbing projects using goocanvasmm too much. 
+
 1.90.7:
 
 2011-10-26  Murray Cumming  <murrayc@murrayc.com>

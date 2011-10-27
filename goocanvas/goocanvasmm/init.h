@@ -25,8 +25,13 @@
 namespace Goocanvas
 {
 
-//TODO: Remove these paramters.
+/** Initialize goocanvasmm
+ */
 void init();
+
+/** @deprecated these parameters are not used. Please use init() instead.
+ */
+void init(const Glib::ustring& app_id, const Glib::ustring& version, int nargs, gchar *args[]);
 
 } //namespace Goocanvas
 
