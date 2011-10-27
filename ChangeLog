@@ -1,3 +1,5 @@
+1.90.8:
+
 2011-10-27  Murray Cumming  <murrayc@murrayc.com>
 
 	tests, examples: Avoid compiler warnings and deprecated API.

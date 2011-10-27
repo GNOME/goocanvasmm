@@ -1,3 +1,8 @@
+1.90.8 (unstable):
+
+* init(): Add back the old method overload, but mark it as deprecated.
+* examples, tests: Avoid compiler warnings and deprecated API.
+
 1.90.7 (unstable):
 
 * init(): Remove the parameters.
