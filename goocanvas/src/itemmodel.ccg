@@ -24,12 +24,12 @@ namespace Goocanvas
 
 void ItemModel::raise()
 {
-  goo_canvas_item_model_raise(gobj(), NULL); 
+  goo_canvas_item_model_raise(gobj(), 0); 
 }
 
 void ItemModel::lower()
 {
-  goo_canvas_item_model_lower(gobj(), NULL); 
+  goo_canvas_item_model_lower(gobj(), 0); 
 }
 
 void ItemModel::add_child(const Glib::RefPtr<ItemModel>& child)

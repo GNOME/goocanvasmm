@@ -34,7 +34,7 @@ Points::Points(int num_points, const double* coords)
   :
    gobject_(goo_canvas_points_new(num_points)) 
 {
-  if( coords != NULL )
+  if( coords )
   {
     //I assume memcpy isn't portable enough.
     for( int i = 0 ; i < num_points*2 ; i++ )

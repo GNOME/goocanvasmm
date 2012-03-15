@@ -23,12 +23,12 @@ namespace Goocanvas
 
 Gdk::GrabStatus Canvas::pointer_grab(const Glib::RefPtr<Item>& item, Gdk::EventMask mask, guint32 time)
 {
-  return (Gdk::GrabStatus)goo_canvas_pointer_grab(gobj(), Glib::unwrap(item), ((GdkEventMask)(mask)), NULL, time);
+  return (Gdk::GrabStatus)goo_canvas_pointer_grab(gobj(), Glib::unwrap(item), ((GdkEventMask)(mask)), 0, time);
 }
 
 void Canvas::render(const Cairo::RefPtr<Cairo::Context>& context, double scale)
 {
-  goo_canvas_render(gobj(), (context)->cobj(), NULL, scale);
+  goo_canvas_render(gobj(), (context)->cobj(), 0, scale);
 }
 
 void Canvas::get_bounds(Bounds& bounds) const

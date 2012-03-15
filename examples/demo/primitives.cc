@@ -190,7 +190,7 @@ Primitives::_setup_rectangles()
   root->add_child(rect);
   //rect->property_fill_pattern() = _create_stipple("mediumseagreen");
   Cairo::RefPtr<Cairo::Pattern> p = _create_stipple("mediumseagreen");
-  g_object_set(rect->gobj(), "fill-pattern", p->cobj(), NULL);
+  g_object_set(rect->gobj(), "fill-pattern", p->cobj(), (void*)0);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   rect->property_stroke_color() = "black" ;
   rect->property_line_width() = 4.0 ;
@@ -283,7 +283,7 @@ Primitives::_setup_ellipses()
   root->add_child(ellipse);
   //ellipse->property_fill_pattern() = _create_stipple("cadetblue");
   Cairo::RefPtr<Cairo::Pattern> p = _create_stipple("cadetblue");
-  g_object_set(ellipse->gobj(), "fill-pattern", p->cobj(), NULL);
+  g_object_set(ellipse->gobj(), "fill-pattern", p->cobj(), (void*)0);
 
 #ifdef GLIBMM_PROPERTIES_ENABLED
   ellipse->property_stroke_color() = "black" ;
@@ -306,7 +306,7 @@ Primitives::_setup_texts()
 
   //ellipse->property_fill_pattern() = _create_stipple("blue");
   Cairo::RefPtr<Cairo::Pattern> p = _create_stipple("blue");
-  g_object_set(text->gobj(), "fill-pattern", p->cobj(), NULL);
+  g_object_set(text->gobj(), "fill-pattern", p->cobj(), (void*)0);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "Sans Bold 24" ;
   text->property_alignment() = Pango::ALIGN_CENTER ;
@@ -494,7 +494,7 @@ Primitives::_create_anchor(double x, double y)
   _canvas->get_root_item()->add_child(group);
   group->translate(x, y);
   //group->property_transform() = &m ;
-  g_object_set(group->gobj(), "transform", &m, NULL);
+  g_object_set(group->gobj(), "transform", &m, (void*)0);
 
   Glib::RefPtr<Goocanvas::Rect> rect = Goocanvas::Rect::create(-2.5, -2.5, 4, 4);
   group->add_child(rect);
@@ -534,7 +534,7 @@ Primitives::_create_flower(double x, double y, Goocanvas::AnchorType /* anchor *
   Glib::RefPtr<Goocanvas::Image> img = Goocanvas::Image::create(x, y);
    _canvas->get_root_item()->add_child(img);
   //TODO: img->property_pattern() = pattern ;
-  g_object_set(img->gobj(), "pattern", pattern->cobj(), NULL);
+  g_object_set(img->gobj(), "pattern", pattern->cobj(), (void*)0);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   img->property_width() = w ;
   img->property_height() = h ;

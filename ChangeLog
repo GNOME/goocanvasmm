@@ -1,3 +1,14 @@
+2012-03-15  Murray Cumming  <murrayc@murrayc.com>
+
+	Fix warnings found by clang++.
+
+	* examples/demo/primitives.cc: Use (void*) instead of NULL
+	to avoid missing sentinel warnings.
+	* goocanvas/src/canvas.ccg:
+	* goocanvas/src/itemmodel.ccg:
+	* goocanvas/src/points.ccg: Use 0 instead of NULL to avoid
+	NULL generally.
+
 1.90.8:
 
 2011-10-27  Murray Cumming  <murrayc@murrayc.com>
