@@ -1,3 +1,8 @@
+1.90.9 (unstable):
+
+* Minor build fixes.
+  (Murray Cumming)
+
 1.90.8 (unstable):
 
 * init(): Add back the old method overload, but mark it as deprecated.
