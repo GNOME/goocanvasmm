@@ -89,9 +89,9 @@ public:
   _WRAP_PROPERTY("clip-path", Glib::ustring)
   _WRAP_PROPERTY("clip-fill-rule", Cairo::FillRule)
 
+  // Don't override Item::get_bounds(). It can do more than taking a copy of
+  // GooCanvasItemSimple.bounds, such as first updating it.
 #m4 _CONVERSION(`Bounds',`GooCanvasBounds',*($3).gobj())
-#m4 _CONVERSION(`GooCanvasBounds',`Bounds',`Glib::wrap(&$3)')
-  _MEMBER_GET(bounds, bounds, Bounds, GooCanvasBounds);
   _MEMBER_SET(bounds, bounds, Bounds, GooCanvasBounds);
 
 protected:
