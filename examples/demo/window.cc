@@ -28,10 +28,8 @@ DemoWindow::DemoWindow()
 
   auto nb = Gtk::manage(new Gtk::Notebook());
 
-  std::vector< Page* >::iterator iter ;
-  for(iter = _pages.begin(); iter != _pages.end(); iter++)
+  for(const auto& p : _pages)
   {
-    auto p = *iter ;
     nb->append_page(*(p->getWidget()), p->getName());
   }
 
