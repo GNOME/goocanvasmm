@@ -26,8 +26,8 @@ ExampleWindow::ExampleWindow()
   m_canvas.set_size_request(640, 480);
   m_canvas.set_bounds(0, 0, 1000, 1000);
 
-  Glib::RefPtr<Goocanvas::Item> root = m_canvas.get_root_item();
-  Glib::RefPtr<Goocanvas::Rect> rect = Goocanvas::Rect::create(100, 100, 400, 400);
+  auto root = m_canvas.get_root_item();
+  auto rect = Goocanvas::Rect::create(100, 100, 400, 400);
   root->add_child(rect);
 
 #ifdef GLIBMM_PROPERTIES_ENABLED
@@ -46,7 +46,7 @@ ExampleWindow::ExampleWindow()
   rect->signal_button_press_event ().connect (sigc::mem_fun (this,
     &ExampleWindow::on_rect_button_press));
 
-  Glib::RefPtr<Goocanvas::Text> text = Goocanvas::Text::create("Hello World", 300, 300, -1, Goocanvas::ANCHOR_CENTER);
+  auto text = Goocanvas::Text::create("Hello World", 300, 300, -1, Goocanvas::ANCHOR_CENTER);
   root->add_child(text);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "Sans 24";
@@ -55,7 +55,7 @@ ExampleWindow::ExampleWindow()
 #endif //GLIBMM_PROPERTIES_ENABLED
   text->rotate(45, 300, 300);
 
-  Gtk::ScrolledWindow* sw = Gtk::manage(new Gtk::ScrolledWindow());
+  auto sw = Gtk::manage(new Gtk::ScrolledWindow());
   sw->add(m_canvas);
   add(*sw);
 

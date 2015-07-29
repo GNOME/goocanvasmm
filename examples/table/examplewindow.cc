@@ -27,7 +27,7 @@ ExampleWindow::ExampleWindow()
   m_canvas.set_size_request(640, 480);
   m_canvas.set_bounds(0, 0, 1000, 1000);
 
-  Glib::RefPtr<Goocanvas::Item> root = m_canvas.get_root_item();
+  auto root = m_canvas.get_root_item();
 
   m_table = Goocanvas::Table::create();
   //m_table->property_x() = 10;
@@ -53,7 +53,7 @@ ExampleWindow::ExampleWindow()
   add_text_to_cell(m_table, "bottom right", 1, 1);
 
 
-  Gtk::ScrolledWindow* sw = Gtk::manage(new Gtk::ScrolledWindow());
+  auto sw = Gtk::manage(new Gtk::ScrolledWindow());
   sw->add(m_canvas);
   add(*sw);
 
@@ -62,7 +62,7 @@ ExampleWindow::ExampleWindow()
 
 void ExampleWindow::add_text_to_cell(const Glib::RefPtr<Goocanvas::Table>& table, const Glib::ustring& text, guint row, guint col)
 {
-  Glib::RefPtr<Goocanvas::Text> text_item = Goocanvas::Text::create(text);
+  auto text_item = Goocanvas::Text::create(text);
   table->attach(text_item, col, col+1, row, row+1, Gtk::EXPAND | Gtk::FILL, Gtk::SHRINK);
 }
 

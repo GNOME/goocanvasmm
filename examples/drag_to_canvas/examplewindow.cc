@@ -43,7 +43,7 @@ ExampleWindow::ExampleWindow()
   m_canvas.set_bounds(0, 0, 1000, 1000);
 
 
-  Gtk::ScrolledWindow* sw = Gtk::manage(new Gtk::ScrolledWindow());
+  auto sw = Gtk::manage(new Gtk::ScrolledWindow());
   sw->add(m_canvas);
   m_vbox.pack_start(*sw);
 
@@ -88,7 +88,7 @@ void ExampleWindow::make_widget_draggable(Gtk::Widget& widget, DragItem drag_ite
 bool ExampleWindow::on_canvas_drag_drop(const Glib::RefPtr<Gdk::DragContext>& drag_context, int /* x */, int /* y */, guint timestamp)
 {
   std::cout << "ExampleWindow::on_canvas_drag_drop" << std::endl;
-  Glib::ustring target = m_canvas.drag_dest_find_target(drag_context);
+  auto target = m_canvas.drag_dest_find_target(drag_context);
   if(target.empty())
     return false;
 
@@ -103,7 +103,7 @@ bool ExampleWindow::on_canvas_drag_drop(const Glib::RefPtr<Gdk::DragContext>& dr
 bool ExampleWindow::on_canvas_drag_motion(const Glib::RefPtr<Gdk::DragContext>& drag_context, int x, int y, guint timestamp)
 {
   std::cout << "ExampleWindow::on_canvas_drag_motion" << std::endl;
-  Glib::ustring target = m_canvas.drag_dest_find_target(drag_context);
+  auto target = m_canvas.drag_dest_find_target(drag_context);
   if(target.empty())
     return false;
 
@@ -144,7 +144,7 @@ ExampleWindow::DragItem ExampleWindow::get_drag_item_from_selection_data(const G
   DragItem item_type = DRAG_ITEM_NONE;
   if((selection_data.get_length() >= 0) && (selection_data.get_format() == DRAG_DATA_FORMAT))
   {
-    const guint8* data = selection_data.get_data();
+    const auto data = selection_data.get_data();
     if(data)
       item_type = (DragItem)(data[0]);
   }
@@ -160,7 +160,7 @@ void ExampleWindow::on_canvas_drag_data_received(const Glib::RefPtr<Gdk::DragCon
   //or after our drag_motion handler has called drag_get_data()): 
   
   //Discover what toolbar item was dragged:
-  const DragItem drag_item = get_drag_item_from_selection_data(selection_data);
+  const auto drag_item = get_drag_item_from_selection_data(selection_data);
 
 
   //Create the temporary drag item if necessary:
@@ -206,7 +206,7 @@ Glib::RefPtr<Goocanvas::Item> ExampleWindow::create_canvas_item(DragItem drag_it
 
   if(drag_item == DRAG_ITEM_RECTANGLE)
   {
-    Glib::RefPtr<Goocanvas::Rect> rect = Goocanvas::Rect::create(0, 0, 20, 20);
+    auto rect = Goocanvas::Rect::create(0, 0, 20, 20);
 #ifdef GLIBMM_PROPERTIES_ENABLED
     rect->property_line_width() = 10.0;
     rect->property_stroke_color() = "yellow";
@@ -220,7 +220,7 @@ Glib::RefPtr<Goocanvas::Item> ExampleWindow::create_canvas_item(DragItem drag_it
   }
   else if(drag_item == DRAG_ITEM_ELLIPSE)
   {
-    Glib::RefPtr<Goocanvas::Ellipse> ellipse = Goocanvas::Ellipse::create();
+    auto ellipse = Goocanvas::Ellipse::create();
 #ifdef GLIBMM_PROPERTIES_ENABLED
     ellipse->property_line_width() = 10.0;
     ellipse->property_radius_x() = 20.0;
@@ -239,7 +239,7 @@ Glib::RefPtr<Goocanvas::Item> ExampleWindow::create_canvas_item(DragItem drag_it
 
   if(result)
   {
-    Glib::RefPtr<Goocanvas::Item> root = m_canvas.get_root_item();
+    auto root = m_canvas.get_root_item();
     root->add_child(result);
 
     //Show it on the canvas, at the position:

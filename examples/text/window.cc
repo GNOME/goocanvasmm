@@ -43,7 +43,7 @@ ExampleWindow::ExampleWindow()
 #endif 
   m_canvas.set_bounds(0, 0, 210, 297);
 
-  Glib::RefPtr<Goocanvas::Item> root = m_canvas.get_root_item();
+  auto root = m_canvas.get_root_item();
   m_text = Goocanvas::Text::create("some text");
   root->add_child(m_text);
 #ifdef GLIBMM_PROPERTIES_ENABLED
@@ -59,7 +59,7 @@ ExampleWindow::ExampleWindow()
 #endif
 
 
-  Gtk::ScrolledWindow* sw = Gtk::manage(new Gtk::ScrolledWindow());
+  auto sw = Gtk::manage(new Gtk::ScrolledWindow());
   sw->add(m_canvas);
   m_box.pack_start(*sw);
 
@@ -107,7 +107,7 @@ void ExampleWindow::update_label()
   //TODO:
 #endif
 
-  Goocanvas::Bounds bounds = m_text->get_bounds();
+  auto bounds = m_text->get_bounds();
   str << "Item bounds: x1=" << bounds.get_x1() << ", y1=" << bounds.get_y1() << ", x2=" << bounds.get_x2() << ", y2=" << bounds.get_y2() << std::endl;
 
   

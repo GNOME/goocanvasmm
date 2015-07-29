@@ -50,7 +50,7 @@ void Item::add_child(const Glib::RefPtr<Item>& child)
 // make a copy.
 void Item_Class::get_bounds_vfunc_callback(GooCanvasItem* item, GooCanvasBounds* bounds)
 {
-  CppObjectType *const obj = dynamic_cast<CppObjectType*>(
+  const auto obj = dynamic_cast<CppObjectType*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)item));
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
@@ -78,7 +78,7 @@ void Item_Class::get_bounds_vfunc_callback(GooCanvasItem* item, GooCanvasBounds*
   }
   else
   {
-    BaseClassType *const base = static_cast<BaseClassType*>(
+    const auto base = static_cast<BaseClassType*>(
         g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(item), CppObjectType::get_type()) // Get the interface.
 )    );
@@ -93,7 +93,7 @@ void Item::get_bounds_vfunc(Bounds& bounds) const
 {
   //Call the default C implementation:
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const auto base = static_cast<BaseClassType*>(
     g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
       g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
     )
@@ -111,7 +111,7 @@ void Item::get_bounds_vfunc(Bounds& bounds) const
 // free the one passed in.
 GList* Item_Class::get_items_at_vfunc_callback(GooCanvasItem* self, gdouble x, gdouble y, cairo_t* cr, gboolean is_pointer_event, gboolean parent_is_visible, GList* found_items)
 {
-  CppObjectType *const obj = dynamic_cast<CppObjectType*>(
+  const auto obj = dynamic_cast<CppObjectType*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*)self));
 
   // Non-gtkmmproc-generated custom classes implicitly call the default
@@ -128,7 +128,7 @@ GList* Item_Class::get_items_at_vfunc_callback(GooCanvasItem* self, gdouble x, g
       // Call the virtual member method, which derived classes might override.
       Bounds cpp_bounds;
       
-      const std::vector<Glib::RefPtr<Item> > vec_found_items = 
+      const auto vec_found_items = 
         Glib::ListHandler<Glib::RefPtr<Item> >::list_to_vector(found_items, Glib::OWNERSHIP_NONE);
       std::vector<Glib::RefPtr<Item> > retval(obj->get_items_at_vfunc(x, y, Cairo::RefPtr<Cairo::Context>(new Cairo::Context(cr, false /* has_reference */)), is_pointer_event == TRUE, parent_is_visible == TRUE, vec_found_items));
       // retval will free the list on destruction, and we can't change the
@@ -144,7 +144,7 @@ GList* Item_Class::get_items_at_vfunc_callback(GooCanvasItem* self, gdouble x, g
   }
   else
   {
-    BaseClassType *const base = static_cast<BaseClassType*>(
+    const auto base = static_cast<BaseClassType*>(
         g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
 g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
 )    );
@@ -161,7 +161,7 @@ std::vector<Glib::RefPtr<Item> > Item::get_items_at_vfunc(double x, double y, co
 {
   //Call the default C implementation:
 
-  BaseClassType *const base = static_cast<BaseClassType*>(
+  const auto base = static_cast<BaseClassType*>(
     g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
       g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
     )

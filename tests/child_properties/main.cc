@@ -25,10 +25,10 @@ main(int argc, char* argv[])
   Gtk::Main app(&argc, &argv);
   Goocanvas::init();
 
-  Glib::RefPtr<Goocanvas::Table> table = Goocanvas::Table::create();
+  auto table = Goocanvas::Table::create();
 
   //Add a child to the table:
-  Glib::RefPtr<Goocanvas::Text> child = Goocanvas::Text::create("test");
+  auto child = Goocanvas::Text::create("test");
   table->attach(child, 2, 3, 5, 6, Gtk::EXPAND | Gtk::FILL, Gtk::SHRINK);
 
   //Examine the child property:

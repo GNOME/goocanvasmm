@@ -26,10 +26,10 @@ Window::Window()
 
   _canvas = Gtk::manage(new Goocanvas::Canvas());
   _canvas->signal_item_created().connect(sigc::mem_fun(*this, &Window::on_item_created));
-  Glib::RefPtr<Goocanvas::ItemModel> root = Goocanvas::GroupModel::create();
+  auto root = Goocanvas::GroupModel::create();
   _canvas->set_root_item_model(root);
 
-  Glib::RefPtr<Goocanvas::RectModel> rect = Goocanvas::RectModel::create(200, 200, 100, 100);
+  auto rect = Goocanvas::RectModel::create(200, 200, 100, 100);
         root->add_child(rect);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   rect->property_line_width() = 3;
@@ -45,7 +45,7 @@ Window::Window()
   rect->set_property("fill_color", Glib::ustring("blue"));
 #endif //GLIBMM_PROPERTIES_ENABLED
 
-  Glib::RefPtr<Goocanvas::EllipseModel> ellipse = Goocanvas::EllipseModel::create(400, 200, 100, 50);
+  auto ellipse = Goocanvas::EllipseModel::create(400, 200, 100, 50);
         root->add_child(ellipse);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   ellipse->property_line_width() = 3;
@@ -57,7 +57,7 @@ Window::Window()
   ellipse->set_property("fill_color", Glib::ustring("wheat"));
 #endif //GLIBMM_PROPERTIES_ENABLED
 
-  Glib::RefPtr<Goocanvas::PolylineModel> polyline = Goocanvas::PolylineModel::create(250, 250, 450, 225);
+  auto polyline = Goocanvas::PolylineModel::create(250, 250, 450, 225);
         root->add_child(polyline);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   polyline->property_line_width() = 4;
@@ -65,7 +65,7 @@ Window::Window()
   polyline->set_property("line_width", 4);
 #endif //GLIBMM_PROPERTIES_ENABLED
 
-  Gtk::ScrolledWindow* sw = Gtk::manage(new Gtk::ScrolledWindow());
+  auto sw = Gtk::manage(new Gtk::ScrolledWindow());
   sw->add(*_canvas);
   add(*sw);
 
@@ -75,7 +75,7 @@ Window::Window()
 void
 Window::on_item_created(const Glib::RefPtr<Goocanvas::Item>& item, const Glib::RefPtr<Goocanvas::ItemModel>& /* model */)
 {
-  Glib::RefPtr<Goocanvas::Group> group = Glib::RefPtr<Goocanvas::Group>::cast_dynamic(item);
+  auto group = Glib::RefPtr<Goocanvas::Group>::cast_dynamic(item);
   if(group)
     return ;
 
@@ -111,8 +111,8 @@ Window::on_item_motion_notify_event(const Glib::RefPtr<Goocanvas::Item>& item, G
 {
   if(item && _dragging && item == _dragging)
   {
-    double new_x = event->x ;
-    double new_y = event->y ;
+    auto new_x = event->x ;
+    auto new_y = event->y ;
     item->translate(new_x - _drag_x, new_y - _drag_y);
   }
   return false;

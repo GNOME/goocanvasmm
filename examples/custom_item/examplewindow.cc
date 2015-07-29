@@ -27,7 +27,7 @@ ExampleWindow::ExampleWindow()
   m_canvas.set_bounds(0, 0, 1000, 1000);
 
 
-  Glib::RefPtr<ExampleItem> item = ExampleItem::create(100, 100, 400, 400);
+  auto item = ExampleItem::create(100, 100, 400, 400);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   item->property_line_width() = 10.0;
   item->property_stroke_color() = "yellow";
@@ -38,10 +38,10 @@ ExampleWindow::ExampleWindow()
   item->set_property("fill_color", Glib::ustring("red"));
 #endif
 
-  Glib::RefPtr<Goocanvas::Item> root = m_canvas.get_root_item();
+  auto root = m_canvas.get_root_item();
   root->add_child(item);
 
-  Gtk::ScrolledWindow* sw = Gtk::manage(new Gtk::ScrolledWindow());
+  auto sw = Gtk::manage(new Gtk::ScrolledWindow());
   sw->add(m_canvas);
   add(*sw);
 

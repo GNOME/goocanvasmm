@@ -26,7 +26,7 @@ Primitives::Primitives()
 {
   _vbox = Gtk::manage(new Gtk::VBox());
 
-  Gtk::Label* lbl = Gtk::manage(new Gtk::Label("Drag an item with button 1. Click button 2 on an item to lower it, or button 3 to raise it."));
+  auto lbl = Gtk::manage(new Gtk::Label("Drag an item with button 1. Click button 2 on an item to lower it, or button 3 to raise it."));
   _vbox->pack_start(*lbl, Gtk::PACK_SHRINK);
 
 
@@ -98,7 +98,7 @@ Primitives::_setup_heading(const Glib::ustring& heading, int pos)
   double x = (pos%3) * 200 + 100 ;
   double y = (pos/3) * 150 + 5 ;
 
-  Glib::RefPtr<Goocanvas::Text> text = Goocanvas::Text::create(heading, x, y, -1, Goocanvas::ANCHOR_N);
+  auto text = Goocanvas::Text::create(heading, x, y, -1, Goocanvas::ANCHOR_N);
   _canvas->get_root_item()->add_child(text);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "Sans 12" ;
@@ -112,7 +112,7 @@ Primitives::_setup_heading(const Glib::ustring& heading, int pos)
 void
 Primitives::_setup_divisions()
 {
-  Glib::RefPtr<Goocanvas::Group> group = Goocanvas::Group::create();
+  auto group = Goocanvas::Group::create();
   _canvas->get_root_item()->add_child(group);
   group->translate(2, 2);
 
@@ -173,7 +173,7 @@ void
 Primitives::_setup_rectangles()
 {
   Glib::RefPtr<Goocanvas::Rect> rect ;
-  Glib::RefPtr<Goocanvas::Item> root = _canvas->get_root_item();
+  auto root = _canvas->get_root_item();
 
   rect = Goocanvas::Rect::create(20, 30, 50, 30);
   root->add_child(rect);
@@ -189,7 +189,7 @@ Primitives::_setup_rectangles()
   rect = Goocanvas::Rect::create(90, 40, 90, 60);
   root->add_child(rect);
   //rect->property_fill_pattern() = _create_stipple("mediumseagreen");
-  Cairo::RefPtr<Cairo::Pattern> p = _create_stipple("mediumseagreen");
+  auto p = _create_stipple("mediumseagreen");
   g_object_set(rect->gobj(), "fill-pattern", p->cobj(), (void*)0);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   rect->property_stroke_color() = "black" ;
@@ -251,7 +251,7 @@ void
 Primitives::_setup_ellipses()
 {
   Glib::RefPtr<Goocanvas::Ellipse> ellipse ;
-  Glib::RefPtr<Goocanvas::Item> root = _canvas->get_root_item();
+  auto root = _canvas->get_root_item();
 
   ellipse = Goocanvas::Ellipse::create(245, 45, 25, 15);
   root->add_child(ellipse);
@@ -282,7 +282,7 @@ Primitives::_setup_ellipses()
   ellipse = Goocanvas::Ellipse::create(245, 110, 35, 30);
   root->add_child(ellipse);
   //ellipse->property_fill_pattern() = _create_stipple("cadetblue");
-  Cairo::RefPtr<Cairo::Pattern> p = _create_stipple("cadetblue");
+  auto p = _create_stipple("cadetblue");
   g_object_set(ellipse->gobj(), "fill-pattern", p->cobj(), (void*)0);
 
 #ifdef GLIBMM_PROPERTIES_ENABLED
@@ -305,7 +305,7 @@ Primitives::_setup_texts()
   anchor->add_child(text);
 
   //ellipse->property_fill_pattern() = _create_stipple("blue");
-  Cairo::RefPtr<Cairo::Pattern> p = _create_stipple("blue");
+  auto p = _create_stipple("blue");
   g_object_set(text->gobj(), "fill-pattern", p->cobj(), (void*)0);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "Sans Bold 24" ;
@@ -385,7 +385,7 @@ Primitives::_setup_images()
   double w = pb->get_width();
   double h = pb->get_height();
 
-  Glib::RefPtr<Goocanvas::Image> img = Goocanvas::Image::create(pb, 100.0 - w / 2.0, 225.0 - h / 2.0);
+  auto img = Goocanvas::Image::create(pb, 100.0 - w / 2.0, 225.0 - h / 2.0);
   _canvas->get_root_item()->add_child(img);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   img->property_width() = w ;
@@ -409,10 +409,10 @@ Primitives::_setup_lines()
   _create_hilbert();
 
   Glib::RefPtr<Goocanvas::Polyline> line ;
-  Glib::RefPtr<Goocanvas::Item> root = _canvas->get_root_item();
+  auto root = _canvas->get_root_item();
 
 /*
-  Glib::RefPtr<Goocanvas::Points> points = Goocanvas::Points::create(4);
+  auto points = Goocanvas::Points::create(4);
   points->set_coordinate(0, 340, 170);
   points->set_coordinate(1, 340, 230);
   points->set_coordinate(2, 390, 230);
@@ -479,8 +479,8 @@ Primitives::_create_stipple(const Glib::ustring& color)
   data[1] = data[13] = c.get_green() << 8 ;
   data[0] = data[12] = c.get_blue() << 8 ;
 
-  Cairo::RefPtr<Cairo::ImageSurface> surface = Cairo::ImageSurface::create(data, Cairo::FORMAT_ARGB32, 2, 2, 8);
-  Cairo::RefPtr<Cairo::SurfacePattern> pattern = Cairo::SurfacePattern::create(surface);
+  auto surface = Cairo::ImageSurface::create(data, Cairo::FORMAT_ARGB32, 2, 2, 8);
+  auto pattern = Cairo::SurfacePattern::create(surface);
   pattern->set_extend(Cairo::EXTEND_REPEAT);
   return pattern ;
 }
@@ -490,13 +490,13 @@ Primitives::_create_anchor(double x, double y)
 {
   cairo_matrix_t m = { 0.8, 0.2, -0.3, 0.5, x, y };
 
-  Glib::RefPtr<Goocanvas::Group> group = Goocanvas::Group::create();
+  auto group = Goocanvas::Group::create();
   _canvas->get_root_item()->add_child(group);
   group->translate(x, y);
   //group->property_transform() = &m ;
   g_object_set(group->gobj(), "transform", &m, (void*)0);
 
-  Glib::RefPtr<Goocanvas::Rect> rect = Goocanvas::Rect::create(-2.5, -2.5, 4, 4);
+  auto rect = Goocanvas::Rect::create(-2.5, -2.5, 4, 4);
   group->add_child(rect);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   rect->property_line_width() = 1.0 ;
@@ -526,12 +526,12 @@ Primitives::_create_flower(double x, double y, Goocanvas::AnchorType /* anchor *
     return ;
   }
 
-  const double w = surface->get_width();
-  const double h = surface->get_height();
+  const auto w = surface->get_width();
+  const auto h = surface->get_height();
 
-  Cairo::RefPtr<Cairo::SurfacePattern> pattern = Cairo::SurfacePattern::create(surface);
+  auto pattern = Cairo::SurfacePattern::create(surface);
 
-  Glib::RefPtr<Goocanvas::Image> img = Goocanvas::Image::create(x, y);
+  auto img = Goocanvas::Image::create(x, y);
    _canvas->get_root_item()->add_child(img);
   //TODO: img->property_pattern() = pattern ;
   g_object_set(img->gobj(), "pattern", pattern->cobj(), (void*)0);
@@ -548,11 +548,9 @@ Primitives::_create_flower(double x, double y, Goocanvas::AnchorType /* anchor *
 void
 Primitives::_create_polish_diamond()
 {
-  Glib::RefPtr<Goocanvas::Group> group = Goocanvas::Group::create();
+  auto group = Goocanvas::Group::create();
   _canvas->get_root_item()->add_child(group); 
   group->translate(270, 230);
-
-  Glib::RefPtr<Goocanvas::Polyline> line ;
 
   double vertices = 10.0 ;
   double radius = 60.0 ;
@@ -569,7 +567,7 @@ Primitives::_create_polish_diamond()
       double x2 = radius * cos(a);
       double y2 = radius * sin(a);
 
-      line = Goocanvas::Polyline::create(x1, y1, x2, y2);
+      auto line = Goocanvas::Polyline::create(x1, y1, x2, y2);
       group->add_child(line);
     }
   }

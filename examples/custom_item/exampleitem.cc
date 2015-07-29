@@ -36,7 +36,7 @@ void ExampleItem::simple_update_vfunc(const Cairo::RefPtr<Cairo::Context>& cr)
 {
   Goocanvas::ItemSimple::simple_update_vfunc(cr);
 
-  GooCanvasItemSimple* simple = GOO_CANVAS_ITEM_SIMPLE(gobj());
+  auto simple = GOO_CANVAS_ITEM_SIMPLE(gobj());
   if(simple)
   {
     /* Compute the new bounds. */
@@ -61,10 +61,10 @@ void ExampleItem::simple_paint_vfunc(const Cairo::RefPtr<Cairo::Context>& cr, co
   cr->line_to(m_x + m_width, m_y);
   cr->close_path();
 
-  GooCanvasItemSimple* simple = GOO_CANVAS_ITEM_SIMPLE(gobj());
+  auto simple = GOO_CANVAS_ITEM_SIMPLE(gobj());
   if(simple && simple->simple_data)
   {
-    Glib::RefPtr<Goocanvas::Style> style = Glib::wrap(simple->simple_data->style, true /* take_copy */);
+    auto style = Glib::wrap(simple->simple_data->style, true /* take_copy */);
     if(style)
       style->set_fill_options(cr);
   }
