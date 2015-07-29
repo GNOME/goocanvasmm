@@ -29,7 +29,7 @@ ExampleWindow::ExampleWindow()
   set_title("goocanvasmm Example");
 
   m_box.pack_start(m_label_origin, Gtk::PACK_SHRINK);
-  m_label_origin.set_alignment(0.0, 0.5);
+  m_label_origin.set_xalign(0.0);
 
   m_canvas.set_size_request(640, 480);
   m_canvas.set_bounds(0, 0, 1000, 1000);
@@ -64,7 +64,7 @@ ExampleWindow::ExampleWindow()
   m_button_scale.signal_clicked().connect(sigc::mem_fun(*this, &ExampleWindow::on_button_scale));
 
   m_box.pack_start(m_label_status, Gtk::PACK_SHRINK);
-  m_label_status.set_alignment(0.0, 0.5);
+  m_label_status.set_xalign(0.0);
   add(m_box);
 
   show_all_children();
