@@ -1,3 +1,10 @@
+1.90.10 (unstable):
+
+* Use (and require) C++11.
+  (Murray Cumming)
+* ItemSimple: Remove get_bounds()
+  (Kjell Ahlstedt) Bug #721627.
+
 1.90.9 (unstable):
 
 * Minor build fixes.
