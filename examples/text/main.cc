@@ -19,13 +19,11 @@
 
 int main(int argc, char* argv[])
 {
-  Gtk::Main app(&argc, &argv);
+  auto app = Gtk::Application::create(argc, argv);
   Goocanvas::init();
 
   ExampleWindow win;
-  Gtk::Main::run(win);
-
-  return 0;
+  return app->run(win);
 }
 
 

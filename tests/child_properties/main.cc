@@ -20,9 +20,8 @@
 #include <iostream>
 
 int
-main(int argc, char* argv[])
+main()
 {
-  Gtk::Main app(&argc, &argv);
   Goocanvas::init();
 
   auto table = Goocanvas::Table::create();
