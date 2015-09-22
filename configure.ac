@@ -15,7 +15,7 @@
 ## You should have received a copy of the GNU Lesser General Public License
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-AC_INIT([goocanvasmm], [1.90.10], [http://bugzilla.gnome.org/], [goocanvasmm], [http://www.gtkmm.org/])
+AC_INIT([goocanvasmm], [1.90.11], [http://bugzilla.gnome.org/], [goocanvasmm], [http://www.gtkmm.org/])
 AC_PREREQ([2.59])
 
 AC_CONFIG_SRCDIR([goocanvas/src/canvas.hg])
@@ -46,7 +46,7 @@ AC_DISABLE_STATIC
 AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
-AC_SUBST([GOOCANVASMM_MODULES], ['glibmm-2.4 >= 2.45.41 gtkmm-3.0 >= 3.17.50 goocanvas-2.0 >= 2.0.1'])
+AC_SUBST([GOOCANVASMM_MODULES], ['glibmm-2.4 >= 2.46.1 gtkmm-3.0 >= 3.18.0 goocanvas-2.0 >= 2.0.1'])
 PKG_CHECK_MODULES([GOOCANVASMM], [$GOOCANVASMM_MODULES])
 
 MM_PKG_CONFIG_SUBST([GTHREAD_CFLAGS], [--cflags-only-other gthread-2.0])
