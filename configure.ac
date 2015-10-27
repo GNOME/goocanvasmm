@@ -64,7 +64,7 @@ MM_ARG_WITH_TAGFILE_DOC([gtkmm-3.0.tag], [gtkmm-3.0])
 AC_LANG([C++])
 MM_ARG_ENABLE_WARNINGS([GOOCANVASMM_WXXFLAGS],
                        [-Wall],
-                       [-pedantic -Wall -Wextra -Wformat-security-Wno-long-long -DGSEAL_ENABLE],
+                       [-pedantic -Wall -Wextra -Wformat-security -Wsuggest-override -Wshadow -Wno-long-long],
                        [G PANGO ATK GDK GDK_PIXBUF GTK SIGC GLIBMM ATKMM PANGOMM CAIROMM GTKMM])
 
 AC_CONFIG_FILES([Makefile
