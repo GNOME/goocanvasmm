@@ -29,8 +29,8 @@ public:
   static Glib::RefPtr<ExampleItem> create(double x = 0, double y = 0, double width = 0, double height = 0);
 
 protected:
-  void simple_update_vfunc(const Cairo::RefPtr<Cairo::Context>& cr);
-  void simple_paint_vfunc(const Cairo::RefPtr<Cairo::Context>& cr, const Goocanvas::Bounds& bounds);
+  void simple_update_vfunc(const Cairo::RefPtr<Cairo::Context>& cr) override;
+  void simple_paint_vfunc(const Cairo::RefPtr<Cairo::Context>& cr, const Goocanvas::Bounds& bounds) override;
 
   double m_x, m_y;
   double m_width, m_height;

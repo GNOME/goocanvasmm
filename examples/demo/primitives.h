@@ -31,11 +31,11 @@ class Primitives : public Page
 public:
   Primitives();
 
-  virtual const Glib::ustring&
-  getName();
+  const Glib::ustring&
+  getName() override;
 
-  virtual Gtk::Widget*
-  getWidget();
+  Gtk::Widget*
+  getWidget() override;
 
 private:
 
