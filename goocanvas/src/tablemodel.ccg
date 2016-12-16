@@ -23,20 +23,32 @@ _PINCLUDE(goocanvasmm/private/groupmodel_p.h)
 namespace Goocanvas
 {
 
-void TableModel::attach(const Glib::RefPtr<ItemModel>& item, guint left_attach, guint right_attach, guint top_attach, guint bottom_attach,
-  double left_padding, double right_padding, double top_padding, double bottom_padding)
+void TableModel::attach(const Glib::RefPtr<ItemModel>& item, guint left_attach, guint right_attach, guint top_attach, guint bottom_attach, Gtk::AttachOptions xoptions, Gtk::AttachOptions yoptions, double left_padding, double right_padding, double top_padding, double bottom_padding)
 {
+  const gboolean x_expand = (xoptions & Gtk::EXPAND) != 0;
+  const gboolean x_fill = (xoptions & Gtk::FILL) != 0;
+  const gboolean x_shrink = (xoptions & Gtk::SHRINK) != 0;
+  const gboolean y_expand = (yoptions & Gtk::EXPAND) != 0;
+  const gboolean y_fill = (yoptions & Gtk::FILL) != 0;
+  const gboolean y_shrink = (yoptions & Gtk::SHRINK) != 0;
+
   add_child(item);
   goo_canvas_item_model_set_child_properties(GOO_CANVAS_ITEM_MODEL(gobj()), item->gobj(),
                                              "column", left_attach,
                                              "columns", right_attach - left_attach,
                                              "row", top_attach,
                                              "rows", bottom_attach - top_attach,
+                                             "x-fill", x_fill,
+                                             "x-expand", x_expand,
+                                             "x-shrink", x_shrink,
+                                             "y-fill", y_fill,
+                                             "y-expand", y_expand,
+                                             "y-shrink", y_shrink,
                                              "left-padding", left_padding,
                                              "right-padding", right_padding,
                                              "top-padding", top_padding,
                                              "bottom-padding", bottom_padding,
-                                             static_cast<void*>(0));
+                                              static_cast<void*>(0));
 }
 
 void TableModel::set_align(const Glib::RefPtr<ItemModel>& child, double xalign, double yalign)
