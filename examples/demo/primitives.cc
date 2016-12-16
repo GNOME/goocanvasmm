@@ -474,10 +474,10 @@ Primitives::_create_stipple(const Glib::ustring& color)
       0, 0, 0, 255
     };
 
-  Gdk::Color c(color);
-  data[2] = data[14] = c.get_red() << 8 ;
-  data[1] = data[13] = c.get_green() << 8 ;
-  data[0] = data[12] = c.get_blue() << 8 ;
+  Gdk::RGBA c(color);
+  data[2] = data[14] = c.get_red() * 255;
+  data[1] = data[13] = c.get_green() * 255;
+  data[0] = data[12] = c.get_blue() * 255;
 
   auto surface = Cairo::ImageSurface::create(data, Cairo::FORMAT_ARGB32, 2, 2, 8);
   auto pattern = Cairo::SurfacePattern::create(surface);
