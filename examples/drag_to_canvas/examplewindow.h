@@ -48,8 +48,8 @@ protected:
   
   Goocanvas::Canvas m_canvas;
 
-  Gtk::VBox m_vbox;
-  Gtk::HBox m_hbox;
+  Gtk::Box m_vbox;
+  Gtk::Box m_hbox;
   Gtk::Button m_button_rect, m_button_ellipse;
 
   std::vector<Gtk::TargetEntry> m_drag_targets;

@@ -64,7 +64,7 @@ private:
   void      _create_hilbert();
 
   Glib::ustring    _name ;
-  Gtk::VBox*    _vbox ;
+  Gtk::Box*    _vbox ;
   Gtk::RadioButtonGroup  _rbg ;
   Goocanvas::Canvas*  _canvas ;
   Gtk::ScrolledWindow*  _scrolled_window ;

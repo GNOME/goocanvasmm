@@ -39,8 +39,8 @@ private:
   Goocanvas::Canvas m_canvas;
   Glib::RefPtr<Goocanvas::Text> m_text;
 
-  Gtk::VBox m_box;
-  Gtk::HBox m_button_box1, m_button_box2;
+  Gtk::Box m_box;
+  Gtk::Box m_button_box1, m_button_box2;
   Gtk::Label m_label_origin, m_label_status;
   Gtk::Button m_button_translate, m_button_scale, m_button_setxy, m_button_zoom;
   Gtk::Button m_button_set_width, m_button_set_width_unlimited;

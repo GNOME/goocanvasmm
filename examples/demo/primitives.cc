@@ -24,7 +24,7 @@
 Primitives::Primitives()
   : _name("Primitives")
 {
-  _vbox = Gtk::manage(new Gtk::VBox());
+  _vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
 
   auto lbl = Gtk::manage(new Gtk::Label("Drag an item with button 1. Click button 2 on an item to lower it, or button 3 to raise it."));
   _vbox->pack_start(*lbl, Gtk::PACK_SHRINK);

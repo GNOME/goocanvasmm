@@ -35,8 +35,8 @@ private:
   Goocanvas::Canvas m_canvas;
   Glib::RefPtr<Goocanvas::Rect> m_rect;
 
-  Gtk::VBox m_box;
-  Gtk::HBox m_button_box;
+  Gtk::Box m_box;
+  Gtk::Box m_button_box;
   Gtk::Label m_label_origin, m_label_status;
   Gtk::Button m_button_translate, m_button_scale, m_button_setxy;
 };

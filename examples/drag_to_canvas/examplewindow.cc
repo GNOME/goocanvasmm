@@ -21,8 +21,8 @@
 const int DRAG_DATA_FORMAT = 8; // 8 bits format
 
 ExampleWindow::ExampleWindow()
-: m_vbox(false, 6),
-  m_hbox(false, 6),
+: m_vbox(Gtk::ORIENTATION_VERTICAL, 6),
+  m_hbox(Gtk::ORIENTATION_HORIZONTAL, 6),
   m_button_rect("Rectangle"),
   m_button_ellipse("Ellipse"),
   m_drag_preview_requested(false)

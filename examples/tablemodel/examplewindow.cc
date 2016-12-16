@@ -63,7 +63,7 @@ ExampleWindow::ExampleWindow()
   auto sw2 = Gtk::manage(new Gtk::ScrolledWindow());
   sw2->add(m_second_canvas);
 
-  auto box = Gtk::manage(new Gtk::VBox(false, 6));
+  auto box = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL, 6));
   box->pack_start(*sw1, Gtk::PACK_EXPAND_WIDGET);
   box->pack_start(*sw2, Gtk::PACK_EXPAND_WIDGET);
   add(*box);
