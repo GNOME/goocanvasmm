@@ -28,7 +28,7 @@ main()
 
   //Add a child to the table:
   auto child = Goocanvas::Text::create("test");
-  table->attach(child, 2, 3, 5, 6, Gtk::EXPAND | Gtk::FILL, Gtk::SHRINK);
+  table->attach(child, 2, 3, 5, 6, Gtk::PACK_EXPAND_WIDGET, Gtk::PACK_SHRINK);
 
   //Examine the child property:
 

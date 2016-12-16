@@ -18,6 +18,7 @@
 
 #include <goocanvasmm/group.h>
 #include <gtkmm/enums.h>
+#include <gtkmm/box.h> // For Gtk::PackOptions.
 
 _DEFS(goocanvasmm,libgoocanvas)
 
@@ -50,7 +51,7 @@ public:
    * @param top_padding The padding at the top.
    * @param bottom_padding The padding at the bottom.
    */
-  void attach(const Glib::RefPtr<Item>& item, guint left_attach, guint right_attach, guint top_attach, guint bottom_attach, Gtk::AttachOptions xoptions = Gtk::FILL | Gtk::EXPAND, Gtk::AttachOptions yoptions = Gtk::FILL | Gtk::EXPAND, double left_padding = 0.0, double right_padding = 0.0, double top_padding = 0.0, double bottom_padding = 0.0);
+  void attach(const Glib::RefPtr<Item>& item, guint left_attach, guint right_attach, guint top_attach, guint bottom_attach, Gtk::PackOptions xoptions = Gtk::PACK_EXPAND_WIDGET, Gtk::PackOptions yoptions = Gtk::PACK_EXPAND_WIDGET, double left_padding = 0.0, double right_padding = 0.0, double top_padding = 0.0, double bottom_padding = 0.0);
 
   // TODO: We should get rid of this overload with the next gtkmm API/ABI break.
   // See http://bugzilla.gnome.org/show_bug.cgi?id=142849.

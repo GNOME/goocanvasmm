@@ -74,6 +74,6 @@ ExampleWindow::ExampleWindow()
 void ExampleWindow::add_text_to_cell(const Glib::RefPtr<Goocanvas::TableModel>& table, const Glib::ustring& text, guint row, guint col)
 {
   auto text_item = Goocanvas::TextModel::create(text);
-  table->attach(text_item, col, col+1, row, row+1, Gtk::EXPAND | Gtk::FILL, Gtk::SHRINK);
+  table->attach(text_item, col, col+1, row, row+1, Gtk::PACK_EXPAND_WIDGET, Gtk::PACK_SHRINK);
 }
 

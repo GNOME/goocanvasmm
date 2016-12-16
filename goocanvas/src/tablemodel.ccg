@@ -23,14 +23,14 @@ _PINCLUDE(goocanvasmm/private/groupmodel_p.h)
 namespace Goocanvas
 {
 
-void TableModel::attach(const Glib::RefPtr<ItemModel>& item, guint left_attach, guint right_attach, guint top_attach, guint bottom_attach, Gtk::AttachOptions xoptions, Gtk::AttachOptions yoptions, double left_padding, double right_padding, double top_padding, double bottom_padding)
+void TableModel::attach(const Glib::RefPtr<ItemModel>& item, guint left_attach, guint right_attach, guint top_attach, guint bottom_attach, Gtk::PackOptions xoptions, Gtk::PackOptions yoptions, double left_padding, double right_padding, double top_padding, double bottom_padding)
 {
-  const gboolean x_expand = (xoptions & Gtk::EXPAND) != 0;
-  const gboolean x_fill = (xoptions & Gtk::FILL) != 0;
-  const gboolean x_shrink = (xoptions & Gtk::SHRINK) != 0;
-  const gboolean y_expand = (yoptions & Gtk::EXPAND) != 0;
-  const gboolean y_fill = (yoptions & Gtk::FILL) != 0;
-  const gboolean y_shrink = (yoptions & Gtk::SHRINK) != 0;
+  const gboolean x_expand = (xoptions == Gtk::PACK_EXPAND_PADDING) || (xoptions == Gtk::PACK_EXPAND_WIDGET);
+  const gboolean x_fill = (xoptions == Gtk::PACK_EXPAND_WIDGET);
+  const gboolean x_shrink = !x_expand;
+  const gboolean y_expand = (yoptions == Gtk::PACK_EXPAND_PADDING) || (yoptions == Gtk::PACK_EXPAND_WIDGET);
+  const gboolean y_fill = (yoptions == Gtk::PACK_EXPAND_WIDGET);
+  const gboolean y_shrink = !y_expand;
 
   add_child(item);
   goo_canvas_item_model_set_child_properties(GOO_CANVAS_ITEM_MODEL(gobj()), item->gobj(),
