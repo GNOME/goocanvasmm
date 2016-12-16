@@ -43,7 +43,7 @@ ExampleWindow::ExampleWindow()
   rect->set_property("stroke_color", Glib::ustring("yellow"));
   rect->set_property("fill_color", Glib::ustring("red"));
 #endif //GLIBMM_PROPERTIES_ENABLED
-  rect->signal_button_press_event ().connect (sigc::mem_fun (this,
+  rect->signal_button_press_event ().connect (sigc::mem_fun(*this,
     &ExampleWindow::on_rect_button_press));
 
   auto text = Goocanvas::Text::create("Hello World", 300, 300, -1, Goocanvas::ANCHOR_CENTER);
