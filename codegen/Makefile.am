@@ -23,7 +23,7 @@ dist_noinst_DATA = $(addprefix m4/,$(files_codegen_m4))
 noinst_PROGRAMS  = extradefs/generate_extra_defs
 
 extradefs_generate_extra_defs_SOURCES = extradefs/generate_extra_defs_goocanvas.cc
-extradefs_generate_extra_defs_LDADD   = $(GOOCANVASMM_LIBS) -lglibmm_generate_extra_defs-2.4
+extradefs_generate_extra_defs_LDADD   = $(GOOCANVASMM_LIBS) -lglibmm_generate_extra_defs-2.52
 
 AM_CPPFLAGS = -I$(top_builddir) $(GTHREAD_CFLAGS) $(GOOCANVASMM_CFLAGS)
 AM_CXXFLAGS = $(GOOCANVASMM_WXXFLAGS)
