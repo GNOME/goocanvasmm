@@ -28,7 +28,15 @@ main()
 
   //Add a child to the table:
   auto child = Goocanvas::Text::create("test");
-  table->attach(child, 2, 3, 5, 6, Gtk::EXPAND | Gtk::FILL, Gtk::SHRINK);
+  table->attach(child, 2, 3, 5, 6);
+  goo_canvas_item_set_child_properties(GOO_CANVAS_ITEM(table->gobj()), GOO_CANVAS_ITEM(child->gobj()),
+    "x-fill", TRUE,
+    "x-expand", TRUE,
+    "x-shrink", FALSE,
+    "y-fill", FALSE,
+    "y-expand", FALSE,
+    "y-shrink", TRUE,
+    static_cast<void*>(0));
 
   //Examine the child property:
 
