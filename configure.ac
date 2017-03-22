@@ -50,13 +50,13 @@ AC_SUBST([GOOCANVASMM_MODULES], ['gtkmm-4.0 >= 3.18.0 goocanvas-3.0 >= 2.0.1'])
 PKG_CHECK_MODULES([GOOCANVASMM], [$GOOCANVASMM_MODULES])
 
 MM_PKG_CONFIG_SUBST([GTHREAD_CFLAGS], [--cflags-only-other gthread-2.0])
-MM_PKG_CONFIG_SUBST([GMMPROC_DIR], [--variable=gmmprocdir glibmm-2.52])
+MM_PKG_CONFIG_SUBST([GMMPROC_DIR], [--variable=gmmprocdir glibmm-2.54])
 MM_PKG_CONFIG_SUBST([GMMPROC_EXTRA_M4_DIR], [--variable=gmmprocm4dir gtkmm-4.0 pangomm-1.42 atkmm-2.26])
 
 MM_ARG_ENABLE_DOCUMENTATION
 MM_ARG_WITH_TAGFILE_DOC([libstdc++.tag], [mm-common-libstdc++])
 MM_ARG_WITH_TAGFILE_DOC([libsigc++-2.0.tag], [sigc++-3.0])
-MM_ARG_WITH_TAGFILE_DOC([glibmm-2.4.tag], [glibmm-2.52])
+MM_ARG_WITH_TAGFILE_DOC([glibmm-2.54.tag], [glibmm-2.54])
 MM_ARG_WITH_TAGFILE_DOC([cairomm-1.0.tag], [cairomm-1.16])
 MM_ARG_WITH_TAGFILE_DOC([pangomm-1.4.tag], [pangomm-1.42])
 MM_ARG_WITH_TAGFILE_DOC([gtkmm-3.0.tag], [gtkmm-4.0])
