@@ -17,9 +17,9 @@
 #include <gtkmm.h>
 #include "window.h"
 
-int main(int argc, char* argv[])
+int main()
 {
-  auto app = Gtk::Application::create(argc, argv);
+  auto app = Gtk::Application::create();
   Goocanvas::init();
 
   ExampleWindow win;
