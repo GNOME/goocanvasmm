@@ -58,8 +58,6 @@ ExampleWindow::ExampleWindow()
   auto sw = Gtk::manage(new Gtk::ScrolledWindow());
   sw->add(m_canvas);
   add(*sw);
-
-  show_all_children();
 }
 
 bool

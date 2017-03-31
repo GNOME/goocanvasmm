@@ -34,6 +34,5 @@ DemoWindow::DemoWindow()
   }
 
   add(*nb);
-  show_all_children();
 }
 

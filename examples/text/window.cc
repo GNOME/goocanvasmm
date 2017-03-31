@@ -78,7 +78,7 @@ ExampleWindow::ExampleWindow()
   m_button_zoom.signal_clicked().connect(sigc::mem_fun(*this, &ExampleWindow::on_button_zoom_canvas));
 
   m_box.pack_start(m_button_box2, Gtk::PACK_SHRINK);
-  
+
   m_button_box2.pack_start(m_button_set_width, Gtk::PACK_SHRINK);
   m_button_set_width.signal_clicked().connect(sigc::mem_fun(*this, &ExampleWindow::on_button_set_width));
 
@@ -89,8 +89,6 @@ ExampleWindow::ExampleWindow()
   m_label_status.set_xalign(0.0);
   add(m_box);
 
-  show_all_children();
-
   update_label();
 }
 
@@ -100,8 +98,8 @@ void ExampleWindow::update_label()
   std::stringstream str;
 
 #ifdef GLIBMM_PROPERTIES_ENABLED
-  str << "Rect: x=" << m_text->property_x() << ", y=" << m_text->property_y() << 
-         ", width=" << m_text->property_width() << //",  height=" << m_text->property_height() << 
+  str << "Rect: x=" << m_text->property_x() << ", y=" << m_text->property_y() <<
+         ", width=" << m_text->property_width() << //",  height=" << m_text->property_height() <<
          ", line_width=" << m_text->property_line_width() << std::endl;
 #else
   //TODO:

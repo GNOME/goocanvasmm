@@ -61,8 +61,6 @@ ExampleWindow::ExampleWindow()
 
   m_canvas.signal_drag_data_received().connect(
       sigc::mem_fun(*this, &ExampleWindow::on_canvas_drag_data_received) );
-
-  show_all_children();
 }
 
 void ExampleWindow::make_widget_draggable(Gtk::Widget& widget, DragItem drag_item)

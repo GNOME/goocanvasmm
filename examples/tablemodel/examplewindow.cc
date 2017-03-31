@@ -67,8 +67,6 @@ ExampleWindow::ExampleWindow()
   box->pack_start(*sw1, Gtk::PACK_EXPAND_WIDGET);
   box->pack_start(*sw2, Gtk::PACK_EXPAND_WIDGET);
   add(*box);
-
-  show_all_children();
 }
 
 void ExampleWindow::add_text_to_cell(const Glib::RefPtr<Goocanvas::TableModel>& table, const Glib::ustring& text, guint row, guint col)

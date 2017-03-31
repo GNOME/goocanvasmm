@@ -67,8 +67,6 @@ ExampleWindow::ExampleWindow()
   m_label_status.set_xalign(0.0);
   add(m_box);
 
-  show_all_children();
-
   update_label();
 }
 
@@ -77,8 +75,8 @@ void ExampleWindow::update_label()
 {
   std::stringstream str;
 #ifdef GLIBMM_PROPERTIES_ENABLED
-  str << "Rect: x=" << m_rect->property_x() << ", y=" << m_rect->property_y() << 
-         ", width=" << m_rect->property_width() << ",  height=" << m_rect->property_height() << 
+  str << "Rect: x=" << m_rect->property_x() << ", y=" << m_rect->property_y() <<
+         ", width=" << m_rect->property_width() << ",  height=" << m_rect->property_height() <<
          ", line_width=" << m_rect->property_line_width() << std::endl;
 #else
   //TODO.

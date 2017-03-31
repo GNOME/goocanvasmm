@@ -56,8 +56,6 @@ ExampleWindow::ExampleWindow()
   auto sw = Gtk::manage(new Gtk::ScrolledWindow());
   sw->add(m_canvas);
   add(*sw);
-
-  show_all_children();
 }
 
 void ExampleWindow::add_text_to_cell(const Glib::RefPtr<Goocanvas::Table>& table, const Glib::ustring& text, guint row, guint col)
