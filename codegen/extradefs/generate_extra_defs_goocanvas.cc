@@ -23,9 +23,9 @@
 #include <goocanvas.h>
 
 
-int main (int argc, char *argv[])
+int main ()
 {
-  gtk_init(&argc, &argv);
+  gtk_init();
 
   std::cout << get_defs(GOO_TYPE_CANVAS);
   std::cout << get_defs(GOO_TYPE_CANVAS_ELLIPSE);
