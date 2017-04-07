@@ -73,7 +73,7 @@ Window::Window()
 void
 Window::on_item_created(const Glib::RefPtr<Goocanvas::Item>& item, const Glib::RefPtr<Goocanvas::ItemModel>& /* model */)
 {
-  auto group = Glib::RefPtr<Goocanvas::Group>::cast_dynamic(item);
+  auto group = std::dynamic_pointer_cast<Goocanvas::Group>(item);
   if(group)
     return ;
 
