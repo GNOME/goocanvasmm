@@ -46,7 +46,7 @@ ExampleWindow::ExampleWindow()
   rect->signal_button_press_event ().connect (sigc::mem_fun(*this,
     &ExampleWindow::on_rect_button_press));
 
-  auto text = Goocanvas::Text::create("Hello World", 300, 300, -1, Goocanvas::ANCHOR_CENTER);
+  auto text = Goocanvas::Text::create("Hello World", 300, 300, -1, Goocanvas::AnchorType::CENTER);
   root->add_child(text);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "Sans 24";

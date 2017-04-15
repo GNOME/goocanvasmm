@@ -19,9 +19,9 @@
 #include <sstream>
 
 ExampleWindow::ExampleWindow()
-: m_box(Gtk::ORIENTATION_VERTICAL, 6),
-  m_button_box1(Gtk::ORIENTATION_HORIZONTAL, 6),
-  m_button_box2(Gtk::ORIENTATION_HORIZONTAL, 6),
+: m_box(Gtk::Orientation::VERTICAL, 6),
+  m_button_box1(Gtk::Orientation::HORIZONTAL, 6),
+  m_button_box2(Gtk::Orientation::HORIZONTAL, 6),
   m_label_origin("origin (0, 0)"),
   m_button_translate("translate(20, 20)"),
   m_button_scale("scale(1.2, 1.2)"),
@@ -37,7 +37,7 @@ ExampleWindow::ExampleWindow()
 
   m_canvas.set_size_request(640, 480);
 #ifdef GLIBMM_PROPERTIES_ENABLED
-  m_canvas.property_units() = Gtk::UNIT_MM;
+  m_canvas.property_units() = Gtk::Unit::MM;
 #else
   m_canvas.set_property("units", Gtk::UNIT_MM);
 #endif 

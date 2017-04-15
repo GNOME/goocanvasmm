@@ -56,7 +56,7 @@ public:
   // TODO: We should get rid of this overload with the next gtkmm API/ABI break.
   // See http://bugzilla.gnome.org/show_bug.cgi?id=142849.
   void set_align(const Glib::RefPtr<Item>& child, double xalign = 0.0, double yalign = 0.0);
-  void set_align(const Glib::RefPtr<Item>& child, Gtk::Align xalign = Gtk::ALIGN_START, Gtk::Align yalign = Gtk::ALIGN_START);
+  void set_align(const Glib::RefPtr<Item>& child, Gtk::Align xalign = Gtk::Align::START, Gtk::Align yalign = Gtk::Align::START);
 
   //We put these in item.hg instead.
   //See the comment there.

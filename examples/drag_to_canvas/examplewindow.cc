@@ -21,15 +21,15 @@
 const int DRAG_DATA_FORMAT = 8; // 8 bits format
 
 ExampleWindow::ExampleWindow()
-: m_vbox(Gtk::ORIENTATION_VERTICAL, 6),
-  m_hbox(Gtk::ORIENTATION_HORIZONTAL, 6),
+: m_vbox(Gtk::Orientation::VERTICAL, 6),
+  m_hbox(Gtk::Orientation::HORIZONTAL, 6),
   m_button_rect("Rectangle"),
   m_button_ellipse("Ellipse"),
   m_drag_preview_requested(false)
 {
   set_title("goocanvasmm - Simple Example");
 
-  m_drag_targets.push_back( Gtk::TargetEntry("goocanvasmm_example_drag_item", Gtk::TARGET_SAME_APP) );
+  m_drag_targets.push_back( Gtk::TargetEntry("goocanvasmm_example_drag_item", Gtk::TargetFlags::SAME_APP) );
 
   add(m_vbox);
   m_vbox.pack_start(m_hbox, Gtk::PACK_SHRINK);
@@ -53,7 +53,7 @@ ExampleWindow::ExampleWindow()
   // drag_dest_set for details. It would be nice if Gtk::DestDefaults did
   // contain a GTK_DEST_DEFAULT_NONE, but short of that we can still brute
   // force it to 0.
-  m_canvas.drag_dest_set(m_drag_targets, (Gtk::DestDefaults)0, Gdk::ACTION_COPY);
+  m_canvas.drag_dest_set(m_drag_targets, (Gtk::DestDefaults)0, Gdk::DragAction::COPY);
   m_canvas.signal_drag_motion().connect(
       sigc::mem_fun(*this, &ExampleWindow::on_canvas_drag_motion) );
   m_canvas.signal_drag_drop().connect(
@@ -65,7 +65,7 @@ ExampleWindow::ExampleWindow()
 
 void ExampleWindow::make_widget_draggable(Gtk::Widget& widget, DragItem drag_item)
 {
-  widget.drag_source_set(m_drag_targets, Gdk::BUTTON1_MASK, Gdk::ACTION_COPY);
+  widget.drag_source_set(m_drag_targets, Gdk::ModifierType::BUTTON1_MASK, Gdk::DragAction::COPY);
 
   //Set the icon to be shown when dragging:
   //Glib::RefPtr<Gdk::Pixbuf> pixbuf = get_icon_for_toolbar_item(*item);
@@ -123,7 +123,7 @@ bool ExampleWindow::on_canvas_drag_motion(const Glib::RefPtr<Gdk::DragContext>& 
 
   std::cout << "  ExampleWindow::on_canvas_drag_motion(): item already created." << std::endl;
 
-  drag_context->drag_status(Gdk::ACTION_COPY, timestamp);
+  drag_context->drag_status(Gdk::DragAction::COPY, timestamp);
 
   //Move the temporary canvas item to the new position:
   double item_x = x;
@@ -179,7 +179,7 @@ void ExampleWindow::on_canvas_drag_data_received(const Glib::RefPtr<Gdk::DragCon
   {
     std::cout << "ExampleWindow::on_canvas_drag_data_received: m_drag_preview_requested" << std::endl;
 
-    drag_context->drag_status(Gdk::ACTION_COPY, timestamp);
+    drag_context->drag_status(Gdk::DragAction::COPY, timestamp);
     m_drag_preview_requested = false;
   }
   else

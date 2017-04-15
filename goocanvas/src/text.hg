@@ -32,12 +32,12 @@ class Text : public Goocanvas::ItemSimple
   _CLASS_GOBJECT(Text,GooCanvasText,GOO_CANVAS_TEXT,Goocanvas::ItemSimple,GooCanvasItemSimple)
 protected:
 
-  explicit Text(const Glib::ustring& text = Glib::ustring(), double x = 0.0, double y = 0.0, double width = -1, AnchorType anchor = ANCHOR_NORTH_WEST);
+  explicit Text(const Glib::ustring& text = Glib::ustring(), double x = 0.0, double y = 0.0, double width = -1, AnchorType anchor = AnchorType::NORTH_WEST);
   _IGNORE(goo_canvas_text_new)
 
 public:
 
-  _WRAP_CREATE(const Glib::ustring& text = Glib::ustring(), double x = 0.0, double y = 0.0, double width = 0.0, AnchorType anchor = ANCHOR_NORTH_WEST)
+  _WRAP_CREATE(const Glib::ustring& text = Glib::ustring(), double x = 0.0, double y = 0.0, double width = 0.0, AnchorType anchor = AnchorType::NORTH_WEST)
 
 #m4 _CONVERSION(`Pango::Rectangle&',`PangoRectangle*',`($3).gobj()')
   _WRAP_METHOD(void get_natural_extents(Pango::Rectangle& ink_rect, Pango::Rectangle& logical_rect) const, goo_canvas_text_get_natural_extents)

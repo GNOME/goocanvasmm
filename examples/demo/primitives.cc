@@ -24,7 +24,7 @@
 Primitives::Primitives()
   : _name("Primitives")
 {
-  _vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+  _vbox = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
 
   auto lbl = Gtk::manage(new Gtk::Label("Drag an item with button 1. Click button 2 on an item to lower it, or button 3 to raise it."));
   _vbox->pack_start(*lbl, Gtk::PACK_SHRINK);
@@ -98,7 +98,7 @@ Primitives::_setup_heading(const Glib::ustring& heading, int pos)
   double x = (pos%3) * 200 + 100 ;
   double y = (pos/3) * 150 + 5 ;
 
-  auto text = Goocanvas::Text::create(heading, x, y, -1, Goocanvas::ANCHOR_N);
+  auto text = Goocanvas::Text::create(heading, x, y, -1, Goocanvas::AnchorType::N);
   _canvas->get_root_item()->add_child(text);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "Sans 12" ;
@@ -301,7 +301,7 @@ Primitives::_setup_texts()
   Glib::RefPtr<Goocanvas::Item> anchor
     = _create_anchor(420, 20);
   Glib::RefPtr<Goocanvas::Text> text
-    = Goocanvas::Text::create("Anchor NW", 0, 0, -1, Goocanvas::ANCHOR_NW);
+    = Goocanvas::Text::create("Anchor NW", 0, 0, -1, Goocanvas::AnchorType::NW);
   anchor->add_child(text);
 
   //ellipse->property_fill_pattern() = _create_stipple("blue");
@@ -309,25 +309,25 @@ Primitives::_setup_texts()
   g_object_set(text->gobj(), "fill-pattern", p->cobj(), (void*)0);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "Sans Bold 24" ;
-  text->property_alignment() = Pango::ALIGN_CENTER ;
+  text->property_alignment() = Pango::Alignment::CENTER ;
   text->property_fill_color() = "firebrick" ;
 #else
   text->set_property("font", Glib::ustring("Sans Bold 24"));
-  text->set_property("alignment", Pango::ALIGN_CENTER);
+  text->set_property("alignment", Pango::Alignment::CENTER);
   text->set_property("fill_color", Glib::ustring("firebrick"));
 #endif
   _setup_signals(text);
 
   anchor = _create_anchor(470, 75);
-  text = Goocanvas::Text::create("Anchor center\nJustify center\nMultiline text\n8bit text 'gibberish'", 0, 0, -1, Goocanvas::ANCHOR_CENTER);
+  text = Goocanvas::Text::create("Anchor center\nJustify center\nMultiline text\n8bit text 'gibberish'", 0, 0, -1, Goocanvas::AnchorType::CENTER);
   anchor->add_child(text);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "monospace bold 14" ;
-  text->property_alignment() = Pango::ALIGN_CENTER ;
+  text->property_alignment() = Pango::Alignment::CENTER ;
   text->property_fill_color() = "firebrick" ;
 #else
   text->set_property("font", Glib::ustring("monospace bold 14"));
-  text->set_property("alignment", Pango::ALIGN_CENTER);
+  text->set_property("alignment", Pango::Alignment::CENTER);
   text->set_property("fill_color", Glib::ustring("firebrick"));
 #endif
   _setup_signals(text);
@@ -335,7 +335,7 @@ Primitives::_setup_texts()
   anchor = _create_anchor(420, 240);
   text = Goocanvas::Text::create(
     "This is a very long paragraph that will need to be wrapped over several lines so we can see what happens to line-breaking as the view is zoomed in and out.",
-    0, 0, 180, Goocanvas::ANCHOR_W);
+    0, 0, 180, Goocanvas::AnchorType::W);
   anchor->add_child(text);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "Sans 12" ;
@@ -346,16 +346,16 @@ Primitives::_setup_texts()
 #endif
   _setup_signals(text);
 
-  text = Goocanvas::Text::create("Ellipsized text.", 20, 420, 115, Goocanvas::ANCHOR_W);
+  text = Goocanvas::Text::create("Ellipsized text.", 20, 420, 115, Goocanvas::AnchorType::W);
   _canvas->get_root_item()->add_child(text);
 #ifdef GLIBMM_PROPERTIES_ENABLED
   text->property_font() = "Sans 12" ;
   text->property_fill_color() = "blue" ;
-  text->property_ellipsize() = Pango::ELLIPSIZE_END ;
+  text->property_ellipsize() = Pango::EllipsizeMode::END ;
 #else
   text->set_property("font", Glib::ustring("Sans 12"));
   text->set_property("fill_color", Glib::ustring("blue"));
-  text->set_property("ellipsize", Pango::ELLIPSIZE_END);
+  text->set_property("ellipsize", Pango::EllipsizeMode::END);
 #endif
   _setup_signals(text);
 }
@@ -396,10 +396,10 @@ Primitives::_setup_images()
 #endif
   _setup_signals(img);
 
-  _create_flower(20.0, 170.0, Goocanvas::ANCHOR_NW);
-  _create_flower(180.0, 170.0, Goocanvas::ANCHOR_NE);
-  _create_flower(20.0, 280.0, Goocanvas::ANCHOR_SW);
-  _create_flower(180.0, 280.0, Goocanvas::ANCHOR_SE);
+  _create_flower(20.0, 170.0, Goocanvas::AnchorType::NW);
+  _create_flower(180.0, 170.0, Goocanvas::AnchorType::NE);
+  _create_flower(20.0, 280.0, Goocanvas::AnchorType::SW);
+  _create_flower(180.0, 280.0, Goocanvas::AnchorType::SE);
 }
 
 void

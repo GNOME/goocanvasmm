@@ -19,8 +19,8 @@
 #include <sstream>
 
 ExampleWindow::ExampleWindow()
-: m_box(Gtk::ORIENTATION_VERTICAL, 6),
-  m_button_box(Gtk::ORIENTATION_HORIZONTAL, 6),
+: m_box(Gtk::Orientation::VERTICAL, 6),
+  m_button_box(Gtk::Orientation::HORIZONTAL, 6),
   m_label_origin("origin (0, 0)"),
   m_button_translate("translate(20, 20)"),
   m_button_scale("scale(1.2, 1.2)"),
