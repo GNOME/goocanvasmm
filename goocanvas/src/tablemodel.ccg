@@ -51,14 +51,6 @@ void TableModel::attach(const Glib::RefPtr<ItemModel>& item, guint left_attach, 
                                               static_cast<void*>(0));
 }
 
-void TableModel::set_align(const Glib::RefPtr<ItemModel>& child, double xalign, double yalign)
-{
-  goo_canvas_item_model_set_child_properties(GOO_CANVAS_ITEM_MODEL(gobj()), child->gobj(),
-                                            "xalign", xalign,
-                                            "yalign", yalign,
-                                            static_cast<void*>(0));
-}
-
 void TableModel::set_align(const Glib::RefPtr<ItemModel>& child, Gtk::Align xalign, Gtk::Align yalign)
 {
   set_align(child, _gtkmm_align_float_from_enum(xalign), _gtkmm_align_float_from_enum(yalign));
