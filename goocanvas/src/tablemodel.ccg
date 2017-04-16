@@ -53,7 +53,10 @@ void TableModel::attach(const Glib::RefPtr<ItemModel>& item, guint left_attach, 
 
 void TableModel::set_align(const Glib::RefPtr<ItemModel>& child, Gtk::Align xalign, Gtk::Align yalign)
 {
-  set_align(child, _gtkmm_align_float_from_enum(xalign), _gtkmm_align_float_from_enum(yalign));
+  goo_canvas_item_set_child_properties(GOO_CANVAS_ITEM(gobj()), child->gobj(),
+      "xalign", _gtkmm_align_float_from_enum(xalign),
+      "yalign", _gtkmm_align_float_from_enum(yalign),
+      static_cast<void*>(0));
 }
 
 } //namspace Goocanvas
