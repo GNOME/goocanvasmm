@@ -479,9 +479,9 @@ Primitives::_create_stipple(const Glib::ustring& color)
   data[1] = data[13] = c.get_green() * 255;
   data[0] = data[12] = c.get_blue() * 255;
 
-  auto surface = Cairo::ImageSurface::create(data, Cairo::FORMAT_ARGB32, 2, 2, 8);
+  auto surface = Cairo::ImageSurface::create(data, Cairo::Surface::Format::ARGB32, 2, 2, 8);
   auto pattern = Cairo::SurfacePattern::create(surface);
-  pattern->set_extend(Cairo::EXTEND_REPEAT);
+  pattern->set_extend(Cairo::Pattern::Extend::REPEAT);
   return pattern ;
 }
 

@@ -62,17 +62,17 @@ public:
 
   _WRAP_PROPERTY("stroke-pattern", Cairo::RefPtr<Cairo::Pattern>)
   _WRAP_PROPERTY("fill-pattern", Cairo::RefPtr<Cairo::Pattern>)
-  _WRAP_PROPERTY("fill-rule", Cairo::FillRule)
-  _WRAP_PROPERTY("operator", Cairo::Operator)
+  _WRAP_PROPERTY("fill-rule", Cairo::Context::FillRule)
+  _WRAP_PROPERTY("operator", Cairo::Context::Operator)
   _WRAP_PROPERTY("antialias", Cairo::Antialias)
 
   _WRAP_PROPERTY("font", Glib::ustring)
   _WRAP_PROPERTY("font-desc", Pango::FontDescription)
-  _WRAP_PROPERTY("hint-metrics", Cairo::HintMetrics)
+  _WRAP_PROPERTY("hint-metrics", Cairo::FontOptions::HintMetrics)
 
   _WRAP_PROPERTY("line-width", double)
-  _WRAP_PROPERTY("line-cap", Cairo::LineCap)
-  _WRAP_PROPERTY("line-join", Cairo::LineJoin)
+  _WRAP_PROPERTY("line-cap", Cairo::Context::LineCap)
+  _WRAP_PROPERTY("line-join", Cairo::Context::LineJoin)
   _WRAP_PROPERTY("line-join-miter-limit", double)
   _WRAP_PROPERTY("line-dash", LineDash)
 
@@ -87,7 +87,7 @@ public:
   _WRAP_PROPERTY("parent", Glib::RefPtr<Item>)
   _WRAP_PROPERTY("can-focus", bool)
   _WRAP_PROPERTY("clip-path", Glib::ustring)
-  _WRAP_PROPERTY("clip-fill-rule", Cairo::FillRule)
+  _WRAP_PROPERTY("clip-fill-rule", Cairo::Context::FillRule)
 
   // Don't override Item::get_bounds(). It can do more than taking a copy of
   // GooCanvasItemSimple.bounds, such as first updating it.

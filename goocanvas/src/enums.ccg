@@ -32,11 +32,11 @@ GType Value<Cairo::Matrix*>::value_type() { return goo_cairo_matrix_get_type(); 
 // goocanvas defines GTypes for them so they can be used with GValue. We need
 // this since we want to use these enums in Glib::Value<>s, for example to
 // pass them to properties via the property_*() functions.
-GType Value<Cairo::FillRule>::value_type() { return goo_cairo_fill_rule_get_type(); }
-GType Value<Cairo::Operator>::value_type() { return goo_cairo_operator_get_type(); }
+GType Value<Cairo::Context::FillRule>::value_type() { return goo_cairo_fill_rule_get_type(); }
+GType Value<Cairo::Context::Operator>::value_type() { return goo_cairo_operator_get_type(); }
 GType Value<Cairo::Antialias>::value_type() { return goo_cairo_antialias_get_type(); }
-GType Value<Cairo::LineCap>::value_type() { return goo_cairo_line_cap_get_type(); }
-GType Value<Cairo::LineJoin>::value_type() { return goo_cairo_line_join_get_type(); }
-GType Value<Cairo::HintMetrics>::value_type() { return goo_cairo_hint_metrics_get_type(); }
+GType Value<Cairo::Context::LineCap>::value_type() { return goo_cairo_line_cap_get_type(); }
+GType Value<Cairo::Context::LineJoin>::value_type() { return goo_cairo_line_join_get_type(); }
+GType Value<Cairo::FontOptions::HintMetrics>::value_type() { return goo_cairo_hint_metrics_get_type(); }
 
 }

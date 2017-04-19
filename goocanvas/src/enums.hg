@@ -52,14 +52,14 @@ public:
 };
 
 template<>
-class Value<Cairo::FillRule> : public Glib::Value_Enum<Cairo::FillRule>
+class Value<Cairo::Context::FillRule> : public Glib::Value_Enum<Cairo::Context::FillRule>
 {
 public:
   static GType value_type() G_GNUC_CONST;
 };
 
 template<>
-class Value<Cairo::Operator> : public Glib::Value_Enum<Cairo::Operator>
+class Value<Cairo::Context::Operator> : public Glib::Value_Enum<Cairo::Context::Operator>
 {
 public:
   static GType value_type() G_GNUC_CONST;
@@ -73,21 +73,21 @@ public:
 };
 
 template<>
-class Value<Cairo::LineCap> : public Glib::Value_Enum<Cairo::LineCap>
+class Value<Cairo::Context::LineCap> : public Glib::Value_Enum<Cairo::Context::LineCap>
 {
 public:
   static GType value_type() G_GNUC_CONST;
 };
 
 template<>
-class Value<Cairo::LineJoin> : public Glib::Value_Enum<Cairo::LineJoin>
+class Value<Cairo::Context::LineJoin> : public Glib::Value_Enum<Cairo::Context::LineJoin>
 {
 public:
   static GType value_type() G_GNUC_CONST;
 };
 
 template<>
-class Value<Cairo::HintMetrics> : public Glib::Value_Enum<Cairo::HintMetrics>
+class Value<Cairo::FontOptions::HintMetrics> : public Glib::Value_Enum<Cairo::FontOptions::HintMetrics>
 {
 public:
   static GType value_type() G_GNUC_CONST;
