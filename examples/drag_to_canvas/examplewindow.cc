@@ -55,12 +55,12 @@ ExampleWindow::ExampleWindow()
   // force it to 0.
   m_canvas.drag_dest_set(m_drag_targets, (Gtk::DestDefaults)0, Gdk::DragAction::COPY);
   m_canvas.signal_drag_motion().connect(
-      sigc::mem_fun(*this, &ExampleWindow::on_canvas_drag_motion) );
+      sigc::mem_fun(*this, &ExampleWindow::on_canvas_drag_motion), true);
   m_canvas.signal_drag_drop().connect(
-      sigc::mem_fun(*this, &ExampleWindow::on_canvas_drag_drop) );
+      sigc::mem_fun(*this, &ExampleWindow::on_canvas_drag_drop), true);
 
   m_canvas.signal_drag_data_received().connect(
-      sigc::mem_fun(*this, &ExampleWindow::on_canvas_drag_data_received) );
+      sigc::mem_fun(*this, &ExampleWindow::on_canvas_drag_data_received), true);
 }
 
 void ExampleWindow::make_widget_draggable(Gtk::Widget& widget, DragItem drag_item)

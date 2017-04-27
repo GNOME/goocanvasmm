@@ -87,9 +87,9 @@ Primitives::_on_motion_notify(const Glib::RefPtr<Goocanvas::Item>& /* item */, G
 void
 Primitives::_setup_signals(const Glib::RefPtr<Goocanvas::Item>& item)
 {
-  item->signal_button_press_event().connect(sigc::mem_fun(*this, &Primitives::_on_button_press));
-  item->signal_button_release_event().connect(sigc::mem_fun(*this, &Primitives::_on_button_release));
-  item->signal_motion_notify_event().connect(sigc::mem_fun(*this, &Primitives::_on_motion_notify));
+  item->signal_button_press_event().connect(sigc::mem_fun(*this, &Primitives::_on_button_press), true);
+  item->signal_button_release_event().connect(sigc::mem_fun(*this, &Primitives::_on_button_release), true);
+  item->signal_motion_notify_event().connect(sigc::mem_fun(*this, &Primitives::_on_motion_notify), true);
 }
 
 void

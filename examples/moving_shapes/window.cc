@@ -77,9 +77,9 @@ Window::on_item_created(const Glib::RefPtr<Goocanvas::Item>& item, const Glib::R
   if(group)
     return ;
 
-  item->signal_button_press_event().connect(sigc::mem_fun(*this, &Window::on_item_button_press_event));
-  item->signal_button_release_event().connect(sigc::mem_fun(*this, &Window::on_item_button_release_event));
-  item->signal_motion_notify_event().connect(sigc::mem_fun(*this, &Window::on_item_motion_notify_event));
+  item->signal_button_press_event().connect(sigc::mem_fun(*this, &Window::on_item_button_press_event), true);
+  item->signal_button_release_event().connect(sigc::mem_fun(*this, &Window::on_item_button_release_event), true);
+  item->signal_motion_notify_event().connect(sigc::mem_fun(*this, &Window::on_item_motion_notify_event), true);
 }
 
 bool
