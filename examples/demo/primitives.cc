@@ -27,7 +27,7 @@ Primitives::Primitives()
   _vbox = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
 
   auto lbl = Gtk::manage(new Gtk::Label("Drag an item with button 1. Click button 2 on an item to lower it, or button 3 to raise it."));
-  _vbox->pack_start(*lbl, Gtk::PACK_SHRINK);
+  _vbox->pack_start(*lbl, Gtk::PackOptions::SHRINK);
 
 
 //====
@@ -42,7 +42,7 @@ Primitives::Primitives()
 
   _scrolled_window = Gtk::manage(new Gtk::ScrolledWindow());
   _scrolled_window->add(*_canvas);
-  _vbox->pack_start(*_scrolled_window, Gtk::PACK_EXPAND_WIDGET);
+  _vbox->pack_start(*_scrolled_window, Gtk::PackOptions::EXPAND_WIDGET);
 
 //====
 }

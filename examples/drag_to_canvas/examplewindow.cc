@@ -32,11 +32,11 @@ ExampleWindow::ExampleWindow()
   m_drag_targets.push_back( Gtk::TargetEntry("goocanvasmm_example_drag_item", Gtk::TargetFlags::SAME_APP) );
 
   add(m_vbox);
-  m_vbox.pack_start(m_hbox, Gtk::PACK_SHRINK);
+  m_vbox.pack_start(m_hbox, Gtk::PackOptions::SHRINK);
 
-  m_hbox.pack_start(m_button_rect, Gtk::PACK_SHRINK);
+  m_hbox.pack_start(m_button_rect, Gtk::PackOptions::SHRINK);
   make_widget_draggable(m_button_rect, DRAG_ITEM_RECTANGLE);
-  m_hbox.pack_start(m_button_ellipse, Gtk::PACK_SHRINK);
+  m_hbox.pack_start(m_button_ellipse, Gtk::PackOptions::SHRINK);
   make_widget_draggable(m_button_ellipse, DRAG_ITEM_ELLIPSE);
 
   m_canvas.set_size_request(640, 480);

@@ -64,14 +64,14 @@ ExampleWindow::ExampleWindow()
   sw2->add(m_second_canvas);
 
   auto box = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL, 6));
-  box->pack_start(*sw1, Gtk::PACK_EXPAND_WIDGET);
-  box->pack_start(*sw2, Gtk::PACK_EXPAND_WIDGET);
+  box->pack_start(*sw1, Gtk::PackOptions::EXPAND_WIDGET);
+  box->pack_start(*sw2, Gtk::PackOptions::EXPAND_WIDGET);
   add(*box);
 }
 
 void ExampleWindow::add_text_to_cell(const Glib::RefPtr<Goocanvas::TableModel>& table, const Glib::ustring& text, guint row, guint col)
 {
   auto text_item = Goocanvas::TextModel::create(text);
-  table->attach(text_item, col, col+1, row, row+1, Gtk::PACK_EXPAND_WIDGET, Gtk::PACK_SHRINK);
+  table->attach(text_item, col, col+1, row, row+1, Gtk::PackOptions::EXPAND_WIDGET, Gtk::PackOptions::SHRINK);
 }
 

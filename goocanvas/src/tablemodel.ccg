@@ -25,11 +25,11 @@ namespace Goocanvas
 
 void TableModel::attach(const Glib::RefPtr<ItemModel>& item, guint left_attach, guint right_attach, guint top_attach, guint bottom_attach, Gtk::PackOptions xoptions, Gtk::PackOptions yoptions, double left_padding, double right_padding, double top_padding, double bottom_padding)
 {
-  const gboolean x_expand = (xoptions == Gtk::PACK_EXPAND_PADDING) || (xoptions == Gtk::PACK_EXPAND_WIDGET);
-  const gboolean x_fill = (xoptions == Gtk::PACK_EXPAND_WIDGET);
+  const gboolean x_expand = (xoptions == Gtk::PackOptions::EXPAND_PADDING) || (xoptions == Gtk::PackOptions::EXPAND_WIDGET);
+  const gboolean x_fill = (xoptions == Gtk::PackOptions::EXPAND_WIDGET);
   const gboolean x_shrink = !x_expand;
-  const gboolean y_expand = (yoptions == Gtk::PACK_EXPAND_PADDING) || (yoptions == Gtk::PACK_EXPAND_WIDGET);
-  const gboolean y_fill = (yoptions == Gtk::PACK_EXPAND_WIDGET);
+  const gboolean y_expand = (yoptions == Gtk::PackOptions::EXPAND_PADDING) || (yoptions == Gtk::PackOptions::EXPAND_WIDGET);
+  const gboolean y_fill = (yoptions == Gtk::PackOptions::EXPAND_WIDGET);
   const gboolean y_shrink = !y_expand;
 
   add_child(item);

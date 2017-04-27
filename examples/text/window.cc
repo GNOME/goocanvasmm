@@ -32,7 +32,7 @@ ExampleWindow::ExampleWindow()
 {
   set_title("goocanvasmm Example");
 
-  m_box.pack_start(m_label_origin, Gtk::PACK_SHRINK);
+  m_box.pack_start(m_label_origin, Gtk::PackOptions::SHRINK);
   m_label_origin.set_xalign(0.0);
 
   m_canvas.set_size_request(640, 480);
@@ -63,29 +63,29 @@ ExampleWindow::ExampleWindow()
   sw->add(m_canvas);
   m_box.pack_start(*sw);
 
-  m_box.pack_start(m_button_box1, Gtk::PACK_SHRINK);
+  m_box.pack_start(m_button_box1, Gtk::PackOptions::SHRINK);
   
-  m_button_box1.pack_start(m_button_translate, Gtk::PACK_SHRINK);
+  m_button_box1.pack_start(m_button_translate, Gtk::PackOptions::SHRINK);
   m_button_translate.signal_clicked().connect(sigc::mem_fun(*this, &ExampleWindow::on_button_translate));
 
-  m_button_box1.pack_start(m_button_setxy, Gtk::PACK_SHRINK);
+  m_button_box1.pack_start(m_button_setxy, Gtk::PackOptions::SHRINK);
   m_button_setxy.signal_clicked().connect(sigc::mem_fun(*this, &ExampleWindow::on_button_setxy));
 
-  m_button_box1.pack_start(m_button_scale, Gtk::PACK_SHRINK);
+  m_button_box1.pack_start(m_button_scale, Gtk::PackOptions::SHRINK);
   m_button_scale.signal_clicked().connect(sigc::mem_fun(*this, &ExampleWindow::on_button_scale));
 
-  m_button_box1.pack_start(m_button_zoom, Gtk::PACK_SHRINK);
+  m_button_box1.pack_start(m_button_zoom, Gtk::PackOptions::SHRINK);
   m_button_zoom.signal_clicked().connect(sigc::mem_fun(*this, &ExampleWindow::on_button_zoom_canvas));
 
-  m_box.pack_start(m_button_box2, Gtk::PACK_SHRINK);
+  m_box.pack_start(m_button_box2, Gtk::PackOptions::SHRINK);
 
-  m_button_box2.pack_start(m_button_set_width, Gtk::PACK_SHRINK);
+  m_button_box2.pack_start(m_button_set_width, Gtk::PackOptions::SHRINK);
   m_button_set_width.signal_clicked().connect(sigc::mem_fun(*this, &ExampleWindow::on_button_set_width));
 
-  m_button_box2.pack_start(m_button_set_width_unlimited, Gtk::PACK_SHRINK);
+  m_button_box2.pack_start(m_button_set_width_unlimited, Gtk::PackOptions::SHRINK);
   m_button_set_width_unlimited.signal_clicked().connect(sigc::mem_fun(*this, &ExampleWindow::on_button_set_width_unlimited));
 
-  m_box.pack_start(m_label_status, Gtk::PACK_SHRINK);
+  m_box.pack_start(m_label_status, Gtk::PackOptions::SHRINK);
   m_label_status.set_xalign(0.0);
   add(m_box);
 
