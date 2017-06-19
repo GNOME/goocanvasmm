@@ -20,6 +20,7 @@
 #include <goocanvasmm/enums.h>
 #include <goocanvasmm/style.h>
 #include <cairomm/cairomm.h>
+#include <gdkmm/events.h>
 #include <glibmm/interface.h>
 #include <goocanvasitem.h>
 
@@ -146,21 +147,37 @@ public:
   //_WRAP_SIGNAL(void child_moved(int old_position, int new_position), "child_moved")
   //_WRAP_SIGNAL(void child_removed(int child_num), "child_removed")
   //_WRAP_SIGNAL(void changed(bool recompute_bounds), "changed")
+  
 
 #m4 _CONVERSION(`GooCanvasItem*',`const Glib::RefPtr<Item>&',`Glib::wrap($3, true)')
-  _WRAP_SIGNAL(bool enter_notify_event(const Glib::RefPtr<Item>& target, GdkEventCrossing* event), "enter_notify_event")
-  _WRAP_SIGNAL(bool leave_notify_event(const Glib::RefPtr<Item>& target, GdkEventCrossing* event), "leave_notify_event")
-  _WRAP_SIGNAL(bool motion_notify_event(const Glib::RefPtr<Item>& target, GdkEventMotion* event), "motion_notify_event")
-  _WRAP_SIGNAL(bool button_press_event(const Glib::RefPtr<Item>& target, GdkEventButton* event), "button_press_event")
-  _WRAP_SIGNAL(bool button_release_event(const Glib::RefPtr<Item>& target, GdkEventButton* event), "button_release_event")
-  _WRAP_SIGNAL(bool focus_in_event(const Glib::RefPtr<Item>& target, GdkEventFocus* event), "focus_in_event")
-  _WRAP_SIGNAL(bool focus_out_event(const Glib::RefPtr<Item>& target, GdkEventFocus* event), "focus_out_event")
-  _WRAP_SIGNAL(bool key_press_event(const Glib::RefPtr<Item>& target, GdkEventKey* event), "key_press_event")
-  _WRAP_SIGNAL(bool key_release_event(const Glib::RefPtr<Item>& target, GdkEventKey* event), "key_release_event")
-  _WRAP_SIGNAL(bool grab_broken_event(const Glib::RefPtr<Item>& target, GdkEventGrabBroken* event), "grab_broken_event")
+#m4 _CONVERSION(`GdkEventCrossing*',`Gdk::EventCrossing&',`Gdk::wrap_event($3)')
+#m4 _CONVERSION(`Gdk::EventCrossing&',`GdkEventCrossing*',`($3).gobj()')
+#m4 _CONVERSION(`GdkEventMotion*',`Gdk::EventMotion&',`Gdk::wrap_event($3)')
+#m4 _CONVERSION(`Gdk::EventMotion&',`GdkEventMotion*',`($3).gobj()')
+#m4 _CONVERSION(`GdkEventButton*',`Gdk::EventButton&',`Gdk::wrap_event($3)')
+#m4 _CONVERSION(`Gdk::EventButton&',`GdkEventButton*',`($3).gobj()')
+#m4 _CONVERSION(`GdkEventFocus*',`Gdk::EventFocus&',`Gdk::wrap_event($3)')
+#m4 _CONVERSION(`Gdk::EventFocus&',`GdkEventFocus*',`($3).gobj()')
+#m4 _CONVERSION(`GdkEventKey*',`Gdk::EventKey&',`Gdk::wrap_event($3)')
+#m4 _CONVERSION(`Gdk::EventKey&',`GdkEventKey*',`($3).gobj()')
+#m4 _CONVERSION(`GdkEventGrabBroken*',`Gdk::EventGrabBroken&',`Gdk::wrap_event($3)')
+#m4 _CONVERSION(`Gdk::EventGrabBroken&',`GdkEventGrabBroken*',`($3).gobj()')
+#m4 _CONVERSION(`GdkEventScroll*',`Gdk::EventScroll&',`Gdk::wrap_event($3)')
+#m4 _CONVERSION(`Gdk::EventScroll&',`GdkEventScroll*',`($3).gobj()')
+
+  _WRAP_SIGNAL(bool enter_notify_event(const Glib::RefPtr<Item>& target, Gdk::EventCrossing& event), "enter_notify_event")
+  _WRAP_SIGNAL(bool leave_notify_event(const Glib::RefPtr<Item>& target, Gdk::EventCrossing& event), "leave_notify_event")
+  _WRAP_SIGNAL(bool motion_notify_event(const Glib::RefPtr<Item>& target, Gdk::EventMotion& event), "motion_notify_event")
+  _WRAP_SIGNAL(bool button_press_event(const Glib::RefPtr<Item>& target, Gdk::EventButton& event), "button_press_event")
+  _WRAP_SIGNAL(bool button_release_event(const Glib::RefPtr<Item>& target, Gdk::EventButton& event), "button_release_event")
+  _WRAP_SIGNAL(bool focus_in_event(const Glib::RefPtr<Item>& target, Gdk::EventFocus& event), "focus_in_event")
+  _WRAP_SIGNAL(bool focus_out_event(const Glib::RefPtr<Item>& target, Gdk::EventFocus& event), "focus_out_event")
+  _WRAP_SIGNAL(bool key_press_event(const Glib::RefPtr<Item>& target, Gdk::EventKey& event), "key_press_event")
+  _WRAP_SIGNAL(bool key_release_event(const Glib::RefPtr<Item>& target, Gdk::EventKey& event), "key_release_event")
+  _WRAP_SIGNAL(bool grab_broken_event(const Glib::RefPtr<Item>& target, Gdk::EventGrabBroken& event), "grab_broken_event")
   _WRAP_SIGNAL(void child_notify(GParamSpec* pspec), "child_notify")
   _WRAP_SIGNAL(void animation_finished(bool stopped), "animation_finished")
-  _WRAP_SIGNAL(bool scroll_event(const Glib::RefPtr<Item>& target, GdkEventScroll* event), "scroll_event")
+  _WRAP_SIGNAL(bool scroll_event(const Glib::RefPtr<Item>& target, Gdk::EventScroll& event), "scroll_event")
 
   _WRAP_PROPERTY("parent", Glib::RefPtr<Item>)
   _WRAP_PROPERTY("visibility", ItemVisibility)

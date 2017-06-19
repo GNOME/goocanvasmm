@@ -83,21 +83,21 @@ Window::on_item_created(const Glib::RefPtr<Goocanvas::Item>& item, const Glib::R
 }
 
 bool
-Window::on_item_button_press_event(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventButton* event)
+Window::on_item_button_press_event(const Glib::RefPtr<Goocanvas::Item>& item, Gdk::EventButton& event)
 {
-  if(event->button == 1)
+  if(event.get_button() == 1)
   {
     _dragging = item ;
-    _drag_x = (int) event->x ;
-    _drag_y = (int) event->y ;
+    _drag_x = (int) event.get_x();
+    _drag_y = (int) event.get_y();
   }
   return false;
 }
 
 bool
-Window::on_item_button_release_event(const Glib::RefPtr<Goocanvas::Item>& /* item */, GdkEventButton* event)
+Window::on_item_button_release_event(const Glib::RefPtr<Goocanvas::Item>& /* item */, Gdk::EventButton& event)
 {
-  if(event->button == 1)
+  if(event.get_button() == 1)
   {
     _dragging.reset();
   }
@@ -105,12 +105,12 @@ Window::on_item_button_release_event(const Glib::RefPtr<Goocanvas::Item>& /* ite
 }
 
 bool
-Window::on_item_motion_notify_event(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventMotion* event)
+Window::on_item_motion_notify_event(const Glib::RefPtr<Goocanvas::Item>& item, Gdk::EventMotion& event)
 {
   if(item && _dragging && item == _dragging)
   {
-    auto new_x = event->x ;
-    auto new_y = event->y ;
+    auto new_x = event.get_x();
+    auto new_y = event.get_y();
     item->translate(new_x - _drag_x, new_y - _drag_y);
   }
   return false;

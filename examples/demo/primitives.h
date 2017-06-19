@@ -39,10 +39,10 @@ public:
 
 private:
 
-  bool      _on_background_button_press(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventButton* ev);
-  bool      _on_button_press(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventButton* ev);
-  bool      _on_button_release(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventButton* ev);
-  bool      _on_motion_notify(const Glib::RefPtr<Goocanvas::Item>& item, GdkEventMotion* ev);
+  bool      _on_background_button_press(const Glib::RefPtr<Goocanvas::Item>& item, Gdk::EventButton& ev);
+  bool      _on_button_press(const Glib::RefPtr<Goocanvas::Item>& item, Gdk::EventButton& ev);
+  bool      _on_button_release(const Glib::RefPtr<Goocanvas::Item>& item, Gdk::EventButton& ev);
+  bool      _on_motion_notify(const Glib::RefPtr<Goocanvas::Item>& item, Gdk::EventMotion& ev);
 
   void      _setup_signals(const Glib::RefPtr<Goocanvas::Item>& item);
   void      _setup_heading(const Glib::ustring& heading, int pos);

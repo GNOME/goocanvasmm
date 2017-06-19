@@ -60,26 +60,26 @@ Primitives::getWidget()
 }
 
 bool
-Primitives::_on_background_button_press(const Glib::RefPtr<Goocanvas::Item>& /* item */, GdkEventButton* /* ev */)
+Primitives::_on_background_button_press(const Glib::RefPtr<Goocanvas::Item>& /* item */, Gdk::EventButton& /* ev */)
 {
   return false;
 }
 
 bool
-Primitives::_on_button_press(const Glib::RefPtr<Goocanvas::Item>& /* item */, GdkEventButton* /* ev */)
+Primitives::_on_button_press(const Glib::RefPtr<Goocanvas::Item>& /* item */, Gdk::EventButton& /* ev */)
 {
   std::cerr << "Clicked!" << std::endl ;
   return false;
 }
 
 bool
-Primitives::_on_button_release(const Glib::RefPtr<Goocanvas::Item>& /* item */, GdkEventButton* /* ev */)
+Primitives::_on_button_release(const Glib::RefPtr<Goocanvas::Item>& /* item */, Gdk::EventButton& /* ev */)
 {
   return false;
 }
 
 bool
-Primitives::_on_motion_notify(const Glib::RefPtr<Goocanvas::Item>& /* item */, GdkEventMotion* /* ev */)
+Primitives::_on_motion_notify(const Glib::RefPtr<Goocanvas::Item>& /* item */, Gdk::EventMotion& /* ev */)
 {
   return false;
 }

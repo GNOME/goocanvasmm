@@ -31,7 +31,7 @@ protected:
   Goocanvas::Canvas m_canvas;
   Glib::RefPtr<Goocanvas::Rect> m_table;
 
-  bool on_rect_button_press(const Glib::RefPtr<Goocanvas::Item>& target, GdkEventButton* event);
+  bool on_rect_button_press(const Glib::RefPtr<Goocanvas::Item>& target, Gdk::EventButton& event);
 };
 
 #endif //_GOOCANVASMM_EXAMPLEWINDOW_H
